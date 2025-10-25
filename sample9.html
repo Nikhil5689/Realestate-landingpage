@@ -1,0 +1,1085 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elysian Residency | Luxury 2 & 3 BHK Homes</title>
+    
+    <!-- Google Fonts Import -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        /* CSS Reset and Global Styles */
+        :root {
+            --font-heading: 'Poppins', sans-serif;
+            --font-body: 'Inter', sans-serif;
+            --color-primary-dark: #1F3A5A; /* Dark Blue */
+            --color-primary-medium: #4A6D95; /* Medium Blue */
+            --color-primary-light: #EAF0F6; /* Light Blue-Grey */
+            --color-accent: #D4AF37;       /* Gold */
+            --color-accent-dark: #B8860B;
+            --color-text-dark: #333333;
+            --color-text-medium: #555555;
+            --color-text-light: #ffffff;
+            --color-border: #D1D9E1;
+            --color-bg-white: #ffffff;
+            --transition-main: all 0.3s ease-in-out;
+            --container-width: 1140px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
+        body {
+            font-family: var(--font-body);
+            color: var(--color-text-dark);
+            background-color: var(--color-bg-white);
+            line-height: 1.6;
+            overflow-x: hidden;
+            padding-top: 70px; /* Space for fixed header */
+        }
+
+        /* Utility Classes */
+        .container {
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.85rem 2rem;
+            font-family: var(--font-heading);
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: var(--transition-main);
+            cursor: pointer;
+            border: 1px solid transparent;
+            text-align: center;
+            text-transform: uppercase;
+            font-size: 0.875rem;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-primary {
+            background-color: var(--color-accent);
+            color: var(--color-text-light);
+            border-color: var(--color-accent);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--color-accent-dark);
+            border-color: var(--color-accent-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            color: var(--color-primary-dark);
+            border: 2px solid var(--color-primary-dark);
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--color-primary-dark);
+            color: var(--color-text-light);
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-heading);
+            color: var(--color-primary-dark);
+            font-weight: 600;
+            line-height: 1.3;
+        }
+
+        h1 { font-size: 3rem; margin-bottom: 1rem; }
+        h2 { font-size: 2.5rem; text-align: center; margin-bottom: 1.5rem; }
+        h3 { font-size: 1.75rem; margin-bottom: 1rem; }
+        h4 { font-size: 1.25rem; }
+        
+        p {
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
+            color: var(--color-text-medium);
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.1rem;
+            color: var(--color-text-medium);
+            max-width: 700px;
+            margin: -1rem auto 3.5rem auto;
+            line-height: 1.7;
+        }
+        
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 8px;
+        }
+        
+        /* Fade-in Animation */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- Top Navigation --- */
+        .top-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 1rem 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--color-border);
+            z-index: 1000;
+            transition: padding 0.3s ease;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            text-decoration: none;
+            color: var(--color-primary-dark);
+            font-family: var(--font-heading);
+            font-weight: 700;
+            font-size: 1.75rem;
+        }
+
+        .main-nav {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+        
+        .main-nav .nav-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+        
+        .main-nav a {
+            text-decoration: none;
+            color: var(--color-text-dark);
+            font-weight: 500;
+            font-size: 0.95rem;
+            position: relative;
+            padding-bottom: 0.25rem;
+        }
+        
+        .main-nav .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--color-accent);
+            transition: width 0.3s ease;
+        }
+        
+        .main-nav .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        .main-nav .btn {
+            padding: 0.6rem 1.25rem;
+        }
+        
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+            z-index: 1001;
+        }
+        
+        .menu-toggle .bar {
+            display: block;
+            width: 28px;
+            height: 3px;
+            margin: 6px 0;
+            background-color: var(--color-primary-dark);
+            transition: all 0.3s ease-in-out;
+        }
+        
+        .menu-toggle.open .bar:nth-child(1) {
+            transform: translateY(9px) rotate(45deg);
+        }
+        .menu-toggle.open .bar:nth-child(2) {
+            opacity: 0;
+        }
+        .menu-toggle.open .bar:nth-child(3) {
+            transform: translateY(-9px) rotate(-45deg);
+        }
+
+
+        /* --- Hero Section --- */
+        .hero-section {
+            height: 90vh;
+            min-height: 600px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start; /* Align content to the left */
+            background: url('https://source.unsplash.com/1800x1000/?luxury,apartment,interior,bright') no-repeat center center/cover;
+            color: var(--color-text-light);
+            padding-top: 70px; /* Offset for header */
+        }
+        
+        .hero-section::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(to right, rgba(31, 58, 90, 0.85), rgba(31, 58, 90, 0.1)); /* Dark Blue to transparent */
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 650px;
+            text-align: left; /* Left align text */
+        }
+        
+        .hero-content .subtitle-small {
+            font-family: var(--font-body);
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: var(--color-text-light);
+            opacity: 0.9;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .hero-content h1 {
+            color: var(--color-text-light);
+            font-size: 3.5rem; /* Larger font size */
+            margin-bottom: 1rem;
+        }
+        
+        .hero-content .location {
+            font-size: 1.25rem;
+            color: var(--color-text-light);
+            opacity: 0.9;
+            margin-bottom: 2.5rem;
+            font-weight: 500;
+        }
+
+        /* --- Highlights Bar --- */
+        .highlights-bar {
+            background: var(--color-bg-white);
+            padding: 2.5rem 0;
+            border-bottom: 1px solid var(--color-border);
+            margin-top: -50px; /* Overlap with hero */
+            position: relative;
+            z-index: 5;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            border-radius: 8px;
+        }
+        
+        .highlights-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            text-align: center;
+        }
+        
+        .highlight-item .value {
+            font-family: var(--font-heading);
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--color-accent);
+            margin-bottom: 0.25rem;
+            line-height: 1.1;
+        }
+         .highlight-item .value sup {
+             font-size: 1.25rem;
+             font-weight: 600;
+             margin-left: 2px;
+         }
+        
+        .highlight-item .label {
+            font-size: 0.9rem;
+            color: var(--color-text-medium);
+            font-weight: 500;
+        }
+
+        /* --- About Section --- */
+        #about {
+            padding: 6rem 0;
+        }
+        
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+        
+        .about-grid img {
+            box-shadow: 0 15px 35px rgba(31, 58, 90, 0.1);
+        }
+
+        /* --- Amenities Section --- */
+        #amenities {
+            padding: 6rem 0;
+            background-color: var(--color-primary-light);
+        }
+        
+        .amenities-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr); /* 4 columns */
+            gap: 1.5rem;
+        }
+        
+        .amenity-item {
+            text-align: center;
+            background: var(--color-bg-white);
+            padding: 2rem 1rem; /* Slightly less padding */
+            border-radius: 8px;
+            border: 1px solid var(--color-border);
+            transition: var(--transition-main);
+        }
+        
+        .amenity-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.07);
+            border-color: var(--color-accent);
+        }
+        
+        .amenity-item svg {
+            width: 45px; /* Slightly smaller icon */
+            height: 45px;
+            margin: 0 auto 1rem auto;
+            color: var(--color-accent);
+        }
+        
+        .amenity-item h4 {
+            font-family: var(--font-body);
+            font-size: 1rem; /* Smaller heading */
+            font-weight: 600;
+            margin: 0;
+        }
+
+        /* --- Floor Plans Section (Tabs) --- */
+        #floor-plans {
+            padding: 6rem 0;
+        }
+        
+        .tab-nav {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+        }
+        
+        .tab-button {
+            padding: 0.75rem 1.75rem;
+            font-family: var(--font-body);
+            font-weight: 600;
+            font-size: 1rem;
+            background: var(--color-primary-light);
+            border: 1px solid var(--color-border);
+            border-radius: 30px;
+            cursor: pointer;
+            transition: var(--transition-main);
+        }
+        
+        .tab-button:hover {
+            background-color: var(--color-accent-dark);
+            color: var(--color-text-light);
+            border-color: var(--color-accent-dark);
+        }
+        
+        .tab-button.active {
+            background-color: var(--color-accent);
+            color: var(--color-text-light);
+            border-color: var(--color-accent);
+        }
+        
+        .tab-content {
+            display: none;
+            animation: fadeInContent 0.5s ease;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .tab-content img {
+            width: 100%;
+            max-width: 900px;
+            margin: 0 auto;
+            border-radius: 8px;
+            border: 1px solid var(--color-border);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+        }
+
+        @keyframes fadeInContent {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* --- Connectivity Section --- */
+        #connectivity {
+            padding: 6rem 0;
+            background-color: var(--color-primary-light);
+        }
+        .connectivity-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+        .connectivity-list {
+            list-style: none;
+        }
+        .connectivity-list li {
+            position: relative;
+            padding-left: 35px;
+            margin-bottom: 1.25rem;
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+        .connectivity-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            top: 2px;
+            color: var(--color-accent);
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+        .map-placeholder {
+            width: 100%;
+            height: 450px;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid var(--color-border);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        .map-placeholder img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+
+        /* --- Gallery Section --- */
+        #gallery {
+            padding: 6rem 0;
+        }
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        .gallery-item {
+            position: relative;
+            height: 350px;
+            overflow: hidden;
+            border-radius: 8px;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+
+        /* --- Developer Section --- */
+        #developer {
+            padding: 6rem 0;
+            background-color: var(--color-primary-light);
+            text-align: center;
+        }
+        .developer-logo img {
+            max-width: 200px;
+            margin: 0 auto 1.5rem auto;
+        }
+
+        /* --- Contact Form Section --- */
+        #contact {
+            padding: 6rem 0;
+        }
+        .contact-container {
+            max-width: 700px;
+            margin: 0 auto;
+            background: var(--color-primary-light);
+            padding: 3rem;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.07);
+        }
+        .contact-container h2 {
+            text-align: center;
+            margin-bottom: 0.5rem;
+        }
+        .contact-container .section-subtitle {
+             text-align: center;
+             max-width: 500px;
+             margin: 0 auto 2.5rem auto;
+        }
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+        }
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.85rem 1rem;
+            border: 1px solid var(--color-border);
+            border-radius: 4px;
+            font-family: var(--font-body);
+            font-size: 1rem;
+            background: var(--color-bg-white);
+        }
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--color-accent);
+            box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.3);
+        }
+        .contact-form .btn-primary {
+            font-size: 1rem;
+            padding: 1rem;
+        }
+
+        /* --- Footer --- */
+        .main-footer {
+            background-color: var(--color-primary-dark);
+            color: #bdc3c7;
+            padding: 4rem 0 2rem 0;
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 4rem;
+            text-align: left;
+            margin-bottom: 3rem;
+        }
+        .footer-widget .logo {
+            font-size: 1.75rem;
+            color: var(--color-text-light);
+            margin-bottom: 1rem;
+            display: inline-block;
+        }
+        .footer-widget p {
+            color: #95a5a6;
+            font-size: 0.9rem;
+            line-height: 1.7;
+            max-width: 350px;
+        }
+        .footer-widget h4 {
+            color: var(--color-text-light);
+            font-family: var(--font-heading);
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .footer-widget ul {
+            list-style: none;
+        }
+        .footer-widget li {
+            margin-bottom: 0.75rem;
+        }
+        .footer-widget a {
+            text-decoration: none;
+            color: #bdc3c7;
+            transition: var(--transition-main);
+        }
+        .footer-widget a:hover {
+            color: var(--color-accent);
+        }
+        .footer-widget .contact-item {
+            display: block;
+            color: #bdc3c7;
+            margin-bottom: 0.75rem;
+            font-size: 0.9rem;
+        }
+        .footer-bottom {
+            text-align: center;
+            border-top: 1px solid #34495e;
+            padding-top: 2rem;
+        }
+        .footer-bottom p {
+            color: #95a5a6;
+            margin: 0;
+            font-size: 0.85rem;
+        }
+
+
+        /* --- Responsive Design --- */
+        
+        @media (max-width: 1024px) {
+            h1 { font-size: 2.5rem; }
+            h2 { font-size: 2.25rem; }
+            section { padding: 4rem 0; }
+
+            .nav-container { padding: 0 1.5rem; }
+            
+            .highlights-grid { grid-template-columns: 1fr 1fr; gap: 2rem; }
+            .highlights-bar { margin-top: -40px; }
+            
+            .about-grid { grid-template-columns: 1fr; }
+            .about-grid img { margin-top: 2rem; }
+            
+            .amenities-grid { grid-template-columns: 1fr 1fr; }
+            .connectivity-grid { grid-template-columns: 1fr; }
+            .map-placeholder { height: 350px; margin-top: 2rem; order: -1; } /* Map first on tablet */
+            .gallery-grid { grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
+            .footer-grid { grid-template-columns: 1fr; gap: 3rem; }
+        }
+        
+        @media (max-width: 768px) {
+            body { padding-top: 60px; }
+            .top-nav { padding: 0.75rem 0; }
+            .nav-container { padding: 0 1rem; }
+            .logo { font-size: 1.5rem; }
+            
+            .main-nav {
+                position: fixed;
+                top: 60px;
+                left: -100%;
+                width: 80%;
+                height: 100vh;
+                background: var(--color-bg-white);
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0;
+                padding: 2rem 1.5rem;
+                box-shadow: 5px 0 15px rgba(0,0,0,0.1);
+                transition: left 0.4s ease-in-out;
+            }
+            .main-nav.open { left: 0; }
+            .main-nav .nav-links {
+                display: flex;
+                flex-direction: column;
+                width: 100%;
+                gap: 0;
+            }
+            .main-nav a {
+                padding: 1rem 0;
+                width: 100%;
+                border-bottom: 1px solid var(--color-border);
+            }
+            .main-nav a:last-child { border-bottom: none; }
+            .main-nav .nav-links a::after { display: none; }
+            .main-nav .btn { display: block; margin-top: 2rem; width: 100%; }
+            .menu-toggle { display: block; }
+            
+            .hero-section { height: 80vh; min-height: 500px; justify-content: center; }
+            .hero-content h1 { font-size: 2.25rem; }
+            .hero-content .location { font-size: 1.1rem; }
+            
+            .highlights-bar { margin-top: 0; border-radius: 0; box-shadow: none; border-bottom: 1px solid var(--color-border); }
+            .highlights-grid { grid-template-columns: 1fr 1fr; gap: 1rem; }
+            .highlight-item .value { font-size: 2rem; }
+             .highlight-item .value sup { font-size: 1rem;}
+            .highlight-item .label { font-size: 0.8rem; }
+            
+            .amenities-grid { grid-template-columns: 1fr 1fr; gap: 1rem;} /* Keep 2 columns on mobile if possible */
+            .amenity-item { padding: 1.5rem 0.75rem; }
+            .amenity-item svg { width: 35px; height: 35px; margin-bottom: 0.75rem; }
+            .amenity-item h4 { font-size: 0.9rem; }
+            
+            .tab-nav { flex-direction: column; gap: 0.5rem; }
+            .contact-container { padding: 2rem 1.5rem; }
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Top Navigation -->
+    <header class="top-nav">
+        <div class="container nav-container">
+            <a href="#home" class="logo">ELYSIAN</a>
+            
+            <nav class="main-nav" id="mainNav">
+                <div class="nav-links">
+                    <a href="#about">About</a>
+                    <a href="#amenities">Amenities</a>
+                    <a href="#floor-plans">Floor Plans</a>
+                    <a href="#connectivity">Connectivity</a>
+                    <a href="#developer">Developer</a>
+                </div>
+                <a href="#contact" class="btn btn-primary">Enquire</a>
+            </nav>
+            
+            <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation" aria-expanded="false">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+        </div>
+    </header>
+
+    <main>
+
+        <!-- Hero Section -->
+        <section id="home" class="hero-section">
+            <div class="container">
+                <div class="hero-content fade-in">
+                    <span class="subtitle-small">An Embodiment of Luxury Living</span>
+                    <h1>Unrivaled Elegance, Unparalleled Connectivity</h1>
+                    <p class="location">2 & 3 BHK Homes | Prime City Location</p>
+                    <a href="#about" class="btn btn-primary">Discover Your Home</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Highlights Bar -->
+        <div class="highlights-bar fade-in">
+            <div class="container highlights-grid">
+                <div class="highlight-item">
+                    <div class="value">35<sup>+</sup></div>
+                    <div class="label">World-Class Amenities</div>
+                </div>
+                <div class="highlight-item">
+                    <div class="value">25<sup>+</sup></div>
+                    <div class="label">Floors of Luxury</div>
+                </div>
+                <div class="highlight-item">
+                    <div class="value">1800<sup>+</sup></div>
+                    <div class="label">Sq. Ft. Options</div>
+                </div>
+                 <div class="highlight-item">
+                    <div class="value">4</div>
+                    <div class="label">Acres of Landscape</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- About Section -->
+        <section id="about" class="fade-in">
+            <div class="container about-grid">
+                 <div class="about-content">
+                    <h2>Splendid Homes, Better Living</h2>
+                    <p>Welcome to Elysian Residency, where modern design meets thoughtful amenities to create an unparalleled living experience. Nestled in a prime location, our 2 & 3 BHK homes offer the perfect blend of luxury, comfort, and connectivity.</p>
+                    <p>Crafted with attention to detail and adherence to Vastu principles, each apartment is a sanctuary designed for harmony and well-being. Experience the best of urban living with easy access to everything you need.</p>
+                    <a href="#floor-plans" class="btn btn-outline">View Floor Plans</a>
+                </div>
+                <img src="https://source.unsplash.com/600x450/?modern,apartment,lobby,luxury" alt="Elegant apartment lobby interior" loading="lazy">
+            </div>
+        </section>
+
+        <!-- Amenities Section -->
+        <section id="amenities" class="fade-in">
+            <div class="container">
+                <h2>Curated Amenities for Every Lifestyle</h2>
+                <p class="section-subtitle">From fitness centers to serene gardens, discover spaces designed for relaxation, recreation, and connection.</p>
+                <div class="amenities-grid">
+                    <div class="amenity-item">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" /></svg>
+                        <h4>Grand Clubhouse</h4>
+                    </div>
+                     <div class="amenity-item">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.59 14.37a6 6 0 01-5.84 7.38v-4.8m5.84-2.58a14.98 14.98 0 006.16-12.12A14.98 14.98 0 009.63 2.13v4.8m5.96 5.44a14.926 14.926 0 01-5.841 2.58m-.119-8.54a6 6 0 00-7.381 5.84h4.8m2.581-5.84a14.927 14.927 0 00-2.58 5.84m2.699 2.7c-.103.021-.207.041-.314.06a15.09 15.09 0 01-2.448-2.448 14.9 14.9 0 01.06-.314m-2.7 2.448a14.927 14.927 0 01-5.841 2.58m5.841-2.58h-4.8m2.581 5.841a14.919 14.919 0 01-2.58 5.84m2.699-5.841a6 6 0 01-.06.314M3.75 12a14.94 14.94 0 014.287-8.97M21 12a14.94 14.94 0 01-4.287 8.97M12 21a14.94 14.94 0 01-8.97-4.287M12 3a14.94 14.94 0 018.97 4.287" /></svg>
+                        <h4>Fitness Center</h4>
+                    </div>
+                     <div class="amenity-item">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 12h16.5m-16.5 3.75h16.5M3.75 19.5h16.5M5.625 4.5h12.75a1.125 1.125 0 010 2.25H5.625a1.125 1.125 0 010-2.25z" /></svg>
+                        <h4>Swimming Pool</h4>
+                    </div>
+                     <div class="amenity-item">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 12c0-1.232-.046-2.453-.138-3.662a4.006 4.006 0 00-3.7-3.7 48.678 48.678 0 00-7.324 0 4.006 4.006 0 00-3.7 3.7c-.091 1.21-.138 2.43-.138 3.662v.513a5.374 5.374 0 01-.671 2.432l-.744 1.488c-.386.774-.02 1.76.774 2.146l4.148 1.66c.949.378 2.016.378 2.964 0l4.148-1.66c.794-.386 1.159-1.372.774-2.146l-.744-1.488a5.374 5.374 0 01-.67-2.432v-.513z" /></svg>
+                        <h4>Children's Play Area</h4>
+                    </div>
+                    <div class="amenity-item">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h1.125c.621 0 1.125-.504 1.125-1.125V14.25m-17.25 4.5h10.5m-10.5-4.5V6.375c0-.621.504-1.125 1.125-1.125h14.25c.621 0 1.125.504 1.125 1.125v10.125m-17.25-4.5h17.25" /></svg>
+                        <h4>Ample Parking</h4>
+                    </div>
+                     <div class="amenity-item">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z" /></svg>
+                        <h4>24/7 Security</h4>
+                    </div>
+                     <div class="amenity-item">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" /></svg>
+                        <h4>Landscaped Gardens</h4>
+                    </div>
+                    <div class="amenity-item">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" /></svg>
+                        <h4>Power Backup</h4>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Floor Plans Section (Tabs) -->
+        <section id="floor-plans" class="fade-in">
+            <div class="container">
+                <h2 class="fade-in">Thoughtfully Designed Floor Plans</h2>
+                <p class="section-subtitle fade-in">Choose the perfect space that complements your lifestyle.</p>
+                <div class="tab-nav fade-in" id="floorPlanTabs">
+                    <button class="tab-button active" data-tab="tab-2bhk">2 BHK Floor Plan</button>
+                    <button class="tab-button" data-tab="tab-3bhk">3 BHK Floor Plan</button>
+                </div>
+                
+                <div class="tab-content active fade-in" id="tab-2bhk">
+                    <img src="https://source.unsplash.com/1200x800/?floorplan,2bhk" alt="2 BHK Floor Plan" loading="lazy">
+                </div>
+                <div class="tab-content fade-in" id="tab-3bhk">
+                    <img src="https://source.unsplash.com/1200x800/?floorplan,3bhk" alt="3 BHK Floor Plan" loading="lazy">
+                </div>
+            </div>
+        </section>
+
+        <!-- Connectivity Section -->
+        <section id="connectivity" class="fade-in">
+             <div class="container connectivity-grid">
+                <div class="connectivity-content fade-in">
+                    <h2>Seamless Connectivity</h2>
+                    <p>Elysian Residency boasts a strategic location with effortless access to major transportation hubs, educational institutions, healthcare facilities, and entertainment zones.</p>
+                    <ul class="connectivity-list">
+                        <li>Metro Station - 5 Mins</li>
+                        <li>Main Railway Station - 10 Mins</li>
+                        <li>Reputed Schools & Colleges - Nearby</li>
+                        <li>Multi-Specialty Hospitals - 7 Mins</li>
+                        <li>Shopping Malls & Multiplexes - 15 Mins</li>
+                        <li>Business Hubs - 20 Mins</li>
+                    </ul>
+                </div>
+                 <div class="map-placeholder fade-in">
+                    <img src="https://source.unsplash.com/600x500/?city,map,urban" alt="Map showing project connectivity">
+                </div>
+            </div>
+        </section>
+
+        <!-- Gallery Section -->
+        <section id="gallery" class="fade-in">
+             <div class="container">
+                <h2>Experience Elysian Living</h2>
+                <p class="section-subtitle">A glimpse into the luxurious lifestyle that awaits you.</p>
+                <div class="gallery-grid">
+                    <div class="gallery-item">
+                        <img src="https://source.unsplash.com/400x350/?modern,livingroom,luxury" alt="Modern living room">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://source.unsplash.com/400x350/?apartment,balcony,view" alt="Apartment balcony with city view">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://source.unsplash.com/400x350/?luxury,bathroom,interior" alt="Luxury bathroom interior">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- Developer Section -->
+        <section id="developer" class="fade-in">
+            <div class="container">
+                <h2>A Project By Your Developer Group</h2>
+                <div class="developer-logo">
+                    <img src="https://placehold.co/200x100/1F3A5A/FFFFFF?text=Developer+Logo" alt="Developer Group Logo">
+                </div>
+                <p class="section-subtitle">With a legacy of trust and excellence, Your Developer Group is committed to creating homes that stand the test of time, offering quality construction, innovative design, and unparalleled customer satisfaction.</p>
+                <a href="#" class="btn btn-outline">Learn More About Us</a>
+            </div>
+        </section>
+
+
+        <!-- Contact Form Section -->
+        <section id="contact" class="fade-in">
+            <div class="container contact-container">
+                 <h2>Get in Touch With Us</h2>
+                 <p class="section-subtitle">Have any questions? Fill out the form below, and our team will reach out to you shortly.</p>
+                 <form class="contact-form" id="contactForm">
+                     <div class="form-group">
+                        <input type="text" id="name" name="name" placeholder="Your Name *" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" id="email" name="email" placeholder="Your Email *" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="tel" id="phone" name="phone" placeholder="Your Phone Number *" required>
+                    </div>
+                     <div class="form-group">
+                        <textarea id="message" name="message" rows="4" placeholder="Your Message..."></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit Enquiry</button>
+                 </form>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-widget">
+                    <a href="#home" class="logo">ELYSIAN</a>
+                    <p>Elysian Residency offers premium 2 & 3 BHK homes in a prime city location, designed for luxury, comfort, and connectivity.</p>
+                </div>
+                <div class="footer-widget">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#amenities">Amenities</a></li>
+                        <li><a href="#floor-plans">Floor Plans</a></li>
+                        <li><a href="#connectivity">Connectivity</a></li>
+                        <li><a href="#developer">Developer</a></li>
+                    </ul>
+                </div>
+                 <div class="footer-widget">
+                    <h4>Contact Info</h4>
+                    <span class="contact-item">Site Address:<br> Elysian Residency, Near City Park, Prime Location, 400001</span>
+                    <span class="contact-item">info@yourbrand.com</span>
+                    <span class="contact-item">+91 12345 67890</span>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; <span id="currentYear"></span> Your Developer Group. All rights reserved. RERA No: P51XXXXXXX. This is a fictional mockup.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+
+            // --- Mobile Menu Toggle ---
+            const menuToggle = document.getElementById('menuToggle');
+            const mainNav = document.getElementById('mainNav');
+            
+            if (menuToggle && mainNav) {
+                menuToggle.addEventListener('click', () => {
+                    mainNav.classList.toggle('open');
+                    menuToggle.classList.toggle('open');
+                    menuToggle.setAttribute('aria-expanded', mainNav.classList.contains('open'));
+                });
+                 // Close menu when clicking outside
+                 document.addEventListener('click', (event) => {
+                    const isClickInsideNav = mainNav.contains(event.target);
+                    const isClickOnToggle = menuToggle.contains(event.target);
+                    if (!isClickInsideNav && !isClickOnToggle && mainNav.classList.contains('open')) {
+                        mainNav.classList.remove('open');
+                        menuToggle.classList.remove('open');
+                        menuToggle.setAttribute('aria-expanded', 'false');
+                    }
+                });
+            }
+
+            // --- Smooth Scroll & Close Mobile Menu ---
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        let headerOffset = 70; // Height of the top-nav
+                        if (window.innerWidth <= 768) { headerOffset = 60; }
+                        
+                        let elementPosition = targetElement.getBoundingClientRect().top;
+                        let offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+                        if (targetId === '#home') { offsetPosition = 0; }
+
+                        window.scrollTo({ top: offsetPosition, behavior: "smooth" });
+                        
+                        if (mainNav.classList.contains('open')) {
+                            mainNav.classList.remove('open');
+                            menuToggle.classList.remove('open');
+                            menuToggle.setAttribute('aria-expanded', 'false');
+                        }
+                    }
+                });
+            });
+
+            // --- Fade-in on Scroll (IntersectionObserver) ---
+            const faders = document.querySelectorAll('.fade-in');
+            const appearOptions = { threshold: 0.1, rootMargin: "0px 0px -50px 0px" };
+            const appearOnScroll = new IntersectionObserver(function(entries, appearOnScroll) {
+                entries.forEach(entry => {
+                    if (!entry.isIntersecting) { return; } 
+                    else {
+                        entry.target.classList.add('visible');
+                        appearOnScroll.unobserve(entry.target);
+                    }
+                });
+            }, appearOptions);
+            faders.forEach(fader => { appearOnScroll.observe(fader); });
+            
+            // --- Floor Plan Tabs ---
+            const tabContainer = document.getElementById('floorPlanTabs');
+            if (tabContainer) {
+                const tabButtons = tabContainer.querySelectorAll('.tab-button');
+                const tabContents = document.querySelectorAll('#floor-plans .tab-content'); // Scope to floor plans section
+                
+                tabButtons.forEach(button => {
+                    button.addEventListener('click', () => {
+                        const tabId = button.getAttribute('data-tab');
+                        
+                        tabButtons.forEach(btn => btn.classList.remove('active'));
+                        button.classList.add('active');
+                        
+                        tabContents.forEach(content => {
+                            if (content.id === tabId) { content.classList.add('active'); } 
+                            else { content.classList.remove('active'); }
+                        });
+                    });
+                });
+            }
+
+            // --- Set Current Year in Footer ---
+            const yearSpan = document.getElementById('currentYear');
+            if (yearSpan) { yearSpan.textContent = new Date().getFullYear(); }
+            
+            // --- Contact Form Mock Submission ---
+            const contactForm = document.getElementById('contactForm');
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    console.log('Form submitted (mock).');
+                    const submitButton = this.querySelector('button[type="submit"]');
+                    submitButton.textContent = 'Submitted!';
+                    submitButton.disabled = true;
+                    setTimeout(() => {
+                         submitButton.textContent = 'Submit Enquiry';
+                         submitButton.disabled = false;
+                         this.reset(); // Reset form fields
+                    }, 3000);
+                });
+            }
+
+        });
+    </script>
+
+</body>
+</html>

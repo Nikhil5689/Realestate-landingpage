@@ -1,0 +1,1090 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Northern Heights | Modern 1 BHK Homes</title>
+    
+    <!-- Google Fonts Import -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* CSS Reset and Global Styles */
+        :root {
+            --font-heading: 'Poppins', sans-serif;
+            --font-body: 'DM Sans', sans-serif;
+            --color-primary-dark: #2A3D45; /* Dark Slate Green/Blue */
+            --color-primary-medium: #5E8B7E; /* Muted Green */
+            --color-accent: #A5C882;       /* Light Green Accent */
+            --color-accent-secondary: #F4A261; /* Warm Orange/Peach */
+            --color-text-dark: #333333;
+            --color-text-medium: #666666;
+            --color-text-light: #FFFFFF;
+            --color-border: #E0E0E0;
+            --color-bg-white: #FFFFFF;
+            --color-bg-light: #F7F9F9; /* Very Light Grey/Green Tint */
+            --transition-main: all 0.3s ease-in-out;
+            --container-width: 1140px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
+        body {
+            font-family: var(--font-body);
+            color: var(--color-text-dark);
+            background-color: var(--color-bg-white);
+            line-height: 1.7; /* Slightly more spacious line height */
+            overflow-x: hidden;
+            padding-top: 70px; /* Space for fixed header */
+        }
+
+        /* Utility Classes */
+        .container {
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 1.8rem;
+            font-family: var(--font-heading);
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 50px; /* Pill shape buttons */
+            transition: var(--transition-main);
+            cursor: pointer;
+            border: 1px solid transparent;
+            text-align: center;
+            text-transform: uppercase;
+            font-size: 0.875rem;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-primary {
+            background-color: var(--color-accent-secondary);
+            color: var(--color-text-light);
+            border-color: var(--color-accent-secondary);
+        }
+
+        .btn-primary:hover {
+            background-color: #e78e4e; /* Darker orange */
+            border-color: #e78e4e;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            color: var(--color-primary-dark);
+            border: 2px solid var(--color-primary-dark);
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--color-primary-dark);
+            color: var(--color-text-light);
+        }
+        
+        .btn-light-outline {
+             background-color: transparent;
+            color: var(--color-text-light);
+            border: 2px solid var(--color-text-light);
+        }
+        .btn-light-outline:hover {
+            background-color: var(--color-text-light);
+            color: var(--color-primary-dark);
+        }
+
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-heading);
+            color: var(--color-primary-dark);
+            font-weight: 600;
+            line-height: 1.3;
+        }
+
+        h1 { font-size: 3rem; margin-bottom: 1rem; }
+        h2 { font-size: 2.5rem; text-align: center; margin-bottom: 1rem; }
+        h3 { font-size: 1.75rem; margin-bottom: 1rem; }
+        h4 { font-size: 1.25rem; }
+        
+        p {
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
+            color: var(--color-text-medium);
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.1rem;
+            color: var(--color-text-medium);
+            max-width: 700px;
+            margin: 0 auto 3.5rem auto;
+            line-height: 1.7;
+        }
+        
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 8px;
+        }
+        
+        /* Section Styling */
+        section {
+            padding: 5rem 0;
+            position: relative;
+            overflow: hidden; /* For pseudo-elements */
+        }
+        .light-bg {
+            background-color: var(--color-bg-light);
+        }
+        
+        /* Fade-in Animation */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- Top Navigation --- */
+        .top-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 1rem 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--color-border);
+            z-index: 1000;
+            transition: padding 0.3s ease;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            text-decoration: none;
+            color: var(--color-primary-dark);
+            font-family: var(--font-heading);
+            font-weight: 700;
+            font-size: 1.75rem;
+            letter-spacing: 1px;
+        }
+
+        .main-nav {
+            display: flex;
+            align-items: center;
+            gap: 2.5rem; /* Increased gap */
+        }
+        
+        .main-nav .nav-links {
+            display: flex;
+            gap: 1.8rem; /* Increased gap */
+        }
+        
+        .main-nav a {
+            text-decoration: none;
+            color: var(--color-text-dark);
+            font-weight: 500;
+            font-size: 0.9rem;
+            position: relative;
+            padding-bottom: 0.25rem;
+            text-transform: uppercase;
+        }
+        
+        .main-nav .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 2px;
+            background-color: var(--color-accent-secondary);
+            transition: width 0.3s ease;
+        }
+        
+        .main-nav .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        .main-nav .btn {
+            padding: 0.6rem 1.4rem;
+        }
+        
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+            z-index: 1001;
+        }
+        
+        .menu-toggle .bar {
+            display: block;
+            width: 28px;
+            height: 3px;
+            margin: 6px 0;
+            background-color: var(--color-primary-dark);
+            transition: all 0.3s ease-in-out;
+            border-radius: 2px;
+        }
+        
+        .menu-toggle.open .bar:nth-child(1) {
+            transform: translateY(9px) rotate(45deg);
+        }
+        .menu-toggle.open .bar:nth-child(2) {
+            opacity: 0;
+        }
+        .menu-toggle.open .bar:nth-child(3) {
+            transform: translateY(-9px) rotate(-45deg);
+        }
+
+
+        /* --- Hero Section --- */
+        .hero-section {
+            padding: 6rem 0; /* Add padding */
+            min-height: 70vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            background-color: var(--color-bg-light); /* Light background */
+        }
+
+        .hero-grid {
+             display: grid;
+             grid-template-columns: 1.2fr 1fr; /* Text larger than image */
+             align-items: center;
+             gap: 4rem;
+        }
+        
+        .hero-content {
+            z-index: 2;
+        }
+        
+        .hero-content .subtitle-small {
+            font-family: var(--font-body);
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--color-accent-secondary);
+            margin-bottom: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .hero-content h1 {
+            font-size: 3.5rem; /* Larger font size */
+            margin-bottom: 1.5rem;
+        }
+        
+        .hero-content .price {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--color-primary-medium);
+            margin-bottom: 2rem;
+            display: block;
+        }
+        .hero-content .price small {
+             font-size: 0.9rem;
+             font-weight: 400;
+             color: var(--color-text-medium);
+        }
+        
+        .hero-image {
+            position: relative;
+             z-index: 1;
+        }
+        .hero-image img {
+             border-radius: 12px;
+             box-shadow: 0 20px 40px rgba(42, 61, 69, 0.15); /* Shadow */
+             aspect-ratio: 4 / 3; /* Maintain aspect ratio */
+             object-fit: cover;
+        }
+
+        /* --- Overview Section --- */
+        #overview {
+            padding: 6rem 0;
+        }
+        
+        .overview-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr; /* Image slightly larger */
+            gap: 4rem;
+            align-items: center;
+        }
+        
+        .overview-grid img {
+            box-shadow: 0 15px 35px rgba(42, 61, 69, 0.1);
+        }
+        .overview-content h2 {
+             text-align: left;
+             margin-bottom: 1rem;
+        }
+         .overview-content .subtitle {
+             font-size: 1.1rem;
+             font-weight: 600;
+             color: var(--color-primary-medium);
+             margin-bottom: 1.5rem;
+             display: block;
+         }
+
+
+        /* --- Highlights Section (Themed Gardens, Amenities, Clubhouse) --- */
+        #highlights {
+            padding: 5rem 0;
+        }
+        .highlights-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2.5rem;
+            text-align: center;
+        }
+        .highlight-item {
+             background: var(--color-bg-light);
+             padding: 2.5rem 1.5rem;
+             border-radius: 8px;
+             border: 1px solid var(--color-border);
+             transition: var(--transition-main);
+        }
+        .highlight-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            border-color: var(--color-accent);
+        }
+        .highlight-item .icon {
+             width: 60px;
+             height: 60px;
+             margin: 0 auto 1.5rem auto;
+             color: var(--color-accent-secondary);
+        }
+        .highlight-item h3 {
+             font-size: 1.5rem;
+             margin-bottom: 0.75rem;
+        }
+        .highlight-item p {
+             font-size: 0.95rem;
+             margin-bottom: 0;
+        }
+
+        /* --- Amenities Section --- */
+        #amenities {
+            padding: 6rem 0;
+            background-color: var(--color-bg-light);
+        }
+        .amenities-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem; /* Reduced gap */
+        }
+        .amenity-card {
+            background: var(--color-bg-white);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: var(--transition-main);
+            text-align: center;
+            padding-bottom: 1.5rem;
+        }
+        .amenity-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+        }
+        .amenity-card .icon {
+             width: 50px;
+             height: 50px;
+             margin: 1.5rem auto 1rem auto;
+             color: var(--color-primary-medium);
+        }
+        .amenity-card h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin: 0;
+            font-family: var(--font-body);
+        }
+
+        /* --- Sustainability Section --- */
+        #sustainability {
+            padding: 6rem 0;
+        }
+        .sustainability-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            text-align: center;
+        }
+        .sustainability-item .icon {
+             width: 55px;
+             height: 55px;
+             margin: 0 auto 1rem auto;
+             color: var(--color-accent); /* Green icon */
+        }
+        .sustainability-item h4 {
+             font-size: 1.1rem;
+             margin-bottom: 0.5rem;
+             font-family: var(--font-body);
+             font-weight: 600;
+        }
+        .sustainability-item p {
+            font-size: 0.9rem;
+            margin-bottom: 0;
+        }
+
+        /* --- Floor Plan Section --- */
+        #floor-plan {
+            padding: 6rem 0;
+            background-color: var(--color-bg-light);
+        }
+        .floor-plan-container {
+            text-align: center;
+        }
+        .floor-plan-container img {
+            max-width: 800px;
+            margin: 2rem auto 0 auto;
+            border-radius: 8px;
+            border: 1px solid var(--color-border);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+        }
+        
+        /* --- Gallery Section --- */
+        #gallery {
+            padding: 6rem 0;
+        }
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        .gallery-item {
+            position: relative;
+            height: 300px;
+            overflow: hidden;
+            border-radius: 8px;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+        
+        /* --- Connectivity Section --- */
+        #connectivity {
+            padding: 6rem 0;
+            background-color: var(--color-bg-light);
+        }
+        .connectivity-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+        .connectivity-list {
+            list-style: none;
+            margin-top: 2rem;
+        }
+        .connectivity-list li {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.25rem;
+            font-size: 1rem;
+        }
+        .connectivity-list li .icon {
+             width: 24px;
+             height: 24px;
+             color: var(--color-accent-secondary);
+             flex-shrink: 0;
+        }
+        .map-placeholder {
+            width: 100%;
+            height: 450px;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid var(--color-border);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        .map-placeholder img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+
+        /* --- Contact Form Section --- */
+        #contact {
+            padding: 6rem 0;
+        }
+        .contact-container {
+            max-width: 700px;
+            margin: 0 auto;
+            background: var(--color-bg-light);
+            padding: 3rem;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.07);
+        }
+        .contact-container h2 {
+            text-align: center;
+            margin-bottom: 0.5rem;
+        }
+        .contact-container .section-subtitle {
+             text-align: center;
+             max-width: 500px;
+             margin: 0 auto 2.5rem auto;
+        }
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+        }
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.85rem 1rem;
+            border: 1px solid var(--color-border);
+            border-radius: 4px;
+            font-family: var(--font-body);
+            font-size: 1rem;
+            background: var(--color-bg-white);
+        }
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--color-accent-secondary);
+            box-shadow: 0 0 0 2px rgba(244, 162, 97, 0.3);
+        }
+        .contact-form .btn-primary {
+            font-size: 1rem;
+            padding: 1rem;
+        }
+
+        /* --- Footer --- */
+        .main-footer {
+            background-color: var(--color-primary-dark);
+            color: #bdc3c7;
+            padding: 4rem 0 2rem 0;
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 4rem;
+            text-align: left;
+            margin-bottom: 3rem;
+            padding-bottom: 3rem;
+             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .footer-widget .logo {
+            font-size: 1.75rem;
+            color: var(--color-text-light);
+            margin-bottom: 1rem;
+            display: inline-block;
+        }
+        .footer-widget p {
+            color: #95a5a6;
+            font-size: 0.9rem;
+            line-height: 1.7;
+            max-width: 350px;
+        }
+        .footer-widget h4 {
+            color: var(--color-text-light);
+            font-family: var(--font-heading);
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .footer-widget ul {
+            list-style: none;
+        }
+        .footer-widget li {
+            margin-bottom: 0.75rem;
+        }
+        .footer-widget a {
+            text-decoration: none;
+            color: #bdc3c7;
+            transition: var(--transition-main);
+        }
+        .footer-widget a:hover {
+            color: var(--color-accent-secondary);
+        }
+        .footer-widget .contact-item {
+            display: block;
+            color: #bdc3c7;
+            margin-bottom: 0.75rem;
+            font-size: 0.9rem;
+        }
+        .footer-bottom {
+            text-align: center;
+        }
+        .footer-bottom p {
+            color: #95a5a6;
+            margin: 0;
+            font-size: 0.85rem;
+        }
+
+
+        /* --- Responsive Design --- */
+        
+        @media (max-width: 1024px) {
+            h1 { font-size: 2.5rem; }
+            h2 { font-size: 2.25rem; }
+            section { padding: 4rem 0; }
+
+            .nav-container { padding: 0 1.5rem; }
+            
+            .hero-grid { grid-template-columns: 1fr; text-align: center; }
+            .hero-image { display: none; } /* Hide image on tablet */
+            .hero-content { max-width: 100%; }
+            .hero-content h1 { font-size: 2.75rem; }
+            
+            .overview-grid { grid-template-columns: 1fr; }
+            .overview-grid img { margin-top: 2rem; }
+            .overview-content h2 { text-align: center; }
+            .overview-content .subtitle { text-align: center; }
+            
+            .highlights-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+            .amenities-grid { grid-template-columns: 1fr 1fr; }
+            .sustainability-grid { grid-template-columns: 1fr 1fr; gap: 2.5rem; }
+            .connectivity-grid { grid-template-columns: 1fr; }
+            .map-placeholder { height: 350px; margin-top: 2rem; order: 1; } /* Map last on tablet */
+             .connectivity-content { order: 0;}
+            .gallery-grid { grid-template-columns: 1fr 1fr; }
+            .footer-grid { grid-template-columns: 1fr; gap: 3rem; }
+        }
+        
+        @media (max-width: 768px) {
+            body { padding-top: 60px; }
+            .top-nav { padding: 0.75rem 0; }
+            .nav-container { padding: 0 1rem; }
+            .logo { font-size: 1.5rem; }
+            
+            .main-nav {
+                position: fixed;
+                top: 60px;
+                left: -100%;
+                width: 80%;
+                height: 100vh;
+                background: var(--color-bg-white);
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0;
+                padding: 1.5rem 1rem;
+                box-shadow: 5px 0 15px rgba(0,0,0,0.1);
+                transition: left 0.4s ease-in-out;
+            }
+            .main-nav.open { left: 0; }
+            .main-nav .nav-links {
+                display: flex;
+                flex-direction: column;
+                width: 100%;
+                gap: 0;
+            }
+            .main-nav a {
+                padding: 1rem 0;
+                width: 100%;
+                border-bottom: 1px solid var(--color-border);
+            }
+            .main-nav a:last-child { border-bottom: none; }
+            .main-nav .nav-links a::after { display: none; }
+            .main-nav .btn { display: block; margin-top: 1.5rem; width: 100%; }
+            .menu-toggle { display: block; }
+            
+            .hero-section { padding: 4rem 0; min-height: auto; }
+            .hero-content h1 { font-size: 2.25rem; }
+            .hero-content .price { font-size: 1.25rem; }
+            
+            .amenities-grid { grid-template-columns: 1fr 1fr; gap: 1rem;}
+            .sustainability-grid { grid-template-columns: 1fr 1fr; gap: 2rem; }
+            .gallery-grid { grid-template-columns: 1fr; }
+            .contact-container { padding: 2rem 1.5rem; }
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Top Navigation -->
+    <header class="top-nav">
+        <div class="container nav-container">
+            <a href="#home" class="logo">NORTHERN HEIGHTS</a>
+            
+            <nav class="main-nav" id="mainNav">
+                <div class="nav-links">
+                    <a href="#overview">Overview</a>
+                    <a href="#amenities">Amenities</a>
+                    <a href="#gallery">Gallery</a>
+                    <a href="#location">Location</a>
+                </div>
+                <a href="#contact" class="btn btn-primary">Enquire Now</a>
+            </nav>
+            
+            <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation" aria-expanded="false">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+        </div>
+    </header>
+
+    <main>
+
+        <!-- Hero Section -->
+        <section id="home" class="hero-section">
+            <div class="container hero-grid">
+                <div class="hero-content fade-in">
+                    <span class="subtitle-small">Another Northern Delight</span>
+                    <h1>A Chance to Make It Your Own</h1>
+                    <p class="price">1 Bed Homes Starting ₹59.99L* <small>(All Inclusive)</small></p>
+                    <a href="#overview" class="btn btn-outline" style="border-color: var(--color-primary-dark); color: var(--color-primary-dark);">Explore More</a>
+                    <a href="#contact" class="btn btn-primary" style="margin-left: 1rem;">Enquire Now</a>
+                </div>
+                <div class="hero-image fade-in">
+                    <img src="https://source.unsplash.com/600x450/?modern,apartment,building,exterior" alt="Modern apartment building exterior">
+                </div>
+            </div>
+        </section>
+
+
+        <!-- Overview Section -->
+        <section id="overview" class="overview-section fade-in">
+            <div class="container overview-grid">
+                 <img src="https://source.unsplash.com/600x450/?apartment,interior,living,room" alt="Bright and modern apartment living room" loading="lazy">
+                <div class="overview-content">
+                    <span class="subtitle">Welcome To</span>
+                    <h2>Northern Heights</h2>
+                    <p>Northern Heights redefines affordable luxury with its range of great living spaces. Right in the heart of a vibrant garden city, discover 1 Bed Homes that are your ticket to better living. Along with rock-solid quality, revel in a medley of gardens and world-class amenities that include the plushest comforts of modern life.</p>
+                    <a href="#amenities" class="btn btn-outline">View Amenities</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Highlights Section -->
+        <section id="highlights" class="light-bg fade-in">
+            <div class="container">
+                <h2 class="fade-in">Choose Your Passion</h2>
+                <p class="section-subtitle fade-in">For Everybody, Every Hobby - A Lifestyle Designed Around You.</p>
+                <div class="highlights-grid">
+                    <div class="highlight-item fade-in">
+                         <svg class="icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M6.429 9.75L2.25 12l4.179 2.25m0-4.5l5.571 3 5.571-3m-11.142 0L2.25 7.5 12 2.25l9.75 5.25-4.179 2.25m0 0l5.571 3-5.571 3m0 0l-5.571-3 5.571-3z" /></svg>
+                        <h3>18 Themed Gardens</h3>
+                        <p>Explore lush green spaces designed for relaxation and inspiration.</p>
+                    </div>
+                    <div class="highlight-item fade-in">
+                         <svg class="icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.31h5.518a.562.562 0 01.32.99l-4.194 3.033a.563.563 0 00-.188.63l1.528 4.99a.562.562 0 01-.828.69l-4.194-3.033a.563.563 0 00-.656 0l-4.194 3.033a.563.563 0 01-.828-.69l1.527-4.99a.563.563 0 00-.188-.63l-4.194-3.033a.563.563 0 01.32-.99h5.518a.563.563 0 00.475-.31l2.125-5.11z" /></svg>
+                        <h3>35+ Lifestyle Amenities</h3>
+                        <p>From fitness to leisure, enjoy a wide array of world-class facilities.</p>
+                    </div>
+                    <div class="highlight-item fade-in">
+                        <svg class="icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" /></svg>
+                        <h3>Grand Clubhouse</h3>
+                        <p>A luxurious space for social gatherings, events, and relaxation.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Amenities Section -->
+        <section id="amenities" class="light-bg fade-in">
+            <div class="container">
+                <h2 class="fade-in">Follow Your Passion</h2>
+                <p class="section-subtitle fade-in">Explore our vast array of recreational amenities. Live the boss life, make the most of every moment.</p>
+                <div class="amenities-grid">
+                    <div class="amenity-card fade-in">
+                         <svg class="icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 9l10.5-3m0 6.553v3.75a2.25 2.25 0 01-1.632 2.163l-1.32.377a1.803 1.803 0 11-.99-3.467l2.31-.66a2.25 2.25 0 001.632-2.163zm0 0V2.25L9 5.25v10.303m0 0l-2.25-1.5a1.5 1.5 0 00-1.889.208l-2.016 1.833a1.125 1.125 0 00.168 1.961l6.46 3.18a1.125 1.125 0 001.146 0l6.46-3.18a1.125 1.125 0 00.168-1.96l-2.016-1.833a1.5 1.5 0 00-1.89-.209l-2.25 1.5zm0 0l-1.5-1.125a.75.75 0 00-1.125 0L9 16.197" /></svg>
+                        <h4>Yoga Pavilion</h4>
+                    </div>
+                    <div class="amenity-card fade-in">
+                        <svg class="icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.59 14.37a6 6 0 01-5.84 7.38v-4.8m5.84-2.58a14.98 14.98 0 006.16-12.12A14.98 14.98 0 009.63 2.13v4.8m5.96 5.44a14.926 14.926 0 01-5.841 2.58m-.119-8.54a6 6 0 00-7.381 5.84h4.8m2.581-5.84a14.927 14.927 0 00-2.58 5.84m2.699 2.7c-.103.021-.207.041-.314.06a15.09 15.09 0 01-2.448-2.448 14.9 14.9 0 01.06-.314m-2.7 2.448a14.927 14.927 0 01-5.841 2.58m5.841-2.58h-4.8m2.581 5.841a14.919 14.919 0 01-2.58 5.84m2.699-5.841a6 6 0 01-.06.314M3.75 12a14.94 14.94 0 014.287-8.97M21 12a14.94 14.94 0 01-4.287 8.97M12 21a14.94 14.94 0 01-8.97-4.287M12 3a14.94 14.94 0 018.97 4.287" /></svg>
+                        <h4>Gymnasium</h4>
+                    </div>
+                    <div class="amenity-card fade-in">
+                        <svg class="icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 12h16.5m-16.5 3.75h16.5M3.75 19.5h16.5M5.625 4.5h12.75a1.125 1.125 0 010 2.25H5.625a1.125 1.125 0 010-2.25z" /></svg>
+                        <h4>Swimming Pool</h4>
+                    </div>
+                     <div class="amenity-card fade-in">
+                        <svg class="icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 12c0-1.232-.046-2.453-.138-3.662a4.006 4.006 0 00-3.7-3.7 48.678 48.678 0 00-7.324 0 4.006 4.006 0 00-3.7 3.7c-.091 1.21-.138 2.43-.138 3.662v.513a5.374 5.374 0 01-.671 2.432l-.744 1.488c-.386.774-.02 1.76.774 2.146l4.148 1.66c.949.378 2.016.378 2.964 0l4.148-1.66c.794-.386 1.159-1.372.774-2.146l-.744-1.488a5.374 5.374 0 01-.67-2.432v-.513z" /></svg>
+                        <h4>Kids Play Area</h4>
+                    </div>
+                     <div class="amenity-card fade-in">
+                         <svg class="icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m.009-8.718c.005-.008.01-.016.015-.024a4.5 4.5 0 015.908 0c.3.3.582.633.803 1.002m-14.041 7.718c-.005.008-.01.016-.015.024a4.5 4.5 0 00-5.908 0c-.3-.3-.582-.633-.803-1.002m14.041 7.718c.857.94 2.007 1.5 3.25 1.5 2.21 0 4-1.79 4-4s-1.79-4-4-4c-1.243 0-2.393.56-3.25 1.5m-6.5 0C8.393 9.06 7.243 8.5 6 8.5 3.79 8.5 2 10.29 2 12.5s1.79 4 4 4c1.243 0 2.393-.56 3.25-1.5m-6.5-1.5c0 .195.004.39.012.583m10.476 0c.008-.193.012-.388.012-.583" /></svg>
+                        <h4>Multi-Purpose Hall</h4>
+                    </div>
+                     <div class="amenity-card fade-in">
+                        <svg class="icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" /></svg>
+                        <h4>Landscaped Gardens</h4>
+                    </div>
+                     <div class="amenity-card fade-in">
+                        <svg class="icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z" /></svg>
+                        <h4>24/7 Security</h4>
+                    </div>
+                    <div class="amenity-card fade-in">
+                        <svg class="icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h1.125c.621 0 1.125-.504 1.125-1.125V14.25m-17.25 4.5h10.5m-10.5-4.5V6.375c0-.621.504-1.125 1.125-1.125h14.25c.621 0 1.125.504 1.125 1.125v10.125m-17.25-4.5h17.25" /></svg>
+                        <h4>Ample Parking</h4>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Sustainability Section -->
+        <section id="sustainability" class="fade-in">
+             <div class="container">
+                <h2 class="fade-in">A Sustainable Lifestyle</h2>
+                <p class="section-subtitle fade-in">Committed to eco-friendly practices for a greener tomorrow.</p>
+                <div class="sustainability-grid">
+                    <div class="sustainability-item fade-in">
+                        <svg class="icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 21l5.25-11.25L21 21m-9-3h7.5M3 5.621a48.474 48.474 0 016-.371m0 0c1.12 0 2.233.038 3.334.114M9 5.25V3m3.334 2.364C13.18 6.062 14.12 7.018 15 7.973m0 0c.88.954 1.82 1.91 3.334 2.115M15 7.973V3.75m0 4.223c1.514 0 2.918.067 4.286.195m-4.286-.195c-.88.954-1.82 1.91-3.334 2.115" /></svg>
+                        <h4>Green Areas</h4>
+                        <p>Extensive landscaping and open spaces.</p>
+                    </div>
+                    <div class="sustainability-item fade-in">
+                        <svg class="icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75l3 3m0 0l3-3m-3 3v-7.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                        <h4>Water Harvesting</h4>
+                        <p>Efficient rainwater collection systems.</p>
+                    </div>
+                     <div class="sustainability-item fade-in">
+                        <svg class="icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" /></svg>
+                        <h4>Waste Management</h4>
+                        <p>Responsible waste segregation and disposal.</p>
+                    </div>
+                     <div class="sustainability-item fade-in">
+                        <svg class="icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" /></svg>
+                        <h4>Rooftop Solar Panels</h4>
+                        <p>Utilizing renewable energy for common areas.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Floor Plan Section -->
+        <section id="floor-plan" class="light-bg fade-in">
+            <div class="container floor-plan-container">
+                <h2 class="fade-in">Typical 1 BHK Floor Plan</h2>
+                <p class="section-subtitle fade-in">Efficiently designed spaces for modern urban living.</p>
+                <img src="https://source.unsplash.com/800x600/?floorplan,1bhk,modern" alt="1 BHK Floor Plan" loading="lazy" class="fade-in">
+            </div>
+        </section>
+
+        <!-- Gallery Section -->
+        <section id="gallery" class="fade-in">
+             <div class="container">
+                <h2 class="fade-in">Project Gallery</h2>
+                <p class="section-subtitle fade-in">Discover the beauty and craftsmanship of Northern Heights.</p>
+                <div class="gallery-grid">
+                    <div class="gallery-item fade-in">
+                        <img src="https://source.unsplash.com/400x300/?modern,apartment,exterior,facade" alt="Apartment exterior facade">
+                    </div>
+                    <div class="gallery-item fade-in">
+                        <img src="https://source.unsplash.com/400x300/?cozy,apartment,interior" alt="Cozy apartment interior">
+                    </div>
+                    <div class="gallery-item fade-in">
+                        <img src="https://source.unsplash.com/400x300/?apartment,clubhouse,amenities" alt="Apartment clubhouse interior">
+                    </div>
+                     <div class="gallery-item fade-in">
+                        <img src="https://source.unsplash.com/400x300/?garden,path,apartment" alt="Garden path within the complex">
+                    </div>
+                      <div class="gallery-item fade-in">
+                        <img src="https://source.unsplash.com/400x300/?rooftop,view,city" alt="Rooftop view from the apartment">
+                    </div>
+                       <div class="gallery-item fade-in">
+                        <img src="https://source.unsplash.com/400x300/?apartment,gym,fitness" alt="Apartment gym facility">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- Connectivity Section -->
+        <section id="location" class="light-bg fade-in">
+             <div class="container connectivity-grid">
+                <div class="connectivity-content fade-in">
+                    <h2 style="text-align: left;">Excellent Connectivity</h2>
+                    <p>Located strategically, Northern Heights offers easy access to essential services, transport hubs, and lifestyle destinations.</p>
+                    <ul class="connectivity-list">
+                        <li><svg class="icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V11.25m17.25 7.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h1.125c.621 0 1.125-.504 1.125-1.125V11.25m-17.25 0h17.25m-17.25 0V7.5c0-1.5 1.5-2.25 3.375-2.25h9.75c1.875 0 3.375.75 3.375 2.25v3.75z" /></svg>Railway Station - 10 mins drive</li>
+                        <li><svg class="icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5" /></svg>Highway Access - 5 mins drive</li>
+                        <li><svg class="icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.26 10.147a60.436 60.436 0 00-.491 6.347A48.627 48.627 0 0112 20.904a48.627 48.627 0 018.232-4.41 60.46 60.46 0 00-.491-6.347m-15.482 0a50.57 50.57 0 00-2.658-.813A59.905 59.905 0 0112 3.493a59.902 59.902 0 0110.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.697 50.697 0 0112 13.489a50.702 50.702 0 017.74-3.342M6.75 15a.75.75 0 100-1.5.75.75 0 000 1.5z" /></svg>Schools & Colleges - Nearby</li>
+                        <li><svg class="icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 21v-7.5a.75.75 0 01.75-.75h3a.75.75 0 01.75.75V21m-4.5 0H2.36m11.14 0H18m0 0h2.14m-2.14 0H12m5.36 0H9.7" /></svg>Hospitals - 15 mins drive</li>
+                         <li><svg class="icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.25 10.5a.75.75 0 01.75-.75h6a.75.75 0 010 1.5h-6a.75.75 0 01-.75-.75z" /></svg>Shopping & Entertainment - Close by</li>
+                    </ul>
+                </div>
+                 <div class="map-placeholder fade-in">
+                    <img src="https://source.unsplash.com/600x500/?city,map,navigation" alt="Map showing project location and connectivity">
+                </div>
+            </div>
+        </section>
+
+
+        <!-- Contact Form Section -->
+        <section id="contact" class="fade-in">
+            <div class="container contact-container">
+                 <h2 class="fade-in">Enquire Now</h2>
+                 <p class="section-subtitle fade-in">Interested in Northern Heights? Fill out the form below to receive more details.</p>
+                 <form class="contact-form" id="contactForm">
+                     <div class="form-group">
+                        <input type="text" id="name" name="name" placeholder="Your Name *" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" id="email" name="email" placeholder="Your Email *" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="tel" id="phone" name="phone" placeholder="Your Phone Number *" required>
+                    </div>
+                     <div class="form-group">
+                        <textarea id="message" name="message" rows="4" placeholder="Your Message..."></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit Enquiry</button>
+                 </form>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-widget">
+                    <a href="#home" class="logo">NORTHERN HEIGHTS</a>
+                    <p>Redefining affordable luxury in the heart of the city's garden district. Quality homes with world-class amenities.</p>
+                </div>
+                <div class="footer-widget">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#overview">Overview</a></li>
+                        <li><a href="#amenities">Amenities</a></li>
+                        <li><a href="#floor-plan">Floor Plan</a></li>
+                        <li><a href="#gallery">Gallery</a></li>
+                        <li><a href="#location">Location</a></li>
+                    </ul>
+                </div>
+                 <div class="footer-widget">
+                    <h4>Contact Info</h4>
+                    <span class="contact-item">Northern Heights, Garden City,<br> Metro Area, 400001</span>
+                    <span class="contact-item">sales@yourbrand.com</span>
+                    <span class="contact-item">+91 12345 67890</span>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; <span id="currentYear"></span> Your Brand Developers. All rights reserved. RERA No: P5XXXXXXX. Fictional Mockup.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+
+            // --- Mobile Menu Toggle ---
+            const menuToggle = document.getElementById('menuToggle');
+            const mainNav = document.getElementById('mainNav');
+            
+            if (menuToggle && mainNav) {
+                menuToggle.addEventListener('click', () => {
+                    mainNav.classList.toggle('open');
+                    menuToggle.classList.toggle('open');
+                    menuToggle.setAttribute('aria-expanded', mainNav.classList.contains('open'));
+                });
+                // Close menu when clicking outside
+                 document.addEventListener('click', (event) => {
+                    const isClickInsideNav = mainNav.contains(event.target);
+                    const isClickOnToggle = menuToggle.contains(event.target);
+                    if (!isClickInsideNav && !isClickOnToggle && mainNav.classList.contains('open')) {
+                        mainNav.classList.remove('open');
+                        menuToggle.classList.remove('open');
+                        menuToggle.setAttribute('aria-expanded', 'false');
+                    }
+                });
+            }
+
+            // --- Smooth Scroll & Close Mobile Menu ---
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        let headerOffset = 70; // Header height
+                        if (window.innerWidth <= 768) { headerOffset = 60; }
+                        let elementPosition = targetElement.getBoundingClientRect().top;
+                        let offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                        if (targetId === '#home') { offsetPosition = 0; }
+                        window.scrollTo({ top: offsetPosition, behavior: "smooth" });
+                        if (mainNav.classList.contains('open')) {
+                            mainNav.classList.remove('open');
+                            menuToggle.classList.remove('open');
+                            menuToggle.setAttribute('aria-expanded', 'false');
+                        }
+                    }
+                });
+            });
+
+            // --- Fade-in on Scroll ---
+            const faders = document.querySelectorAll('.fade-in');
+            const appearOptions = { threshold: 0.1, rootMargin: "0px 0px -50px 0px" };
+            const appearOnScroll = new IntersectionObserver(function(entries, appearOnScroll) {
+                entries.forEach(entry => {
+                    if (!entry.isIntersecting) { return; } 
+                    else {
+                        entry.target.classList.add('visible');
+                        appearOnScroll.unobserve(entry.target);
+                    }
+                });
+            }, appearOptions);
+            faders.forEach(fader => { appearOnScroll.observe(fader); });
+
+
+            // --- Set Current Year in Footer ---
+            const yearSpan = document.getElementById('currentYear');
+            if (yearSpan) { yearSpan.textContent = new Date().getFullYear(); }
+            
+            // --- Contact Form Mock Submission ---
+            const contactForm = document.getElementById('contactForm');
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    console.log('Form submitted (mock).');
+                    const submitButton = this.querySelector('button[type="submit"]');
+                    submitButton.textContent = 'Enquiry Sent!';
+                    submitButton.disabled = true;
+                    setTimeout(() => {
+                         submitButton.textContent = 'Submit Enquiry';
+                         submitButton.disabled = false;
+                         this.reset();
+                    }, 3000);
+                });
+            }
+
+        });
+    </script>
+
+</body>
+</html>

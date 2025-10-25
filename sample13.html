@@ -1,0 +1,1045 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FlexiSpace | Office Space & Coworking in Metro City</title>
+    
+    <!-- Google Fonts Import -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* CSS Reset and Global Styles */
+        :root {
+            --font-heading: 'Poppins', sans-serif;
+            --font-body: 'DM Sans', sans-serif;
+            --color-primary-dark: #0d47a1; /* Deep Blue */
+            --color-primary-medium: #1976d2; /* Medium Blue */
+            --color-accent: #42a5f5;       /* Light Blue Accent */
+            --color-secondary: #f5f5f5;    /* Light Grey */
+            --color-text-dark: #212121;    /* Almost Black */
+            --color-text-medium: #757575;   /* Medium Grey */
+            --color-text-light: #ffffff;
+            --color-border: #e0e0e0;       /* Light Grey Border */
+            --color-bg-white: #ffffff;
+            --color-bg-light-blue: #e3f2fd; /* Very Light Blue BG */
+            --transition-main: all 0.3s ease-in-out;
+            --container-width: 1140px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
+        body {
+            font-family: var(--font-body);
+            color: var(--color-text-dark);
+            background-color: var(--color-bg-white);
+            line-height: 1.6;
+            overflow-x: hidden;
+            padding-top: 70px; /* Space for fixed header */
+        }
+
+        /* Utility Classes */
+        .container {
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 1.8rem;
+            font-family: var(--font-heading);
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 4px; /* Standard rounded */
+            transition: var(--transition-main);
+            cursor: pointer;
+            border: 1px solid transparent;
+            text-align: center;
+            text-transform: uppercase;
+            font-size: 0.875rem;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-primary {
+            background-color: var(--color-primary-medium);
+            color: var(--color-text-light);
+            border-color: var(--color-primary-medium);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--color-primary-dark);
+            border-color: var(--color-primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            color: var(--color-primary-medium);
+            border: 2px solid var(--color-primary-medium);
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--color-primary-medium);
+            color: var(--color-text-light);
+        }
+        
+        .btn-light {
+            background-color: var(--color-bg-white);
+            color: var(--color-primary-dark);
+            border: 1px solid var(--color-border);
+        }
+        .btn-light:hover {
+            background-color: var(--color-secondary);
+            border-color: var(--color-secondary);
+        }
+
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-heading);
+            color: var(--color-primary-dark);
+            font-weight: 700;
+            line-height: 1.3;
+        }
+
+        h1 { font-size: 3rem; margin-bottom: 1rem; }
+        h2 { font-size: 2.5rem; text-align: center; margin-bottom: 1rem; }
+        h3 { font-size: 1.5rem; margin-bottom: 0.75rem; font-weight: 600; }
+        h4 { font-size: 1.1rem; font-weight: 600; margin-bottom: 0.5rem; }
+        
+        p {
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
+            color: var(--color-text-medium);
+        }
+        p:last-child { margin-bottom: 0; }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.1rem;
+            color: var(--color-text-medium);
+            max-width: 700px;
+            margin: 0 auto 3.5rem auto;
+            line-height: 1.7;
+        }
+        
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 8px;
+        }
+        
+        /* Section Styling */
+        section {
+            padding: 5rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+        .light-blue-bg {
+            background-color: var(--color-bg-light-blue);
+        }
+        .light-grey-bg {
+            background-color: var(--color-secondary);
+        }
+        .dark-bg {
+             background-color: var(--color-primary-dark);
+             color: var(--color-text-light);
+        }
+        .dark-bg h2, .dark-bg h3, .dark-bg h4 {
+            color: var(--color-text-light);
+        }
+        .dark-bg p, .dark-bg .section-subtitle {
+            color: #eeeeee;
+        }
+        
+        /* Fade-in Animation */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- Top Navigation --- */
+        .top-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 1rem 0;
+            background: rgba(255, 255, 255, 0.97);
+            backdrop-filter: blur(8px);
+            border-bottom: 1px solid var(--color-border);
+            z-index: 1000;
+            transition: padding 0.3s ease;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            text-decoration: none;
+            color: var(--color-primary-dark);
+            font-family: var(--font-heading);
+            font-weight: 700;
+            font-size: 1.75rem;
+            letter-spacing: 0.5px;
+        }
+
+        .main-nav {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+        
+        .main-nav .nav-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+        
+        .main-nav a {
+            text-decoration: none;
+            color: var(--color-text-dark);
+            font-weight: 500;
+            font-size: 0.9rem;
+            position: relative;
+            padding-bottom: 0.25rem;
+            text-transform: uppercase;
+        }
+        
+        .main-nav .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--color-accent);
+            transition: width 0.3s ease;
+        }
+        
+        .main-nav .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        .main-nav .btn {
+            padding: 0.6rem 1.4rem;
+        }
+        
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+            z-index: 1001;
+        }
+        
+        .menu-toggle .bar {
+            display: block;
+            width: 28px;
+            height: 3px;
+            margin: 6px 0;
+            background-color: var(--color-primary-dark);
+            transition: all 0.3s ease-in-out;
+            border-radius: 2px;
+        }
+        
+        .menu-toggle.open .bar:nth-child(1) { transform: translateY(9px) rotate(45deg); }
+        .menu-toggle.open .bar:nth-child(2) { opacity: 0; }
+        .menu-toggle.open .bar:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
+
+
+        /* --- Hero Section --- */
+        .hero-section {
+            padding: 6rem 0;
+            background-color: var(--color-bg-light-blue);
+            min-height: 60vh;
+            display: flex;
+            align-items: center;
+        }
+        
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            align-items: center;
+            gap: 4rem;
+        }
+        
+        .hero-content { z-index: 2; }
+        
+        .hero-content h1 {
+            font-size: 3.25rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .hero-content p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            color: var(--color-text-medium);
+        }
+        
+        .hero-image { position: relative; z-index: 1; }
+        .hero-image img {
+             border-radius: 12px;
+             box-shadow: 0 15px 35px rgba(13, 71, 161, 0.15); /* Blue shadow */
+             aspect-ratio: 5 / 4;
+             object-fit: cover;
+        }
+
+        /* --- Workspace Options Section --- */
+        #options { padding: 5rem 0; }
+        .options-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+        }
+        .option-card {
+            background: var(--color-bg-white);
+            padding: 2rem 1.5rem;
+            border-radius: 8px;
+            border: 1px solid var(--color-border);
+            transition: var(--transition-main);
+            text-align: left; /* Align text left */
+            box-shadow: 0 5px 15px rgba(0,0,0,0.03);
+        }
+        .option-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.07);
+            border-color: var(--color-accent);
+        }
+        .option-card .icon {
+             width: 40px;
+             height: 40px;
+             margin-bottom: 1rem;
+             color: var(--color-accent);
+        }
+        .option-card h3 {
+             font-size: 1.25rem;
+             margin-bottom: 0.5rem;
+             font-family: var(--font-body);
+             font-weight: 700;
+        }
+        .option-card p {
+             font-size: 0.9rem;
+             margin-bottom: 1rem;
+        }
+        .option-card .price {
+             font-size: 0.85rem;
+             font-weight: 700;
+             color: var(--color-primary-medium);
+             margin-bottom: 0;
+             display: block;
+        }
+        .option-card .btn {
+             margin-top: 1.5rem;
+             padding: 0.6rem 1.2rem;
+             font-size: 0.8rem;
+        }
+
+        /* --- Features Section --- */
+        #features { padding: 5rem 0; background-color: var(--color-secondary); }
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            text-align: center;
+        }
+        .feature-item .icon {
+             width: 50px;
+             height: 50px;
+             margin: 0 auto 1rem auto;
+             color: var(--color-primary-medium);
+        }
+        .feature-item h4 {
+             font-size: 1.1rem;
+             margin-bottom: 0.5rem;
+             font-family: var(--font-body);
+             font-weight: 600;
+        }
+        .feature-item p {
+            font-size: 0.9rem;
+            margin-bottom: 0;
+        }
+        
+        /* --- Locations Section --- */
+        #locations { padding: 5rem 0; background-color: var(--color-bg-light-blue); }
+        .locations-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+        .location-card {
+            border-radius: 8px;
+            overflow: hidden;
+            background: var(--color-bg-white);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+            transition: var(--transition-main);
+        }
+        .location-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.1);
+        }
+        .location-card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 8px 8px 0 0;
+        }
+        .location-card-content {
+            padding: 1.5rem;
+        }
+        .location-card-content h4 {
+             margin-bottom: 0.25rem;
+        }
+        .location-card-content .address {
+            font-size: 0.9rem;
+            color: var(--color-text-medium);
+            margin-bottom: 1rem;
+        }
+
+        /* --- Trusted By Section --- */
+        #trusted-by { padding: 4rem 0; }
+        #trusted-by h2 { margin-bottom: 3rem; }
+        .logos-grid {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 2rem;
+            align-items: center;
+            justify-items: center;
+        }
+        .logo-item img {
+             max-width: 120px;
+             height: auto;
+             filter: grayscale(100%);
+             opacity: 0.6;
+             transition: var(--transition-main);
+        }
+        .logo-item img:hover {
+            filter: grayscale(0%);
+            opacity: 1;
+        }
+
+        /* --- FAQ Section --- */
+        #faq { padding: 5rem 0; background-color: var(--color-secondary); }
+        .faq-container { max-width: 800px; margin: 0 auto; }
+        .faq-item {
+            background: var(--color-bg-white);
+            margin-bottom: 1rem;
+            border-radius: 8px;
+            border: 1px solid var(--color-border);
+            overflow: hidden;
+        }
+        .faq-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.25rem 1.5rem;
+            cursor: pointer;
+            background: none;
+            border: none;
+            width: 100%;
+            text-align: left;
+        }
+        .faq-header h4 {
+            font-family: var(--font-body);
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: var(--color-text-dark);
+            margin: 0;
+        }
+        .faq-toggle {
+            font-size: 1.5rem;
+            color: var(--color-primary-medium);
+            transition: transform 0.3s ease;
+            font-weight: 300;
+        }
+        .faq-item.active .faq-toggle { transform: rotate(45deg); }
+        .faq-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out, padding 0.4s ease-out;
+            padding: 0 1.5rem;
+        }
+        .faq-content p {
+            padding-bottom: 1.5rem;
+            font-size: 0.95rem;
+        }
+        .faq-item.active .faq-content { padding-top: 0; } /* Only bottom padding when open */
+
+        /* --- Contact Form Section --- */
+        #contact { padding: 5rem 0; }
+        .contact-container {
+            max-width: 700px;
+            margin: 0 auto;
+            background: var(--color-bg-light-blue);
+            padding: 3rem;
+            border-radius: 8px;
+        }
+        .contact-container h2 { text-align: center; }
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+        }
+        .form-group { display: flex; flex-direction: column; }
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 0.85rem 1rem;
+            border: 1px solid var(--color-border);
+            border-radius: 4px;
+            font-family: var(--font-body);
+            font-size: 1rem;
+            background: var(--color-bg-white);
+        }
+        .form-group input:focus, .form-group textarea:focus {
+            outline: none;
+            border-color: var(--color-accent);
+            box-shadow: 0 0 0 2px rgba(66, 165, 245, 0.3);
+        }
+        .contact-form .btn-primary { font-size: 1rem; padding: 1rem; }
+
+        /* --- Footer --- */
+        .main-footer {
+            background-color: var(--color-primary-dark);
+            color: #bdbdbd; /* Lighter grey for footer text */
+            padding: 4rem 0 2rem 0;
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1.5fr;
+            gap: 3rem;
+            text-align: left;
+            margin-bottom: 3rem;
+            padding-bottom: 3rem;
+             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .footer-widget .logo {
+            font-size: 1.75rem;
+            color: var(--color-text-light);
+            margin-bottom: 1rem;
+            display: inline-block;
+        }
+        .footer-widget p {
+            color: #9e9e9e;
+            font-size: 0.9rem;
+            max-width: 350px;
+        }
+        .footer-widget h4 {
+            color: var(--color-text-light);
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+        }
+        .footer-widget ul { list-style: none; }
+        .footer-widget li { margin-bottom: 0.75rem; }
+        .footer-widget a {
+            text-decoration: none;
+            color: #bdbdbd;
+            transition: var(--transition-main);
+            font-size: 0.9rem;
+        }
+        .footer-widget a:hover { color: var(--color-accent); }
+        .footer-widget .contact-item {
+            display: block;
+            color: #bdbdbd;
+            margin-bottom: 0.75rem;
+            font-size: 0.9rem;
+        }
+        .footer-bottom { text-align: center; }
+        .footer-bottom p {
+            color: #757575; /* Darker grey for copyright */
+            margin: 0;
+            font-size: 0.85rem;
+        }
+
+
+        /* --- Responsive Design --- */
+        
+        @media (max-width: 1024px) {
+            h1 { font-size: 2.5rem; }
+            h2 { font-size: 2.25rem; }
+            section { padding: 4rem 0; }
+            .nav-container { padding: 0 1.5rem; }
+            
+            .hero-grid { grid-template-columns: 1fr; text-align: center; }
+            .hero-image { display: none; }
+            .hero-content { max-width: 100%; }
+            .hero-content h1 { font-size: 2.75rem; }
+            
+            .options-grid { grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+            .features-grid { grid-template-columns: 1fr 1fr; gap: 2.5rem; }
+            .locations-grid { grid-template-columns: 1fr 1fr; }
+            .logos-grid { grid-template-columns: repeat(3, 1fr); gap: 3rem; }
+            .footer-grid { grid-template-columns: 1fr 1fr; gap: 2rem; }
+        }
+        
+        @media (max-width: 768px) {
+            body { padding-top: 60px; }
+            .top-nav { padding: 0.75rem 0; }
+            .nav-container { padding: 0 1rem; }
+            .logo { font-size: 1.5rem; }
+            
+            .main-nav {
+                position: fixed;
+                top: 60px;
+                left: -100%;
+                width: 80%;
+                height: 100vh;
+                background: var(--color-bg-white);
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0;
+                padding: 1.5rem 1rem;
+                box-shadow: 5px 0 15px rgba(0,0,0,0.1);
+                transition: left 0.4s ease-in-out;
+            }
+            .main-nav.open { left: 0; }
+            .main-nav .nav-links {
+                display: flex;
+                flex-direction: column;
+                width: 100%;
+                gap: 0;
+            }
+            .main-nav a {
+                padding: 1rem 0;
+                width: 100%;
+                border-bottom: 1px solid var(--color-border);
+            }
+            .main-nav a:last-child { border-bottom: none; }
+            .main-nav .nav-links a::after { display: none; }
+            .main-nav .btn { display: block; margin-top: 1.5rem; width: 100%; }
+            .menu-toggle { display: block; }
+            
+            .hero-section { padding: 4rem 0; min-height: auto; }
+            .hero-content h1 { font-size: 2.25rem; }
+            .hero-content p { font-size: 1rem; }
+            
+            .options-grid { grid-template-columns: 1fr; gap: 1rem; }
+            .features-grid { grid-template-columns: 1fr 1fr; gap: 2rem; }
+            .locations-grid { grid-template-columns: 1fr; }
+            .logos-grid { grid-template-columns: repeat(2, 1fr); gap: 2rem; }
+            .contact-container { padding: 2rem 1.5rem; }
+            .footer-grid { grid-template-columns: 1fr; gap: 3rem; }
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Top Navigation -->
+    <header class="top-nav">
+        <div class="container nav-container">
+            <a href="#home" class="logo">FLEXISPACE</a>
+            
+            <nav class="main-nav" id="mainNav">
+                <div class="nav-links">
+                    <a href="#options">Office Space</a>
+                    <a href="#">Coworking</a>
+                    <a href="#">Virtual Offices</a>
+                    <a href="#">Meeting Rooms</a>
+                    <a href="#locations">Locations</a>
+                </div>
+                <a href="#contact" class="btn btn-primary">Enquire Now</a>
+            </nav>
+            
+            <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation" aria-expanded="false">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+        </div>
+    </header>
+
+    <main>
+
+        <!-- Hero Section -->
+        <section id="home" class="hero-section">
+            <div class="container hero-grid">
+                <div class="hero-content fade-in">
+                    <h1>Office Space in Metro City</h1>
+                    <p>Make a home for your business with FlexiSpace private office space. Our serviced offices have everything taken care of – from the furniture to the high-speed WiFi – so you can focus on driving your business forward.</p>
+                    <a href="#options" class="btn btn-primary">Find Your Workspace</a>
+                    <a href="#contact" class="btn btn-light" style="margin-left: 1rem;">Talk to Sales</a>
+                </div>
+                <div class="hero-image fade-in">
+                    <img src="https://source.unsplash.com/600x480/?modern,office,coworking,interior" alt="Modern coworking office interior">
+                </div>
+            </div>
+        </section>
+
+
+        <!-- Workspace Options Section -->
+        <section id="options" class="fade-in">
+            <div class="container">
+                <h2 class="fade-in">Flexible workspace designed around your needs</h2>
+                <p class="section-subtitle fade-in">Our flexible, fully-customisable office rentals are available by the hour, day, or as long as you need.</p>
+                <div class="options-grid">
+                    <div class="option-card fade-in">
+                         <svg class="icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" /></svg>
+                        <h3>Private Offices</h3>
+                        <p>A range of ready-to-use, fully equipped offices with everything you need to get started.</p>
+                        <span class="price">From ₹7,550 /person/month</span>
+                        <a href="#contact" class="btn btn-outline">Learn More</a>
+                    </div>
+                    <div class="option-card fade-in">
+                         <svg class="icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9.594 3.94c.09-.542.56-.94 1.11-.94h2.593c.55 0 1.02.398 1.11.94l.213 1.281c.063.374.313.686.645.87.074.04.147.083.22.127.324.196.72.257 1.075.124l1.217-.456a1.125 1.125 0 011.37.49l1.296 2.247a1.125 1.125 0 01-.242 1.434l-1.005.827c-.293.24-.438.613-.438.995a6.758 6.758 0 11-13.516 0c0-.382-.145-.755-.438-.995l-1.005-.828a1.125 1.125 0 01-.242-1.434l1.296-2.247a1.125 1.125 0 011.37-.49l1.217.456c.355.133.75.072 1.075-.124.072-.044.146-.087.22-.128.332-.183.582-.495.644-.869l.213-1.28z" /><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
+                        <h3>Custom Offices</h3>
+                        <p>When off-the-shelf simply isn't enough. Customise all aspects of your space, including furniture and branding.</p>
+                        <span class="price">Bespoke Pricing</span>
+                        <a href="#contact" class="btn btn-outline">Learn More</a>
+                    </div>
+                     <div class="option-card fade-in">
+                         <svg class="icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                        <h3>Day Offices</h3>
+                        <p>A professional on-demand office space. Perfect when you need to get your head down and focus.</p>
+                        <span class="price">From ₹2,990 /day</span>
+                        <a href="#contact" class="btn btn-outline">Learn More</a>
+                    </div>
+                     <div class="option-card fade-in">
+                        <svg class="icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" /></svg>
+                        <h3>Office Membership</h3>
+                        <p>Flexible access to Day Offices when and where you choose, at thousands of locations worldwide.</p>
+                        <span class="price">From ₹7,190 /month</span>
+                        <a href="#contact" class="btn btn-outline">Learn More</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Features Section -->
+        <section id="features" class="fade-in">
+             <div class="container">
+                <h2 class="fade-in">Everything You Need to Succeed</h2>
+                <p class="section-subtitle fade-in">Our workspaces are designed with your productivity and comfort in mind.</p>
+                <div class="features-grid">
+                    <div class="feature-item fade-in">
+                        <svg class="icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M8.288 15.038a5.25 5.25 0 017.424 0M5.106 11.856c3.807-3.808 9.98-3.808 13.788 0M1.924 8.674c5.565-5.565 14.587-5.565 20.152 0M12.53 18.22l-.53.53-.53-.53a.75.75 0 011.06 0z" /></svg>
+                        <h4>High-Speed WiFi</h4>
+                        <p>Business-grade internet connectivity.</p>
+                    </div>
+                    <div class="feature-item fade-in">
+                        <svg class="icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M5.25 14.25h13.5m-13.5 0a3 3 0 01-3-3V9.75a3 3 0 013-3h13.5a3 3 0 013 3v1.5a3 3 0 01-3 3m-13.5 0h13.5" /></svg>
+                        <h4>Ergonomic Furniture</h4>
+                        <p>Comfortable and supportive seating.</p>
+                    </div>
+                     <div class="feature-item fade-in">
+                        <svg class="icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A11.978 11.978 0 0112 13.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 003 12c0 .778.099 1.533.284 2.253m0 0c1.396 4.148 5.021 7.247 9.432 7.247s8.036-3.099 9.432-7.247M12 10.5a2.25 2.25 0 110 4.5 2.25 2.25 0 010-4.5z" /></svg>
+                        <h4>Global Network</h4>
+                        <p>Access workspaces worldwide.</p>
+                    </div>
+                     <div class="feature-item fade-in">
+                        <svg class="icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5m-9-6h.008v.008H12v-.008zM12 15h.008v.008H12V15zm0 2.25h.008v.008H12v-.008zM9.75 15h.008v.008H9.75V15zm0 2.25h.008v.008H9.75v-.008zM7.5 15h.008v.008H7.5V15zm0 2.25h.008v.008H7.5v-.008zm6.75-4.5h.008v.008h-.008v-.008zm0 2.25h.008v.008h-.008V15zm0 2.25h.008v.008h-.008v-.008zm2.25-4.5h.008v.008H16.5v-.008zm0 2.25h.008v.008H16.5V15z" /></svg>
+                        <h4>Flexible Terms</h4>
+                        <p>Rent by the hour, day, or year.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Locations Section -->
+        <section id="locations" class="fade-in">
+             <div class="container">
+                <h2 class="fade-in">Prime Locations in Metro City</h2>
+                <p class="section-subtitle fade-in">Find the perfect base for your business in the city's key commercial hubs.</p>
+                <div class="locations-grid">
+                    <div class="location-card fade-in">
+                        <img src="https://source.unsplash.com/400x250/?mumbai,business,district" alt="Corporate Park Location" loading="lazy">
+                        <div class="location-card-content">
+                            <h4>Corporate Park Center</h4>
+                            <span class="address">123 Business Avenue, Corp Park</span>
+                            <p>State-of-the-art facilities in a major business hub.</p>
+                            <a href="#contact" class="btn btn-outline">View Details</a>
+                        </div>
+                    </div>
+                     <div class="location-card fade-in">
+                        <img src="https://source.unsplash.com/400x250/?mumbai,bandra,kurla" alt="Downtown Location" loading="lazy">
+                        <div class="location-card-content">
+                            <h4>Downtown Business Hub</h4>
+                            <span class="address">456 Central Street, Downtown</span>
+                            <p>Prestigious address with excellent connectivity.</p>
+                             <a href="#contact" class="btn btn-outline">View Details</a>
+                        </div>
+                    </div>
+                     <div class="location-card fade-in">
+                        <img src="https://source.unsplash.com/400x250/?mumbai,navi,mumbai,offices" alt="Tech City Location" loading="lazy">
+                        <div class="location-card-content">
+                            <h4>Tech City Tower</h4>
+                            <span class="address">789 Innovation Drive, Tech City</span>
+                            <p>Modern workspace surrounded by tech giants.</p>
+                             <a href="#contact" class="btn btn-outline">View Details</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Trusted By Section -->
+        <section id="trusted-by" class="fade-in">
+            <div class="container">
+                <h2 class="fade-in">Trusted by the world's largest companies</h2>
+                <div class="logos-grid">
+                    <!-- Placeholder logos -->
+                    <div class="logo-item"><img src="https://placehold.co/120x60/e0e0e0/757575?text=Brand+1" alt="Brand 1 Logo"></div>
+                    <div class="logo-item"><img src="https://placehold.co/120x60/e0e0e0/757575?text=Brand+2" alt="Brand 2 Logo"></div>
+                    <div class="logo-item"><img src="https://placehold.co/120x60/e0e0e0/757575?text=Brand+3" alt="Brand 3 Logo"></div>
+                    <div class="logo-item"><img src="https://placehold.co/120x60/e0e0e0/757575?text=Brand+4" alt="Brand 4 Logo"></div>
+                    <div class="logo-item"><img src="https://placehold.co/120x60/e0e0e0/757575?text=Brand+5" alt="Brand 5 Logo"></div>
+                    <div class="logo-item"><img src="https://placehold.co/120x60/e0e0e0/757575?text=Brand+6" alt="Brand 6 Logo"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section id="faq" class="fade-in">
+            <div class="container faq-container">
+                <h2 class="fade-in">Answers to your office space questions</h2>
+                 <div class="faq-item">
+                    <button class="faq-header" aria-expanded="false">
+                        <h4>How much does an office cost?</h4>
+                        <span class="faq-toggle">+</span>
+                    </button>
+                    <div class="faq-content">
+                        <p>Costs vary depending on location, size, and duration. Private offices typically start from ₹7,550 per person per month on flexible terms.</p>
+                    </div>
+                </div>
+                 <div class="faq-item">
+                    <button class="faq-header" aria-expanded="false">
+                        <h4>Can I hire an office for just one day?</h4>
+                        <span class="faq-toggle">+</span>
+                    </button>
+                    <div class="faq-content">
+                        <p>Yes, our Day Offices provide professional, on-demand space starting from ₹2,990 per day, bookable via our app.</p>
+                    </div>
+                </div>
+                 <div class="faq-item">
+                    <button class="faq-header" aria-expanded="false">
+                        <h4>What types of spaces are available?</h4>
+                        <span class="faq-toggle">+</span>
+                    </button>
+                    <div class="faq-content">
+                        <p>We offer Private Offices, Custom Offices, Day Offices, Coworking spaces, Virtual Offices, and Meeting Rooms.</p>
+                    </div>
+                </div>
+                 <div class="faq-item">
+                    <button class="faq-header" aria-expanded="false">
+                        <h4>What's included in a typical office?</h4>
+                        <span class="faq-toggle">+</span>
+                    </button>
+                    <div class="faq-content">
+                        <p>A typical serviced office includes furniture, high-speed WiFi, utilities, cleaning, reception services, and access to common areas like kitchens and lounges.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Form Section -->
+        <section id="contact" class="fade-in">
+            <div class="container contact-container">
+                 <h2 class="fade-in">Get Started Today</h2>
+                 <p class="section-subtitle fade-in">Talk to an expert or get a personalised quote for your workspace needs.</p>
+                 <form class="contact-form" id="contactForm">
+                     <div class="form-group">
+                        <input type="text" id="name" name="name" placeholder="Your Name *" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" id="email" name="email" placeholder="Your Email *" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="tel" id="phone" name="phone" placeholder="Your Phone Number *" required>
+                    </div>
+                     <div class="form-group">
+                        <textarea id="message" name="message" rows="4" placeholder="How can we help?"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit Enquiry</button>
+                 </form>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-widget">
+                    <a href="#home" class="logo">FLEXISPACE</a>
+                    <p>Providing flexible workspace solutions for businesses of all sizes, across the globe.</p>
+                </div>
+                <div class="footer-widget">
+                    <h4>Ways to Work</h4>
+                    <ul>
+                        <li><a href="#options">Office Space</a></li>
+                        <li><a href="#">Coworking</a></li>
+                        <li><a href="#">Virtual Offices</a></li>
+                        <li><a href="#">Meeting Rooms</a></li>
+                        <li><a href="#options">Memberships</a></li>
+                    </ul>
+                </div>
+                <div class="footer-widget">
+                    <h4>About Us</h4>
+                    <ul>
+                        <li><a href="#">Company</a></li>
+                        <li><a href="#locations">Locations</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                    </ul>
+                </div>
+                 <div class="footer-widget">
+                    <h4>Contact Info</h4>
+                    <span class="contact-item">Metro City Headquarters,<br> 1 Business Plaza, 400001</span>
+                    <span class="contact-item">info@flexispace.mock</span>
+                    <span class="contact-item">+91 22 6789 0000</span>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; <span id="currentYear"></span> FlexiSpace Global. All rights reserved. Fictional Mockup. Ts & Cs apply.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+
+            // --- Mobile Menu Toggle ---
+            const menuToggle = document.getElementById('menuToggle');
+            const mainNav = document.getElementById('mainNav');
+            
+            if (menuToggle && mainNav) {
+                menuToggle.addEventListener('click', () => {
+                    mainNav.classList.toggle('open');
+                    menuToggle.classList.toggle('open');
+                    menuToggle.setAttribute('aria-expanded', mainNav.classList.contains('open'));
+                });
+                // Close menu when clicking outside
+                 document.addEventListener('click', (event) => {
+                    const isClickInsideNav = mainNav.contains(event.target);
+                    const isClickOnToggle = menuToggle.contains(event.target);
+                    if (!isClickInsideNav && !isClickOnToggle && mainNav.classList.contains('open')) {
+                        mainNav.classList.remove('open');
+                        menuToggle.classList.remove('open');
+                        menuToggle.setAttribute('aria-expanded', 'false');
+                    }
+                });
+            }
+
+            // --- Smooth Scroll & Close Mobile Menu ---
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        let headerOffset = 70; // Header height
+                        if (window.innerWidth <= 768) { headerOffset = 60; }
+                        let elementPosition = targetElement.getBoundingClientRect().top;
+                        let offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                        if (targetId === '#home') { offsetPosition = 0; }
+                        window.scrollTo({ top: offsetPosition, behavior: "smooth" });
+                        if (mainNav.classList.contains('open')) {
+                            mainNav.classList.remove('open');
+                            menuToggle.classList.remove('open');
+                            menuToggle.setAttribute('aria-expanded', 'false');
+                        }
+                    }
+                });
+            });
+
+            // --- Fade-in on Scroll ---
+            const faders = document.querySelectorAll('.fade-in');
+            const appearOptions = { threshold: 0.1, rootMargin: "0px 0px -50px 0px" };
+            const appearOnScroll = new IntersectionObserver(function(entries, appearOnScroll) {
+                entries.forEach(entry => {
+                    if (!entry.isIntersecting) { return; } 
+                    else {
+                        entry.target.classList.add('visible');
+                        appearOnScroll.unobserve(entry.target);
+                    }
+                });
+            }, appearOptions);
+            faders.forEach(fader => { appearOnScroll.observe(fader); });
+            
+             // --- FAQ Accordion ---
+            const faqItems = document.querySelectorAll('.faq-item');
+            faqItems.forEach(item => {
+                const header = item.querySelector('.faq-header');
+                const content = item.querySelector('.faq-content');
+                const toggle = item.querySelector('.faq-toggle');
+
+                if (header && content && toggle) {
+                    header.addEventListener('click', () => {
+                        const isActive = item.classList.contains('active');
+                        // Close all others first
+                        faqItems.forEach(i => {
+                            if (i !== item) {
+                                i.classList.remove('active');
+                                i.querySelector('.faq-content').style.maxHeight = null;
+                                i.querySelector('.faq-toggle').textContent = '+';
+                                i.querySelector('.faq-header').setAttribute('aria-expanded', 'false');
+                            }
+                        });
+                        // Toggle current item
+                        if (!isActive) {
+                            item.classList.add('active');
+                            content.style.maxHeight = content.scrollHeight + 'px';
+                            content.style.paddingTop = '0.5rem'; // Add padding when opening
+                            toggle.textContent = '–'; 
+                            header.setAttribute('aria-expanded', 'true');
+                        } else {
+                            item.classList.remove('active');
+                            content.style.maxHeight = null;
+                            content.style.paddingTop = '0'; // Remove padding when closing
+                            toggle.textContent = '+';
+                            header.setAttribute('aria-expanded', 'false');
+                        }
+                    });
+                }
+            });
+
+
+            // --- Set Current Year in Footer ---
+            const yearSpan = document.getElementById('currentYear');
+            if (yearSpan) { yearSpan.textContent = new Date().getFullYear(); }
+            
+            // --- Contact Form Mock Submission ---
+            const contactForm = document.getElementById('contactForm');
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    console.log('Form submitted (mock).');
+                    const submitButton = this.querySelector('button[type="submit"]');
+                    submitButton.textContent = 'Enquiry Sent!';
+                    submitButton.disabled = true;
+                    setTimeout(() => {
+                         submitButton.textContent = 'Submit Enquiry';
+                         submitButton.disabled = false;
+                         this.reset();
+                    }, 3000);
+                });
+            }
+
+        });
+    </script>
+
+</body>
+</html>

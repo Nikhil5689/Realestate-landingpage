@@ -1,0 +1,1458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Serene Sands | Premium Riverfront Residences</title>
+    
+    <!-- Google Fonts Import -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        /* CSS Reset and Global Styles */
+        :root {
+            --font-heading: 'Poppins', sans-serif;
+            --font-body: 'Inter', sans-serif;
+            --color-primary-dark: #0a2342; /* Deep Navy Blue */
+            --color-primary-light: #f4f7f9; /* Lighter blue/grey BG */
+            --color-accent: #c0a071;       /* Premium Gold/Bronze */
+            --color-accent-dark: #a68a5f;
+            --color-text-dark: #222222;
+            --color-text-medium: #555555;
+            --color-text-light: #ffffff;
+            --color-border: #e0e0e0;
+            --color-bg-white: #ffffff;
+            --transition-main: all 0.3s ease-in-out;
+            --container-width: 1200px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
+        body {
+            font-family: var(--font-body);
+            color: var(--color-text-dark);
+            background-color: var(--color-bg-white);
+            line-height: 1.6;
+            overflow-x: hidden;
+            padding-top: 70px; /* Space for fixed header */
+        }
+
+        /* Utility Classes */
+        .container {
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.85rem 2rem;
+            font-family: var(--font-heading);
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: var(--transition-main);
+            cursor: pointer;
+            border: 1px solid transparent;
+            text-align: center;
+            text-transform: uppercase;
+            font-size: 0.875rem;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-primary {
+            background-color: var(--color-accent);
+            color: var(--color-text-light);
+            border-color: var(--color-accent);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--color-accent-dark);
+            border-color: var(--color-accent-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            color: var(--color-primary-dark);
+            border-color: var(--color-primary-dark);
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--color-primary-dark);
+            color: var(--color-text-light);
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-heading);
+            color: var(--color-primary-dark);
+            font-weight: 600;
+            line-height: 1.3;
+        }
+
+        h1 { font-size: 3.5rem; margin-bottom: 1rem; }
+        h2 { font-size: 2.75rem; text-align: center; margin-bottom: 1.5rem; }
+        h3 { font-size: 1.75rem; margin-bottom: 1rem; }
+        h4 { font-size: 1.25rem; }
+        
+        p {
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
+            color: var(--color-text-medium);
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.1rem;
+            color: var(--color-text-medium);
+            max-width: 700px;
+            margin: -1rem auto 3.5rem auto;
+            line-height: 1.7;
+        }
+        
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 8px;
+        }
+        
+        /* Fade-in Animation */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- Top Navigation --- */
+        .top-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 1.25rem 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--color-border);
+            z-index: 1000;
+            transition: padding 0.3s ease;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1300px; /* Wider container for nav */
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .logo {
+            text-decoration: none;
+            color: var(--color-primary-dark);
+            font-family: var(--font-heading);
+            font-weight: 700;
+            font-size: 1.75rem;
+        }
+
+        .main-nav {
+            display: flex;
+            align-items: center;
+            gap: 2.5rem;
+        }
+        
+        .main-nav .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .main-nav a {
+            text-decoration: none;
+            color: var(--color-text-dark);
+            font-weight: 500;
+            font-size: 0.95rem;
+            position: relative;
+            padding-bottom: 0.25rem;
+        }
+        
+        .main-nav .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--color-accent);
+            transition: width 0.3s ease;
+        }
+        
+        .main-nav .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        .main-nav .btn {
+            padding: 0.7rem 1.5rem;
+        }
+        
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+            z-index: 1001;
+        }
+        
+        .menu-toggle .bar {
+            display: block;
+            width: 28px;
+            height: 3px;
+            margin: 6px 0;
+            background-color: var(--color-primary-dark);
+            transition: all 0.3s ease-in-out;
+        }
+        
+        .menu-toggle.open .bar:nth-child(1) {
+            transform: translateY(9px) rotate(45deg);
+        }
+        .menu-toggle.open .bar:nth-child(2) {
+            opacity: 0;
+        }
+        .menu-toggle.open .bar:nth-child(3) {
+            transform: translateY(-9px) rotate(-45deg);
+        }
+
+
+        /* --- Hero Section --- */
+        .hero-section {
+            height: calc(100vh - 70px); /* Full height minus header */
+            min-height: 650px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            background: url('https://source.unsplash.com/1800x1000/?luxury,apartment,river,view') no-repeat center center/cover;
+            color: var(--color-text-light);
+        }
+        
+        .hero-section::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(to right, rgba(10, 35, 66, 0.85), rgba(10, 35, 66, 0.1));
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 600px;
+        }
+        
+        .hero-content h1 {
+            color: var(--color-text-light);
+            font-size: 3.75rem;
+        }
+        
+        .hero-content .subtitle {
+            font-size: 1.25rem;
+            color: var(--color-text-light);
+            opacity: 0.9;
+            margin: 1.5rem 0 2.5rem 0;
+            line-height: 1.7;
+        }
+
+        /* Hero Highlights Bar */
+        .key-highlights-bar {
+            background: var(--color-bg-white);
+            padding: 2.5rem 0;
+            border-bottom: 1px solid var(--color-border);
+        }
+        
+        .highlights-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+        
+        .highlight-item {
+            text-align: center;
+            padding: 1rem;
+            border: 1px solid var(--color-border);
+            border-radius: 8px;
+            background: var(--color-bg-white);
+            transition: var(--transition-main);
+        }
+        
+        .highlight-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.07);
+        }
+        
+        .highlight-item .icon {
+            font-size: 2.5rem;
+            color: var(--color-accent);
+            margin-bottom: 0.75rem;
+        }
+        
+        .highlight-item .label {
+            font-size: 1rem;
+            color: var(--color-text-dark);
+            font-weight: 600;
+        }
+
+        /* --- About Section --- */
+        #about {
+            padding: 6rem 0;
+        }
+        
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+        
+        .about-grid img {
+            box-shadow: 0 15px 35px rgba(10, 35, 66, 0.1);
+        }
+
+        /* --- Amenities Section --- */
+        #amenities {
+            padding: 6rem 0;
+            background-color: var(--color-primary-light);
+        }
+        
+        .amenities-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+        
+        .amenity-card {
+            background: var(--color-bg-white);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: var(--transition-main);
+        }
+        
+        .amenity-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.08);
+        }
+        
+        .amenity-card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 8px 8px 0 0;
+        }
+        
+        .amenity-card-content {
+            padding: 1.75rem;
+        }
+        
+        .amenity-card-content h3 {
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .amenity-card-content p {
+            font-size: 0.95rem;
+            margin-bottom: 0;
+        }
+
+        /* --- Gallery Section --- */
+        #gallery {
+            padding: 6rem 0;
+        }
+        
+        .tab-nav {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+        
+        .tab-button {
+            padding: 0.75rem 1.75rem;
+            font-family: var(--font-body);
+            font-weight: 600;
+            font-size: 1rem;
+            background: var(--color-primary-light);
+            border: 1px solid var(--color-border);
+            border-radius: 30px;
+            cursor: pointer;
+            transition: var(--transition-main);
+        }
+        
+        .tab-button:hover {
+            background-color: var(--color-accent-dark);
+            color: var(--color-text-light);
+            border-color: var(--color-accent-dark);
+        }
+        
+        .tab-button.active {
+            background-color: var(--color-accent);
+            color: var(--color-text-light);
+            border-color: var(--color-accent);
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            animation: fadeInContent 0.5s ease;
+        }
+        
+        @keyframes fadeInContent {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .gallery-item {
+            position: relative;
+            height: 300px;
+            overflow: hidden;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+        
+        .gallery-item .overlay {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(to top, rgba(10, 35, 66, 0.7), transparent);
+            display: flex;
+            align-items: flex-end;
+            padding: 1.5rem;
+            opacity: 0;
+            transition: var(--transition-main);
+        }
+        
+        .gallery-item:hover .overlay {
+            opacity: 1;
+        }
+        
+        .gallery-item .overlay h4 {
+            color: var(--color-text-light);
+            font-family: var(--font-body);
+            transform: translateY(10px);
+            transition: var(--transition-main);
+        }
+        
+        .gallery-item:hover .overlay h4 {
+            transform: translateY(0);
+        }
+
+        /* --- Floor Plans Section --- */
+        #plans {
+            padding: 6rem 0;
+            background-color: var(--color-primary-light);
+        }
+        
+        .plans-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+        
+        .plan-item {
+            background: var(--color-bg-white);
+            border: 1px solid var(--color-border);
+            padding: 2rem;
+            border-radius: 8px;
+            text-align: center;
+        }
+        
+        .plan-item img {
+            width: 100%;
+            max-width: 400px;
+            margin: 1rem auto;
+            border: 1px solid var(--color-border);
+        }
+        
+        .plan-item h3 {
+            font-size: 1.5rem;
+        }
+
+        /* --- Developer Section --- */
+        #developer {
+            padding: 6rem 0;
+        }
+        .developer-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 3rem;
+        }
+        .developer-item {
+            text-align: center;
+        }
+        .developer-item .icon {
+            font-size: 3rem;
+            color: var(--color-accent);
+            margin-bottom: 1rem;
+        }
+
+        /* --- Testimonials Section --- */
+        #testimonials {
+            padding: 6rem 0;
+            background-color: var(--color-primary-light);
+        }
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+        .testimonial-card {
+            background: var(--color-bg-white);
+            padding: 2.5rem;
+            border-radius: 8px;
+            border-left: 5px solid var(--color-accent);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        .testimonial-card q {
+            font-size: 1.1rem;
+            font-style: italic;
+            color: var(--color-text-medium);
+            display: block;
+            margin-bottom: 1.5rem;
+        }
+        .testimonial-card cite {
+            font-weight: 600;
+            color: var(--color-primary-dark);
+        }
+
+
+        /* --- Location Section --- */
+        #location {
+            padding: 6rem 0;
+        }
+        
+        .location-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+        
+        .location-content ul {
+            list-style: none;
+            margin-top: 1.5rem;
+        }
+        
+        .location-content li {
+            position: relative;
+            padding-left: 35px;
+            margin-bottom: 1.25rem;
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+        
+        .location-content li::before {
+            /* Checkmark icon */
+            content: '✓';
+            position: absolute;
+            left: 0;
+            top: 0;
+            color: var(--color-accent);
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+        
+        .map-placeholder {
+            width: 100%;
+            height: 450px;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid var(--color-border);
+            box-shadow: 0 15px 35px rgba(10, 35, 66, 0.1);
+        }
+        
+        .map-placeholder img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* --- FAQ Section --- */
+        #faq {
+            padding: 6rem 0;
+            background-color: var(--color-primary-light);
+        }
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .faq-item {
+            border-bottom: 1px solid var(--color-border);
+        }
+        .faq-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 0;
+            cursor: pointer;
+            background: none;
+            border: none;
+            width: 100%;
+            text-align: left;
+        }
+        .faq-header h4 {
+            font-family: var(--font-body);
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin: 0;
+        }
+        .faq-toggle {
+            font-size: 1.5rem;
+            color: var(--color-primary-dark);
+            transition: transform 0.3s ease;
+        }
+        .faq-item.active .faq-toggle {
+            transform: rotate(45deg);
+        }
+        .faq-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out;
+        }
+        .faq-content p {
+            padding: 0 0 1.5rem;
+            margin: 0;
+        }
+
+        /* --- Enquire Section --- */
+        #contact {
+            padding: 6rem 0;
+            background-color: var(--color-bg-white);
+        }
+        
+        .enquiry-form-container {
+            max-width: 700px;
+            margin: 0 auto;
+            background: var(--color-primary-light);
+            padding: 3rem;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.07);
+        }
+        
+        .enquiry-form-container h2 {
+            text-align: center;
+        }
+        
+        .enquiry-form-container .section-subtitle {
+             text-align: center;
+             max-width: 500px;
+             margin: 1rem auto 2rem auto;
+        }
+        
+        .enquiry-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+        }
+        
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.85rem 1rem;
+            border: 1px solid var(--color-border);
+            border-radius: 4px;
+            font-family: var(--font-body);
+            font-size: 1rem;
+            background: var(--color-bg-white);
+        }
+        
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--color-accent);
+            box-shadow: 0 0 0 2px rgba(192, 160, 113, 0.3);
+        }
+        
+        .checkbox-group {
+            font-size: 0.8rem;
+            color: var(--color-text-medium);
+            display: flex;
+            align-items: flex-start;
+            gap: 0.5rem;
+        }
+        
+        .checkbox-group input[type="checkbox"] {
+            margin-top: 3px;
+        }
+        
+        .enquiry-form .btn-primary {
+            font-size: 1rem;
+            padding: 1rem;
+        }
+
+        /* --- Footer --- */
+        .main-footer {
+            background-color: var(--color-primary-dark);
+            color: #ccc;
+            padding: 5rem 0 3rem 0;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1.5fr;
+            gap: 4rem;
+            text-align: left;
+            margin-bottom: 4rem;
+        }
+        
+        .footer-widget .logo {
+            font-size: 2rem;
+            color: var(--color-text-light);
+            margin-bottom: 1.5rem;
+            display: inline-block;
+        }
+        
+        .footer-widget p {
+            color: #aaa;
+            font-size: 0.9rem;
+            line-height: 1.7;
+            max-width: 350px;
+        }
+        
+        .footer-widget h4 {
+            color: var(--color-text-light);
+            font-family: var(--font-heading);
+            font-size: 1.25rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .footer-widget ul {
+            list-style: none;
+        }
+        
+        .footer-widget li {
+            margin-bottom: 0.75rem;
+        }
+        
+        .footer-widget a {
+            text-decoration: none;
+            color: #aaa;
+            transition: var(--transition-main);
+        }
+        
+        .footer-widget a:hover {
+            color: var(--color-accent);
+        }
+        
+        .footer-widget .contact-item {
+            display: block;
+            color: #aaa;
+            margin-bottom: 0.75rem;
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            border-top: 1px solid #3a445a;
+            padding-top: 2rem;
+        }
+        
+        .footer-bottom p {
+            color: #888;
+            margin: 0;
+            font-size: 0.9rem;
+        }
+
+
+        /* --- Responsive Design --- */
+        
+        @media (max-width: 1024px) {
+            h1 { font-size: 2.75rem; }
+            h2 { font-size: 2.25rem; }
+            
+            .nav-container { padding: 0 1.5rem; }
+            
+            .main-nav .nav-links {
+                display: none;
+                position: absolute;
+                top: 70px; /* Header height */
+                left: 0;
+                width: 100%;
+                background: var(--color-bg-white);
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0;
+                padding: 1rem 0;
+                box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            }
+            
+            .main-nav.open .nav-links {
+                display: flex;
+            }
+            
+            .main-nav .nav-links a {
+                padding: 1rem 1.5rem;
+                width: 100%;
+            }
+            .main-nav .nav-links a:hover {
+                background: var(--color-primary-light);
+            }
+            .main-nav .nav-links a::after {
+                display: none;
+            }
+            
+            .main-nav .btn {
+                display: none; /* Hide button in mobile nav, keep on header */
+            }
+            
+            .menu-toggle {
+                display: block;
+            }
+            
+            .hero-content {
+                max-width: 500px;
+                padding: 0 1.5rem;
+            }
+            .hero-content h1 { font-size: 3rem; }
+            
+            .highlights-grid { grid-template-columns: 1fr 1fr; }
+            
+            .about-grid { grid-template-columns: 1fr; }
+            .about-grid img { margin-top: 2rem; }
+            
+            .amenities-grid { grid-template-columns: 1fr 1fr; }
+            .gallery-grid { grid-template-columns: 1fr 1fr; }
+            .plans-grid { grid-template-columns: 1fr; }
+            .developer-grid { grid-template-columns: 1fr; }
+            .testimonials-grid { grid-template-columns: 1fr; }
+            .location-grid { grid-template-columns: 1fr; }
+            .map-placeholder { height: 350px; margin-top: 2rem; }
+            .footer-grid { grid-template-columns: 1fr; gap: 3rem; }
+        }
+        
+        @media (max-width: 768px) {
+            body { padding-top: 60px; }
+            .top-nav { padding: 0.75rem 0; }
+            .nav-container { padding: 0 1rem; }
+            .logo { font-size: 1.5rem; }
+            .main-nav .btn { display: none; } /* Hide enquire button on mobile header */
+            .main-nav .nav-links { top: 60px; }
+            
+            .hero-section { height: 90vh; min-height: 550px; }
+            .hero-content { padding: 0 1rem; }
+            .hero-content h1 { font-size: 2.5rem; }
+            .hero-content .subtitle { font-size: 1.1rem; }
+            
+            .highlights-grid { grid-template-columns: 1fr; }
+            
+            .amenities-grid { grid-template-columns: 1fr; }
+            .gallery-grid { grid-template-columns: 1fr; }
+            
+            .tab-nav {
+                gap: 0.5rem;
+            }
+            .tab-button {
+                font-size: 0.9rem;
+                padding: 0.6rem 1.25rem;
+            }
+            
+            .enquiry-form-container { padding: 2rem 1.5rem; }
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Top Navigation -->
+    <header class="top-nav">
+        <div class="nav-container">
+            <a href="#home" class="logo">SERENE SANDS</a>
+            
+            <nav class="main-nav" id="mainNav">
+                <div class="nav-links">
+                    <a href="#about">About</a>
+                    <a href="#amenities">Amenities</a>
+                    <a href="#gallery">Gallery</a>
+                    <a href="#plans">Floor Plans</a>
+                    <a href="#location">Location</a>
+                    <a href="#faq">FAQ</a>
+                </div>
+                <a href="#contact" class="btn btn-primary">Enquire Now</a>
+            </nav>
+            
+            <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation" aria-expanded="false">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+        </div>
+    </header>
+
+    <main>
+
+        <!-- Hero Section -->
+        <section id="home" class="hero-section">
+            <div class="container">
+                <div class="hero-content fade-in">
+                    <h1>Luxury Riverfront Apartments</h1>
+                    <p class="subtitle">Discover Serene Sands, an oasis of tranquility with scenic river views, premium amenities, and unparalleled connectivity.</p>
+                    <a href="#about" class="btn btn-primary">Discover More</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Key Highlights Bar -->
+        <section class="key-highlights-bar fade-in">
+            <div class="container">
+                <div class="highlights-grid">
+                    <div class="highlight-item">
+                        <div class="icon">🏠</div>
+                        <div class="label">2 & 3 Bed Residences</div>
+                    </div>
+                    <div class="highlight-item">
+                        <div class="icon">🌊</div>
+                        <div class="label">Scenic River Views</div>
+                    </div>
+                    <div class="highlight-item">
+                        <div class="icon">⭐</div>
+                        <div class="label">5-Star Amenities</div>
+                    </div>
+                    <div class="highlight-item">
+                        <div class="icon">🏙️</div>
+                        <div class="label">24-Storey Towers</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="fade-in">
+            <div class="container">
+                <div class="about-grid">
+                    <div class="about-content">
+                        <h2>A Glimpse of Life at its Best</h2>
+                        <p>Serene Sands brings you a lifestyle inspired by the finest tropical beach resorts. Spread across acres of lush landscape, this is a sanctuary designed for those who seek a life of luxury and leisure, with the scenic beauty of the river as their backdrop.</p>
+                        <p>Aesthetically designed spaces, a grand clubhouse, and thoughtful details come together to create a living experience that is both exclusive and extraordinary.</p>
+                        <a href="#amenities" class="btn btn-outline">Explore Amenities</a>
+                    </div>
+                    <img src="https://source.unsplash.com/600x450/?modern,apartment,building,exterior" alt="Modern apartment building exterior" loading="lazy">
+                </div>
+            </div>
+        </section>
+
+        <!-- Amenities Section -->
+        <section id="amenities" class="fade-in">
+            <div class="container">
+                <h2>Premium Resort-Style Amenities</h2>
+                <p class="section-subtitle">Experience a life beyond the ordinary, where world-class amenities are an extension of your home.</p>
+                <div class="amenities-grid">
+                    <div class="amenity-card">
+                        <img src="https://source.unsplash.com/500x350/?luxury,clubhouse" alt="Grand Clubhouse Interior" loading="lazy">
+                        <div class="amenity-card-content">
+                            <h3>Grand Clubhouse</h3>
+                            <p>An exclusive space for leisure, socializing, and recreation.</p>
+                        </div>
+                    </div>
+                    <div class="amenity-card">
+                        <img src="https://source.unsplash.com/500x350/?swimming,pool,luxury" alt="Infinity Swimming Pool" loading="lazy">
+                        <div class="amenity-card-content">
+                            <h3>Lagoon-Style Pool</h3>
+                            <p>Relax and unwind in the stunning beach-themed swimming pool.</p>
+                        </div>
+                    </div>
+                    <div class="amenity-card">
+                        <img src="https://source.unsplash.com/500x350/?modern,gym,fitness" alt="State-of-the-art Gymnasium" loading="lazy">
+                        <div class="amenity-card-content">
+                            <h3>State-of-the-Art Gym</h3>
+                            <p>Equipped with the latest machines for your fitness journey.</p>
+                        </div>
+                    </div>
+                    <div class="amenity-card">
+                        <img src="https://source.unsplash.com/500x350/?landscaped,garden,tropical" alt="Landscaped Gardens" loading="lazy">
+                        <div class="amenity-card-content">
+                            <h3>Themed Gardens</h3>
+                            <p>Stroll through acres of serene, tropical green spaces.</p>
+                        </div>
+                    </div>
+                    <div class="amenity-card">
+                        <img src="https://source.unsplash.com/500x350/?kids,play,park" alt="Children's Play Area" loading="lazy">
+                        <div class="amenity-card-content">
+                            <h3>Kids' Adventure Area</h3>
+                            <p>A safe and imaginative space for your children to thrive.</p>
+                        </div>
+                    </div>
+                    <div class="amenity-card">
+                        <img src="https://source.unsplash.com/500x350/?tennis,court" alt="Sports Courts" loading="lazy">
+                        <div class="amenity-card-content">
+                            <h3>Multi-Sports Courts</h3>
+                            <p>Including tennis, basketball, and futsal courts.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Gallery Section -->
+        <section id="gallery" class="fade-in">
+            <div class="container">
+                <h2>Project Gallery</h2>
+                <p class="section-subtitle">Visualize your future home. Explore the stunning architecture, elegant interiors, and vibrant community spaces.</p>
+                
+                <div class="tab-nav" id="galleryTabs">
+                    <button class="tab-button active" data-tab="gallery-tab1">Exteriors</button>
+                    <button class="tab-button" data-tab="gallery-tab2">Interiors</button>
+                    <button class="tab-button" data-tab="gallery-tab3">Amenities</button>
+                </div>
+                
+                <div class="tab-content active" id="gallery-tab1">
+                    <div class="gallery-grid">
+                        <div class="gallery-item"><img src="https://source.unsplash.com/400x300/?architecture,facade,apartment" alt="Building Facade"><div class="overlay"><h4>Modern Facade</h4></div></div>
+                        <div class="gallery-item"><img src="https://source.unsplash.com/400x300/?building,exterior,night,modern" alt="Building at Night"><div class="overlay"><h4>Evening View</h4></div></div>
+                        <div class="gallery-item"><img src="https://source.unsplash.com/400x300/?architecture,balcony,view" alt="Apartment Balconies"><div class="overlay"><h4>Spacious Balconies</h4></div></div>
+                    </div>
+                </div>
+                <div class="tab-content" id="gallery-tab2">
+                    <div class="gallery-grid">
+                        <div class="gallery-item"><img src="https://source.unsplash.com/400x300/?modern,living,room,luxury" alt="Modern Living Room"><div class="overlay"><h4>Elegant Living Room</h4></div></div>
+                        <div class="gallery-item"><img src="https://source.unsplash.com/400x300/?luxury,bedroom,view" alt="Luxury Bedroom"><div class="overlay"><h4>Master Bedroom</h4></div></div>
+                        <div class="gallery-item"><img src="https://source.unsplash.com/400x300/?modern,kitchen,interior" alt="Modern Kitchen"><div class="overlay"><h4>Modular Kitchen</h4></div></div>
+                    </div>
+                </div>
+                <div class="tab-content" id="gallery-tab3">
+                    <div class="gallery-grid">
+                        <div class="gallery-item"><img src="https://source.unsplash.com/400x300/?luxury,lobby,interior" alt="Grand Lobby"><div class="overlay"><h4>Double-Height Lobby</h4></div></div>
+                        <div class="gallery-item"><img src="https://source.unsplash.com/400x300/?rooftop,pool,city" alt="Rooftop Pool"><div class="overlay"><h4>Rooftop Pool</h4></div></div>
+                        <div class="gallery-item"><img src="https://source.unsplash.com/400x300/?yoga,studio,interior" alt="Yoga Studio"><div class="overlay"><h4>Yoga & Wellness Studio</h4></div></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Floor Plans Section -->
+        <section id="plans" class="fade-in">
+            <div class="container">
+                <h2>Well-Planned Apartment Layouts</h2>
+                <p class="section-subtitle">Choose from meticulously designed residences that offer the perfect blend of space, style, and functionality.</p>
+                <div class="tab-nav" id="plansTabs">
+                    <button class="tab-button active" data-tab="plan-tab1">2 Bed Residences</button>
+                    <button class="tab-button" data-tab="plan-tab2">3 Bed Residences</button>
+                </div>
+                
+                <div class="tab-content active" id="plan-tab1">
+                    <div class="plans-grid">
+                        <div class="plan-item">
+                            <h3>2 Bed - Type A</h3>
+                            <p>Spacious layout with modern kitchen and two balconies.</p>
+                            <img src="https://source.unsplash.com/400x300/?floor,plan,sketch" alt="2 Bed Floor Plan Type A" loading="lazy">
+                        </div>
+                        <div class="plan-item">
+                            <h3>2 Bed - Type B</h3>
+                            <p>Smart design with a dedicated work-from-home niche.</p>
+                            <img src="https://source.unsplash.com/400x300/?blueprint,floorplan" alt="2 Bed Floor Plan Type B" loading="lazy">
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-content" id="plan-tab2">
+                    <div class="plans-grid">
+                        <div class="plan-item">
+                            <h3>3 Bed - Type A</h3>
+                            <p>Expansive living area, large master suite, and deck.</p>
+                            <img src="https://source.unsplash.com/400x300/?floorplan" alt="3 Bed Floor Plan Type A" loading="lazy">
+                        </div>
+                        <div class="plan-item">
+                            <h3>3 Bed - Type B</h3>
+                            <p>Premium corner unit with cross-ventilation and city views.</p>
+                            <img src="https://source.unsplash.com/400x300/?architecture,plan" alt="3 Bed Floor Plan Type B" loading="lazy">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Developer Section -->
+        <section id="developer" class="fade-in">
+            <div class="container">
+                <h2>Why Choose 'Your Brand'</h2>
+                <p class="section-subtitle">With decades of experience, we are committed to building not just homes, but legacies.</p>
+                <div class="developer-grid">
+                    <div class="developer-item">
+                        <div class="icon">🏆</div>
+                        <h3>Recognition of Excellence</h3>
+                        <p>Awarded "Developer of the Year" for quality and innovation.</p>
+                    </div>
+                    <div class="developer-item">
+                        <div class="icon">🌿</div>
+                        <h3>Sustainable Living</h3>
+                        <p>IGBC Green Certified projects focused on a healthier lifestyle.</p>
+                    </div>
+                    <div class="developer-item">
+                        <div class="icon">🤝</div>
+                        <h3>Trusted Legacy</h3>
+                        <p>Delivering on promises to thousands of happy families.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials Section -->
+        <section id="testimonials" class="fade-in">
+            <div class="container">
+                <h2>What Our Residents Say</h2>
+                <p class="section-subtitle">Hear from those who have made our communities their home.</p>
+                <div class="testimonials-grid">
+                    <div class="testimonial-card">
+                        <q>The quality of construction and the amenities are truly world-class. Waking up to the river view every morning is a dream come true. The team has been supportive throughout.</q>
+                        <cite>— A. & R. Sharma, Residents</cite>
+                    </div>
+                    <div class="testimonial-card">
+                        <q>We were looking for a home that was away from the city's noise but still well-connected. Serene Sands is the perfect balance. Our children love the open spaces and play areas.</q>
+                        <cite>— The Patel Family, Residents</cite>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Location Section -->
+        <section id="location" class="fade-in">
+            <div class="container">
+                <div class="location-grid">
+                    <div class="location-content fade-in">
+                        <h2>Excellent Location Advantages</h2>
+                        <p>Located in the city's fastest-growing corridor, Serene Sands offers unparalleled connectivity to major business hubs, educational institutions, and entertainment zones.</p>
+                        <ul>
+                            <li>City Business Hub - 10 Mins</li>
+                            <li>International School - 5 Mins</li>
+                            <li>Multi-Specialty Hospital - 7 Mins</li>
+                            <li>City Center Mall - 15 Mins</li>
+                            <li>International Airport - 30 Mins</li>
+                        </ul>
+                        <a href="#contact" class="btn btn-primary" style="margin-top: 1.5rem;">Schedule a Site Visit</a>
+                    </div>
+                    <div class="map-placeholder fade-in">
+                        <img src="https://source.unsplash.com/600x500/?city,map,aerial,location" alt="Aerial map of a city district">
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- FAQ Section -->
+        <section id="faq" class="fade-in">
+            <div class="container">
+                <h2>Frequently Asked Questions</h2>
+                <p class="section-subtitle">Find answers to common queries about Serene Sands.</p>
+                <div class="faq-container">
+                    <div class="faq-item">
+                        <button class="faq-header" aria-expanded="false">
+                            <h4>What are the configurations and prices?</h4>
+                            <span class="faq-toggle">+</span>
+                        </button>
+                        <div class="faq-content">
+                            <p>Serene Sands offers premium 2 and 3 Bed residences. For detailed pricing and current offers, please fill out the enquiry form, and our team will get in touch with you.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-header" aria-expanded="false">
+                            <h4>Is the project RERA registered?</h4>
+                            <span class="faq-toggle">+</span>
+                        </button>
+                        <div class="faq-content">
+                            <p>Yes, Serene Sands is a fully RERA-compliant project. All details are available on the state RERA website under registration number P52100000XXX (Mockup Number).</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-header" aria-expanded="false">
+                            <h4>What are the main amenities?</h4>
+                            <span class="faq-toggle">+</span>
+                        </button>
+                        <div class="faq-content">
+                            <p>The project features a resort-themed lifestyle with a grand clubhouse, lagoon-style swimming pool, state-of-the-art gym, themed gardens, sports courts, and dedicated children's play areas.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-header" aria-expanded="false">
+                            <h4>What is the possession date?</h4>
+                            <span class="faq-toggle">+</span>
+                        </button>
+                        <div class="faq-content">
+                            <p>Construction is progressing as per schedule. The current estimated possession date for Phase 1 is December 2026. For the most accurate timeline, please contact our sales team.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Enquire Section -->
+        <section id="contact" class="enquire-section fade-in">
+            <div class="container">
+                <div class="enquiry-form-container">
+                     <h2>Get in Touch</h2>
+                     <p class="section-subtitle">Fill out the form below to receive our e-brochure, floor plans, and exclusive launch offers.</p>
+                     
+                     <form class="enquiry-form" id="contactForm">
+                         <div class="form-group">
+                            <input type="text" id="name" name="name" placeholder="Your Name *" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" id="email" name="email" placeholder="Your Email *" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="tel" id="phone" name="phone" placeholder="Your Phone Number *" required>
+                        </div>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="auth" name="auth" checked>
+                            <label for="auth">I agree and authorize the team to contact me. This will override any DNC/NDNC registry.</label>
+                        </div>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="terms" name="terms" required>
+                            <label for="terms">Yes, I agree to the terms and conditions outlined in the privacy policy. *</label>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit Enquiry</button>
+                     </form>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-widget">
+                    <a href="#home" class="logo">SERENE SANDS</a>
+                    <p>Serene Sands is a premier development by 'Your Brand', dedicated to creating spaces that inspire and elevate everyday living. Our focus is on quality, innovation, and timeless design.</p>
+                </div>
+                <div class="footer-widget">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#amenities">Amenities</a></li>
+                        <li><a href="#gallery">Gallery</a></li>
+                        <li><a href="#plans">Floor Plans</a></li>
+                        <li><a href="#location">Location</a></li>
+                        <li><a href="#faq">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-widget">
+                    <h4>Contact Info</h4>
+                    <span class="contact-item">Sales Gallery, Riverfront Road,</span>
+                    <span class="contact-item">New City East, 411001</span>
+                    <span class="contact-item">sales@yourbrand.com</span>
+                    <span class="contact-item">+91 98765 43210</span>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; <span id="currentYear"></span> Your Brand. All rights reserved. This is a fictional mockup for demonstration purposes.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+
+            // --- Mobile Menu Toggle ---
+            const menuToggle = document.getElementById('menuToggle');
+            const mainNav = document.getElementById('mainNav');
+            
+            if (menuToggle && mainNav) {
+                menuToggle.addEventListener('click', () => {
+                    mainNav.classList.toggle('open');
+                    menuToggle.classList.toggle('open');
+                    menuToggle.setAttribute('aria-expanded', mainNav.classList.contains('open'));
+                });
+            }
+
+            // --- Smooth Scroll & Close Mobile Menu ---
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        let headerOffset = 70; // Height of the top-nav
+                        if (window.innerWidth <= 768) {
+                            headerOffset = 60;
+                        }
+                        
+                        let elementPosition = targetElement.getBoundingClientRect().top;
+                        let offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+                        // Special case for #home to scroll to top
+                        if (targetId === '#home') {
+                            offsetPosition = 0;
+                        }
+
+                        window.scrollTo({
+                            top: offsetPosition,
+                            behavior: "smooth"
+                        });
+                        
+                        // Close mobile nav if open and click was on a nav link
+                        if (mainNav.classList.contains('open') && this.closest('.nav-links')) {
+                            mainNav.classList.remove('open');
+                            menuToggle.classList.remove('open');
+                            menuToggle.setAttribute('aria-expanded', 'false');
+                        }
+                    }
+                });
+            });
+
+            // --- Fade-in on Scroll (IntersectionObserver) ---
+            const faders = document.querySelectorAll('.fade-in');
+            
+            const appearOptions = {
+                threshold: 0.1,
+                rootMargin: "0px 0px -50px 0px"
+            };
+
+            const appearOnScroll = new IntersectionObserver(function(
+                entries,
+                appearOnScroll
+            ) {
+                entries.forEach(entry => {
+                    if (!entry.isIntersecting) {
+                        return;
+                    } else {
+                        entry.target.classList.add('visible');
+                        appearOnScroll.unobserve(entry.target);
+                    }
+                });
+            },
+            appearOptions);
+
+            faders.forEach(fader => {
+                appearOnScroll.observe(fader);
+            });
+            
+            // --- Tab Functionality ---
+            function setupTabs(tabContainerId) {
+                const tabContainer = document.getElementById(tabContainerId);
+                if (tabContainer) {
+                    const tabButtons = tabContainer.querySelectorAll('.tab-button');
+                    const tabContents = [];
+                    
+                    tabButtons.forEach(button => {
+                        const contentId = button.getAttribute('data-tab');
+                        const contentElement = document.getElementById(contentId);
+                        if (contentElement) {
+                            tabContents.push(contentElement);
+                        }
+                    });
+
+                    tabButtons.forEach((button, index) => {
+                        button.addEventListener('click', () => {
+                            // Update buttons
+                            tabButtons.forEach(btn => btn.classList.remove('active'));
+                            button.classList.add('active');
+                            
+                            // Update content
+                            tabContents.forEach(content => content.classList.remove('active'));
+                            if (tabContents[index]) {
+                                tabContents[index].classList.add('active');
+                            }
+                        });
+                    });
+                }
+            }
+            
+            setupTabs('galleryTabs');
+            setupTabs('plansTabs');
+
+            // --- FAQ Accordion ---
+            const faqItems = document.querySelectorAll('.faq-item');
+            faqItems.forEach(item => {
+                const header = item.querySelector('.faq-header');
+                const content = item.querySelector('.faq-content');
+                const toggle = item.querySelector('.faq-toggle');
+
+                if (header && content && toggle) {
+                    header.addEventListener('click', () => {
+                        const isActive = item.classList.contains('active');
+                        
+                        if (!isActive) {
+                            item.classList.add('active');
+                            content.style.maxHeight = content.scrollHeight + 'px';
+                            toggle.textContent = '−'; // Minus sign
+                            header.setAttribute('aria-expanded', 'true');
+                        } else {
+                            item.classList.remove('active');
+                            content.style.maxHeight = null;
+                            toggle.textContent = '+';
+                            header.setAttribute('aria-expanded', 'false');
+                        }
+                    });
+                }
+            });
+
+
+            // --- Set Current Year in Footer ---
+            const yearSpan = document.getElementById('currentYear');
+            if (yearSpan) {
+                yearSpan.textContent = new Date().getFullYear();
+            }
+            
+            // --- Form Submission Mock ---
+            const contactForm = document.getElementById('contactForm');
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    console.log('Form submitted (mock).');
+                    const submitButton = this.querySelector('button[type="submit"]');
+                    submitButton.textContent = 'Submitted!';
+                    submitButton.disabled = true;
+                    
+                    setTimeout(() => {
+                         submitButton.textContent = 'Submit Enquiry';
+                         submitButton.disabled = false;
+                         this.reset();
+                    }, 3000);
+                });
+            }
+
+        });
+    </script>
+
+</body>
+</html>

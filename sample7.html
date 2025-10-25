@@ -1,0 +1,1456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nexus Tower | Premium Office & Coworking Space</title>
+    
+    <!-- Google Fonts Import -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        /* CSS Reset and Global Styles */
+        :root {
+            --font-heading: 'Poppins', sans-serif;
+            --font-body: 'Inter', sans-serif;
+            --color-primary-dark: #0a2342; /* Deep Navy Blue */
+            --color-primary-light: #f4f7f9; /* Lighter blue/grey BG */
+            --color-accent: #c0a071;       /* Premium Gold/Bronze */
+            --color-accent-dark: #a68a5f;
+            --color-text-dark: #222222;
+            --color-text-medium: #555555;
+            --color-text-light: #ffffff;
+            --color-border: #e0e0e0;
+            --color-bg-white: #ffffff;
+            --transition-main: all 0.3s ease-in-out;
+            --container-width: 1200px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
+        body {
+            font-family: var(--font-body);
+            color: var(--color-text-dark);
+            background-color: var(--color-bg-white);
+            line-height: 1.6;
+            overflow-x: hidden;
+            padding-top: 70px; /* Space for fixed header */
+        }
+
+        /* Utility Classes */
+        .container {
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.85rem 2rem;
+            font-family: var(--font-heading);
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: var(--transition-main);
+            cursor: pointer;
+            border: 1px solid transparent;
+            text-align: center;
+            text-transform: uppercase;
+            font-size: 0.875rem;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-primary {
+            background-color: var(--color-accent);
+            color: var(--color-text-light);
+            border-color: var(--color-accent);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--color-accent-dark);
+            border-color: var(--color-accent-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            color: var(--color-primary-dark);
+            border-color: var(--color-primary-dark);
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--color-primary-dark);
+            color: var(--color-text-light);
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-heading);
+            color: var(--color-primary-dark);
+            font-weight: 600;
+            line-height: 1.3;
+        }
+
+        h1 { font-size: 3.5rem; margin-bottom: 1rem; }
+        h2 { font-size: 2.75rem; text-align: center; margin-bottom: 1.5rem; }
+        h3 { font-size: 1.75rem; margin-bottom: 1rem; }
+        h4 { font-size: 1.25rem; }
+        
+        p {
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
+            color: var(--color-text-medium);
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.1rem;
+            color: var(--color-text-medium);
+            max-width: 700px;
+            margin: -1rem auto 3.5rem auto;
+            line-height: 1.7;
+        }
+        
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 8px;
+        }
+        
+        /* Fade-in Animation */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- Top Navigation --- */
+        .top-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 1.25rem 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--color-border);
+            z-index: 1000;
+            transition: padding 0.3s ease;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1300px; /* Wider container for nav */
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .logo {
+            text-decoration: none;
+            color: var(--color-primary-dark);
+            font-family: var(--font-heading);
+            font-weight: 700;
+            font-size: 1.75rem;
+        }
+
+        .main-nav {
+            display: flex;
+            align-items: center;
+            gap: 2.5rem;
+        }
+        
+        .main-nav .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .main-nav a {
+            text-decoration: none;
+            color: var(--color-text-dark);
+            font-weight: 500;
+            font-size: 0.95rem;
+            position: relative;
+            padding-bottom: 0.25rem;
+        }
+        
+        .main-nav .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--color-accent);
+            transition: width 0.3s ease;
+        }
+        
+        .main-nav .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        .main-nav .btn {
+            padding: 0.7rem 1.5rem;
+        }
+        
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+            z-index: 1001;
+        }
+        
+        .menu-toggle .bar {
+            display: block;
+            width: 28px;
+            height: 3px;
+            margin: 6px 0;
+            background-color: var(--color-primary-dark);
+            transition: all 0.3s ease-in-out;
+        }
+        
+        .menu-toggle.open .bar:nth-child(1) {
+            transform: translateY(9px) rotate(45deg);
+        }
+        .menu-toggle.open .bar:nth-child(2) {
+            opacity: 0;
+        }
+        .menu-toggle.open .bar:nth-child(3) {
+            transform: translateY(-9px) rotate(-45deg);
+        }
+
+
+        /* --- Hero Section --- */
+        .hero-section {
+            height: calc(100vh - 70px); /* Full height minus header */
+            min-height: 650px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            background: url('https://source.unsplash.com/1800x1000/?office,architecture,skyscraper') no-repeat center center/cover;
+            color: var(--color-text-light);
+        }
+        
+        .hero-section::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(to right, rgba(10, 35, 66, 0.85), rgba(10, 35, 66, 0.1));
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 600px;
+        }
+        
+        .hero-content h1 {
+            color: var(--color-text-light);
+            font-size: 3.75rem;
+        }
+        
+        .hero-content .subtitle {
+            font-size: 1.25rem;
+            color: var(--color-text-light);
+            opacity: 0.9;
+            margin: 1.5rem 0 2.5rem 0;
+            line-height: 1.7;
+        }
+
+        /* Hero Highlights Bar */
+        .key-highlights-bar {
+            background: var(--color-bg-white);
+            padding: 2.5rem 0;
+            border-bottom: 1px solid var(--color-border);
+        }
+        
+        .highlights-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+        
+        .highlight-item {
+            text-align: center;
+            padding: 1rem;
+            border: 1px solid var(--color-border);
+            border-radius: 8px;
+            background: var(--color-bg-white);
+            transition: var(--transition-main);
+        }
+        
+        .highlight-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.07);
+        }
+        
+        .highlight-item .icon {
+            font-size: 2.5rem;
+            color: var(--color-accent);
+            margin-bottom: 0.75rem;
+        }
+        
+        .highlight-item .label {
+            font-size: 1rem;
+            color: var(--color-text-dark);
+            font-weight: 600;
+        }
+        
+        .highlight-item .value {
+            font-size: 0.9rem;
+            color: var(--color-text-medium);
+            margin-top: 0.25rem;
+        }
+
+        /* --- About Section --- */
+        #about {
+            padding: 6rem 0;
+        }
+        
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+        
+        .about-grid img {
+            box-shadow: 0 15px 35px rgba(10, 35, 66, 0.1);
+        }
+        
+        /* --- Flexible Spaces Section (Tabs) --- */
+        #spaces {
+            padding: 6rem 0;
+            background-color: var(--color-primary-light);
+        }
+        
+        .tab-nav {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+        
+        .tab-button {
+            padding: 0.75rem 1.75rem;
+            font-family: var(--font-body);
+            font-weight: 600;
+            font-size: 1rem;
+            background: var(--color-bg-white);
+            border: 1px solid var(--color-border);
+            border-radius: 30px;
+            cursor: pointer;
+            transition: var(--transition-main);
+        }
+        
+        .tab-button:hover {
+            background-color: var(--color-accent-dark);
+            color: var(--color-text-light);
+            border-color: var(--color-accent-dark);
+        }
+        
+        .tab-button.active {
+            background-color: var(--color-accent);
+            color: var(--color-text-light);
+            border-color: var(--color-accent);
+        }
+        
+        .tab-content {
+            display: none;
+            animation: fadeInContent 0.5s ease;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .tab-content .about-grid { /* Reusing the 2-col layout */
+            gap: 2rem;
+        }
+
+        @keyframes fadeInContent {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --- Amenities Section --- */
+        #amenities {
+            padding: 6rem 0;
+        }
+        
+        .amenities-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+        }
+        
+        .amenity-item {
+            text-align: center;
+            background: var(--color-bg-white);
+            padding: 2rem;
+            border-radius: 8px;
+            border: 1px solid var(--color-border);
+            transition: var(--transition-main);
+        }
+        
+        .amenity-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            border-color: var(--color-accent);
+        }
+        
+        .amenity-item .icon-svg {
+            width: 50px;
+            height: 50px;
+            margin: 0 auto 1.5rem auto;
+            color: var(--color-accent);
+        }
+        
+        .amenity-item h4 {
+            font-family: var(--font-body);
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin: 0;
+        }
+
+        /* --- Why Choose Us Section --- */
+        #why {
+            padding: 6rem 0;
+            background-color: var(--color-primary-light);
+        }
+        
+        .why-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 3rem;
+        }
+        
+        .why-item {
+            text-align: center;
+            background: var(--color-bg-white);
+            padding: 2.5rem;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .why-item .icon {
+            font-size: 3rem;
+            color: var(--color-accent);
+            margin-bottom: 1rem;
+        }
+
+        /* --- Testimonials Section --- */
+        #testimonials {
+            padding: 6rem 0;
+        }
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+        .testimonial-card {
+            background: var(--color-primary-light);
+            padding: 2.5rem;
+            border-radius: 8px;
+            border-left: 5px solid var(--color-accent);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        .testimonial-card q {
+            font-size: 1.1rem;
+            font-style: italic;
+            color: var(--color-text-medium);
+            display: block;
+            margin-bottom: 1.5rem;
+        }
+        .testimonial-card cite {
+            font-weight: 600;
+            color: var(--color-primary-dark);
+        }
+
+        /* --- Gallery Section --- */
+        #gallery {
+            padding: 6rem 0;
+             background-color: var(--color-primary-light);
+        }
+        
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+        
+        .gallery-item {
+            position: relative;
+            height: 300px;
+            overflow: hidden;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+        
+        .gallery-item .overlay {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(to top, rgba(10, 35, 66, 0.7), transparent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 1.5rem;
+            opacity: 0;
+            transition: var(--transition-main);
+        }
+        
+        .gallery-item:hover .overlay {
+            opacity: 1;
+        }
+        
+        .gallery-item .overlay h4 {
+            color: var(--color-text-light);
+            font-family: var(--font-body);
+            transform: translateY(10px);
+            transition: var(--transition-main);
+        }
+        
+        .gallery-item:hover .overlay h4 {
+            transform: translateY(0);
+        }
+
+        /* --- Location Section --- */
+        #location {
+            padding: 6rem 0;
+        }
+        
+        .location-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+        
+        .location-content ul {
+            list-style: none;
+            margin-top: 1.5rem;
+        }
+        
+        .location-content li {
+            position: relative;
+            padding-left: 35px;
+            margin-bottom: 1.25rem;
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+        
+        .location-content li::before {
+            /* Checkmark icon */
+            content: '✓';
+            position: absolute;
+            left: 0;
+            top: 0;
+            color: var(--color-accent);
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+        
+        .map-placeholder {
+            width: 100%;
+            height: 450px;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid var(--color-border);
+            box-shadow: 0 15px 35px rgba(10, 35, 66, 0.1);
+        }
+        
+        .map-placeholder img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* --- FAQ Section --- */
+        #faq {
+            padding: 6rem 0;
+            background-color: var(--color-primary-light);
+        }
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .faq-item {
+            border-bottom: 1px solid var(--color-border);
+        }
+        .faq-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 0;
+            cursor: pointer;
+            background: none;
+            border: none;
+            width: 100%;
+            text-align: left;
+        }
+        .faq-header h4 {
+            font-family: var(--font-body);
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin: 0;
+        }
+        .faq-toggle {
+            font-size: 1.5rem;
+            color: var(--color-primary-dark);
+            transition: transform 0.3s ease;
+        }
+        .faq-item.active .faq-toggle {
+            transform: rotate(45deg);
+        }
+        .faq-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out;
+        }
+        .faq-content p {
+            padding: 0 0 1.5rem;
+            margin: 0;
+        }
+
+        /* --- Enquire Section --- */
+        #contact {
+            padding: 6rem 0;
+            background-color: var(--color-bg-white);
+        }
+        
+        .enquiry-form-container {
+            max-width: 700px;
+            margin: 0 auto;
+            background: var(--color-primary-light);
+            padding: 3rem;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.07);
+        }
+        
+        .enquiry-form-container h2 {
+            text-align: center;
+        }
+        
+        .enquiry-form-container .section-subtitle {
+             text-align: center;
+             max-width: 500px;
+             margin: 1rem auto 2rem auto;
+        }
+        
+        .enquiry-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+        }
+        
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.85rem 1rem;
+            border: 1px solid var(--color-border);
+            border-radius: 4px;
+            font-family: var(--font-body);
+            font-size: 1rem;
+            background: var(--color-bg-white);
+        }
+        
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--color-accent);
+            box-shadow: 0 0 0 2px rgba(192, 160, 113, 0.3);
+        }
+        
+        .checkbox-group {
+            font-size: 0.8rem;
+            color: var(--color-text-medium);
+            display: flex;
+            align-items: flex-start;
+            gap: 0.5rem;
+        }
+        
+        .checkbox-group input[type="checkbox"] {
+            margin-top: 3px;
+        }
+        
+        .enquiry-form .btn-primary {
+            font-size: 1rem;
+            padding: 1rem;
+        }
+
+        /* --- Footer --- */
+        .main-footer {
+            background-color: var(--color-primary-dark);
+            color: #ccc;
+            padding: 5rem 0 3rem 0;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1.5fr;
+            gap: 4rem;
+            text-align: left;
+            margin-bottom: 4rem;
+        }
+        
+        .footer-widget .logo {
+            font-size: 2rem;
+            color: var(--color-text-light);
+            margin-bottom: 1.5rem;
+            display: inline-block;
+        }
+        
+        .footer-widget p {
+            color: #aaa;
+            font-size: 0.9rem;
+            line-height: 1.7;
+            max-width: 350px;
+        }
+        
+        .footer-widget h4 {
+            color: var(--color-text-light);
+            font-family: var(--font-heading);
+            font-size: 1.25rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .footer-widget ul {
+            list-style: none;
+        }
+        
+        .footer-widget li {
+            margin-bottom: 0.75rem;
+        }
+        
+        .footer-widget a {
+            text-decoration: none;
+            color: #aaa;
+            transition: var(--transition-main);
+        }
+        
+        .footer-widget a:hover {
+            color: var(--color-accent);
+        }
+        
+        .footer-widget .contact-item {
+            display: block;
+            color: #aaa;
+            margin-bottom: 0.75rem;
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            border-top: 1px solid #3a445a;
+            padding-top: 2rem;
+        }
+        
+        .footer-bottom p {
+            color: #888;
+            margin: 0;
+            font-size: 0.9rem;
+        }
+
+
+        /* --- Responsive Design --- */
+        
+        @media (max-width: 1024px) {
+            h1 { font-size: 2.75rem; }
+            h2 { font-size: 2.25rem; }
+            
+            .nav-container { padding: 0 1.5rem; }
+            
+            .main-nav .nav-links {
+                display: none;
+                position: absolute;
+                top: 70px; /* Header height */
+                left: 0;
+                width: 100%;
+                background: var(--color-bg-white);
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0;
+                padding: 1rem 0;
+                box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            }
+            
+            .main-nav.open .nav-links {
+                display: flex;
+            }
+            
+            .main-nav .nav-links a {
+                padding: 1rem 1.5rem;
+                width: 100%;
+            }
+            .main-nav .nav-links a:hover {
+                background: var(--color-primary-light);
+            }
+            .main-nav .nav-links a::after {
+                display: none;
+            }
+            
+            .main-nav .btn {
+                display: none; /* Hide button in mobile nav, keep on header */
+            }
+            
+            .menu-toggle {
+                display: block;
+            }
+            
+            .hero-content {
+                max-width: 500px;
+                padding: 0 1.5rem;
+            }
+            .hero-content h1 { font-size: 3rem; }
+            
+            .highlights-grid { grid-template-columns: 1fr 1fr; }
+            
+            .about-grid { grid-template-columns: 1fr; }
+            .about-grid img { margin-top: 2rem; }
+            .tab-content .about-grid img { margin-top: 0; }
+            #spaces .about-grid:last-of-type .about-content {
+                order: 1; /* Ensure text is below image on mobile for tabs */
+            }
+
+            .amenities-grid { grid-template-columns: 1fr 1fr; }
+            .why-grid { grid-template-columns: 1fr; }
+            .testimonials-grid { grid-template-columns: 1fr; }
+            .gallery-grid { grid-template-columns: 1fr 1fr; }
+            .location-grid { grid-template-columns: 1fr; }
+            .map-placeholder { height: 350px; margin-top: 2rem; }
+            .footer-grid { grid-template-columns: 1fr; gap: 3rem; }
+        }
+        
+        @media (max-width: 768px) {
+            body { padding-top: 60px; }
+            .top-nav { padding: 0.75rem 0; }
+            .nav-container { padding: 0 1rem; }
+            .logo { font-size: 1.5rem; }
+            .main-nav .btn { display: none; } /* Hide enquire button on mobile header */
+            .main-nav .nav-links { top: 60px; }
+            
+            .hero-section { height: 90vh; min-height: 550px; }
+            .hero-content { padding: 0 1rem; }
+            .hero-content h1 { font-size: 2.5rem; }
+            .hero-content .subtitle { font-size: 1.1rem; }
+            
+            .highlights-grid { grid-template-columns: 1fr; }
+            
+            .amenities-grid { grid-template-columns: 1fr; }
+            .gallery-grid { grid-template-columns: 1fr; }
+            
+            .tab-nav {
+                gap: 0.5rem;
+            }
+            .tab-button {
+                font-size: 0.9rem;
+                padding: 0.6rem 1.25rem;
+            }
+            
+            .enquiry-form-container { padding: 2rem 1.5rem; }
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Top Navigation -->
+    <header class="top-nav">
+        <div class="nav-container">
+            <a href="#home" class="logo">NEXUS TOWER</a>
+            
+            <nav class="main-nav" id="mainNav">
+                <div class="nav-links">
+                    <a href="#about">About</a>
+                    <a href="#spaces">Spaces</a>
+                    <a href="#amenities">Amenities</a>
+                    <a href="#location">Location</a>
+                    <a href="#gallery">Gallery</a>
+                    <a href="#faq">FAQ</a>
+                </div>
+                <a href="#contact" class="btn btn-primary">Enquire Now</a>
+            </nav>
+            
+            <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation" aria-expanded="false">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+        </div>
+    </header>
+
+    <main>
+
+        <!-- Hero Section -->
+        <section id="home" class="hero-section">
+            <div class="container">
+                <div class="hero-content fade-in">
+                    <h1>The Future of Workspace</h1>
+                    <p class="subtitle">Premium Office & Coworking Spaces in the Heart of the Tech Corridor. Designed for innovators, built for success.</p>
+                    <a href="#about" class="btn btn-primary">Discover More</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Key Highlights Bar -->
+        <section class="key-highlights-bar fade-in">
+            <div class="container">
+                <div class="highlights-grid">
+                    <div class="highlight-item">
+                        <div class="icon">🏢</div>
+                        <div class="label">G + 8 Structure</div>
+                        <div class="value">Modern Grade A Building</div>
+                    </div>
+                    <div class="highlight-item">
+                        <div class="icon">📍</div>
+                        <div class="label">Prime Tech Hub</div>
+                        <div class="value">City's Main Tech Corridor</div>
+                    </div>
+                    <div class="highlight-item">
+                        <div class="icon">📐</div>
+                        <div class="label">265,000 sq. ft.</div>
+                        <div class="value">Total Leasable Area</div>
+                    </div>
+                    <div class="highlight-item">
+                        <div class="icon">⚡️</div>
+                        <div class="label">29,500 sq. ft.</div>
+                        <div class="value">Average Floor Plate</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="fade-in">
+            <div class="container">
+                <div class="about-grid">
+                    <div class="about-content">
+                        <h2>A Well-Connected Prime Business Destination</h2>
+                        <p>Nexus Tower is a landmark commercial development strategically located in the city's most sought-after tech hub. This Grade A, G+8 structure offers state-of-the-art office spaces designed to foster innovation and productivity.</p>
+                        <p>With its modern facade, large and efficient floor plates, and a host of premium amenities, Nexus Tower is the ideal choice for startups, investors, and established corporations looking to make their mark.</p>
+                        <a href="#spaces" class="btn btn-outline">Explore Spaces</a>
+                    </div>
+                    <img src="https://source.unsplash.com/600x450/?modern,office,lobby" alt="Modern office lobby with reception" loading="lazy">
+                </div>
+            </div>
+        </section>
+        
+        <!-- Flexible Spaces Section (Tabs) -->
+        <section id="spaces" class="fade-in">
+            <div class="container">
+                <h2>Flexible Spaces for Every Need</h2>
+                <p class="section-subtitle">From a single desk to a private floor, find the workspace that's right for you.</p>
+                <div class="tab-nav" id="spacesTabs">
+                    <button class="tab-button active" data-tab="spaces-tab1">Private Offices</button>
+                    <button class="tab-button" data-tab="spaces-tab2">Coworking Desks</button>
+                    <button class="tab-button" data-tab="spaces-tab3">Meeting Rooms</button>
+                </div>
+                
+                <div class="tab-content active" id="spaces-tab1">
+                    <div class="about-grid">
+                        <img src="https://source.unsplash.com/600x450/?private,office,interior" alt="Private Office Interior" loading="lazy">
+                        <div class="about-content" style="text-align: left;">
+                            <h3>Private Offices</h3>
+                            <p>Fully-serviced, lockable office suites for teams of all sizes. Enjoy 24/7 access, premium furniture, and complete privacy in a space you can call your own. Ideal for established businesses and satellite teams.</p>
+                            <ul>
+                                <li>Scalable from 2 to 100 seats</li>
+                                <li>Customizable layouts</li>
+                                <li>Access to all building amenities</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-content" id="spaces-tab2">
+                    <div class="about-grid">
+                        <img src="https://source.unsplash.com/600x450/?coworking,space,modern" alt="Modern Coworking Space" loading="lazy">
+                         <div class="about-content" style="text-align: left;">
+                            <h3>Coworking Desks</h3>
+                            <p>Choose from dedicated desks or flexible hot-desking options in our vibrant, open-plan workspace. Perfect for freelancers, startups, and remote workers seeking community and flexibility.</p>
+                            <ul>
+                                <li>High-speed Wi-Fi</li>
+                                <li>Complimentary coffee & tea</li>
+                                <li>Access to networking events</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-content" id="spaces-tab3">
+                    <div class="about-grid">
+                        <img src="https://source.unsplash.com/600x450/?office,meeting,room" alt="Professional Meeting Room" loading="lazy">
+                         <div class="about-content" style="text-align: left;">
+                            <h3>Meeting Rooms</h3>
+                            <p>Book technology-equipped meeting rooms and conference spaces by the hour or by the day. Impress your clients with state-of-the-art AV, video conferencing, and on-demand catering services.</p>
+                            <ul>
+                                <li>4-person to 20-person rooms</li>
+                                <li>Smart boards and projectors</li>
+                                <li>Easy online booking</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Amenities Section -->
+        <section id="amenities" class="fade-in">
+            <div class="container">
+                <h2>Premium Amenities & Specifications</h2>
+                <p class="section-subtitle">Designed to foster productivity and well-being, our amenities provide a seamless work-life experience.</p>
+                <div class="amenities-grid">
+                    <div class="amenity-item">
+                        <svg class="icon-svg" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                        <h4>24/7 Access</h4>
+                    </div>
+                    <div class="amenity-item">
+                        <svg class="icon-svg" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 9V5.25A2.25 2.25 0 0110.5 3h3a2.25 2.25 0 012.25 2.25v3.75m-10.5 0h10.5M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V9.75M8.25 9.75h7.5" /></svg>
+                        <h4>High-Speed Elevators</h4>
+                    </div>
+                    <div class="amenity-item">
+                        <svg class="icon-svg" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h1.125c.621 0 1.125-.504 1.125-1.125V14.25m-17.25 4.5h10.5m-10.5-4.5V6.375c0-.621.504-1.125 1.125-1.125h14.25c.621 0 1.125.504 1.125 1.125v10.125m-17.25-4.5h17.25" /></svg>
+                        <h4>Ample Parking</h4>
+                    </div>
+                    <div class="amenity-item">
+                        <svg class="icon-svg" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" /></svg>
+                        <h4>100% Power Backup</h4>
+                    </div>
+                    <div class="amenity-item">
+                        <svg class="icon-svg" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21 7.5l-9-5.25L3 7.5m18 0l-9 5.25m9-5.25v9l-9 5.25M3 7.5l9 5.25M3 7.5v9l9 5.25m0-9v9" /></svg>
+                        <h4>Grand Lobby</h4>
+                    </div>
+                    <div class="amenity-item">
+                        <svg class="icon-svg" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 17.25v-.228c0-.597-.237-1.17-.659-1.591l-5.23-5.23c-.422-.422-1-.659-1.591-.659v-1.5c0-.597-.237-1.17-.659-1.591l-5.23-5.23c-.422-.422-1-.659-1.591-.659H6.22c-.597 0-1.17.237-1.591.659l-5.23 5.23c-.422.422-.659 1-.659 1.591v1.5c0 .597.237 1.17.659 1.591l5.23 5.23c.422.422 1 .659 1.591.659v.228c0 .597.237 1.17.659 1.591l5.23 5.23c.422.422 1 .659 1.591.659h1.5c.597 0 1.17-.237 1.591-.659l5.23-5.23c.422-.422.659-1 .659-1.591z" /></svg>
+                        <h4>High-Speed Wi-Fi</h4>
+                    </div>
+                    <div class="amenity-item">
+                        <svg class="icon-svg" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007z" /></svg>
+                        <h4>Secure Access</h4>
+                    </div>
+                    <div class="amenity-item">
+                        <svg class="icon-svg" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.042 21.672L13.684 16.6m0 0l-2.51 2.225.569-9.47 5.227 7.917-3.286-.672zM12 2.25V4.5m5.834.166l-1.591 1.591M20.25 12h-2.25m-1.591 5.834l-1.591-1.591M12 18.75V21.75m-5.834-.166l1.591-1.591M3.75 12h2.25m1.591-5.834l1.591 1.591" /></svg>
+                        <h4>Energy Efficient</h4>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Why Choose Us Section -->
+        <section id="why" class="fade-in">
+            <div class="container">
+                <h2>Why Choose Nexus Tower?</h2>
+                <p class="section-subtitle">An asset designed for growth, stability, and innovation.</p>
+                <div class="why-grid">
+                    <div class="why-item">
+                        <div class="icon">🚀</div>
+                        <h3>Right Choice For Startups</h3>
+                        <p>Flexible terms, scalable spaces, and a vibrant community. Get all the benefits of a premium address without the long-term commitment.</p>
+                    </div>
+                    <div class="why-item">
+                        <div class="icon">📈</div>
+                        <h3>Beneficial For Investors</h3>
+                        <p>Located in a high-growth tech corridor, offering high rental yields and capital appreciation. A stable asset in a prime location.</p>
+                    </div>
+                    <div class="why-item">
+                        <div class="icon">🛠️</div>
+                        <h3>State-of-the-Art Infrastructure</h3>
+                        <p>Grade A construction, efficient floor plates, and robust infrastructure ensure your business runs smoothly and impresses clients.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials Section -->
+        <section id="testimonials" class="fade-in">
+            <div class="container">
+                <h2>What Our Tenants Say</h2>
+                <p class="section-subtitle">Hear from the businesses that call Nexus Tower home.</p>
+                <div class="testimonials-grid">
+                    <div class="testimonial-card">
+                        <q>Moving our startup to Nexus Tower was the best decision. The flexible space allowed us to scale from 5 to 30 people seamlessly. The amenities and location are unbeatable.</q>
+                        <cite>— CEO, Innovatech Solutions</cite>
+                    </div>
+                    <div class="testimonial-card">
+                        <q>As a global tech firm, we needed a space that matched our brand. The infrastructure, security, and professional environment at Nexus Tower are truly world-class.</q>
+                        <cite>— India Head, DataCore Enterprises</cite>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Gallery Section -->
+        <section id="gallery" class="fade-in">
+            <div class="container">
+                <h2>Discover Our Story in Pictures</h2>
+                <p class="section-subtitle">Explore the spaces that inspire innovation and collaboration.</p>
+                <div class="gallery-grid">
+                    <div class="gallery-item">
+                        <img src="https://source.unsplash.com/400x300/?office,lounge" alt="Modern office lounge area">
+                        <div class="overlay"><h4>Collaborative Lounge</h4></div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://source.unsplash.com/400x300/?corporate,building,exterior" alt="Exterior of the business tower">
+                        <div class="overlay"><h4>Iconic Architecture</h4></div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://source.unsplash.com/400x300/?modern,workspace" alt="Bright open-plan workspace">
+                        <div class="overlay"><h4>Open Workspace</h4></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Location Section -->
+        <section id="location" class="fade-in">
+            <div class="container">
+                <div class="location-grid">
+                    <div class="location-content fade-in">
+                        <h2>Prime Location Advantages</h2>
+                        <p>Located in the heart of the Tech Corridor, Nexus Tower offers unparalleled connectivity to major transport links, tech parks, and lifestyle amenities.</p>
+                        <ul>
+                            <li>Metro Station - 5 Mins Walk</li>
+                            <li>Major Tech Park - 2 Mins Drive</li>
+                            <li>City Center Mall - 10 Mins Drive</li>
+                            <li>International Airport - 40 Mins Drive</li>
+                        </ul>
+                        <a href="#contact" class="btn btn-primary" style="margin-top: 1.5rem;">Schedule a Visit</a>
+                    </div>
+                    <div class="map-placeholder fade-in">
+                        <img src="https://source.unsplash.com/600x500/?city,map,aerial,location" alt="Aerial map of a city district">
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- FAQ Section -->
+        <section id="faq" class="fade-in">
+            <div class="container">
+                <h2>Frequently Asked Questions</h2>
+                <p class="section-subtitle">Find answers to common queries about Nexus Tower.</p>
+                <div class="faq-container">
+                    <div class="faq-item">
+                        <button class="faq-header" aria-expanded="false">
+                            <h4>What makes your Coworking Space different?</h4>
+                            <span class="faq-toggle">+</span>
+                        </button>
+                        <div class="faq-content">
+                            <p>Our space combines the flexibility of coworking with the prestige of a Grade A corporate building. We offer a premium, professional environment, unlike many casual coworking spots, making it ideal for businesses that want to impress clients while retaining flexibility.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-header" aria-expanded="false">
+                            <h4>What types of memberships do you offer?</h4>
+                            <span class="faq-toggle">+</span>
+                        </button>
+                        <div class="faq-content">
+                            <p>We offer a range of solutions, including flexible hot desks, dedicated desks in our open-plan area, and private, lockable office suites for teams of 2 to 100 people. We also offer virtual office plans and on-demand meeting room bookings.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-header" aria-expanded="false">
+                            <h4>Is parking available?</h4>
+                            <span class="faq-toggle">+</span>
+                        </button>
+                        <div class="faq-content">
+                            <p>Yes, we have ample, multi-level parking available for tenants and visitors. Dedicated parking spots can be reserved as part of your membership or lease agreement.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-header" aria-expanded="false">
+                            <h4>What are the lease terms for private offices?</h4>
+                            <span class="faq-toggle">+</span>
+                        </button>
+                        <div class="faq-content">
+                            <p>We offer flexible lease terms starting from just 6 months up to 5 years, allowing your business to scale with ease. Contact our team to discuss a customized solution that fits your needs.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Enquire Section -->
+        <section id="contact" class="enquire-section fade-in">
+            <div class="container">
+                <div class="enquiry-form-container">
+                     <h2>Get in Touch</h2>
+                     <p class="section-subtitle">Fill out the form to schedule a tour or request a detailed proposal from our team.</p>
+                     
+                     <form class="enquiry-form" id="contactForm">
+                         <div class="form-group">
+                            <input type="text" id="name" name="name" placeholder="Your Name *" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" id="email" name="email" placeholder="Your Email *" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="tel" id="phone" name="phone" placeholder="Your Phone Number *" required>
+                        </div>
+                         <div class="form-group">
+                            <textarea id="message" name="message" rows="3" placeholder="Tell us about your requirement... (e.g., 'Need a 20-person office')"></textarea>
+                        </div>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="auth" name="auth" checked>
+                            <label for="auth">I agree and authorize the team to contact me. This will override any DNC/NDNC registry.</label>
+                        </div>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="terms" name="terms" required>
+                            <label for="terms">Yes, I agree to the terms and conditions outlined in the privacy policy. *</label>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit Enquiry</button>
+                     </form>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-widget">
+                    <a href="#home" class="logo">NEXUS TOWER</a>
+                    <p>Nexus Tower is a premier commercial development by 'Your Brand', setting new standards for workspaces. We are dedicated to creating environments that foster innovation, productivity, and success.</p>
+                </div>
+                <div class="footer-widget">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#spaces">Spaces</a></li>
+                        <li><a href="#amenities">Amenities</a></li>
+                        <li><a href="#location">Location</a></li>
+                        <li><a href="#gallery">Gallery</a></li>
+                        <li><a href="#faq">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-widget">
+                    <h4>Contact Info</h4>
+                    <span class="contact-item">123 Tech Corridor,</span>
+                    <span class="contact-item">Silicon City, 560100</span>
+                    <span class="contact-item">leasing@yourbrand.com</span>
+                    <span class="contact-item">+91 98765 43210</span>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; <span id="currentYear"></span> Your Brand. All rights reserved. This is a fictional mockup for demonstration purposes.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+
+            // --- Mobile Menu Toggle ---
+            const menuToggle = document.getElementById('menuToggle');
+            const mainNav = document.getElementById('mainNav');
+            
+            if (menuToggle && mainNav) {
+                menuToggle.addEventListener('click', () => {
+                    mainNav.classList.toggle('open');
+                    menuToggle.classList.toggle('open');
+                    menuToggle.setAttribute('aria-expanded', mainNav.classList.contains('open'));
+                });
+            }
+
+            // --- Smooth Scroll & Close Mobile Menu ---
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        let headerOffset = 70; // Height of the top-nav
+                        if (window.innerWidth <= 768) {
+                            headerOffset = 60;
+                        }
+                        
+                        let elementPosition = targetElement.getBoundingClientRect().top;
+                        let offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+                        // Special case for #home to scroll to top
+                        if (targetId === '#home') {
+                            offsetPosition = 0;
+                        }
+
+                        window.scrollTo({
+                            top: offsetPosition,
+                            behavior: "smooth"
+                        });
+                        
+                        // Close mobile nav if open and click was on a nav link
+                        if (mainNav.classList.contains('open') && this.closest('.nav-links')) {
+                            mainNav.classList.remove('open');
+                            menuToggle.classList.remove('open');
+                            menuToggle.setAttribute('aria-expanded', 'false');
+                        }
+                    }
+                });
+            });
+
+            // --- Fade-in on Scroll (IntersectionObserver) ---
+            const faders = document.querySelectorAll('.fade-in');
+            
+            const appearOptions = {
+                threshold: 0.1,
+                rootMargin: "0px 0px -50px 0px"
+            };
+
+            const appearOnScroll = new IntersectionObserver(function(
+                entries,
+                appearOnScroll
+            ) {
+                entries.forEach(entry => {
+                    if (!entry.isIntersecting) {
+                        return;
+                    } else {
+                        entry.target.classList.add('visible');
+                        appearOnScroll.unobserve(entry.target);
+                    }
+                });
+            },
+            appearOptions);
+
+            faders.forEach(fader => {
+                appearOnScroll.observe(fader);
+            });
+            
+            // --- Tab Functionality ---
+            function setupTabs(tabContainerId) {
+                const tabContainer = document.getElementById(tabContainerId);
+                if (tabContainer) {
+                    const tabButtons = tabContainer.querySelectorAll('.tab-button');
+                    const tabContents = [];
+                    
+                    tabButtons.forEach(button => {
+                        const contentId = button.getAttribute('data-tab');
+                        const contentElement = document.getElementById(contentId);
+                        if (contentElement) {
+                            tabContents.push(contentElement);
+                        }
+                    });
+
+                    tabButtons.forEach((button, index) => {
+                        button.addEventListener('click', () => {
+                            // Update buttons
+                            tabButtons.forEach(btn => btn.classList.remove('active'));
+                            button.classList.add('active');
+                            
+                            // Update content
+                            tabContents.forEach(content => content.classList.remove('active'));
+                            if (tabContents[index]) {
+                                tabContents[index].classList.add('active');
+                            }
+                        });
+                    });
+                }
+            }
+            
+            setupTabs('spacesTabs');
+
+            // --- FAQ Accordion ---
+            const faqItems = document.querySelectorAll('.faq-item');
+            faqItems.forEach(item => {
+                const header = item.querySelector('.faq-header');
+                const content = item.querySelector('.faq-content');
+                const toggle = item.querySelector('.faq-toggle');
+
+                if (header && content && toggle) {
+                    header.addEventListener('click', () => {
+                        const isActive = item.classList.contains('active');
+                        
+                        // Optional: Close all other accordions
+                        faqItems.forEach(i => {
+                            if (i !== item) {
+                                i.classList.remove('active');
+                                i.querySelector('.faq-content').style.maxHeight = null;
+                                i.querySelector('.faq-toggle').textContent = '+';
+                                i.querySelector('.faq-header').setAttribute('aria-expanded', 'false');
+                            }
+                        });
+
+                        // Toggle the clicked item
+                        if (!isActive) {
+                            item.classList.add('active');
+                            content.style.maxHeight = content.scrollHeight + 'px';
+                            toggle.textContent = '−'; // Minus sign
+                            header.setAttribute('aria-expanded', 'true');
+                        } else {
+                            item.classList.remove('active');
+                            content.style.maxHeight = null;
+                            toggle.textContent = '+';
+                            header.setAttribute('aria-expanded', 'false');
+                        }
+                    });
+                }
+            });
+
+
+            // --- Set Current Year in Footer ---
+            const yearSpan = document.getElementById('currentYear');
+            if (yearSpan) {
+                yearSpan.textContent = new Date().getFullYear();
+            }
+            
+            // --- Form Submission Mock ---
+            const contactForm = document.getElementById('contactForm');
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    console.log('Form submitted (mock).');
+                    const submitButton = this.querySelector('button[type="submit"]');
+                    submitButton.textContent = 'Submitted!';
+                    submitButton.disabled = true;
+                    
+                    setTimeout(() => {
+                         submitButton.textContent = 'Submit Enquiry';
+                         submitButton.disabled = false;
+                         this.reset();
+                    }, 3000);
+                });
+            }
+
+        });
+    </script>
+
+</body>
+</html>

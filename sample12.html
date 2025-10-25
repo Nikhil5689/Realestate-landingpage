@@ -1,0 +1,1054 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Astral Residences | Super Premium 2 & 3 Bed Homes</title>
+    
+    <!-- Google Fonts Import -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* CSS Reset and Global Styles */
+        :root {
+            --font-heading: 'Poppins', sans-serif;
+            --font-body: 'DM Sans', sans-serif;
+            --color-primary-dark: #1a202c; /* Very Dark Blue/Charcoal */
+            --color-primary-medium: #2d3748; /* Dark Grey Blue */
+            --color-accent: #ECC94B;       /* Gold/Yellow */
+            --color-accent-dark: #D69E2E;   /* Darker Gold */
+            --color-text-dark: #1a202c;
+            --color-text-medium: #4a5568;   /* Medium Grey */
+            --color-text-light: #f7fafc;    /* Very Light Grey/Off White */
+            --color-border: #e2e8f0;       /* Light Grey Border */
+            --color-bg-white: #ffffff;
+            --color-bg-light: #edf2f7;      /* Lighter Grey Background */
+            --transition-main: all 0.3s ease-in-out;
+            --container-width: 1140px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
+        body {
+            font-family: var(--font-body);
+            color: var(--color-text-dark);
+            background-color: var(--color-bg-white);
+            line-height: 1.6;
+            overflow-x: hidden;
+            padding-top: 75px; /* Space for fixed header */
+        }
+
+        /* Utility Classes */
+        .container {
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            font-family: var(--font-heading);
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 6px; /* Slightly rounded */
+            transition: var(--transition-main);
+            cursor: pointer;
+            border: 1px solid transparent;
+            text-align: center;
+            text-transform: uppercase;
+            font-size: 0.875rem;
+            letter-spacing: 0.75px;
+        }
+
+        .btn-primary {
+            background-color: var(--color-accent);
+            color: var(--color-primary-dark); /* Dark text on gold */
+            border-color: var(--color-accent);
+            font-weight: 700;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--color-accent-dark);
+            border-color: var(--color-accent-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            color: var(--color-primary-dark);
+            border: 2px solid var(--color-primary-dark);
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--color-primary-dark);
+            color: var(--color-text-light);
+        }
+        
+        .btn-light-outline {
+             background-color: transparent;
+            color: var(--color-text-light);
+            border: 2px solid var(--color-text-light);
+        }
+        .btn-light-outline:hover {
+            background-color: var(--color-text-light);
+            color: var(--color-primary-dark);
+        }
+
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-heading);
+            color: var(--color-primary-dark);
+            font-weight: 700; /* Bolder headings */
+            line-height: 1.3;
+        }
+
+        h1 { font-size: 3.25rem; margin-bottom: 1rem; }
+        h2 { font-size: 2.75rem; text-align: center; margin-bottom: 1rem; }
+        h3 { font-size: 1.75rem; margin-bottom: 1rem; font-weight: 600; }
+        h4 { font-size: 1.25rem; font-weight: 600; }
+        
+        p {
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
+            color: var(--color-text-medium);
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.1rem;
+            color: var(--color-text-medium);
+            max-width: 700px;
+            margin: 0 auto 4rem auto;
+            line-height: 1.7;
+        }
+        
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 8px;
+        }
+        
+        /* Section Styling */
+        section {
+            padding: 6rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+        .light-bg {
+            background-color: var(--color-bg-light);
+        }
+        .dark-bg {
+            background-color: var(--color-primary-dark);
+            color: var(--color-text-light);
+        }
+        .dark-bg h2, .dark-bg h3, .dark-bg h4 {
+            color: var(--color-text-light);
+        }
+        .dark-bg p, .dark-bg .section-subtitle {
+             color: #a0aec0; /* Lighter grey text on dark */
+        }
+        
+        /* Fade-in Animation */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- Top Navigation --- */
+        .top-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 1rem 0;
+            background: rgba(255, 255, 255, 0.97); /* Slightly less transparent */
+            backdrop-filter: blur(8px);
+            border-bottom: 1px solid var(--color-border);
+            z-index: 1000;
+            transition: padding 0.3s ease;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            text-decoration: none;
+            color: var(--color-primary-dark);
+            font-family: var(--font-heading);
+            font-weight: 700;
+            font-size: 1.6rem;
+            letter-spacing: 0.5px;
+        }
+
+        .main-nav {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+        
+        .main-nav .nav-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+        
+        .main-nav a {
+            text-decoration: none;
+            color: var(--color-text-dark);
+            font-weight: 500;
+            font-size: 0.85rem; /* Slightly smaller */
+            position: relative;
+            padding-bottom: 0.25rem;
+            text-transform: uppercase;
+        }
+        
+        .main-nav .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px; /* Slightly lower */
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--color-accent);
+            transition: width 0.3s ease;
+        }
+        
+        .main-nav .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        .main-nav .btn {
+            padding: 0.6rem 1.4rem;
+        }
+        
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+            z-index: 1001;
+        }
+        
+        .menu-toggle .bar {
+            display: block;
+            width: 28px;
+            height: 3px;
+            margin: 6px 0;
+            background-color: var(--color-primary-dark);
+            transition: all 0.3s ease-in-out;
+            border-radius: 2px;
+        }
+        
+        .menu-toggle.open .bar:nth-child(1) { transform: translateY(9px) rotate(45deg); }
+        .menu-toggle.open .bar:nth-child(2) { opacity: 0; }
+        .menu-toggle.open .bar:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
+
+
+        /* --- Hero Section --- */
+        .hero-section {
+            padding: 0;
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            background: linear-gradient(rgba(26, 32, 44, 0.7), rgba(26, 32, 44, 0.7)), url('https://source.unsplash.com/1800x1000/?luxury,apartment,cityscape,night') no-repeat center center/cover;
+            color: var(--color-text-light);
+        }
+        
+        .hero-content {
+            z-index: 2;
+            text-align: center;
+            max-width: 800px;
+        }
+        
+        .hero-content .subtitle-small {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--color-accent);
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .hero-content h1 {
+            font-size: 3.75rem;
+            margin-bottom: 1rem;
+            color: var(--color-text-light);
+        }
+        
+        .hero-content .tagline {
+            font-size: 1.25rem;
+            font-weight: 500;
+            color: #cbd5e0; /* Lighter grey */
+            margin-bottom: 2rem;
+        }
+        
+        .hero-content .price {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--color-text-light);
+            margin-bottom: 2.5rem;
+            display: block;
+        }
+        .hero-content .price small {
+             font-size: 1rem;
+             font-weight: 400;
+             color: #a0aec0;
+        }
+        
+        /* --- Features Bar --- */
+        .features-bar {
+            padding: 3rem 0;
+            background-color: var(--color-bg-light);
+            border-bottom: 1px solid var(--color-border);
+        }
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            text-align: center;
+        }
+        .feature-item .icon {
+             width: 45px;
+             height: 45px;
+             margin: 0 auto 1rem auto;
+             color: var(--color-accent);
+        }
+        .feature-item h4 {
+             font-size: 1.1rem;
+             margin-bottom: 0.5rem;
+             font-family: var(--font-body);
+             font-weight: 700;
+        }
+        .feature-item p {
+            font-size: 0.9rem;
+            margin-bottom: 0;
+            color: var(--color-text-medium);
+        }
+
+        /* --- About Developer Section --- */
+        #about-developer {
+            padding: 6rem 0;
+        }
+        .developer-grid {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 4rem;
+            align-items: center;
+        }
+        .developer-stats {
+            background: var(--color-bg-light);
+            padding: 2.5rem;
+            border-radius: 8px;
+            border: 1px solid var(--color-border);
+        }
+        .stat-item {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        .stat-item:last-child { margin-bottom: 0; }
+        
+        .stat-item .value {
+            font-family: var(--font-heading);
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--color-accent);
+            line-height: 1.1;
+            margin-bottom: 0.25rem;
+        }
+        .stat-item .value sup {
+             font-size: 1.5rem;
+             margin-left: 2px;
+        }
+        .stat-item .label {
+            font-size: 1rem;
+            color: var(--color-text-medium);
+            font-weight: 500;
+        }
+        .developer-info h2 {
+             text-align: left;
+        }
+
+        /* --- Configurations Section --- */
+        #configurations {
+            padding: 6rem 0;
+        }
+        .config-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+        .config-card {
+            border: 1px solid var(--color-border);
+            border-radius: 8px;
+            overflow: hidden;
+            background: var(--color-bg-white);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.05);
+        }
+        .config-card img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 8px 8px 0 0;
+        }
+        .config-card-content {
+            padding: 2rem;
+        }
+        .config-card-content h3 {
+            margin-bottom: 0.75rem;
+        }
+        .config-card-content .features {
+             font-size: 0.95rem;
+             color: var(--color-primary-medium);
+             margin-bottom: 1.5rem;
+             display: block;
+        }
+
+        /* --- Amenities Section --- */
+        #amenities {
+            padding: 6rem 0;
+        }
+        .amenities-layout {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 4rem;
+            align-items: center;
+        }
+        .amenities-image img {
+             box-shadow: 0 15px 35px rgba(42, 61, 69, 0.1);
+        }
+        .amenities-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+        .amenity-list-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            background: var(--color-bg-light);
+            padding: 1rem;
+            border-radius: 6px;
+            border: 1px solid var(--color-border);
+        }
+        .amenity-list-item .icon {
+             width: 30px;
+             height: 30px;
+             color: var(--color-accent);
+             flex-shrink: 0;
+        }
+        .amenity-list-item span {
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+
+        /* --- Neighbourhood Section --- */
+        #neighbourhood {
+            padding: 6rem 0;
+        }
+        .neighbourhood-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+        .neighbourhood-card {
+            text-align: center;
+        }
+        .neighbourhood-card .icon {
+             width: 60px;
+             height: 60px;
+             margin: 0 auto 1.5rem auto;
+             color: var(--color-accent-dark);
+        }
+        .neighbourhood-card h4 {
+             font-family: var(--font-body);
+             font-weight: 700;
+             margin-bottom: 0.5rem;
+             font-size: 1.15rem;
+        }
+        .neighbourhood-card p {
+            font-size: 0.9rem;
+            margin-bottom: 0;
+        }
+
+        /* --- Gallery Section --- */
+        #gallery {
+            padding: 6rem 0;
+            background-color: var(--color-bg-light);
+        }
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+        .gallery-item {
+            position: relative;
+            height: 350px;
+            overflow: hidden;
+            border-radius: 8px;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease, filter 0.4s ease;
+        }
+        .gallery-item:hover img {
+            transform: scale(1.05);
+            filter: brightness(0.8);
+        }
+
+        /* --- Contact Form Section --- */
+        #contact {
+            padding: 6rem 0;
+        }
+        .contact-container {
+            max-width: 700px;
+            margin: 0 auto;
+            background: var(--color-bg-light);
+            padding: 3rem;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.07);
+        }
+        .contact-container h2 {
+            text-align: center;
+        }
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+        }
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.85rem 1rem;
+            border: 1px solid var(--color-border);
+            border-radius: 4px;
+            font-family: var(--font-body);
+            font-size: 1rem;
+            background: var(--color-bg-white);
+        }
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--color-accent);
+            box-shadow: 0 0 0 2px rgba(236, 201, 75, 0.3);
+        }
+        .contact-form .btn-primary {
+            font-size: 1rem;
+            padding: 1rem;
+        }
+
+        /* --- Footer --- */
+        .main-footer {
+            background-color: var(--color-primary-dark);
+            color: var(--color-text-light);
+            padding: 5rem 0 2rem 0;
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 4rem;
+            text-align: left;
+            margin-bottom: 3rem;
+            padding-bottom: 3rem;
+             border-bottom: 1px solid var(--color-primary-medium);
+        }
+        .footer-widget .logo {
+            font-size: 1.75rem;
+            color: var(--color-text-light);
+            margin-bottom: 1rem;
+            display: inline-block;
+        }
+        .footer-widget p {
+            color: #a0aec0;
+            font-size: 0.9rem;
+            max-width: 350px;
+        }
+        .footer-widget h4 {
+            color: var(--color-text-light);
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+        }
+        .footer-widget ul { list-style: none; }
+        .footer-widget li { margin-bottom: 0.75rem; }
+        .footer-widget a {
+            text-decoration: none;
+            color: #a0aec0;
+            transition: var(--transition-main);
+        }
+        .footer-widget a:hover { color: var(--color-accent); }
+        .footer-widget .contact-item {
+            display: block;
+            color: #a0aec0;
+            margin-bottom: 0.75rem;
+            font-size: 0.9rem;
+        }
+        .footer-bottom { text-align: center; }
+        .footer-bottom p {
+            color: #718096; /* Darker grey for copyright */
+            margin: 0;
+            font-size: 0.85rem;
+        }
+
+
+        /* --- Responsive Design --- */
+        
+        @media (max-width: 1024px) {
+            h1 { font-size: 2.75rem; }
+            h2 { font-size: 2.25rem; }
+            section { padding: 4rem 0; }
+
+            .nav-container { padding: 0 1.5rem; }
+            
+            .hero-content h1 { font-size: 3rem; }
+            .hero-content .tagline { font-size: 1.1rem; }
+            .hero-content .price { font-size: 1.5rem; }
+            
+            .features-grid { grid-template-columns: 1fr; gap: 2rem; }
+            
+            .developer-grid { grid-template-columns: 1fr; gap: 3rem; }
+            .developer-stats { display: grid; grid-template-columns: 1fr 1fr 1fr; }
+            .stat-item { margin-bottom: 0; }
+            .stat-item .value { font-size: 2.5rem; }
+            .stat-item .value sup { font-size: 1.25rem; }
+
+            .config-grid { grid-template-columns: 1fr; }
+            .amenities-layout { grid-template-columns: 1fr; gap: 3rem; }
+            .amenities-image img { max-width: 500px; margin: 0 auto 2rem auto; }
+            .neighbourhood-grid { grid-template-columns: 1fr 1fr; }
+            .gallery-grid { grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
+            .footer-grid { grid-template-columns: 1fr; gap: 3rem; }
+        }
+        
+        @media (max-width: 768px) {
+            body { padding-top: 65px; }
+            .top-nav { padding: 0.8rem 0; }
+            .nav-container { padding: 0 1rem; }
+            .logo { font-size: 1.4rem; }
+            
+            .main-nav {
+                position: fixed;
+                top: 65px;
+                left: -100%;
+                width: 80%;
+                height: 100vh;
+                background: var(--color-bg-white);
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0;
+                padding: 1.5rem 1rem;
+                box-shadow: 5px 0 15px rgba(0,0,0,0.1);
+                transition: left 0.4s ease-in-out;
+            }
+            .main-nav.open { left: 0; }
+            .main-nav .nav-links {
+                display: flex;
+                flex-direction: column;
+                width: 100%;
+                gap: 0;
+            }
+            .main-nav a {
+                padding: 1rem 0;
+                width: 100%;
+                border-bottom: 1px solid var(--color-border);
+            }
+            .main-nav a:last-child { border-bottom: none; }
+            .main-nav .nav-links a::after { display: none; }
+            .main-nav .btn { display: block; margin-top: 1.5rem; width: 100%; }
+            .menu-toggle { display: block; }
+            
+            .hero-section { min-height: 70vh; }
+            .hero-content h1 { font-size: 2.5rem; }
+            .hero-content .tagline { font-size: 1rem; }
+            .hero-content .price { font-size: 1.25rem; }
+            
+            .developer-stats { grid-template-columns: 1fr; gap: 1.5rem; }
+            .amenities-list { grid-template-columns: 1fr; }
+            .neighbourhood-grid { grid-template-columns: 1fr; }
+            .contact-container { padding: 2rem 1.5rem; }
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Top Navigation -->
+    <header class="top-nav">
+        <div class="container nav-container">
+            <a href="#home" class="logo">ASTRAL RESIDENCES</a>
+            
+            <nav class="main-nav" id="mainNav">
+                <div class="nav-links">
+                    <a href="#configurations">Configuration</a>
+                    <a href="#amenities">Amenities</a>
+                    <a href="#neighbourhood">Neighbourhood</a>
+                    <a href="#gallery">Gallery</a>
+                </div>
+                <a href="#contact" class="btn btn-primary">Enquire Now</a>
+            </nav>
+            
+            <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation" aria-expanded="false">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+        </div>
+    </header>
+
+    <main>
+
+        <!-- Hero Section -->
+        <section id="home" class="hero-section">
+            <div class="container hero-content fade-in">
+                <span class="subtitle-small">Super Premium Living</span>
+                <h1>2 & 3 Bed Residences with Private Balconies</h1>
+                <p class="tagline">Prime City East Location</p>
+                <p class="price">Starting at ₹2.95 Cr* <small>(All Inclusive)</small></p>
+                <a href="#configurations" class="btn btn-light-outline">View Configurations</a>
+                <a href="#contact" class="btn btn-primary" style="margin-left: 1rem;">Register Interest</a>
+            </div>
+        </section>
+        
+        <!-- Features Bar -->
+        <section class="features-bar fade-in">
+            <div class="container features-grid">
+                <div class="feature-item">
+                    <svg class="icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.31h5.518a.562.562 0 01.32.99l-4.194 3.033a.563.563 0 00-.188.63l1.528 4.99a.562.562 0 01-.828.69l-4.194-3.033a.563.563 0 00-.656 0l-4.194 3.033a.563.563 0 01-.828-.69l1.527-4.99a.563.563 0 00-.188-.63l-4.194-3.033a.563.563 0 01.32-.99h5.518a.563.563 0 00.475-.31l2.125-5.11z" /></svg>
+                    <h4>World Class Features</h4>
+                    <p>Premium finishes and thoughtfully designed spaces.</p>
+                </div>
+                <div class="feature-item">
+                     <svg class="icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 6.75V15m6-6v8.25m.503-8.464l-8.564 8.564M15 6.75h4.5m-4.5 0l-8.564 8.564M6.75 15h4.5m-4.5 0l8.564-8.564" /></svg>
+                    <h4>Minutes Away</h4>
+                    <p>From Main Highway & Metro Station for easy commutes.</p>
+                </div>
+                <div class="feature-item">
+                    <svg class="icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.487 16.638 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" /><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
+                    <h4>Panoramic Views</h4>
+                    <p>Of the serene Green Park & vibrant Cityscape.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Developer Section -->
+        <section id="about-developer" class="fade-in">
+            <div class="container developer-grid">
+                <div class="developer-stats">
+                    <div class="stat-item">
+                        <div class="value">50<sup>+</sup></div>
+                        <div class="label">Years of Legacy</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="value">36M<sup>+</sup></div>
+                        <div class="label">Sq. Ft. Delivered</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="value">30K<sup>+</sup></div>
+                        <div class="label">Happy Families</div>
+                    </div>
+                </div>
+                <div class="developer-info">
+                    <h2>About The Developer Group</h2>
+                    <p>With over five decades of unwavering commitment, The Developer Group has established itself as a pioneer in shaping the urban landscape. Our journey is marked by the successful delivery of millions of square feet of prime real estate across residential, commercial, and hospitality sectors.</p>
+                    <p>We pride ourselves on creating spaces that are not just structures but vibrant communities built on trust, quality, and customer satisfaction. Our legacy is built on delivering excellence and creating lasting value for over 30,000 happy families.</p>
+                    <a href="#" class="btn btn-outline">Learn More</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Configurations Section -->
+        <section id="configurations" class="light-bg fade-in">
+            <div class="container">
+                <h2 class="fade-in">Super Premium Residences</h2>
+                <p class="section-subtitle fade-in">Choose from meticulously designed 2 and 3 Bed homes, each featuring a private balcony offering stunning views.</p>
+                <div class="config-grid">
+                    <div class="config-card fade-in">
+                        <img src="https://source.unsplash.com/600x400/?luxury,apartment,interior,2bhk" alt="Interior of a 2 Bed Residence" loading="lazy">
+                        <div class="config-card-content">
+                            <h3>2 Bed Residences</h3>
+                            <span class="features">Spacious Layout | Private Balcony | Modern Kitchen</span>
+                            <p>Perfectly crafted for modern families, offering comfort, style, and functional living spaces with abundant natural light.</p>
+                            <a href="#contact" class="btn btn-primary">Enquire for 2 BHK</a>
+                        </div>
+                    </div>
+                    <div class="config-card fade-in">
+                        <img src="https://source.unsplash.com/600x400/?luxury,apartment,interior,3bhk" alt="Interior of a 3 Bed Residence" loading="lazy">
+                        <div class="config-card-content">
+                            <h3>3 Bed Residences</h3>
+                            <span class="features">Expansive Living | Private Balcony | Premium Finishes</span>
+                            <p>Experience elevated living in our larger residences, featuring generous layouts, luxurious finishes, and breathtaking panoramic views.</p>
+                            <a href="#contact" class="btn btn-primary">Enquire for 3 BHK</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Amenities Section -->
+        <section id="amenities" class="fade-in">
+            <div class="container amenities-layout">
+                <div class="amenities-image fade-in">
+                     <img src="https://source.unsplash.com/600x500/?luxury,amenities,pool,lounge" alt="Collage of amenities like pool and lounge" loading="lazy">
+                </div>
+                <div class="amenities-content fade-in">
+                    <h2>World Class Amenities</h2>
+                    <p>Indulge in a lifestyle enriched with amenities designed for relaxation, recreation, and well-being, catering to all ages.</p>
+                    <div class="amenities-list">
+                        <div class="amenity-list-item">
+                             <svg class="icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 12h16.5m-16.5 3.75h16.5M3.75 19.5h16.5M5.625 4.5h12.75a1.125 1.125 0 010 2.25H5.625a1.125 1.125 0 010-2.25z" /></svg>
+                             <span>Swimming Pool</span>
+                        </div>
+                        <div class="amenity-list-item">
+                            <svg class="icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.59 14.37a6 6 0 01-5.84 7.38v-4.8m5.84-2.58a14.98 14.98 0 006.16-12.12A14.98 14.98 0 009.63 2.13v4.8m5.96 5.44a14.926 14.926 0 01-5.841 2.58m-.119-8.54a6 6 0 00-7.381 5.84h4.8m2.581-5.84a14.927 14.927 0 00-2.58 5.84m2.699 2.7c-.103.021-.207.041-.314.06a15.09 15.09 0 01-2.448-2.448 14.9 14.9 0 01.06-.314m-2.7 2.448a14.927 14.927 0 01-5.841 2.58m5.841-2.58h-4.8m2.581 5.841a14.919 14.919 0 01-2.58 5.84m2.699-5.841a6 6 0 01-.06.314M3.75 12a14.94 14.94 0 014.287-8.97M21 12a14.94 14.94 0 01-4.287 8.97M12 21a14.94 14.94 0 01-8.97-4.287M12 3a14.94 14.94 0 018.97 4.287" /></svg>
+                            <span>Fitness Center</span>
+                        </div>
+                        <div class="amenity-list-item">
+                             <svg class="icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" /></svg>
+                            <span>Clubhouse</span>
+                        </div>
+                        <div class="amenity-list-item">
+                            <svg class="icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 12c0-1.232-.046-2.453-.138-3.662a4.006 4.006 0 00-3.7-3.7 48.678 48.678 0 00-7.324 0 4.006 4.006 0 00-3.7 3.7c-.091 1.21-.138 2.43-.138 3.662v.513a5.374 5.374 0 01-.671 2.432l-.744 1.488c-.386.774-.02 1.76.774 2.146l4.148 1.66c.949.378 2.016.378 2.964 0l4.148-1.66c.794-.386 1.159-1.372.774-2.146l-.744-1.488a5.374 5.374 0 01-.67-2.432v-.513z" /></svg>
+                            <span>Kids' Play Area</span>
+                        </div>
+                         <div class="amenity-list-item">
+                             <svg class="icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" /></svg>
+                            <span>Landscaped Gardens</span>
+                        </div>
+                         <div class="amenity-list-item">
+                            <svg class="icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m.009-8.718c.005-.008.01-.016.015-.024a4.5 4.5 0 015.908 0c.3.3.582.633.803 1.002m-14.041 7.718c-.005.008-.01.016-.015.024a4.5 4.5 0 00-5.908 0c-.3-.3-.582-.633-.803-1.002m14.041 7.718c.857.94 2.007 1.5 3.25 1.5 2.21 0 4-1.79 4-4s-1.79-4-4-4c-1.243 0-2.393.56-3.25 1.5m-6.5 0C8.393 9.06 7.243 8.5 6 8.5 3.79 8.5 2 10.29 2 12.5s1.79 4 4 4c1.243 0 2.393-.56 3.25-1.5m-6.5-1.5c0 .195.004.39.012.583m10.476 0c.008-.193.012-.388.012-.583" /></svg>
+                            <span>Multipurpose Court</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Neighbourhood Section -->
+        <section id="neighbourhood" class="light-bg fade-in">
+            <div class="container">
+                <h2 class="fade-in">Explore the Neighbourhood</h2>
+                <p class="section-subtitle fade-in">Everything you need is just moments away, from daily conveniences to lifestyle destinations.</p>
+                <div class="neighbourhood-grid">
+                    <div class="neighbourhood-card fade-in">
+                        <svg class="icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.25 10.5a.75.75 0 01.75-.75h6a.75.75 0 010 1.5h-6a.75.75 0 01-.75-.75z" /></svg>
+                        <h4>Entertainment & Shopping</h4>
+                        <p>Malls, multiplexes, and retail nearby.</p>
+                    </div>
+                    <div class="neighbourhood-card fade-in">
+                        <svg class="icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path d="M12 14l9-5-9-5-9 5 9 5z" /><path d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" /><path stroke-linecap="round" stroke-linejoin="round" d="M12 14l9-5-9-5-9 5 9 5zm0 0v5.598m0 0l-9-5V6.402l9-5v5.598zm0 0l9 5V6.402l-9-5v5.598z" /></svg>
+                        <h4>Schools & Institutions</h4>
+                        <p>Reputed educational facilities in close proximity.</p>
+                    </div>
+                    <div class="neighbourhood-card fade-in">
+                        <svg class="icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21M3 3h12M3 7.5h12M3 12h12" /></svg>
+                        <h4>Offices & Business Hubs</h4>
+                        <p>Major corporate parks just a short drive away.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Gallery Section -->
+        <section id="gallery" class="light-bg fade-in">
+             <div class="container">
+                <h2 class="fade-in">Visual Journey</h2>
+                <p class="section-subtitle fade-in">Experience the elegance and ambiance through our gallery.</p>
+                <div class="gallery-grid">
+                    <div class="gallery-item fade-in">
+                        <img src="https://source.unsplash.com/400x350/?luxury,apartment,lobby" alt="Grand entrance lobby">
+                    </div>
+                    <div class="gallery-item fade-in">
+                        <img src="https://source.unsplash.com/400x350/?modern,living,area,stylish" alt="Stylish living area">
+                    </div>
+                    <div class="gallery-item fade-in">
+                        <img src="https://source.unsplash.com/400x350/?apartment,balcony,city,view" alt="Balcony with city view">
+                    </div>
+                    <div class="gallery-item fade-in">
+                        <img src="https://source.unsplash.com/400x350/?rooftop,amenities,urban" alt="Rooftop amenities area">
+                    </div>
+                    <div class="gallery-item fade-in">
+                        <img src="https://source.unsplash.com/400x350/?apartment,pool,daytime" alt="Swimming pool area daytime">
+                    </div>
+                    <div class="gallery-item fade-in">
+                        <img src="https://source.unsplash.com/400x350/?modern,facade,architecture" alt="Building facade detail">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- Contact Form Section -->
+        <section id="contact" class="fade-in">
+            <div class="container contact-container">
+                 <h2 class="fade-in">Enquire Now</h2>
+                 <p class="section-subtitle fade-in">Take the first step towards owning your super premium residence. Fill the form below.</p>
+                 <form class="contact-form" id="contactForm">
+                     <div class="form-group">
+                        <input type="text" id="name" name="name" placeholder="Your Name *" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" id="email" name="email" placeholder="Your Email *" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="tel" id="phone" name="phone" placeholder="Your Phone Number *" required>
+                    </div>
+                     <div class="form-group">
+                        <textarea id="message" name="message" rows="4" placeholder="I'm interested in Astral Residences..."></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit Enquiry</button>
+                 </form>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-widget">
+                    <a href="#home" class="logo">ASTRAL RESIDENCES</a>
+                    <p>Delivering exceptional living experiences through innovative design, quality construction, and a commitment to customer satisfaction for over 50 years.</p>
+                </div>
+                <div class="footer-widget">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#configurations">Configuration</a></li>
+                        <li><a href="#amenities">Amenities</a></li>
+                        <li><a href="#neighbourhood">Neighbourhood</a></li>
+                        <li><a href="#gallery">Gallery</a></li>
+                        <li><a href="#about-developer">About Us</a></li>
+                    </ul>
+                </div>
+                 <div class="footer-widget">
+                    <h4>Contact Info</h4>
+                    <span class="contact-item">Astral Residences Sales Gallery,<br> City East, Metro Area, 400051</span>
+                    <span class="contact-item">sales@yourbrand.com</span>
+                    <span class="contact-item">+91 1122 334455</span>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; <span id="currentYear"></span> Your Brand Developers. MahaRERA Registration No: P5XXXXXXX. Fictional Mockup.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+
+            // --- Mobile Menu Toggle ---
+            const menuToggle = document.getElementById('menuToggle');
+            const mainNav = document.getElementById('mainNav');
+            
+            if (menuToggle && mainNav) {
+                menuToggle.addEventListener('click', () => {
+                    mainNav.classList.toggle('open');
+                    menuToggle.classList.toggle('open');
+                    menuToggle.setAttribute('aria-expanded', mainNav.classList.contains('open'));
+                });
+                // Close menu when clicking outside
+                 document.addEventListener('click', (event) => {
+                    const isClickInsideNav = mainNav.contains(event.target);
+                    const isClickOnToggle = menuToggle.contains(event.target);
+                    if (!isClickInsideNav && !isClickOnToggle && mainNav.classList.contains('open')) {
+                        mainNav.classList.remove('open');
+                        menuToggle.classList.remove('open');
+                        menuToggle.setAttribute('aria-expanded', 'false');
+                    }
+                });
+            }
+
+            // --- Smooth Scroll & Close Mobile Menu ---
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        let headerOffset = 75; // Adjusted header height
+                        if (window.innerWidth <= 768) { headerOffset = 65; }
+                        let elementPosition = targetElement.getBoundingClientRect().top;
+                        let offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                        if (targetId === '#home') { offsetPosition = 0; }
+                        window.scrollTo({ top: offsetPosition, behavior: "smooth" });
+                        if (mainNav.classList.contains('open')) {
+                            mainNav.classList.remove('open');
+                            menuToggle.classList.remove('open');
+                            menuToggle.setAttribute('aria-expanded', 'false');
+                        }
+                    }
+                });
+            });
+
+            // --- Fade-in on Scroll ---
+            const faders = document.querySelectorAll('.fade-in');
+            const appearOptions = { threshold: 0.1, rootMargin: "0px 0px -50px 0px" };
+            const appearOnScroll = new IntersectionObserver(function(entries, appearOnScroll) {
+                entries.forEach(entry => {
+                    if (!entry.isIntersecting) { return; } 
+                    else {
+                        entry.target.classList.add('visible');
+                        appearOnScroll.unobserve(entry.target);
+                    }
+                });
+            }, appearOptions);
+            faders.forEach(fader => { appearOnScroll.observe(fader); });
+
+
+            // --- Set Current Year in Footer ---
+            const yearSpan = document.getElementById('currentYear');
+            if (yearSpan) { yearSpan.textContent = new Date().getFullYear(); }
+            
+            // --- Contact Form Mock Submission ---
+            const contactForm = document.getElementById('contactForm');
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    console.log('Form submitted (mock).');
+                    const submitButton = this.querySelector('button[type="submit"]');
+                    submitButton.textContent = 'Enquiry Sent!';
+                    submitButton.disabled = true;
+                    setTimeout(() => {
+                         submitButton.textContent = 'Submit Enquiry';
+                         submitButton.disabled = false;
+                         this.reset();
+                    }, 3000);
+                });
+            }
+
+        });
+    </script>
+
+</body>
+</html>

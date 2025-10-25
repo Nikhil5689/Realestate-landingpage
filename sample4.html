@@ -1,0 +1,1054 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prestige Developers | Premium Real Estate</title>
+    
+    <!-- Google Fonts Import -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        /* CSS Reset and Global Styles */
+        :root {
+            --font-heading: 'Poppins', sans-serif;
+            --font-body: 'Inter', sans-serif;
+            --color-primary-dark: #1a233a; /* Deep Navy Blue */
+            --color-secondary-dark: #111827; /* Near Black */
+            --color-accent-gold: #c0a080; /* Premium Beige/Light Gold */
+            --color-accent-gold-light: #dcd1c4;
+            --color-text-dark: #333333;
+            --color-text-light: #f8f8f8;
+            --color-text-medium: #6c757d;
+            --color-bg-light: #f9f9f9;
+            --color-bg-white: #ffffff;
+            --color-border: #e0e0e0;
+            --header-height: 80px;
+            --transition-main: all 0.3s ease-in-out;
+            --container-width: 1200px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+            overflow-x: hidden;
+        }
+
+        body {
+            font-family: var(--font-body);
+            color: var(--color-text-dark);
+            background-color: var(--color-bg-white);
+            line-height: 1.6;
+        }
+
+        /* Utility Classes */
+        .container {
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.75rem;
+            font-family: var(--font-heading);
+            font-weight: 500;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: var(--transition-main);
+            cursor: pointer;
+            border: 1px solid transparent;
+            text-transform: uppercase;
+            font-size: 0.875rem;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-primary {
+            background-color: var(--color-accent-gold);
+            color: var(--color-secondary-dark);
+            border-color: var(--color-accent-gold);
+        }
+
+        .btn-primary:hover {
+            background-color: #d1b89c; /* Lighter beige */
+            border-color: #d1b89c;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            color: var(--color-text-dark);
+            border-color: var(--color-border);
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--color-text-dark);
+            color: var(--color-bg-white);
+            border-color: var(--color-text-dark);
+        }
+        
+        .section-padding {
+            padding: 6rem 0;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-heading);
+            color: var(--color-primary-dark);
+            font-weight: 600;
+            line-height: 1.3;
+            margin-bottom: 1rem;
+        }
+
+        h1 { font-size: 3rem; }
+        h2 { font-size: 2.5rem; text-align: center; }
+        h3 { font-size: 1.5rem; }
+        h4 { font-size: 1.25rem; }
+        
+        p {
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
+            color: var(--color-text-medium);
+        }
+        
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .text-center {
+            text-align: center;
+        }
+        
+        .text-accent {
+            color: var(--color-accent-gold);
+            font-size: 1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+        
+        .grid {
+            display: grid;
+            gap: 2rem;
+        }
+
+        /* Fade-in Animation */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- Header --- */
+        .main-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: var(--header-height);
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--color-border);
+            display: flex;
+            align-items: center;
+            z-index: 1000;
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        .logo {
+            font-family: var(--font-heading);
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--color-primary-dark);
+            text-decoration: none;
+            letter-spacing: 0.5px;
+        }
+        
+        .logo span {
+            color: var(--color-accent-gold);
+        }
+
+        .main-nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+        }
+        
+        .main-nav a {
+            text-decoration: none;
+            color: var(--color-text-dark);
+            font-weight: 500;
+            position: relative;
+            padding: 0.25rem 0;
+            transition: var(--transition-main);
+        }
+        
+        .main-nav a:hover {
+            color: var(--color-accent-gold);
+        }
+        
+        .main-nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 2px;
+            background-color: var(--color-accent-gold);
+            transition: width 0.3s ease;
+        }
+        
+        .main-nav a:hover::after {
+            width: 100%;
+        }
+
+        .menu-toggle {
+            display: none; /* Hidden on desktop */
+            background: none;
+            border: none;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .menu-toggle .bar {
+            display: block;
+            width: 25px;
+            height: 3px;
+            margin: 5px 0;
+            background-color: var(--color-primary-dark);
+            transition: var(--transition-main);
+        }
+        
+        /* Hamburger Animation */
+        .menu-toggle.open .bar:nth-child(1) {
+            transform: translateY(8px) rotate(45deg);
+        }
+        .menu-toggle.open .bar:nth-child(2) {
+            opacity: 0;
+        }
+        .menu-toggle.open .bar:nth-child(3) {
+            transform: translateY(-8px) rotate(-45deg);
+        }
+
+        /* --- Hero Section --- */
+        .hero {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 60vh;
+            min-height: 500px;
+            text-align: center;
+            color: var(--color-text-light);
+            margin-top: var(--header-height);
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://source.unsplash.com/1600x900/?architecture,landscape') no-repeat center center/cover;
+            z-index: -2;
+        }
+        
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(26, 35, 58, 0.7); /* Dark blue overlay */
+            z-index: -1;
+        }
+        
+        .hero-content {
+            z-index: 1;
+        }
+        
+        .hero-content h1 {
+            color: var(--color-text-light);
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        /* Stats Bar (Inside Hero) */
+        .stats-bar {
+            background-color: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(5px);
+            padding: 2.5rem 2rem;
+            border-radius: 8px;
+            position: absolute;
+            bottom: -75px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+            max-width: var(--container-width);
+            z-index: 2;
+        }
+        
+        .stats-bar .grid {
+            grid-template-columns: repeat(5, 1fr);
+            align-items: center;
+            text-align: center;
+            gap: 1rem;
+        }
+        
+        .stat-item h3 {
+            color: var(--color-text-light);
+            font-size: 2.5rem;
+            margin-bottom: 0.25rem;
+        }
+        
+        .stat-item p {
+            color: var(--color-accent-gold-light);
+            font-size: 0.9rem;
+            margin: 0;
+            line-height: 1.3;
+        }
+
+        /* --- Welcome Section --- */
+        #about {
+            padding-top: 10rem; /* Make space for overlapping stats bar */
+        }
+        
+        .about-grid {
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+        }
+        
+        .about-grid img {
+            border-radius: 8px;
+            object-fit: cover;
+            height: 450px;
+            width: 100%;
+        }
+
+        /* --- Stats Section (Duplicate) --- */
+        .stats-section .grid {
+            grid-template-columns: repeat(5, 1fr);
+            gap: 1.5rem;
+        }
+        
+        .stats-card {
+            background: var(--color-bg-white);
+            padding: 2rem;
+            text-align: center;
+            border: 1px solid var(--color-border);
+            border-radius: 8px;
+            transition: var(--transition-main);
+        }
+        
+        .stats-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+            border-color: var(--color-accent-gold);
+        }
+        
+        .stats-card h3 {
+            font-size: 2.75rem;
+            color: var(--color-accent-gold);
+            margin-bottom: 0.5rem;
+        }
+        
+        .stats-card p {
+            font-size: 1rem;
+            font-weight: 500;
+            margin: 0;
+            color: var(--color-primary-dark);
+        }
+
+        /* --- Projects Section --- */
+        #projects {
+            background-color: var(--color-bg-light);
+        }
+        
+        .project-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+        }
+        
+        .project-tab {
+            background: var(--color-bg-white);
+            border: 1px solid var(--color-border);
+            color: var(--color-text-dark);
+            padding: 0.6rem 1.5rem;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: var(--transition-main);
+            font-weight: 500;
+        }
+        
+        .project-tab:hover {
+            background-color: var(--color-accent-gold-light);
+            border-color: var(--color-accent-gold);
+        }
+        
+        .project-tab.active {
+            background-color: var(--color-accent-gold);
+            border-color: var(--color-accent-gold);
+            color: var(--color-secondary-dark);
+            font-weight: 600;
+        }
+        
+        .projects-grid {
+            grid-template-columns: repeat(3, 1fr);
+        }
+        
+        .project-card {
+            background: var(--color-bg-white);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: var(--transition-main);
+        }
+        
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .project-card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+        
+        .project-content {
+            padding: 1.5rem;
+        }
+        
+        .project-content h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .project-content p {
+            font-size: 0.9rem;
+            margin: 0;
+            color: var(--color-accent-gold);
+            font-weight: 500;
+        }
+
+        /* --- Story Section --- */
+        .story-grid {
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+        }
+        
+        .story-grid img {
+            border-radius: 8px;
+            object-fit: cover;
+            height: 450px;
+            width: 100%;
+        }
+
+        /* --- Testimonials Section --- */
+        #testimonials {
+            background-color: var(--color-bg-light);
+        }
+        
+        .testimonials-grid {
+            grid-template-columns: repeat(3, 1fr);
+        }
+        
+        .testimonial-card {
+            background: var(--color-bg-white);
+            padding: 2rem;
+            border: 1px solid var(--color-border);
+            border-radius: 8px;
+        }
+        
+        .testimonial-card p {
+            font-style: italic;
+            color: var(--color-text-dark);
+            margin-bottom: 1.5rem;
+        }
+        
+        .testimonial-card h4 {
+            color: var(--color-primary-dark);
+            font-size: 1.1rem;
+            margin: 0;
+        }
+
+        /* --- Footer --- */
+        .main-footer {
+            background-color: var(--color-secondary-dark);
+            color: var(--color-text-light);
+            padding-top: 6rem;
+        }
+        
+        .footer-grid {
+            grid-template-columns: 2fr 1fr 1fr 1.5fr;
+            gap: 3rem;
+            padding-bottom: 4rem;
+        }
+        
+        .footer-widget h4 {
+            color: var(--color-text-light);
+            font-size: 1.25rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .footer-widget p {
+            color: var(--color-text-medium);
+            font-size: 0.9rem;
+        }
+        
+        .footer-widget .logo {
+            color: var(--color-text-light);
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .footer-widget ul {
+            list-style: none;
+        }
+        
+        .footer-widget li {
+            margin-bottom: 0.75rem;
+        }
+        
+        .footer-widget a {
+            text-decoration: none;
+            color: var(--color-text-medium);
+            font-size: 0.9rem;
+            transition: var(--transition-main);
+        }
+        
+        .footer-widget a:hover {
+            color: var(--color-accent-gold);
+        }
+        
+        .social-links a {
+            color: var(--color-text-medium);
+            font-size: 1.5rem;
+            margin-right: 1rem;
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid #343a40;
+            padding: 2rem 0;
+            text-align: center;
+        }
+        
+        .footer-bottom p {
+            margin: 0;
+            font-size: 0.8rem;
+            color: var(--color-text-medium);
+        }
+
+
+        /* --- Responsive Design --- */
+        
+        @media (max-width: 992px) {
+            .main-nav {
+                display: none; /* Hide nav on tablet/mobile */
+                position: absolute;
+                top: var(--header-height);
+                left: 0;
+                width: 100%;
+                background-color: var(--color-bg-white);
+                flex-direction: column;
+                padding: 1rem;
+                box-shadow: 0 10px 15px rgba(0, 0, 0, 0.05);
+            }
+            
+            .main-nav.open {
+                display: flex;
+            }
+            
+            .main-nav ul {
+                flex-direction: column;
+                gap: 0;
+            }
+            
+            .main-nav li {
+                width: 100%;
+            }
+            
+            .main-nav a {
+                display: block;
+                padding: 1rem;
+                text-align: center;
+            }
+            
+            .main-nav a:hover {
+                background-color: var(--color-bg-light);
+            }
+            
+            .main-nav a::after {
+                display: none;
+            }
+            
+            .menu-toggle {
+                display: block;
+            }
+            
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .stats-bar {
+                display: none; /* Hide overlapping stats bar on tablet */
+            }
+            
+            #about {
+                padding-top: 6rem; /* Reset padding */
+            }
+            
+            .about-grid, .story-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .about-grid img, .story-grid img {
+                margin-top: 2rem;
+                height: 300px;
+            }
+            
+            .story-grid img {
+                order: -1;
+            }
+            
+            .stats-section .grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .projects-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            h1 { font-size: 2.25rem; }
+            h2 { font-size: 2rem; }
+            
+            .hero {
+                height: 50vh;
+                min-height: 400px;
+            }
+            
+            .stats-section .grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            
+            .stats-card {
+                padding: 1.5rem;
+            }
+            
+            .stats-card h3 {
+                font-size: 2.25rem;
+            }
+            
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .footer-widget .logo {
+                text-align: center;
+            }
+            
+            .social-links {
+                text-align: center;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Main Header -->
+    <header class="main-header" id="mainHeader">
+        <div class="nav-container">
+            <a href="#home" class="logo"><span>YOUR</span>BRAND</a>
+            
+            <nav class="main-nav" id="mainNav">
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#story">Story</a></li>
+                    <li><a href="#gallery">Gallery</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+            
+            <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation" aria-expanded="false">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+        </div>
+    </header>
+
+    <main>
+
+        <!-- Hero Section -->
+        <section class="hero" id="home">
+            <div class="hero-content fade-in">
+                <h1>50 YEARS IN REAL ESTATE</h1>
+            </div>
+            
+            <!-- Stats Bar -->
+            <div class="stats-bar">
+                <div class="grid">
+                    <div class="stat-item">
+                        <h3>90+</h3>
+                        <p>Completed Projects</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3>3.5L+</h3>
+                        <p>Hours of Work</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3>12K+</h3>
+                        <p>Happy Customers</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3>350+</h3>
+                        <p>Acres Developed</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3>50</h3>
+                        <p>Years of Legacy</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Welcome Section -->
+        <section id="about" class="section-padding">
+            <div class="container">
+                <div class="grid about-grid">
+                    <div class="about-content fade-in" data-delay="0">
+                        <span class="text-accent">WELCOME TO YOUR BRAND</span>
+                        <h2>Your Trusted Partner for Over 50 Years</h2>
+                        <p>We take immense pride in our legacy of half a century, dedicated to providing unparalleled real estate services. For generations, we've been committed to delivering exceptional results and fostering enduring relationships with our valued clients.</p>
+                        <p>With our extensive experience and deep-rooted expertise, we stand as a beacon of trust and reliability in the dynamic realm of real estate.</p>
+                        <a href="#story" class="btn btn-primary">Read More</a>
+                    </div>
+                    <div class="about-image fade-in" data-delay="200">
+                        <img src="https://source.unsplash.com/600x450/?modern,office" alt="Modern office interior" loading="lazy">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Stats Section (Reasons to Celebrate) -->
+        <section id="stats" class="section-padding" style="display: none;"> <!-- Hidden as it's redundant with hero stats bar -->
+            <div class="container text-center fade-in">
+                <span class="text-accent">REASONS TO CELEBRATE</span>
+                <h2>Our Legacy in Numbers</h2>
+                <div class="grid stats-section">
+                    <div class="stats-card">
+                        <h3>50</h3>
+                        <p>Years of Legacy</p>
+                    </div>
+                    <div class="stats-card">
+                        <h3>90+</h3>
+                        <p>Completed Projects</p>
+                    </div>
+                    <div class="stats-card">
+                        <h3>3.5L+</h3>
+                        <p>Hours of Work</p>
+                    </div>
+                    <div class="stats-card">
+                        <h3>12K+</h3>
+                        <p>Happy Customers</p>
+                    </div>
+                    <div class="stats-card">
+                        <h3>350+</h3>
+                        <p>Acres Developed</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="section-padding">
+            <div class="container fade-in">
+                <div class="text-center">
+                    <span class="text-accent">OUR PORTFOLIO</span>
+                    <h2>Our Projects</h2>
+                </div>
+                
+                <div class="project-tabs" id="projectTabs">
+                    <button class="project-tab active" data-filter="all">See All</button>
+                    <button class="project-tab" data-filter="ongoing">Ongoing</button>
+                    <button class="project-tab" data-filter="upcoming">Upcoming</button>
+                    <button class="project-tab" data-filter="completed">Completed</button>
+                </div>
+                
+                <div class="grid projects-grid">
+                    <div class="project-card" data-category="ongoing">
+                        <img src="https://source.unsplash.com/400x300/?resort,architecture" alt="Business Resort & Spa" loading="lazy">
+                        <div class="project-content">
+                            <h3>Business Resort & Spa</h3>
+                            <p>20 Acres</p>
+                        </div>
+                    </div>
+                    <div class="project-card" data-category="upcoming">
+                        <img src="https://source.unsplash.com/400x300/?commercial,building" alt="Urban Mall" loading="lazy">
+                        <div class="project-content">
+                            <h3>The Urban Mall</h3>
+                            <p>0.69 Acre</p>
+                        </div>
+                    </div>
+                    <div class="project-card" data-category="completed">
+                        <img src="https://source.unsplash.com/400x300/?lake,property" alt="Lakeside Residences" loading="lazy">
+                        <div class="project-content">
+                            <h3>Lakeside Residences</h3>
+                            <p>15 Acres</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Story Section -->
+        <section id="story" class="section-padding">
+            <div class="container">
+                <div class="grid story-grid">
+                    <div class="story-image fade-in" data-delay="200">
+                        <img src="https://source.unsplash.com/600x450/?corporate,history" alt="Company history or blueprint" loading="lazy">
+                    </div>
+                    <div class="story-content fade-in" data-delay="0">
+                        <span class="text-accent">OUR STORY</span>
+                        <h2>Founded in 1975</h2>
+                        <p>Founded by a visionary leader, our firm began its journey with a vision to redefine the real estate landscape. Over the last five decades, we've meticulously navigated the ever-evolving market, adapting to changing trends, and consistently delivering excellence.</p>
+                        <p>Our steadfast commitment to integrity, transparency, and client satisfaction has been the cornerstone of our success.</p>
+                        <a href="#contact" class="btn btn-outline">Contact Us</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Gallery Section (Placeholder) -->
+        <section id="gallery" class="section-padding" style="display:none;">
+            <!-- Gallery content can be added here as needed -->
+        </section>
+
+        <!-- Testimonials Section -->
+        <section id="testimonials" class="section-padding">
+            <div class="container fade-in">
+                <div class="text-center">
+                    <span class="text-accent">TESTIMONIALS</span>
+                    <h2>What Our Clients Say</h2>
+                </div>
+                
+                <div class="grid testimonials-grid">
+                    <div class="testimonial-card">
+                        <p>"Best villa project ever seen at this price. I loved buying it. It's clean with functional amenities. On the state highway and close to the upcoming ring road."</p>
+                        <h4>- Client One</h4>
+                    </div>
+                    <div class="testimonial-card">
+                        <p>"Very attractive. Nice community. Eagerly waiting for an opportunity to be part of it. A great project by a trustworthy developer."</p>
+                        <h4>- Client Two</h4>
+                    </div>
+                    <div class="testimonial-card">
+                        <p>"One of the best real estate companies. They maintain good quality of service and the best relationship with clients. The best part is the amenities; they are simply world-class."</p>
+                        <h4>- Client Three</h4>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Main Footer -->
+    <footer class="main-footer" id="contact">
+        <div class="container">
+            <div class="grid footer-grid">
+                <!-- Widget 1: About -->
+                <div class="footer-widget">
+                    <a href="#home" class="logo"><span>YOUR</span>BRAND</a>
+                    <p>Our steadfast commitment to integrity, transparency, and client satisfaction has been the cornerstone of our success for over 50 years.</p>
+                </div>
+                
+                <!-- Widget 2: Quick Links -->
+                <div class="footer-widget">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#projects">Projects</a></li>
+                        <li><a href="#story">Our Story</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Widget 3: Follow Us -->
+                <div class="footer-widget">
+                    <h4>Follow Us</h4>
+                    <div class="social-links">
+                        <!-- Using text as placeholders for icons -->
+                        <a href="#" aria-label="Facebook">f</a>
+                        <a href="#" aria-label="Twitter">t</a>
+                        <a href="#" aria-label="Instagram">i</a>
+                    </div>
+                </div>
+                
+                <!-- Widget 4: Contact Info -->
+                <div class="footer-widget">
+                    <h4>Contact Info</h4>
+                    <p>123 Main Street, Suite 400, Business District, Your City, 560034</p>
+                    <p>+91 98765 43210</p>
+                    <p>info@yourbrand.com</p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; <span id="currentYear"></span> Your Brand Developers. All rights reserved. Mockup by AI.</p>
+            </div>
+        </div>
+    </footer>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+
+            // --- Mobile Menu Toggle ---
+            const menuToggle = document.getElementById('menuToggle');
+            const mainNav = document.getElementById('mainNav');
+            
+            if (menuToggle && mainNav) {
+                menuToggle.addEventListener('click', () => {
+                    mainNav.classList.toggle('open');
+                    menuToggle.classList.toggle('open');
+                    const isExpanded = mainNav.classList.contains('open');
+                    menuToggle.setAttribute('aria-expanded', isExpanded);
+                });
+            }
+            
+            // --- Smooth Scroll & Close Mobile Nav on Link Click ---
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        const headerOffset = 80; // From :root --header-height
+                        const elementPosition = targetElement.getBoundingClientRect().top;
+                        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                        
+                        window.scrollTo({
+                            top: offsetPosition,
+                            behavior: "smooth"
+                        });
+                        
+                        // Close mobile nav if open
+                        if (mainNav.classList.contains('open')) {
+                            mainNav.classList.remove('open');
+                            menuToggle.classList.remove('open');
+                            menuToggle.setAttribute('aria-expanded', 'false');
+                        }
+                    }
+                });
+            });
+
+            // --- Project Tabs Functionality ---
+            const projectTabsContainer = document.getElementById('projectTabs');
+            if (projectTabsContainer) {
+                const projectTabs = projectTabsContainer.querySelectorAll('.project-tab');
+                
+                projectTabs.forEach(tab => {
+                    tab.addEventListener('click', () => {
+                        // Remove 'active' from all tabs
+                        projectTabs.forEach(t => t.classList.remove('active'));
+                        // Add 'active' to clicked tab
+                        tab.classList.add('active');
+                        
+                        // Filtering logic (simple example)
+                        const filter = tab.getAttribute('data-filter');
+                        console.log('Filtering by:', filter);
+                        // In a real app, you'd show/hide .project-card based on data-category
+                    });
+                });
+            }
+
+            // --- Fade-in on Scroll ---
+            const faders = document.querySelectorAll('.fade-in');
+            
+            const appearOptions = {
+                threshold: 0.1,
+                rootMargin: "0px 0px -50px 0px"
+            };
+
+            const appearOnScroll = new IntersectionObserver(function(
+                entries,
+                appearOnScroll
+            ) {
+                entries.forEach(entry => {
+                    if (!entry.isIntersecting) {
+                        return;
+                    } else {
+                        const delay = entry.target.getAttribute('data-delay') || 0;
+                        setTimeout(() => {
+                            entry.target.classList.add('visible');
+                        }, parseInt(delay));
+                        appearOnScroll.unobserve(entry.target);
+                    }
+                });
+            },
+            appearOptions);
+
+            faders.forEach(fader => {
+                appearOnScroll.observe(fader);
+            });
+            
+            // --- Set Current Year in Footer ---
+            const yearSpan = document.getElementById('currentYear');
+            if (yearSpan) {
+                yearSpan.textContent = new Date().getFullYear();
+            }
+
+        });
+    </script>
+
+</body>
+</html>
+

@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Central Tower | Premium Office Spaces</title>
+    
+    <!-- Google Fonts Import -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        /* CSS Reset and Global Styles */
+        :root {
+            --font-heading: 'Poppins', sans-serif;
+            --font-body: 'Inter', sans-serif;
+            --color-primary: #0d1b4c; /* Deep Professional Blue */
+            --color-secondary: #0a143a; /* Darker Blue/Near Black */
+            --color-accent: #d4af37; /* Muted Gold */
+            --color-text: #333333;
+            --color-text-light: #f8f8f8;
+            --color-bg-light: #f9f9f9;
+            --color-bg-white: #ffffff;
+            --color-border: #e0e0e0;
+            --sidebar-width: 280px;
+            --top-header-height: 70px;
+            --transition-main: all 0.3s ease-in-out;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
+        body {
+            font-family: var(--font-body);
+            color: var(--color-text);
+            background-color: var(--color-bg-white);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* --- Main Layout --- */
+        .main-content {
+            /* Margin for the fixed desktop sidebar */
+            margin-right: var(--sidebar-width);
+        }
+
+        .sidebar-nav {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: var(--sidebar-width);
+            height: 100vh;
+            background: var(--color-bg-white);
+            border-left: 1px solid var(--color-border);
+            z-index: 998;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 3rem 2rem;
+            transition: transform 0.3s ease;
+        }
+
+        .sidebar-logo {
+            font-family: var(--font-heading);
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--color-primary);
+            text-decoration: none;
+            letter-spacing: 1px;
+            text-align: center;
+        }
+
+        .sidebar-nav-links ul {
+            list-style: none;
+            padding-left: 1rem;
+        }
+
+        .sidebar-nav-links li {
+            margin: 2rem 0;
+        }
+
+        .sidebar-nav-links a {
+            text-decoration: none;
+            color: #555;
+            font-weight: 600;
+            font-family: var(--font-body);
+            font-size: 1rem;
+            position: relative;
+            padding: 0.25rem 0.5rem;
+            transition: var(--transition-main);
+        }
+
+        .sidebar-nav-links a:hover {
+            color: var(--color-primary);
+        }
+
+        .sidebar-nav-links a.active {
+            color: var(--color-accent);
+            font-weight: 700;
+        }
+
+        .sidebar-nav-links a.active::before {
+            content: '';
+            position: absolute;
+            left: -1.5rem;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 4px;
+            height: 24px;
+            background-color: var(--color-accent);
+            border-radius: 4px;
+        }
+
+        .sidebar-enquire .btn {
+            width: 100%;
+            text-align: center;
+        }
+
+        /* --- Top Header (Mobile) --- */
+        .top-header {
+            display: none; /* Hidden on desktop */
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: var(--top-header-height);
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 0 1.5rem;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .top-header .logo {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--color-primary);
+            text-decoration: none;
+        }
+
+        .menu-toggle {
+            background: none;
+            border: none;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .menu-toggle .bar {
+            display: block;
+            width: 25px;
+            height: 3px;
+            margin: 5px 0;
+            background-color: var(--color-primary);
+            transition: var(--transition-main);
+        }
+        
+        /* Hamburger Animation */
+        .menu-toggle.open .bar:nth-child(1) {
+            transform: translateY(8px) rotate(45deg);
+        }
+        .menu-toggle.open .bar:nth-child(2) {
+            opacity: 0;
+        }
+        .menu-toggle.open .bar:nth-child(3) {
+            transform: translateY(-8px) rotate(-45deg);
+        }
+
+        /* --- Mobile Nav Menu --- */
+        .mobile-nav {
+            display: none; /* Hidden by default */
+            position: fixed;
+            top: var(--top-header-height);
+            left: 0;
+            width: 100%;
+            height: calc(100vh - var(--top-header-height));
+            background: var(--color-bg-white);
+            z-index: 999;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            transform: translateX(100%);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .mobile-nav.open {
+            transform: translateX(0);
+        }
+        
+        .mobile-nav ul {
+            list-style: none;
+            text-align: center;
+        }
+        
+        .mobile-nav li {
+            margin: 2rem 0;
+        }
+        
+        .mobile-nav a {
+            text-decoration: none;
+            color: var(--color-primary);
+            font-size: 1.75rem;
+            font-weight: 600;
+            font-family: var(--font-heading);
+        }
+        
+        .mobile-nav .btn {
+            margin-top: 2rem;
+        }
+
+        /* --- Utility Classes --- */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 1.75rem;
+            font-family: var(--font-heading);
+            font-weight: 500;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: var(--transition-main);
+            cursor: pointer;
+            border: none;
+            text-transform: uppercase;
+            font-size: 0.875rem;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-primary {
+            background-color: var(--color-accent);
+            color: var(--color-primary);
+        }
+
+        .btn-primary:hover {
+            background-color: #e6c560; /* Lighter gold */
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1, h2, h3, h4 {
+            font-family: var(--font-heading);
+            color: var(--color-primary);
+            font-weight: 600;
+            line-height: 1.3;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+        }
+
+        h2 {
+            font-size: 2.75rem;
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        h3 {
+            font-size: 1.75rem;
+            margin-bottom: 1rem;
+        }
+        
+        p {
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
+            color: #555;
+        }
+
+        /* Fade-in Animation */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- Section Styling --- */
+        .content-section {
+            padding: 6rem 0;
+        }
+
+        /* Hero Section */
+        #home {
+            height: 100vh;
+            min-height: 700px;
+            position: relative;
+            display: flex;
+            align-items: flex-end;
+            padding: 4rem;
+            overflow: hidden;
+        }
+
+        #home::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://source.unsplash.com/1920x1080/?modern,skyscraper,architecture');
+            background-size: cover;
+            background-position: center;
+            z-index: -2;
+        }
+
+        #home::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+            z-index: -1;
+        }
+
+        .hero-content {
+            color: var(--color-text-light);
+            max-width: 700px;
+            animation: fadeInHero 1.5s ease-out;
+        }
+        
+        @keyframes fadeInHero {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .hero-content .tag {
+            display: inline-block;
+            background-color: var(--color-accent);
+            color: var(--color-primary);
+            padding: 0.4rem 1rem;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            border-radius: 4px;
+            margin-bottom: 1rem;
+        }
+
+        .hero-content h1 {
+            color: var(--color-text-light);
+            font-size: 4rem;
+        }
+        
+        .hero-content p {
+            color: var(--color-text-light);
+            font-size: 1.25rem;
+            opacity: 0.9;
+        }
+
+        /* Gallery Section */
+        #gallery {
+            background-color: var(--color-bg-light);
+        }
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+        .gallery-item {
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        .gallery-item img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.4s ease;
+        }
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Details Section */
+        .two-col-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+        .two-col-layout img {
+            width: 100%;
+            height: auto;
+            max-height: 500px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        /* Features Section */
+        #features {
+            background-color: var(--color-bg-light);
+        }
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+        .feature-item {
+            background: var(--color-bg-white);
+            padding: 2.5rem 2rem;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.03);
+            transition: var(--transition-main);
+        }
+        .feature-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.07);
+        }
+        .feature-item .icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        .feature-item h3 {
+            font-size: 1.4rem;
+        }
+
+        /* Location Section */
+        .location-map {
+            width: 100%;
+            height: 450px;
+            background-color: #e9e9e9;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #888;
+            font-style: italic;
+        }
+        .location-list li {
+            margin-bottom: 0.75rem;
+            font-weight: 500;
+            list-style-position: inside;
+        }
+
+        /* Contact Section (Footer) */
+        #contact {
+            background-color: var(--color-secondary);
+            color: var(--color-text-light);
+            padding-bottom: 4rem;
+        }
+        #contact h2 {
+            color: var(--color-text-light);
+        }
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto 3rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+        .form-group {
+            position: relative;
+        }
+        .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            background: var(--color-primary);
+            border: 1px solid #3a4a88;
+            border-radius: 4px;
+            color: var(--color-text-light);
+            font-family: var(--font-body);
+            font-size: 1rem;
+        }
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: #aaa;
+        }
+        .contact-form .btn {
+            grid-column: 1 / -1;
+            width: 100%;
+            font-size: 1rem;
+        }
+        .footer-bottom {
+            text-align: center;
+            padding-top: 3rem;
+            border-top: 1px solid #3a4a88;
+        }
+        .footer-bottom p {
+            color: #aaa;
+            font-size: 0.8rem;
+            margin: 0.25rem 0;
+        }
+
+        /* --- Responsive Design --- */
+        
+        /* Tablet */
+        @media (max-width: 1200px) {
+            .main-content {
+                margin-right: 0;
+            }
+            .sidebar-nav {
+                transform: translateX(100%);
+            }
+            .top-header {
+                display: flex;
+            }
+            body {
+                padding-top: var(--top-header-height);
+            }
+            #home {
+                height: 70vh;
+                min-height: 500px;
+                padding: 2rem;
+            }
+            .hero-content h1 {
+                font-size: 3rem;
+            }
+            .content-section {
+                padding: 4rem 0;
+            }
+        }
+
+        /* Tablet (Medium) */
+        @media (max-width: 992px) {
+            .container {
+                padding: 0 1.5rem;
+            }
+            h1 { font-size: 2.5rem; }
+            h2 { font-size: 2.25rem; }
+            
+            .two-col-layout {
+                grid-template-columns: 1fr;
+            }
+            /* Reverse order for visual flow */
+            #details .two-col-layout img {
+                order: -1;
+            }
+            
+            .gallery-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .features-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .contact-form {
+                gap: 1rem;
+            }
+        }
+        
+        /* Mobile */
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 2.25rem;
+            }
+            .hero-content p {
+                font-size: 1rem;
+            }
+            
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+            .contact-form {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Top Header (Mobile) -->
+    <header class="top-header">
+        <a href="#home" class="logo">CENTRAL</a>
+        <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation" aria-expanded="false">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </button>
+    </header>
+
+    <!-- Mobile Navigation -->
+    <nav class="mobile-nav" id="mobileNav">
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#gallery">Gallery</a></li>
+            <li><a href="#details">Details</a></li>
+            <li><a href="#features">Features</a></li>
+            <li><a href="#location">Location</a></li>
+        </ul>
+        <a href="#contact" class="btn btn-primary">Enquire Now</a>
+    </nav>
+
+    <!-- Sidebar Navigation (Desktop) -->
+    <aside class="sidebar-nav" id="sidebarNav">
+        <a href="#home" class="sidebar-logo">CENTRAL</a>
+        
+        <nav class="sidebar-nav-links">
+            <ul id="navLinks">
+                <li><a href="#home" class="active">Home</a></li>
+                <li><a href="#gallery">Gallery</a></li>
+                <li><a href="#details">Property Details</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#location">Location</a></li>
+            </ul>
+        </nav>
+        
+        <div class="sidebar-enquire">
+            <a href="#contact" class="btn btn-primary">Enquire Now</a>
+        </div>
+    </aside>
+
+    <!-- Main Page Content -->
+    <main class="main-content">
+
+        <!-- Hero Section -->
+        <section id="home" class="hero-section">
+            <div class="hero-content">
+                <span class="tag">Ready for Business</span>
+                <h1>Central Park Tower</h1>
+                <p>Premium office spaces in the heart of the business district.</p>
+            </div>
+        </section>
+
+        <!-- Gallery Section -->
+        <section id="gallery" class="content-section">
+            <div class="container fade-in">
+                <h2>Our Portfolio</h2>
+                <div class="gallery-grid">
+                    <div class="gallery-item">
+                        <img src="https://source.unsplash.com/400x300/?office,building,exterior" alt="Modern office building exterior" loading="lazy">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://source.unsplash.com/400x300/?office,lobby" alt="Spacious office lobby with reception" loading="lazy">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://source.unsplash.com/400x300/?modern,workspace" alt="Open-plan modern workspace" loading="lazy">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Details Section -->
+        <section id="details" class="content-section">
+            <div class="container fade-in">
+                <div class="two-col-layout">
+                    <div>
+                        <h2>Property Details</h2>
+                        <h3>A New Icon for Your Business</h3>
+                        <p>Central Park Tower is designed to be more than just an office. It's a statement. With state-of-the-art infrastructure and flexible floor plans, it provides the perfect canvas for businesses of all sizes to thrive.</p>
+                        <p>Benefit from a prime location, world-class amenities, and a community of forward-thinking enterprises. This is where your business belongs.</p>
+                    </div>
+                    <div>
+                        <img src="https://source.unsplash.com/500x500/?architecture,detail" alt="Architectural detail of the building facade" loading="lazy">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section id="features" class="content-section">
+            <div class="container fade-in">
+                <h2>Unique Features</h2>
+                <div class="features-grid">
+                    <div class="feature-item">
+                        <div class="icon">🌟</div>
+                        <h3>Luxury Features</h3>
+                        <p>Grand entrance lobby, high-speed elevators, and premium finishes in all common areas.</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="icon">🛡️</div>
+                        <h3>Community & Exclusivity</h3>
+                        <p>Access to exclusive business lounges, rooftop terraces, and networking event spaces.</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="icon">🌿</div>
+                        <h3>Work Environment</h3>
+                        <p>LEED-certified sustainable design, ample natural light, and advanced air filtration systems.</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="icon">🛎️</div>
+                        <h3>Comprehensive Services</h3>
+                        <p>24/7 professional security, dedicated facility management, and ample visitor parking.</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="icon">💡</div>
+                        <h3>Smart Building</h3>
+                        <p>Integrated building management system, fiber-optic connectivity, and 100% power backup.</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="icon">📍</div>
+                        <h3>Prime Location</h3>
+                        <p>Excellent connectivity to major transport hubs, hotels, and F&B establishments.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Location Section -->
+        <section id="location" class="content-section">
+            <div class="container fade-in">
+                <h2>Unbeatable Location</h2>
+                <div class="two-col-layout">
+                    <div>
+                        <h3>At the Center of It All</h3>
+                        <p>Perfectly positioned in the city's new commercial hub, Central Park Tower offers unparalleled connectivity.</p>
+                        <ul class="location-list">
+                            <li>5 Mins to Metro Station</li>
+                            <li>10 Mins to National Highway</li>
+                            <li>15 Mins to International Airport</li>
+                            <li>Surrounded by 5-Star Hotels & Malls</li>
+                        </ul>
+                        <a href="#contact" class="btn btn-primary" style="margin-top: 1rem;">Schedule a Visit</a>
+                    </div>
+                    <div class="location-map">
+                        <span>[ Placeholder for Map ]</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section (Footer) -->
+        <section id="contact" class="content-section">
+            <div class="container fade-in">
+                <h2>Enquire Now</h2>
+                <form class="contact-form">
+                    <div class="form-group">
+                        <input type="text" id="name" name="name" placeholder="Your Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" id="email" name="email" placeholder="Your Email" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="tel" id="phone" name="phone" placeholder="Phone Number" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="company" name="company" placeholder="Company (Optional)">
+                    </div>
+                    <div class="form-group full-width">
+                        <textarea id="message" name="message" placeholder="Your Message" rows="4"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit Enquiry</button>
+                </form>
+                
+                <div class="footer-bottom">
+                    <p>Disclaimer: This website is a mockup for illustrative purposes. All images are from Unsplash. The project 'Central Park Tower' is a fictional development. The content is for representation purposes only and does not constitute an offer or contract.</p>
+                    <p>&copy; <span id="currentYear"></span> Your Brand. All rights reserved.</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+
+            // --- Mobile Menu Toggle ---
+            const menuToggle = document.getElementById('menuToggle');
+            const mobileNav = document.getElementById('mobileNav');
+            const mobileNavLinks = mobileNav.querySelectorAll('a');
+
+            if (menuToggle && mobileNav) {
+                menuToggle.addEventListener('click', () => {
+                    mobileNav.classList.toggle('open');
+                    menuToggle.classList.toggle('open');
+                    const isExpanded = mobileNav.classList.contains('open');
+                    menuToggle.setAttribute('aria-expanded', isExpanded);
+                });
+            }
+            
+            // Close mobile nav when a link is clicked
+            mobileNavLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileNav.classList.remove('open');
+                    menuToggle.classList.remove('open');
+                    menuToggle.setAttribute('aria-expanded', 'false');
+                });
+            });
+
+
+            // --- Smooth Scroll for All Anchor Links ---
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+
+                    if (targetElement) {
+                        let headerOffset = 0;
+                        // Check if mobile header is active
+                        if (window.innerWidth <= 1200) {
+                            headerOffset = 70; // From :root --top-header-height
+                        }
+                        
+                        const elementPosition = targetElement.getBoundingClientRect().top;
+                        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+                        window.scrollTo({
+                            top: offsetPosition,
+                            behavior: "smooth"
+                        });
+                    }
+                });
+            });
+
+
+            // --- Active Nav Link on Scroll (Scroll-Spy) ---
+            const sections = document.querySelectorAll('section[id]');
+            const navLinks = document.querySelectorAll('.sidebar-nav-links a');
+
+            const observerOptions = {
+                root: null,
+                rootMargin: "-30% 0px -60% 0px", // Triggers when section is in the middle 40% of viewport
+                threshold: 0
+            };
+
+            const sectionObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const id = entry.target.getAttribute('id');
+                        const activeLink = document.querySelector(`.sidebar-nav-links a[href="#${id}"]`);
+                        
+                        navLinks.forEach(link => link.classList.remove('active'));
+                        if (activeLink) {
+                            activeLink.classList.add('active');
+                        }
+                    }
+                });
+            }, observerOptions);
+
+            sections.forEach(section => {
+                sectionObserver.observe(section);
+            });
+
+
+            // --- Fade-in on Scroll ---
+            const faders = document.querySelectorAll('.fade-in');
+            const faderOptions = {
+                threshold: 0.1,
+                rootMargin: "0px 0px -50px 0px"
+            };
+
+            const faderObserver = new IntersectionObserver(function(
+                entries,
+                faderObserver
+            ) {
+                entries.forEach(entry => {
+                    if (!entry.isIntersecting) {
+                        return;
+                    } else {
+                        entry.target.classList.add('visible');
+                        faderObserver.unobserve(entry.target);
+                    }
+                });
+            }, faderOptions);
+
+            faders.forEach(fader => {
+                faderObserver.observe(fader);
+            });
+            
+            
+            // --- Set Current Year in Footer ---
+            const yearSpan = document.getElementById('currentYear');
+            if (yearSpan) {
+                yearSpan.textContent = new Date().getFullYear();
+            }
+
+        });
+    </script>
+
+</body>
+</html>
