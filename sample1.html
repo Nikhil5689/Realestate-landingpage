@@ -23,7 +23,7 @@
             --color-bg-light: #F9F6F1; /* Light Ivory/Beige */
             --color-bg-white: #FFFFFF;
             --color-border: #E0E0E0;
-            --section-padding: 6rem 0;
+            --section-padding: 5rem 0; /* Adjusted padding */
             --transition-main: all 0.3s ease-in-out;
             --header-height: 80px;
         }
@@ -43,7 +43,7 @@
             font-family: var(--font-body);
             color: var(--color-text-dark);
             background-color: var(--color-bg-white);
-            line-height: 1.6;
+            line-height: 1.7; /* Increased line-height */
             overflow-x: hidden;
             padding-top: var(--header-height); /* Offset for fixed header */
         }
@@ -57,32 +57,34 @@
 
         .btn {
             display: inline-block;
-            padding: 0.75rem 1.5rem;
+            padding: 0.8rem 1.75rem; /* Slightly adjusted padding */
             font-family: var(--font-body);
             font-weight: 600;
             text-decoration: none;
-            border-radius: 4px;
+            border-radius: 6px; /* Slightly more rounded */
             transition: var(--transition-main);
             cursor: pointer;
-            border: none;
+            border: 1px solid transparent; /* Ensure border is consistent */
             text-transform: uppercase;
             font-size: 0.875rem;
-            letter-spacing: 0.5px;
+            letter-spacing: 0.75px; /* Increased spacing */
         }
 
         .btn-primary {
             background-color: var(--color-accent-gold);
             color: var(--color-text-light);
+            border-color: var(--color-accent-gold);
         }
 
         .btn-primary:hover {
             background-color: var(--color-accent-gold-light);
+            border-color: var(--color-accent-gold-light);
             transform: translateY(-2px);
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 12px rgba(184, 134, 11, 0.3); /* Softer shadow */
         }
         
         .btn-secondary {
-            background-color: var(--color-bg-white);
+            background-color: transparent;
             color: var(--color-primary-dark);
             border: 1px solid var(--color-primary-dark);
         }
@@ -90,6 +92,8 @@
         .btn-secondary:hover {
             background-color: var(--color-primary-dark);
             color: var(--color-bg-white);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0, 45, 98, 0.2);
         }
 
         h1, h2, h3, h4 {
@@ -97,32 +101,32 @@
             color: var(--color-primary-dark);
             font-weight: 600;
             line-height: 1.3;
+            margin-bottom: 1rem; /* Consistent bottom margin */
         }
         
         h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
+            font-size: clamp(2.5rem, 6vw, 4rem); /* Responsive font size */
         }
 
         h2 {
-            font-size: 2.75rem;
+            font-size: clamp(2rem, 5vw, 2.75rem);
             text-align: center;
-            margin-bottom: 1rem;
         }
         
         h3 {
-            font-size: 1.75rem;
-            margin-bottom: 0.75rem;
+            font-size: clamp(1.5rem, 4vw, 1.75rem);
         }
         
         p {
             margin-bottom: 1.5rem;
             font-size: 1rem;
             color: #555;
+            max-width: 65ch; /* Improve readability */
         }
         
         section {
             padding: var(--section-padding);
+            overflow: hidden; /* Prevent horizontal scroll from animations */
         }
         
         /* Fade-in Animation on Scroll */
@@ -175,6 +179,7 @@
             cursor: pointer;
             background: none;
             border: none;
+            padding: 0.5rem; /* Easier touch target */
             z-index: 1001;
         }
         
@@ -184,6 +189,7 @@
             height: 3px;
             margin: 5px 0;
             background-color: var(--color-primary-dark);
+            border-radius: 1px; /* Slight rounding */
             transition: var(--transition-main);
         }
         
@@ -201,6 +207,9 @@
         .main-nav {
             display: flex;
             gap: 2rem;
+            list-style: none; /* Remove list style if using ul */
+            margin: 0;
+            padding: 0;
         }
         
         .main-nav a {
@@ -208,7 +217,7 @@
             color: var(--color-text-dark);
             font-weight: 500;
             position: relative;
-            padding-bottom: 0.25rem;
+            padding-bottom: 0.5rem; /* Increased padding */
         }
         
         .main-nav a::after {
@@ -222,14 +231,15 @@
             transition: width 0.3s ease;
         }
         
-        .main-nav a:hover::after {
+        .main-nav a:hover::after,
+        .main-nav a:focus::after { /* Add focus state */
             width: 100%;
         }
         
         /* --- Hero Section --- */
         .hero {
             height: calc(100vh - var(--header-height));
-            min-height: 700px;
+            min-height: 650px; /* Reduced min-height slightly */
             display: flex;
             align-items: center;
             justify-content: center;
@@ -247,7 +257,8 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: url('https://source.unsplash.com/1920x1080/?luxury,architecture');
+            /* Using one of the provided images */
+            background-image: url('https://images.unsplash.com/photo-1596276020587-8044fe049813?ixlib=rb-4.1.0'); 
             background-size: cover;
             background-position: center;
             background-attachment: fixed; /* Parallax effect */
@@ -261,7 +272,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 45, 98, 0.6); /* Dark blue overlay */
+            background-color: rgba(0, 45, 98, 0.65); /* Slightly darker overlay */
             z-index: -1;
         }
 
@@ -277,27 +288,28 @@
 
         .hero-content h1 {
             color: var(--color-text-light);
-            font-size: 4rem;
             font-weight: 700;
             letter-spacing: 1px;
+            margin-bottom: 1rem;
         }
         
         .hero-content .subtitle {
-            font-size: 1.5rem;
+            font-size: clamp(1.1rem, 3vw, 1.5rem);
             font-weight: 300;
-            margin: 1rem 0;
+            margin: 1rem 0 1.5rem; /* Adjusted margin */
             opacity: 0.9;
+            line-height: 1.6;
         }
 
         .hero-content .price {
             font-size: 1.25rem;
             font-weight: 500;
-            margin-bottom: 2rem;
+            margin-bottom: 2.5rem; /* Increased spacing */
             display: block;
         }
 
         /* --- Two Column Section (About, Design) --- */
-        .two-col-layout {
+        .two-col-layout .grid-container { /* Added container for grid */
             display: grid;
             grid-template-columns: 1fr 1fr;
             align-items: center;
@@ -305,7 +317,11 @@
         }
         
         .two-col-layout .col-text {
-            padding-right: 2rem;
+             max-width: 500px; /* Limit text width */
+        }
+        
+        .two-col-layout .col-text p {
+             max-width: none; /* Reset max-width for paragraphs inside */
         }
         
         .two-col-layout .col-image img {
@@ -314,6 +330,12 @@
             border-radius: 8px;
             object-fit: cover;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .two-col-layout .col-image img:hover {
+            transform: scale(1.02);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
         }
         
         .bg-light {
@@ -323,6 +345,7 @@
         .feature-list {
             list-style: none;
             margin-top: 2rem;
+            padding-left: 0; /* Remove default padding */
         }
         
         .feature-list li {
@@ -330,20 +353,22 @@
             align-items: center;
             gap: 1rem;
             margin-bottom: 1.25rem;
-            font-size: 1.1rem;
+            font-size: 1.05rem; /* Slightly larger */
             font-weight: 500;
+            color: var(--color-text-dark); /* Ensure text color */
         }
         
         .feature-list-icon {
-            display: inline-block;
+            display: inline-flex; /* Use flex for centering */
+            align-items: center;
+            justify-content: center;
             width: 30px;
             height: 30px;
             background-color: var(--color-accent-gold-light);
-            color: var(--color-bg-white);
+            color: var(--color-primary-dark); /* Darker icon color */
             border-radius: 50%;
-            text-align: center;
-            line-height: 30px;
             font-weight: 700;
+            font-size: 0.9rem;
             flex-shrink: 0;
         }
         
@@ -357,12 +382,19 @@
         }
         
         .section-header .subtitle {
-            font-size: 1.1rem;
+            font-size: 1rem; /* Slightly smaller */
             color: var(--color-accent-gold);
             font-weight: 600;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
+            letter-spacing: 1px; /* Increased spacing */
             margin-bottom: 0.5rem;
+            display: block; /* Ensure it behaves as a block */
+        }
+        
+        .section-header p {
+             max-width: none; /* Reset max width */
+             margin-left: auto;
+             margin-right: auto;
         }
         
         .amenities-grid, .location-grid {
@@ -371,11 +403,11 @@
         }
         
         .amenities-grid {
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Responsive grid */
         }
         
         .location-grid {
-            grid-template-columns: repeat(4, 1fr);
+             grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); /* Responsive grid */
         }
 
         .grid-item {
@@ -387,7 +419,7 @@
         }
         
         .grid-item:hover {
-            transform: translateY(-5px);
+            transform: translateY(-5px) scale(1.02); /* Add scale effect */
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12);
         }
         
@@ -408,35 +440,51 @@
             bottom: 0;
             left: 0;
             width: 100%;
-            background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.75), transparent); /* Darker gradient */
             color: var(--color-text-light);
-            padding: 2rem 1rem 1rem;
+            padding: 2.5rem 1.5rem 1.5rem; /* Adjusted padding */
             text-align: left;
+            transition: background 0.3s ease;
+        }
+
+        .grid-item:hover .grid-item-caption {
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.85), transparent);
         }
         
         .grid-item-caption h4 {
             color: var(--color-text-light);
-            font-size: 1.25rem;
+            font-size: 1.2rem; /* Slightly smaller */
             font-weight: 600;
             font-family: var(--font-body);
+            margin-bottom: 0.25rem; /* Add spacing below */
         }
 
         /* --- Why Us --- */
         .why-us-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Responsive grid */
             gap: 3rem;
             text-align: center;
+        }
+        
+        .why-us-item {
+            padding: 1rem; /* Add padding for spacing */
         }
         
         .why-us-item .icon {
             font-size: 3rem;
             color: var(--color-accent-gold);
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem; /* Increased spacing */
+            display: inline-block; /* Center properly */
         }
         
         .why-us-item h3 {
-            font-size: 1.5rem;
+            font-size: 1.4rem; /* Slightly smaller */
+            margin-bottom: 0.75rem;
+        }
+        
+        .why-us-item p {
+            max-width: none; /* Allow paragraph to take full width */
         }
 
         /* --- FAQ --- */
@@ -447,18 +495,27 @@
         
         .faq-item {
             border-bottom: 1px solid var(--color-border);
+            margin-bottom: 0.5rem; /* Add slight gap */
+        }
+        .faq-item:last-child {
+            border-bottom: none;
         }
         
         .faq-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1.5rem 0;
+            padding: 1.5rem 0.5rem; /* Added horizontal padding */
             cursor: pointer;
             background: none;
             border: none;
             width: 100%;
             text-align: left;
+            transition: background-color 0.2s ease;
+        }
+
+        .faq-header:hover {
+            background-color: rgba(0, 45, 98, 0.03); /* Subtle hover */
         }
         
         .faq-header h4 {
@@ -467,6 +524,8 @@
             font-weight: 600;
             color: var(--color-text-dark);
             margin: 0;
+            flex-grow: 1; /* Allow text to take space */
+            padding-right: 1rem;
         }
         
         .faq-toggle {
@@ -475,51 +534,61 @@
             transition: transform 0.3s ease;
             font-weight: 300;
             flex-shrink: 0;
-            margin-left: 1rem;
+            width: 24px; /* Fixed width */
+            text-align: center;
         }
         
         .faq-item.active .faq-toggle {
             transform: rotate(45deg);
+            color: var(--color-accent-gold);
         }
         
         .faq-content {
             max-height: 0;
             overflow: hidden;
-            transition: max-height 0.4s ease-out;
+            transition: max-height 0.4s ease-out, padding 0.4s ease-out; /* Add padding transition */
+            padding: 0 0.5rem; /* Match header padding */
+        }
+
+        .faq-item.active .faq-content {
+             padding-bottom: 1.5rem; /* Add padding when open */
         }
         
         .faq-content p {
-            padding: 0 0 1.5rem;
             color: #555;
             margin: 0;
+            padding-top: 0.5rem; /* Space between header and text */
+            max-width: none;
         }
 
         /* --- Footer --- */
         .main-footer {
             background-color: var(--color-primary-dark);
             color: #ccc;
-            padding-top: 4rem;
+            padding-top: 5rem; /* Increased padding */
         }
         
         .footer-top {
-            padding-bottom: 3rem;
+            padding-bottom: 4rem; /* Increased padding */
             border-bottom: 1px solid rgba(255, 255, 255, 0.2);
         }
         
         .footer-top h3 {
             color: var(--color-text-light);
-            margin-bottom: 1rem;
+            font-size: 1.5rem; /* Adjusted size */
+            margin-bottom: 1.5rem;
         }
         
         .footer-top p {
             color: #ccc;
             max-width: 600px;
             margin: 0;
-            font-size: 0.9rem;
+            font-size: 0.95rem; /* Slightly larger */
+            line-height: 1.8;
         }
         
         .footer-bottom {
-            padding: 2rem 0;
+            padding: 2.5rem 0; /* Adjusted padding */
             text-align: center;
         }
         
@@ -531,15 +600,15 @@
             text-decoration: none;
             letter-spacing: 1px;
             display: block;
-            margin-bottom: 1.5rem;
+            margin-bottom: 2rem; /* Increased spacing */
         }
         
         .footer-bottom p {
-            font-size: 0.75rem;
+            font-size: 0.8rem; /* Slightly larger */
             color: #aaa;
             max-width: 900px;
             margin: 0.5rem auto;
-            line-height: 1.5;
+            line-height: 1.6; /* Adjusted line height */
         }
 
         /* --- Sticky Footer Bar --- */
@@ -556,58 +625,49 @@
             align-items: center;
             z-index: 999;
             box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease; /* Add transition */
         }
         
         .sticky-footer-bar p {
             margin: 0;
             font-weight: 500;
             color: var(--color-text-light);
+            font-size: 0.9rem; /* Adjusted size */
         }
         
         .sticky-footer-bar .btn-primary {
             background-color: var(--color-accent-gold-light);
             color: var(--color-primary-dark);
+            font-weight: 700; /* Bolder button text */
         }
         
         .sticky-footer-bar .btn-primary:hover {
             background-color: var(--color-bg-white);
+            color: var(--color-primary-dark);
         }
 
         /* --- Responsive Design --- */
         
-        /* Tablet */
         @media (max-width: 1024px) {
-            h1 { font-size: 3rem; }
-            h2 { font-size: 2.25rem; }
             section { padding: 4rem 0; }
-
             .main-header { padding: 0 1.5rem; }
-            .header-actions .btn { display: none; } /* Hide button on tablet */
+            .header-actions .btn-secondary { display: none; } /* Hide button on tablet */
             
-            .two-col-layout {
+             .two-col-layout .grid-container {
                 grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-            
-            .two-col-layout .col-text {
-                padding-right: 0;
+                gap: 2.5rem; /* Reduced gap */
             }
             
             #design .col-image {
-                order: -1; /* Reverse order for this section */
+                order: -1; /* Reverse order for design section on tablet */
             }
             
-            .amenities-grid {
-                grid-template-columns: 1fr 1fr;
+            .two-col-layout .col-text {
+                 max-width: none; /* Remove max-width */
             }
-            
-            .location-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-            
-            .why-us-grid {
-                grid-template-columns: 1fr;
-                gap: 2rem;
+
+            .two-col-layout .col-image img {
+                height: 400px; /* Adjust image height */
             }
             
             .sticky-footer-bar {
@@ -624,11 +684,10 @@
             }
         }
         
-        /* Mobile */
         @media (max-width: 768px) {
-            h1 { font-size: 2.25rem; }
-            .hero-content .subtitle { font-size: 1.1rem; }
-            
+            body { padding-top: var(--header-height); } /* Ensure padding remains */
+            .main-header { height: var(--header-height); } /* Ensure header height */
+
             .main-nav {
                 display: flex;
                 flex-direction: column;
@@ -641,15 +700,28 @@
                 padding: 2rem 1rem;
                 transform: translateX(100%);
                 transition: transform 0.3s ease-in-out;
+                overflow-y: auto; /* Allow scrolling if needed */
+                justify-content: flex-start; /* Align top */
+                gap: 0; /* Remove gap for stacked items */
             }
             
             .main-nav.nav-open {
                 transform: translateX(0);
+                box-shadow: -5px 0 15px rgba(0,0,0,0.1); /* Add shadow */
             }
             
             .main-nav a {
-                padding: 0.75rem 1rem;
+                padding: 1rem; /* Full width padding */
                 font-size: 1.25rem;
+                width: 100%; /* Full width links */
+                text-align: center;
+                border-bottom: 1px solid var(--color-border);
+            }
+            .main-nav li:last-child a {
+                 border-bottom: none;
+            }
+            .main-nav a::after {
+                 display: none; /* Hide underline on mobile */
             }
             
             .menu-toggle {
@@ -664,10 +736,6 @@
                 display: none; /* Hide main button, keep hamburger */
             }
 
-            .amenities-grid, .location-grid {
-                grid-template-columns: 1fr;
-            }
-            
             .sticky-footer-bar {
                 flex-direction: column;
                 gap: 0.75rem;
@@ -678,6 +746,10 @@
             .sticky-footer-bar p {
                 font-size: 0.75rem;
             }
+             .sticky-footer-bar .btn {
+                 width: 80%; /* Make button wider */
+                 max-width: 250px;
+             }
         }
 
     </style>
@@ -688,11 +760,13 @@
     <header class="main-header">
         <a href="#home" class="logo">PRESTIGE</a>
         <div class="header-actions">
-            <nav class="main-nav" id="mainNav">
-                <a href="#about">About</a>
-                <a href="#amenities">Amenities</a>
-                <a href="#location">Location</a>
-                <a href="#faq">FAQ</a>
+            <nav>
+                 <ul class="main-nav" id="mainNav">
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#amenities">Amenities</a></li>
+                    <li><a href="#location">Location</a></li>
+                    <li><a href="#faq">FAQ</a></li>
+                </ul>
             </nav>
             <a href="#contact" class="btn btn-secondary">Enquire Now</a>
             <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation" aria-expanded="false">
@@ -716,26 +790,26 @@
         </section>
 
         <!-- About Section -->
-        <section id="about" class="two-col-layout bg-light fade-in">
-            <div class="container">
-                <div class="col-text">
+        <section id="about" class="two-col-layout bg-light">
+            <div class="container grid-container">
+                <div class="col-text fade-in">
                     <h2>DISCOVER A LIFESTYLE CURATED FOR A SELECT FEW</h2>
                     <p>Over 75 acres of pristine landscape, where only 290 exclusive families will have the key to this private paradise. This community is more than a home; it's a statement of your legacy, a sanctuary of privacy and luxury nestled within the vibrant heart of the city.</p>
                     <a href="#contact" class="btn btn-primary">Learn More</a>
                 </div>
-                <div class="col-image">
-                    <img src="https://source.unsplash.com/600x500/?luxury,villa,exterior" alt="Elegant villa exterior with a garden" loading="lazy">
+                <div class="col-image fade-in">
+                    <img src="https://images.unsplash.com/photo-1618220179428-22790b461013?ixlib=rb-4.1.0" alt="Elegant villa exterior with lush green garden" loading="lazy">
                 </div>
             </div>
         </section>
 
         <!-- Design Section -->
-        <section id="design" class="two-col-layout fade-in">
-            <div class="container">
-                <div class="col-image">
-                    <img src="https://source.unsplash.com/600x500/?modern,interior,livingroom" alt="Spacious and modern villa interior" loading="lazy">
+        <section id="design" class="two-col-layout">
+            <div class="container grid-container">
+                <div class="col-image fade-in">
+                    <img src="https://plus.unsplash.com/premium_photo-1686090449192-4ab1d00cb735?ixlib=rb-4.1.0" alt="Spacious and modern villa interior living room" loading="lazy">
                 </div>
-                <div class="col-text">
+                <div class="col-text fade-in">
                     <h2>A RESIDENCE DESIGNED AROUND YOU</h2>
                     <p>Each villa is a masterpiece of design, offering expansive living spaces that flow seamlessly into your own private garden and a spacious terrace. Finished with the finest imported marble, premium fittings, and smart home features, your home is crafted for timeless elegance.</p>
                     <ul class="feature-list">
@@ -748,36 +822,40 @@
         </section>
 
         <!-- Amenities Section -->
-        <section id="amenities" class="grid-section fade-in">
+        <section id="amenities" class="grid-section">
             <div class="container">
-                <div class="section-header">
+                <div class="section-header fade-in">
                     <span class="subtitle">A WORLD OF PRIVILEGE</span>
                     <h2>A WEALTH OF AMENITIES</h2>
                     <p>From the 50,000 sq. ft. grand clubhouse to serene tree-lined walkways, every amenity is designed to enrich your life. Enjoy exclusive access to sports, wellness, and leisure, all within your private gated community.</p>
                 </div>
                 <div class="amenities-grid">
-                    <div class="grid-item">
-                        <img src="https://source.unsplash.com/400x300/?clubhouse" alt="Grand Clubhouse Entrance" loading="lazy">
+                    <div class="grid-item fade-in">
+                        <img src="https://images.unsplash.com/photo-1516156008625-3a9d6067fab5?ixlib=rb-4.1.0" alt="Grand Clubhouse Entrance or Interior" loading="lazy">
                         <div class="grid-item-caption"><h4>GRAND CLUBHOUSE</h4></div>
                     </div>
-                    <div class="grid-item">
-                        <img src="https://source.unsplash.com/400x300/?luxury,pool" alt="Infinity swimming pool at dusk" loading="lazy">
+                    <div class="grid-item fade-in">
+                        <img src="https://plus.unsplash.com/premium_photo-1687960116957-ab813e1e66e6?ixlib=rb-4.1.0" alt="Luxury infinity swimming pool at dusk" loading="lazy">
                         <div class="grid-item-caption"><h4>SWIMMING POOL</h4></div>
                     </div>
-                    <div class="grid-item">
-                        <img src="https://source.unsplash.com/400x300/?tennis,court" alt="Padel tennis court" loading="lazy">
+                    <div class="grid-item fade-in">
+                        <!-- Placeholder relevant image -->
+                        <img src="https://images.unsplash.com/photo-1558981082-c7d43331cd8c?ixlib=rb-4.1.0" alt="Tennis court or sports facility" loading="lazy">
                         <div class="grid-item-caption"><h4>TENNIS COURT</h4></div>
                     </div>
-                    <div class="grid-item">
-                        <img src="https://source.unsplash.com/400x300/?park,walkway" alt="Tree-lined walkway with benches" loading="lazy">
+                    <div class="grid-item fade-in">
+                         <!-- Placeholder relevant image -->
+                        <img src="https://images.unsplash.com/photo-1502005229762-cf1b2da7c5d6?ixlib=rb-4.1.0" alt="Tree-lined walkway with benches in a park" loading="lazy">
                         <div class="grid-item-caption"><h4>TREE-LINED WALKWAY</h4></div>
                     </div>
-                    <div class="grid-item">
-                        <img src="https://source.unsplash.com/400x300/?outdoor,dining" alt="Outdoor al fresco dining area" loading="lazy">
+                    <div class="grid-item fade-in">
+                         <!-- Placeholder relevant image -->
+                        <img src="https://images.unsplash.com/photo-1605266764154-0ff8f354088c?ixlib=rb-4.1.0" alt="Outdoor al fresco dining area" loading="lazy">
                         <div class="grid-item-caption"><h4>AL FRESCO DINING</h4></div>
                     </div>
-                    <div class="grid-item">
-                        <img src="https://source.unsplash.com/400x300/?playground" alt="Children's adventure play area" loading="lazy">
+                    <div class="grid-item fade-in">
+                         <!-- Placeholder relevant image -->
+                        <img src="https://images.unsplash.com/photo-1605146769289-440113cc3d00?ixlib=rb-4.1.0" alt="Children's adventure play area or bedroom" loading="lazy">
                         <div class="grid-item-caption"><h4>KIDS' PLAY AREA</h4></div>
                     </div>
                 </div>
@@ -785,28 +863,32 @@
         </section>
         
         <!-- Location Section -->
-        <section id="location" class="grid-section bg-light fade-in">
+        <section id="location" class="grid-section bg-light">
             <div class="container">
-                <div class="section-header">
+                <div class="section-header fade-in">
                     <span class="subtitle">AT THE HEART OF THE CITY</span>
                     <h2>EXPLORE THE NEIGHBOURHOOD</h2>
                     <p>Located in the city's most premium district, you are steps away from a world of convenience. Everything you need, from schools to high-street retail, is right at your doorstep.</p>
                 </div>
                 <div class="location-grid">
-                    <div class="grid-item">
-                        <img src="https://source.unsplash.com/300x250/?modern,park" alt="City Lakeside Park" loading="lazy">
+                    <div class="grid-item fade-in">
+                        <!-- Placeholder relevant image -->
+                        <img src="https://images.unsplash.com/photo-1626374295803-a333cfeca51b?ixlib=rb-4.1.0" alt="City park or green space" loading="lazy">
                         <div class="grid-item-caption"><h4>LAKESIDE PARK</h4></div>
                     </div>
-                    <div class="grid-item">
-                        <img src="https://source.unsplash.com/300x250/?luxury,retail" alt="High-street retail shops" loading="lazy">
+                    <div class="grid-item fade-in">
+                         <!-- Placeholder relevant image -->
+                        <img src="https://images.unsplash.com/photo-1556784344-ad913c73cfc4?ixlib=rb-4.1.0" alt="High-street retail shops or kitchen detail" loading="lazy">
                         <div class="grid-item-caption"><h4>HIGH-STREET RETAIL</h4></div>
                     </div>
-                    <div class="grid-item">
-                        <img src="https://source.unsplash.com/300x250/?modern,school" alt="The Universal School building" loading="lazy">
+                    <div class="grid-item fade-in">
+                         <!-- Placeholder relevant image -->
+                        <img src="https://images.unsplash.com/photo-1585128792020-803d29415281?ixlib=rb-4.1.0" alt="Modern school building facade" loading="lazy">
                         <div class="grid-item-caption"><h4>PREMIER SCHOOLS</h4></div>
                     </div>
-                    <div class="grid-item">
-                        <img src="https://source.unsplash.com/300x250/?sports,center" alt="Olympic Sports Centre" loading="lazy">
+                    <div class="grid-item fade-in">
+                         <!-- Placeholder relevant image -->
+                        <img src="https://images.unsplash.com/photo-1606744837616-56c9a5c6a6eb?ixlib=rb-4.1.0" alt="Sports centre or interior detail" loading="lazy">
                         <div class="grid-item-caption"><h4>OLYMPIC SPORTS CENTRE</h4></div>
                     </div>
                 </div>
@@ -814,24 +896,24 @@
         </section>
 
         <!-- Why Us Section -->
-        <section id="why-us" class="fade-in">
+        <section id="why-us">
             <div class="container">
-                <div class="section-header">
+                <div class="section-header fade-in">
                     <span class="subtitle">THE PRESTIGE PROMISE</span>
                     <h2>WHY CHOOSE US?</h2>
                 </div>
                 <div class="why-us-grid">
-                    <div class="why-us-item">
+                    <div class="why-us-item fade-in">
                         <div class="icon">🏛️</div>
                         <h3>A LIFESTYLE ROOTED IN LEGACY</h3>
                         <p>Join a community of like-minded individuals in a home that's built to last for generations.</p>
                     </div>
-                    <div class="why-us-item">
+                    <div class="why-us-item fade-in">
                         <div class="icon">🛎️</div>
                         <h3>PREMIUM HOSPITALITY</h3>
                         <p>Experience 5-star services with 24/7 concierge, housekeeping, and in-villa dining available.</p>
                     </div>
-                    <div class="why-us-item">
+                    <div class="why-us-item fade-in">
                         <div class="icon">🏆</div>
                         <h3>AWARD-WINNING DEVELOPER</h3>
                         <p>Trust in a legacy of delivering the world's finest developments and iconic landmarks.</p>
@@ -841,13 +923,13 @@
         </section>
 
         <!-- FAQ Section -->
-        <section id="faq" class="bg-light fade-in">
+        <section id="faq" class="bg-light">
             <div class="container">
-                <div class="section-header">
+                <div class="section-header fade-in">
                     <span class="subtitle">HAVE QUESTIONS?</span>
                     <h2>MOST COMMON QUERIES</h2>
                 </div>
-                <div class="faq-container">
+                <div class="faq-container fade-in">
                     <div class="faq-item">
                         <button class="faq-header" aria-expanded="false">
                             <h4>What are the configurations available?</h4>
@@ -911,7 +993,7 @@
     
     <!-- Sticky Footer Bar -->
     <div class="sticky-footer-bar">
-        <p>LIMITED LAUNCH OFFER: PAY 25% NOW, 75% ON POSSESSION</p>
+        <p>LIMITED OFFER: PAY 25% NOW, 75% ON POSSESSION</p>
         <a href="#contact" class="btn btn-primary">Enquire Now</a>
     </div>
 
@@ -922,38 +1004,54 @@
             // --- Mobile Menu Toggle ---
             const menuToggle = document.getElementById('menuToggle');
             const mainNav = document.getElementById('mainNav');
+            const navLinks = mainNav.querySelectorAll('a'); // Get links inside nav
             
             if (menuToggle && mainNav) {
                 menuToggle.addEventListener('click', () => {
-                    mainNav.classList.toggle('nav-open');
+                    const isOpen = mainNav.classList.toggle('nav-open');
                     menuToggle.classList.toggle('nav-open');
-                    const isExpanded = mainNav.classList.contains('nav-open');
-                    menuToggle.setAttribute('aria-expanded', isExpanded);
+                    menuToggle.setAttribute('aria-expanded', isOpen);
+                     // Toggle body scroll
+                    document.body.style.overflow = isOpen ? 'hidden' : '';
+                });
+
+                // Close menu when a link is clicked
+                navLinks.forEach(link => {
+                    link.addEventListener('click', () => {
+                        if (mainNav.classList.contains('nav-open')) {
+                            mainNav.classList.remove('nav-open');
+                            menuToggle.classList.remove('nav-open');
+                            menuToggle.setAttribute('aria-expanded', 'false');
+                            document.body.style.overflow = ''; // Restore scroll
+                        }
+                    });
                 });
             }
             
             // --- Smooth Scroll with Header Offset ---
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 anchor.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    const targetId = this.getAttribute('href');
-                    const targetElement = document.querySelector(targetId);
+                    // Don't prevent default if it's not a nav link inside the mobile menu
+                    // or if it's not one of the main smooth scroll links
+                    const isMobileNavLink = this.closest('#mainNav.nav-open');
+                    const isSmoothScrollLink = ['#home', '#about', '#amenities', '#location', '#faq', '#contact', '#design', '#why-us'].includes(this.getAttribute('href'));
 
-                    if (targetElement) {
-                        const headerOffset = 80; // From :root --header-height
-                        const elementPosition = targetElement.getBoundingClientRect().top;
-                        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                    if (isMobileNavLink || isSmoothScrollLink) {
+                         e.preventDefault();
+                         const targetId = this.getAttribute('href');
+                         const targetElement = document.querySelector(targetId);
 
-                        window.scrollTo({
-                            top: offsetPosition,
-                            behavior: "smooth"
-                        });
+                        if (targetElement) {
+                            const headerOffset = 80; // From :root --header-height
+                            const elementPosition = targetElement.getBoundingClientRect().top;
+                            const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
 
-                        // Close mobile nav if open
-                        if (mainNav.classList.contains('nav-open')) {
-                            mainNav.classList.remove('nav-open');
-                            menuToggle.classList.remove('nav-open');
-                            menuToggle.setAttribute('aria-expanded', 'false');
+                            window.scrollTo({
+                                top: offsetPosition,
+                                behavior: "smooth"
+                            });
+
+                            // Close mobile nav if it was open (handled by link click listener above)
                         }
                     }
                 });
@@ -970,10 +1068,21 @@
                     header.addEventListener('click', () => {
                         const isActive = item.classList.contains('active');
 
+                        // Optional: Close others
+                        faqItems.forEach(otherItem => {
+                             if (otherItem !== item && otherItem.classList.contains('active')) {
+                                otherItem.classList.remove('active');
+                                otherItem.querySelector('.faq-content').style.maxHeight = null;
+                                otherItem.querySelector('.faq-toggle').textContent = '+';
+                                otherItem.querySelector('.faq-header').setAttribute('aria-expanded', 'false');
+                             }
+                        });
+
+                        // Toggle clicked item
                         if (!isActive) {
                             item.classList.add('active');
                             content.style.maxHeight = content.scrollHeight + 'px';
-                            toggle.textContent = '–'; // Use an en-dash
+                            toggle.textContent = '–'; // Use en-dash or minus
                             header.setAttribute('aria-expanded', 'true');
                         } else {
                             item.classList.remove('active');
@@ -988,8 +1097,8 @@
             // --- Fade-in on Scroll ---
             const faders = document.querySelectorAll('.fade-in');
             const appearOptions = {
-                threshold: 0.1,
-                rootMargin: "0px 0px -50px 0px"
+                threshold: 0.1, // Trigger earlier
+                rootMargin: "0px 0px -50px 0px" // Adjust margin if needed
             };
 
             const appearOnScroll = new IntersectionObserver(function(

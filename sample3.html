@@ -135,6 +135,7 @@
             height: var(--top-header-height);
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
             padding: 0 1.5rem;
             justify-content: space-between;
             align-items: center;
@@ -155,6 +156,7 @@
             border: none;
             cursor: pointer;
             z-index: 1001;
+            padding: 10px; /* Larger tap area */
         }
 
         .menu-toggle .bar {
@@ -215,6 +217,11 @@
             font-size: 1.75rem;
             font-weight: 600;
             font-family: var(--font-heading);
+            transition: color 0.3s ease;
+        }
+        
+        .mobile-nav a:hover {
+            color: var(--color-accent);
         }
         
         .mobile-nav .btn {
@@ -318,7 +325,8 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: url('https://source.unsplash.com/1920x1080/?nature,villa,modern');
+            /* REPLACED IMAGE */
+            background-image: url('https://plus.unsplash.com/premium_photo-1687960117069-567a456fe5f3?ixlib=rb-4.1.0&fit=crop&w=1920&h=1080&q=80');
             background-size: cover;
             background-position: center;
             z-index: -2;
@@ -331,7 +339,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(to top, rgba(0, 0, 0, 0.6), transparent);
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.6), transparent 60%);
             z-index: -1;
         }
 
@@ -383,6 +391,10 @@
             overflow: hidden;
             border-radius: 8px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: box-shadow 0.3s ease;
+        }
+        .gallery-item:hover {
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
         }
         .gallery-item img {
             width: 100%;
@@ -444,18 +456,20 @@
         .location-map {
             width: 100%;
             height: 450px;
-            background-color: #e9e9e9;
             border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #888;
-            font-style: italic;
+            overflow: hidden; /* To contain the image's border radius */
+            background-color: var(--color-border);
+        }
+        .location-map img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
         .location-list li {
             margin-bottom: 0.75rem;
             font-weight: 500;
             list-style-position: inside;
+            color: #444;
         }
 
         /* Contact Section (Footer) */
@@ -490,6 +504,13 @@
             color: var(--color-text-light);
             font-family: var(--font-body);
             font-size: 1rem;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--color-accent);
+            box-shadow: 0 0 0 2px rgba(192, 160, 128, 0.3);
         }
         .form-group textarea {
             resize: vertical;
@@ -513,6 +534,7 @@
             color: #aaa;
             font-size: 0.8rem;
             margin: 0.25rem 0;
+            line-height: 1.5;
         }
 
         /* --- Responsive Design --- */
@@ -523,19 +545,19 @@
                 margin-right: 0;
             }
             .sidebar-nav {
-                transform: translateX(100%);
+                transform: translateX(100%); /* Hide desktop sidebar */
             }
             .top-header {
-                display: flex;
+                display: flex; /* Show mobile header */
             }
             body {
-                padding-top: var(--top-header-height);
+                padding-top: var(--top-header-height); /* Offset for fixed mobile header */
             }
             #home {
                 height: 70vh;
                 min-height: 500px;
                 padding: 2rem;
-                padding-top: var(--top-header-height);
+                padding-top: 0; /* Body padding handles offset */
                 align-items: center; /* Center content more on mobile */
                 text-align: center;
             }
@@ -563,7 +585,8 @@
             }
             /* Reverse order for visual flow */
             #details .two-col-layout img {
-                order: -1;
+                order: -1; /* Image comes first */
+                margin-bottom: 2rem;
             }
             
             .gallery-grid {
@@ -663,13 +686,16 @@
                 <h2>Project Gallery</h2>
                 <div class="gallery-grid">
                     <div class="gallery-item">
-                        <img src="https://source.unsplash.com/400x300/?nature,villa,architecture" alt="Modern villa in a natural setting" loading="lazy">
+                        <!-- REPLACED IMAGE -->
+                        <img src="https://images.unsplash.com/photo-1618220179428-22790b461013?ixlib=rb-4.1.0&fit=crop&w=400&h=300&q=80" alt="Modern villa interior" loading="lazy">
                     </div>
                     <div class="gallery-item">
-                        <img src="https://source.unsplash.com/400x300/?serene,lake,nature" alt="Serene lake view from the property" loading="lazy">
+                        <!-- REPLACED IMAGE -->
+                        <img src="https://images.unsplash.com/photo-1585128792020-803d29415281?ixlib=rb-4.1.0&fit=crop&w=400&h=300&q=80" alt="Serene lake view from the property" loading="lazy">
                     </div>
                     <div class="gallery-item">
-                        <img src="https://source.unsplash.com/400x300/?modern,villa,exterior" alt="Exterior of a modern luxury villa" loading="lazy">
+                        <!-- REPLACED IMAGE -->
+                        <img src="https://images.unsplash.com/photo-1605146769289-440113cc3d00?ixlib=rb-4.1.0&fit=crop&w=400&h=300&q=80" alt="Exterior of a modern luxury villa" loading="lazy">
                     </div>
                 </div>
             </div>
@@ -686,7 +712,8 @@
                         <p>Each plot is thoughtfully planned to offer stunning views and ample green space, providing the perfect canvas for your architectural masterpiece.</p>
                     </div>
                     <div>
-                        <img src="https://source.unsplash.com/500x500/?architecture,design,villa" alt="Architectural design of a villa" loading="lazy">
+                        <!-- REPLACED IMAGE -->
+                        <img src="https://images.unsplash.com/photo-1631679706909-1844bbd07221?ixlib=rb-4.1.0&fit=crop&w=500&h=500&q=80" alt="Luxury architectural design of a villa interior" loading="lazy">
                     </div>
                 </div>
             </div>
@@ -747,8 +774,9 @@
                         </ul>
                         <a href="#contact" class="btn btn-primary" style="margin-top: 1rem;">Schedule a Visit</a>
                     </div>
+                    <!-- REPLACED PLACEHOLDER -->
                     <div class="location-map">
-                        <span>[ Placeholder for Map ]</span>
+                        <img src="https://images.unsplash.com/photo-1483097365279-e8acd3bf9f18?ixlib=rb-4.1.0&fit=crop&w=600&h=450&q=80" alt="Nature trail map placeholder" loading="lazy">
                     </div>
                 </div>
             </div>
@@ -758,7 +786,7 @@
         <section id="contact" class="content-section">
             <div class="container fade-in">
                 <h2>Enquire Now</h2>
-                <form class="contact-form">
+                <form class="contact-form" onsubmit="event.preventDefault(); alert('Form submitted (mockup)!');">
                     <div class="form-group">
                         <input type="text" id="name" name="name" placeholder="Your Name" required>
                     </div>
@@ -793,13 +821,15 @@
             const menuToggle = document.getElementById('menuToggle');
             const mobileNav = document.getElementById('mobileNav');
             const mobileNavLinks = mobileNav.querySelectorAll('a');
+            const body = document.body;
 
             if (menuToggle && mobileNav) {
                 menuToggle.addEventListener('click', () => {
-                    mobileNav.classList.toggle('open');
+                    const isOpen = mobileNav.classList.toggle('open');
                     menuToggle.classList.toggle('open');
-                    const isExpanded = mobileNav.classList.contains('open');
-                    menuToggle.setAttribute('aria-expanded', isExpanded);
+                    menuToggle.setAttribute('aria-expanded', isOpen);
+                    // Prevent body scrolling when mobile nav is open
+                    body.style.overflow = isOpen ? 'hidden' : '';
                 });
             }
             
@@ -809,6 +839,7 @@
                     mobileNav.classList.remove('open');
                     menuToggle.classList.remove('open');
                     menuToggle.setAttribute('aria-expanded', 'false');
+                    body.style.overflow = ''; // Re-enable scrolling
                 });
             });
 
@@ -822,7 +853,7 @@
 
                     if (targetElement) {
                         let headerOffset = 0;
-                        // Check if mobile header is active
+                        // Check if mobile header is active (matches @media max-width: 1200px)
                         if (window.innerWidth <= 1200) {
                             headerOffset = 70; // From :root --top-header-height
                         }
@@ -843,27 +874,28 @@
             const sections = document.querySelectorAll('section[id]');
             const navLinks = document.querySelectorAll('.sidebar-nav-links a');
 
-            const observerOptions = {
-                root: null,
-                rootMargin: "-30% 0px -60% 0px", // Triggers when section is in the middle 40% of viewport
-                threshold: 0
-            };
+            // Only run observer if desktop nav exists and is visible
+            if (navLinks.length > 0 && window.innerWidth > 1200) {
+                const observerOptions = {
+                    root: null,
+                    rootMargin: "-30% 0px -60% 0px", // Triggers when section is in the middle 40% of viewport
+                    threshold: 0
+                };
 
-            const sectionObserver = new IntersectionObserver((entries, observer) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const id = entry.target.getAttribute('id');
-                        const activeLink = document.querySelector(`.sidebar-nav-links a[href="#${id}"]`);
-                        
-                        navLinks.forEach(link => link.classList.remove('active'));
-                        if (activeLink) {
-                            activeLink.classList.add('active');
+                const sectionObserver = new IntersectionObserver((entries, observer) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const id = entry.target.getAttribute('id');
+                            const activeLink = document.querySelector(`.sidebar-nav-links a[href="#${id}"]`);
+                            
+                            navLinks.forEach(link => link.classList.remove('active'));
+                            if (activeLink) {
+                                activeLink.classList.add('active');
+                            }
                         }
-                    }
-                });
-            }, observerOptions);
+                    });
+                }, observerOptions);
 
-            if (navLinks.length > 0) { // Only run observer if desktop nav exists
                 sections.forEach(section => {
                     sectionObserver.observe(section);
                 });

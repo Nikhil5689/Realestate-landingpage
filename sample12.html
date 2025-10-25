@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Astral Residences | Super Premium 2 & 3 Bed Homes</title>
     
+    <!-- Preconnect to image domains for faster loading -->
+    <link rel="preconnect" href="https://images.unsplash.com">
+    <link rel="preconnect" href="https://plus.unsplash.com">
+
     <!-- Google Fonts Import -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -27,6 +31,11 @@
             --color-bg-light: #edf2f7;      /* Lighter Grey Background */
             --transition-main: all 0.3s ease-in-out;
             --container-width: 1140px;
+            --border-radius-main: 8px;
+            --border-radius-small: 6px; /* Consistent rounding */
+            --shadow-light: 0 5px 15px rgba(0,0,0,0.05);
+            --shadow-medium: 0 8px 25px rgba(26, 32, 44, 0.08); /* Darker shadow base */
+            --shadow-accent: 0 4px 15px rgba(236, 201, 75, 0.3); /* Gold shadow for buttons */
         }
 
         * {
@@ -47,6 +56,8 @@
             line-height: 1.6;
             overflow-x: hidden;
             padding-top: 75px; /* Space for fixed header */
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
         /* Utility Classes */
@@ -62,10 +73,10 @@
             font-family: var(--font-heading);
             font-weight: 600;
             text-decoration: none;
-            border-radius: 6px; /* Slightly rounded */
+            border-radius: var(--border-radius-small);
             transition: var(--transition-main);
             cursor: pointer;
-            border: 1px solid transparent;
+            border: 2px solid transparent; /* Increased border thickness for outlines */
             text-align: center;
             text-transform: uppercase;
             font-size: 0.875rem;
@@ -82,29 +93,31 @@
         .btn-primary:hover {
             background-color: var(--color-accent-dark);
             border-color: var(--color-accent-dark);
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-accent);
         }
         
         .btn-outline {
             background-color: transparent;
             color: var(--color-primary-dark);
-            border: 2px solid var(--color-primary-dark);
+            border-color: var(--color-primary-dark);
         }
         
         .btn-outline:hover {
             background-color: var(--color-primary-dark);
             color: var(--color-text-light);
+            transform: translateY(-3px);
         }
         
         .btn-light-outline {
              background-color: transparent;
             color: var(--color-text-light);
-            border: 2px solid var(--color-text-light);
+            border-color: var(--color-text-light);
         }
         .btn-light-outline:hover {
             background-color: var(--color-text-light);
             color: var(--color-primary-dark);
+            transform: translateY(-3px);
         }
 
 
@@ -125,6 +138,10 @@
             font-size: 1rem;
             color: var(--color-text-medium);
         }
+        
+        p:last-of-type {
+            margin-bottom: 0;
+        }
 
         .section-subtitle {
             text-align: center;
@@ -139,7 +156,7 @@
             max-width: 100%;
             height: auto;
             display: block;
-            border-radius: 8px;
+            border-radius: var(--border-radius-main);
         }
         
         /* Section Styling */
@@ -182,9 +199,10 @@
             padding: 1rem 0;
             background: rgba(255, 255, 255, 0.97); /* Slightly less transparent */
             backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
             border-bottom: 1px solid var(--color-border);
             z-index: 1000;
-            transition: padding 0.3s ease;
+            transition: padding 0.3s ease, box-shadow 0.3s ease;
         }
 
         .nav-container {
@@ -272,12 +290,23 @@
             min-height: 90vh;
             display: flex;
             align-items: center;
+            justify-content: center; /* Center content */
             position: relative;
-            background: linear-gradient(rgba(26, 32, 44, 0.7), rgba(26, 32, 44, 0.7)), url('https://source.unsplash.com/1800x1000/?luxury,apartment,cityscape,night') no-repeat center center/cover;
+            background-size: cover;
+            background-position: center center;
+            background-repeat: no-repeat;
             color: var(--color-text-light);
         }
         
+        .hero-section::after { /* Overlay */
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(rgba(26, 32, 44, 0.7), rgba(26, 32, 44, 0.7));
+        }
+        
         .hero-content {
+            position: relative; /* Ensure content is above overlay */
             z-index: 2;
             text-align: center;
             max-width: 800px;
@@ -330,6 +359,12 @@
             gap: 2rem;
             text-align: center;
         }
+        .feature-item {
+             transition: var(--transition-main);
+        }
+        .feature-item:hover {
+            transform: translateY(-5px);
+        }
         .feature-item .icon {
              width: 45px;
              height: 45px;
@@ -361,7 +396,7 @@
         .developer-stats {
             background: var(--color-bg-light);
             padding: 2.5rem;
-            border-radius: 8px;
+            border-radius: var(--border-radius-main);
             border: 1px solid var(--color-border);
         }
         .stat-item {
@@ -377,10 +412,12 @@
             color: var(--color-accent);
             line-height: 1.1;
             margin-bottom: 0.25rem;
+            display: block; /* Ensure block display for counter */
         }
         .stat-item .value sup {
              font-size: 1.5rem;
              margin-left: 2px;
+             vertical-align: super;
         }
         .stat-item .label {
             font-size: 1rem;
@@ -389,6 +426,10 @@
         }
         .developer-info h2 {
              text-align: left;
+             margin-bottom: 1.5rem;
+        }
+        .developer-info p:last-of-type {
+            margin-bottom: 2rem;
         }
 
         /* --- Configurations Section --- */
@@ -402,16 +443,22 @@
         }
         .config-card {
             border: 1px solid var(--color-border);
-            border-radius: 8px;
+            border-radius: var(--border-radius-main);
             overflow: hidden;
             background: var(--color-bg-white);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.05);
+            box-shadow: var(--shadow-light);
+            transition: var(--transition-main);
+        }
+        .config-card:hover {
+             transform: translateY(-8px);
+             box-shadow: var(--shadow-medium);
         }
         .config-card img {
             width: 100%;
             height: 300px;
             object-fit: cover;
-            border-radius: 8px 8px 0 0;
+            border-radius: var(--border-radius-main) var(--border-radius-main) 0 0;
+            border-bottom: 1px solid var(--color-border);
         }
         .config-card-content {
             padding: 2rem;
@@ -424,6 +471,10 @@
              color: var(--color-primary-medium);
              margin-bottom: 1.5rem;
              display: block;
+             font-weight: 500;
+        }
+        .config-card-content p {
+            margin-bottom: 2rem;
         }
 
         /* --- Amenities Section --- */
@@ -437,12 +488,22 @@
             align-items: center;
         }
         .amenities-image img {
-             box-shadow: 0 15px 35px rgba(42, 61, 69, 0.1);
+             box-shadow: var(--shadow-medium);
+             transition: var(--transition-main);
+        }
+         .amenities-image img:hover {
+            transform: scale(1.02);
+            box-shadow: 0 15px 35px rgba(42, 61, 69, 0.12);
+        }
+        .amenities-content h2 {
+            text-align: left;
+            margin-bottom: 1.5rem;
         }
         .amenities-list {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 1.5rem;
+            margin-top: 2rem; /* Added margin */
         }
         .amenity-list-item {
             display: flex;
@@ -450,8 +511,14 @@
             gap: 1rem;
             background: var(--color-bg-light);
             padding: 1rem;
-            border-radius: 6px;
+            border-radius: var(--border-radius-small);
             border: 1px solid var(--color-border);
+            transition: var(--transition-main);
+        }
+        .amenity-list-item:hover {
+            transform: translateX(5px);
+            background-color: var(--color-bg-white);
+            border-color: var(--color-accent);
         }
         .amenity-list-item .icon {
              width: 30px;
@@ -475,6 +542,15 @@
         }
         .neighbourhood-card {
             text-align: center;
+            background: var(--color-bg-white);
+            padding: 2rem;
+            border-radius: var(--border-radius-main);
+            border: 1px solid var(--color-border);
+            transition: var(--transition-main);
+        }
+        .neighbourhood-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-medium);
         }
         .neighbourhood-card .icon {
              width: 60px;
@@ -496,7 +572,6 @@
         /* --- Gallery Section --- */
         #gallery {
             padding: 6rem 0;
-            background-color: var(--color-bg-light);
         }
         .gallery-grid {
             display: grid;
@@ -507,9 +582,9 @@
             position: relative;
             height: 350px;
             overflow: hidden;
-            border-radius: 8px;
+            border-radius: var(--border-radius-main);
             cursor: pointer;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            box-shadow: var(--shadow-medium);
         }
         .gallery-item img {
             width: 100%;
@@ -529,13 +604,17 @@
         .contact-container {
             max-width: 700px;
             margin: 0 auto;
-            background: var(--color-bg-light);
+            background: var(--color-bg-white);
             padding: 3rem;
-            border-radius: 8px;
+            border-radius: var(--border-radius-main);
             box-shadow: 0 10px 30px rgba(0,0,0,0.07);
+            border: 1px solid var(--color-border);
         }
         .contact-container h2 {
             text-align: center;
+        }
+        .contact-container .section-subtitle {
+             margin-bottom: 2.5rem; /* Increased margin */
         }
         .contact-form {
             display: flex;
@@ -549,22 +628,45 @@
         .form-group input,
         .form-group textarea {
             width: 100%;
-            padding: 0.85rem 1rem;
+            padding: 0.95rem 1rem; /* Increased padding */
             border: 1px solid var(--color-border);
-            border-radius: 4px;
+            border-radius: var(--border-radius-small);
             font-family: var(--font-body);
             font-size: 1rem;
             background: var(--color-bg-white);
+            transition: var(--transition-main);
         }
         .form-group input:focus,
         .form-group textarea:focus {
             outline: none;
             border-color: var(--color-accent);
-            box-shadow: 0 0 0 2px rgba(236, 201, 75, 0.3);
+            box-shadow: 0 0 0 3px rgba(236, 201, 75, 0.3);
         }
         .contact-form .btn-primary {
             font-size: 1rem;
             padding: 1rem;
+            margin-top: 0.5rem; /* Added margin */
+        }
+        
+        #form-success-message {
+            display: none;
+            text-align: center;
+            padding: 1rem;
+            margin-top: 1.5rem;
+            background-color: #e6f7ec;
+            color: #004d1a;
+            border: 1px solid #b3e6c7;
+            border-radius: var(--border-radius-small);
+        }
+        
+        #form-success-message.visible {
+            display: block;
+            animation: fadeInContent 0.5s ease;
+        }
+        
+        @keyframes fadeInContent {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
 
         /* --- Footer --- */
@@ -606,14 +708,20 @@
             color: #a0aec0;
             transition: var(--transition-main);
         }
-        .footer-widget a:hover { color: var(--color-accent); }
+        .footer-widget a:hover { 
+            color: var(--color-accent); 
+            padding-left: 5px; /* Subtle hover effect */
+        }
         .footer-widget .contact-item {
             display: block;
             color: #a0aec0;
             margin-bottom: 0.75rem;
             font-size: 0.9rem;
         }
-        .footer-bottom { text-align: center; }
+        .footer-bottom { 
+            text-align: center; 
+            padding-top: 2rem; /* Added padding */
+        }
         .footer-bottom p {
             color: #718096; /* Darker grey for copyright */
             margin: 0;
@@ -637,7 +745,11 @@
             .features-grid { grid-template-columns: 1fr; gap: 2rem; }
             
             .developer-grid { grid-template-columns: 1fr; gap: 3rem; }
-            .developer-stats { display: grid; grid-template-columns: 1fr 1fr 1fr; }
+            .developer-stats { 
+                display: grid; 
+                grid-template-columns: repeat(3, 1fr); 
+                gap: 1rem; 
+            }
             .stat-item { margin-bottom: 0; }
             .stat-item .value { font-size: 2.5rem; }
             .stat-item .value sup { font-size: 1.25rem; }
@@ -678,12 +790,16 @@
                 gap: 0;
             }
             .main-nav a {
-                padding: 1rem 0;
+                padding: 1rem;
                 width: 100%;
                 border-bottom: 1px solid var(--color-border);
             }
             .main-nav a:last-child { border-bottom: none; }
             .main-nav .nav-links a::after { display: none; }
+             .main-nav .nav-links a:hover {
+                background: var(--color-bg-light);
+                color: var(--color-accent);
+            }
             .main-nav .btn { display: block; margin-top: 1.5rem; width: 100%; }
             .menu-toggle { display: block; }
             
@@ -696,6 +812,15 @@
             .amenities-list { grid-template-columns: 1fr; }
             .neighbourhood-grid { grid-template-columns: 1fr; }
             .contact-container { padding: 2rem 1.5rem; }
+        }
+        
+        @media (max-width: 480px) {
+            .developer-grid { gap: 2rem; }
+            .developer-info p:last-of-type { margin-bottom: 1.5rem; }
+            .config-grid { gap: 1.5rem; }
+            .config-card-content { padding: 1.5rem; }
+            .amenities-layout { gap: 2rem; }
+            .neighbourhood-grid { gap: 1.5rem; }
         }
 
     </style>
@@ -765,15 +890,15 @@
             <div class="container developer-grid">
                 <div class="developer-stats">
                     <div class="stat-item">
-                        <div class="value">50<sup>+</sup></div>
+                        <div class="value counter" data-target="50" data-suffix="+">0<sup>+</sup></div>
                         <div class="label">Years of Legacy</div>
                     </div>
                     <div class="stat-item">
-                        <div class="value">36M<sup>+</sup></div>
+                         <div class="value counter" data-target="36" data-suffix="M+">0<sup>M+</sup></div>
                         <div class="label">Sq. Ft. Delivered</div>
                     </div>
                     <div class="stat-item">
-                        <div class="value">30K<sup>+</sup></div>
+                         <div class="value counter" data-target="30" data-suffix="K+">0<sup>K+</sup></div>
                         <div class="label">Happy Families</div>
                     </div>
                 </div>
@@ -793,7 +918,8 @@
                 <p class="section-subtitle fade-in">Choose from meticulously designed 2 and 3 Bed homes, each featuring a private balcony offering stunning views.</p>
                 <div class="config-grid">
                     <div class="config-card fade-in">
-                        <img src="https://source.unsplash.com/600x400/?luxury,apartment,interior,2bhk" alt="Interior of a 2 Bed Residence" loading="lazy">
+                        <!-- Image replaced -->
+                        <img src="" alt="Interior of a 2 Bed Residence" loading="lazy">
                         <div class="config-card-content">
                             <h3>2 Bed Residences</h3>
                             <span class="features">Spacious Layout | Private Balcony | Modern Kitchen</span>
@@ -802,7 +928,8 @@
                         </div>
                     </div>
                     <div class="config-card fade-in">
-                        <img src="https://source.unsplash.com/600x400/?luxury,apartment,interior,3bhk" alt="Interior of a 3 Bed Residence" loading="lazy">
+                        <!-- Image replaced -->
+                        <img src="" alt="Interior of a 3 Bed Residence" loading="lazy">
                         <div class="config-card-content">
                             <h3>3 Bed Residences</h3>
                             <span class="features">Expansive Living | Private Balcony | Premium Finishes</span>
@@ -818,7 +945,8 @@
         <section id="amenities" class="fade-in">
             <div class="container amenities-layout">
                 <div class="amenities-image fade-in">
-                     <img src="https://source.unsplash.com/600x500/?luxury,amenities,pool,lounge" alt="Collage of amenities like pool and lounge" loading="lazy">
+                     <!-- Image replaced -->
+                     <img src="" alt="Collage of amenities like pool and lounge" loading="lazy">
                 </div>
                 <div class="amenities-content fade-in">
                     <h2>World Class Amenities</h2>
@@ -885,22 +1013,28 @@
                 <p class="section-subtitle fade-in">Experience the elegance and ambiance through our gallery.</p>
                 <div class="gallery-grid">
                     <div class="gallery-item fade-in">
-                        <img src="https://source.unsplash.com/400x350/?luxury,apartment,lobby" alt="Grand entrance lobby">
+                         <!-- Image replaced -->
+                        <img src="" alt="Grand entrance lobby" loading="lazy">
                     </div>
                     <div class="gallery-item fade-in">
-                        <img src="https://source.unsplash.com/400x350/?modern,living,area,stylish" alt="Stylish living area">
+                         <!-- Image replaced -->
+                        <img src="" alt="Stylish living area" loading="lazy">
                     </div>
                     <div class="gallery-item fade-in">
-                        <img src="https://source.unsplash.com/400x350/?apartment,balcony,city,view" alt="Balcony with city view">
+                         <!-- Image replaced -->
+                        <img src="" alt="Balcony with city view" loading="lazy">
                     </div>
                     <div class="gallery-item fade-in">
-                        <img src="https://source.unsplash.com/400x350/?rooftop,amenities,urban" alt="Rooftop amenities area">
+                         <!-- Image replaced -->
+                        <img src="" alt="Rooftop amenities area" loading="lazy">
                     </div>
                     <div class="gallery-item fade-in">
-                        <img src="https://source.unsplash.com/400x350/?apartment,pool,daytime" alt="Swimming pool area daytime">
+                         <!-- Image replaced -->
+                        <img src="" alt="Swimming pool area daytime" loading="lazy">
                     </div>
                     <div class="gallery-item fade-in">
-                        <img src="https://source.unsplash.com/400x350/?modern,facade,architecture" alt="Building facade detail">
+                         <!-- Image replaced -->
+                        <img src="" alt="Building facade detail" loading="lazy">
                     </div>
                 </div>
             </div>
@@ -927,6 +1061,9 @@
                     </div>
                     <button type="submit" class="btn btn-primary">Submit Enquiry</button>
                  </form>
+                 <div id="form-success-message">
+                    Thank you! Your enquiry has been received. We will contact you shortly.
+                 </div>
             </div>
         </section>
 
@@ -974,9 +1111,12 @@
                 menuToggle.addEventListener('click', () => {
                     mainNav.classList.toggle('open');
                     menuToggle.classList.toggle('open');
-                    menuToggle.setAttribute('aria-expanded', mainNav.classList.contains('open'));
+                    const isOpened = mainNav.classList.contains('open');
+                    menuToggle.setAttribute('aria-expanded', isOpened);
+                    document.body.style.overflow = isOpened ? 'hidden' : ''; // Prevent scrolling when menu is open
                 });
-                // Close menu when clicking outside
+                
+                 // Close menu when clicking outside
                  document.addEventListener('click', (event) => {
                     const isClickInsideNav = mainNav.contains(event.target);
                     const isClickOnToggle = menuToggle.contains(event.target);
@@ -984,6 +1124,7 @@
                         mainNav.classList.remove('open');
                         menuToggle.classList.remove('open');
                         menuToggle.setAttribute('aria-expanded', 'false');
+                        document.body.style.overflow = ''; // Allow scrolling again
                     }
                 });
             }
@@ -1002,10 +1143,12 @@
                         let offsetPosition = elementPosition + window.pageYOffset - headerOffset;
                         if (targetId === '#home') { offsetPosition = 0; }
                         window.scrollTo({ top: offsetPosition, behavior: "smooth" });
+                        
                         if (mainNav.classList.contains('open')) {
                             mainNav.classList.remove('open');
                             menuToggle.classList.remove('open');
                             menuToggle.setAttribute('aria-expanded', 'false');
+                            document.body.style.overflow = ''; // Allow scrolling again
                         }
                     }
                 });
@@ -1030,25 +1173,167 @@
             const yearSpan = document.getElementById('currentYear');
             if (yearSpan) { yearSpan.textContent = new Date().getFullYear(); }
             
+            // --- Counter-up Animation for Developer Stats ---
+            const statCounters = document.querySelectorAll('#about-developer .counter');
+            let statCounterAnimated = false; 
+
+            const startStatCounter = (counter) => {
+                const targetRaw = counter.getAttribute('data-target');
+                const suffix = counter.getAttribute('data-suffix') || '';
+                const target = parseInt(targetRaw, 10);
+                
+                if (isNaN(target)) return; // Skip if target is not a number
+
+                const duration = 2000; // Total duration in ms
+                let start = null;
+
+                const step = (timestamp) => {
+                    if (!start) start = timestamp;
+                    const progress = Math.min((timestamp - start) / duration, 1);
+                    const currentVal = Math.floor(progress * target);
+                    
+                    // Format the suffix correctly within the <sup> tag if needed
+                    const supElement = counter.querySelector('sup');
+                    if(supElement) {
+                        counter.childNodes[0].nodeValue = currentVal; // Update the number part
+                        supElement.textContent = suffix; // Keep the suffix in sup
+                    } else {
+                         counter.textContent = currentVal + suffix; // Simple case without sup
+                    }
+
+                    if (progress < 1) {
+                        window.requestAnimationFrame(step);
+                    } else {
+                         // Ensure final value is displayed accurately with suffix
+                         if(supElement) {
+                            counter.childNodes[0].nodeValue = target;
+                         } else {
+                            counter.textContent = target + suffix;
+                         }
+                    }
+                };
+                window.requestAnimationFrame(step);
+            };
+
+            const statCounterObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting && !statCounterAnimated) {
+                        statCounters.forEach(counter => {
+                            startStatCounter(counter);
+                        });
+                        statCounterAnimated = true; // Set flag
+                        observer.unobserve(entry.target); // Stop observing once animated
+                    }
+                });
+            }, { threshold: 0.5 }); // Trigger when 50% visible
+
+            const developerSection = document.getElementById('about-developer');
+            if (developerSection) {
+                statCounterObserver.observe(developerSection);
+            }
+            
             // --- Contact Form Mock Submission ---
             const contactForm = document.getElementById('contactForm');
+            const successMessage = document.getElementById('form-success-message');
             if (contactForm) {
                 contactForm.addEventListener('submit', function(e) {
                     e.preventDefault();
-                    console.log('Form submitted (mock).');
                     const submitButton = this.querySelector('button[type="submit"]');
-                    submitButton.textContent = 'Enquiry Sent!';
+                    submitButton.textContent = 'Submitting...';
                     submitButton.disabled = true;
+                    
+                    // Simulate network request
                     setTimeout(() => {
                          submitButton.textContent = 'Submit Enquiry';
                          submitButton.disabled = false;
                          this.reset();
-                    }, 3000);
+                         // Show success message
+                         if(successMessage) successMessage.classList.add('visible');
+                         // Hide success message after 3 seconds
+                         setTimeout(() => {
+                            if(successMessage) successMessage.classList.remove('visible');
+                         }, 3000);
+                    }, 1500);
                 });
             }
+
+            // --- Dynamic Image Replacement ---
+            function replaceAllImages() {
+                 // Provided image bank (excluding the non-working URL)
+                const imageBank = [
+                    'https://plus.unsplash.com/premium_photo-1686090449192-4ab1d00cb735?ixlib=rb-4.1.0',
+                    'https://plus.unsplash.com/premium_photo-1687960117069-567a456fe5f3?ixlib=rb-4.1.0',
+                    'https://images.unsplash.com/photo-1502005229762-cf1b2da7c5d6?ixlib=rb-4.1.0',
+                    'https://images.unsplash.com/photo-1605146769289-440113cc3d00?ixlib=rb-4.1.0',
+                    'https://images.unsplash.com/photo-1556784344-ad913c73cfc4?ixlib=rb-4.1.0',
+                    'https://images.unsplash.com/photo-1558981082-c7d43331cd8c?ixlib=rb-4.1.0',
+                    'https://plus.unsplash.com/premium_photo-1680100256112-2e1231d9d0df?ixlib=rb-4.1.0',
+                    'https://images.unsplash.com/photo-1626374295803-a333cfeca51b?ixlib=rb-4.1.0',
+                    'https://plus.unsplash.com/premium_photo-1687960116957-ab813e1e66e6?ixlib=rb-4.1.0',
+                    'https://images.unsplash.com/photo-1618220179428-22790b461013?ixlib=rb-4.1.0',
+                    'https://images.unsplash.com/photo-1631679706909-1844bbd07221?ixlib=rb-4.1.0',
+                    'https://images.unsplash.com/photo-1606744837616-56c9a5c6a6eb?ixlib=rb-4.1.0',
+                    'https://images.unsplash.com/photo-1585128792020-803d29415281?ixlib=rb-4.1.0',
+                    'https://images.unsplash.com/photo-1596276020587-8044fe049813?ixlib=rb-4.1.0',
+                    'https://images.unsplash.com/photo-1516156008625-3a9d6067fab5?ixlib=rb-4.1.0',
+                    'https://images.unsplash.com/photo-1605266764154-0ff8f354088c?ixlib=rb-4.1.0',
+                    'https://images.unsplash.com/photo-1483097365279-e8acd3bf9f18?ixlib=rb-4.1.0',
+                    'https://images.unsplash.com/photo-1595058651386-ac9b13dc8305?ixlib=rb-4.1.0'
+                ];
+
+                // Function to shuffle the array
+                const shuffleArray = (array) => {
+                    let shuffled = [...array];
+                    for (let i = shuffled.length - 1; i > 0; i--) {
+                        const j = Math.floor(Math.random() * (i + 1));
+                        [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+                    }
+                    return shuffled;
+                };
+
+                const shuffledImages = shuffleArray(imageBank);
+                let imgIndex = 0;
+
+                const getNextImage = (width = 800, quality = 75) => {
+                    if (imgIndex >= shuffledImages.length) imgIndex = 0; // Loop back if we run out
+                    let url = new URL(shuffledImages[imgIndex++]);
+                    url.searchParams.set('auto', 'format');
+                    url.searchParams.set('fit', 'crop');
+                    url.searchParams.set('w', width);
+                    url.searchParams.set('q', quality);
+                    return url.toString();
+                };
+
+                // Set Hero Background dynamically
+                const heroSection = document.querySelector('.hero-section');
+                if (heroSection) {
+                    heroSection.style.backgroundImage = `linear-gradient(rgba(26, 32, 44, 0.7), rgba(26, 32, 44, 0.7)), url(${getNextImage(1800, 80)})`;
+                }
+                
+                // Set all other images targeted by empty src
+                const images = document.querySelectorAll('img[src=""]'); 
+                images.forEach(img => {
+                    // Estimate appropriate width based on context
+                    let width = 600; // Default width
+                    if (img.closest('.config-card')) width = 600;
+                    else if (img.closest('.amenities-image')) width = 600;
+                    else if (img.closest('.gallery-item')) width = 400;
+                    
+                    img.src = getNextImage(width, 75);
+                    img.onerror = function() { 
+                        // Set a fallback placeholder with appropriate colors
+                        this.src = `https://placehold.co/${width}x${Math.round(width * 0.75)}/edf2f7/1a202c?text=Image+Not+Found`; 
+                        this.alt = 'Image not found';
+                    };
+                });
+            }
+
+            // Run the image replacement function
+            replaceAllImages();
 
         });
     </script>
 
 </body>
 </html>
+
