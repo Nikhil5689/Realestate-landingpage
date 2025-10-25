@@ -164,10 +164,17 @@
             height: var(--header-height);
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
             border-bottom: 1px solid var(--color-border);
             display: flex;
             align-items: center;
             z-index: 1000;
+            transition: box-shadow 0.3s ease;
+        }
+        
+        /* Add shadow on scroll */
+        .main-header.scrolled {
+             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
         }
         
         .nav-container {
@@ -234,6 +241,7 @@
             border: none;
             cursor: pointer;
             z-index: 1001;
+            padding: 10px;
         }
 
         .menu-toggle .bar {
@@ -267,6 +275,7 @@
             text-align: center;
             color: var(--color-text-light);
             margin-top: var(--header-height);
+            overflow: hidden;
         }
         
         .hero::before {
@@ -276,7 +285,8 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: url('https://source.unsplash.com/1600x900/?architecture,landscape') no-repeat center center/cover;
+            /* REPLACED IMAGE */
+            background: url('https://images.unsplash.com/photo-1556784344-ad913c73cfc4?ixlib=rb-4.1.0&fit=crop&w=1600&h=900&q=80') no-repeat center center/cover;
             z-index: -2;
         }
         
@@ -305,6 +315,7 @@
         .stats-bar {
             background-color: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
             padding: 2.5rem 2rem;
             border-radius: 8px;
             position: absolute;
@@ -395,6 +406,7 @@
         .project-tabs {
             display: flex;
             justify-content: center;
+            flex-wrap: wrap;
             gap: 1rem;
             margin-bottom: 3rem;
         }
@@ -432,6 +444,8 @@
             overflow: hidden;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
             transition: var(--transition-main);
+            display: flex; /* Added for filtering */
+            flex-direction: column;
         }
         
         .project-card:hover {
@@ -488,12 +502,15 @@
             padding: 2rem;
             border: 1px solid var(--color-border);
             border-radius: 8px;
+            display: flex;
+            flex-direction: column;
         }
         
         .testimonial-card p {
             font-style: italic;
             color: var(--color-text-dark);
             margin-bottom: 1.5rem;
+            flex-grow: 1; /* Make p tags grow to fill space */
         }
         
         .testimonial-card h4 {
@@ -530,6 +547,7 @@
             color: var(--color-text-light);
             font-size: 2rem;
             margin-bottom: 1.5rem;
+            display: block;
         }
         
         .footer-widget ul {
@@ -551,10 +569,22 @@
             color: var(--color-accent-gold);
         }
         
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
         .social-links a {
             color: var(--color-text-medium);
             font-size: 1.5rem;
-            margin-right: 1rem;
+            transition: var(--transition-main);
+        }
+        .social-links a:hover {
+            color: var(--color-accent-gold);
+        }
+        .social-links svg {
+            width: 24px;
+            height: 24px;
+            fill: currentColor;
         }
         
         .footer-bottom {
@@ -693,7 +723,7 @@
             }
             
             .social-links {
-                text-align: center;
+                justify-content: center;
             }
         }
 
@@ -712,7 +742,7 @@
                     <li><a href="#about">About Us</a></li>
                     <li><a href="#projects">Projects</a></li>
                     <li><a href="#story">Story</a></li>
-                    <li><a href="#gallery">Gallery</a></li>
+                    <li><a href="#testimonials">Testimonials</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
             </nav>
@@ -734,26 +764,26 @@
             </div>
             
             <!-- Stats Bar -->
-            <div class="stats-bar">
+            <div class="stats-bar" id="statsBar">
                 <div class="grid">
                     <div class="stat-item">
-                        <h3>90+</h3>
+                        <h3 data-target="90">0</h3>
                         <p>Completed Projects</p>
                     </div>
                     <div class="stat-item">
-                        <h3>3.5L+</h3>
-                        <p>Hours of Work</p>
+                        <h3 data-target="3.5">0</h3>
+                        <p>Lakh+ Hours of Work</p>
                     </div>
                     <div class="stat-item">
-                        <h3>12K+</h3>
-                        <p>Happy Customers</p>
+                        <h3 data-target="12">0</h3>
+                        <p>K+ Happy Customers</p>
                     </div>
                     <div class="stat-item">
-                        <h3>350+</h3>
+                        <h3 data-target="350">0</h3>
                         <p>Acres Developed</p>
                     </div>
                     <div class="stat-item">
-                        <h3>50</h3>
+                        <h3 data-target="50">0</h3>
                         <p>Years of Legacy</p>
                     </div>
                 </div>
@@ -772,36 +802,37 @@
                         <a href="#story" class="btn btn-primary">Read More</a>
                     </div>
                     <div class="about-image fade-in" data-delay="200">
-                        <img src="https://source.unsplash.com/600x450/?modern,office" alt="Modern office interior" loading="lazy">
+                        <!-- REPLACED IMAGE -->
+                        <img src="https://images.unsplash.com/photo-1502005229762-cf1b2da7c5d6?ixlib=rb-4.1.0&fit=crop&w=600&h=450&q=80" alt="Modern office interior" loading="lazy">
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Stats Section (Reasons to Celebrate) -->
-        <section id="stats" class="section-padding" style="display: none;"> <!-- Hidden as it's redundant with hero stats bar -->
+        <!-- Stats Section (Duplicate, hidden by default) -->
+        <section id="stats" class="section-padding" style="display: none;">
             <div class="container text-center fade-in">
                 <span class="text-accent">REASONS TO CELEBRATE</span>
                 <h2>Our Legacy in Numbers</h2>
                 <div class="grid stats-section">
                     <div class="stats-card">
-                        <h3>50</h3>
+                        <h3 data-target="50">0</h3>
                         <p>Years of Legacy</p>
                     </div>
                     <div class="stats-card">
-                        <h3>90+</h3>
+                        <h3 data-target="90">0</h3>
                         <p>Completed Projects</p>
                     </div>
                     <div class="stats-card">
-                        <h3>3.5L+</h3>
-                        <p>Hours of Work</p>
+                        <h3 data-target="3.5">0</h3>
+                        <p>Lakh+ Hours of Work</p>
                     </div>
                     <div class="stats-card">
-                        <h3>12K+</h3>
-                        <p>Happy Customers</p>
+                        <h3 data-target="12">0</h3>
+                        <p>K+ Happy Customers</p>
                     </div>
                     <div class="stats-card">
-                        <h3>350+</h3>
+                        <h3 data-target="350">0</h3>
                         <p>Acres Developed</p>
                     </div>
                 </div>
@@ -823,26 +854,54 @@
                     <button class="project-tab" data-filter="completed">Completed</button>
                 </div>
                 
-                <div class="grid projects-grid">
+                <div class="grid projects-grid" id="projectsGrid">
                     <div class="project-card" data-category="ongoing">
-                        <img src="https://source.unsplash.com/400x300/?resort,architecture" alt="Business Resort & Spa" loading="lazy">
+                        <!-- REPLACED IMAGE -->
+                        <img src="https://plus.unsplash.com/premium_photo-1680100256112-2e1231d9d0df?ixlib=rb-4.1.0&fit=crop&w=400&h=300&q=80" alt="Business Resort & Spa" loading="lazy">
                         <div class="project-content">
                             <h3>Business Resort & Spa</h3>
                             <p>20 Acres</p>
                         </div>
                     </div>
                     <div class="project-card" data-category="upcoming">
-                        <img src="https://source.unsplash.com/400x300/?commercial,building" alt="Urban Mall" loading="lazy">
+                        <!-- REPLACED IMAGE -->
+                        <img src="https://images.unsplash.com/photo-1605266764154-0ff8f354088c?ixlib=rb-4.1.0&fit=crop&w=400&h=300&q=80" alt="Urban Mall" loading="lazy">
                         <div class="project-content">
                             <h3>The Urban Mall</h3>
                             <p>0.69 Acre</p>
                         </div>
                     </div>
                     <div class="project-card" data-category="completed">
-                        <img src="https://source.unsplash.com/400x300/?lake,property" alt="Lakeside Residences" loading="lazy">
+                        <!-- REPLACED IMAGE -->
+                        <img src="https://images.unsplash.com/photo-1585128792020-803d29415281?ixlib=rb-4.1.0&fit=crop&w=400&h=300&q=80" alt="Lakeside Residences" loading="lazy">
                         <div class="project-content">
                             <h3>Lakeside Residences</h3>
                             <p>15 Acres</p>
+                        </div>
+                    </div>
+                    <!-- Added more projects for filtering demo -->
+                    <div class="project-card" data-category="completed">
+                        <!-- REPLACED IMAGE -->
+                        <img src="https.../images.unsplash.com/photo-1605146769289-440113cc3d00?ixlib=rb-4.1.0&fit=crop&w=400&h=300&q=80" alt="Skyline Towers" loading="lazy">
+                        <div class="project-content">
+                            <h3>Skyline Towers</h3>
+                            <p>5 Acres</p>
+                        </div>
+                    </div>
+                    <div class="project-card" data-category="ongoing">
+                        <!-- REPLACED IMAGE -->
+                        <img src="https://images.unsplash.com/photo-1631679706909-1844bbd07221?ixlib=rb-4.1.0&fit=crop&w=400&h=300&q=80" alt="Greenwich Park" loading="lazy">
+                        <div class="project-content">
+                            <h3>Greenwich Park</h3>
+                            <p>50 Acres</p>
+                        </div>
+                    </div>
+                    <div class="project-card" data-category="upcoming">
+                        <!-- REPLACED IMAGE -->
+                        <img src="https://images.unsplash.com/photo-1618220179428-22790b461013?ixlib=rb-4.1.0&fit=crop&w=400&h=300&q=80" alt="The Pinnacle" loading="lazy">
+                        <div class="project-content">
+                            <h3>The Pinnacle</h3>
+                            <p>2.5 Acres</p>
                         </div>
                     </div>
                 </div>
@@ -854,7 +913,8 @@
             <div class="container">
                 <div class="grid story-grid">
                     <div class="story-image fade-in" data-delay="200">
-                        <img src="https://source.unsplash.com/600x450/?corporate,history" alt="Company history or blueprint" loading="lazy">
+                        <!-- REPLACED IMAGE -->
+                        <img src="https://plus.unsplash.com/premium_photo-1686090449192-4ab1d00cb735?ixlib=rb-4.1.0&fit=crop&w=600&h=450&q=80" alt="Modern corporate building interior" loading="lazy">
                     </div>
                     <div class="story-content fade-in" data-delay="0">
                         <span class="text-accent">OUR STORY</span>
@@ -867,7 +927,7 @@
             </div>
         </section>
         
-        <!-- Gallery Section (Placeholder) -->
+        <!-- Gallery Section (Placeholder, remains hidden) -->
         <section id="gallery" class="section-padding" style="display:none;">
             <!-- Gallery content can be added here as needed -->
         </section>
@@ -916,6 +976,7 @@
                         <li><a href="#about">About Us</a></li>
                         <li><a href="#projects">Projects</a></li>
                         <li><a href="#story">Our Story</a></li>
+                        <li><a href="#testimonials">Testimonials</a></li>
                         <li><a href="#contact">Contact</a></li>
                     </ul>
                 </div>
@@ -924,10 +985,16 @@
                 <div class="footer-widget">
                     <h4>Follow Us</h4>
                     <div class="social-links">
-                        <!-- Using text as placeholders for icons -->
-                        <a href="#" aria-label="Facebook">f</a>
-                        <a href="#" aria-label="Twitter">t</a>
-                        <a href="#" aria-label="Instagram">i</a>
+                        <!-- REPLACED TEXT WITH SVGs -->
+                        <a href="#" aria-label="Facebook">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c5.05-.5 9-4.76 9-9.95z"/></svg>
+                        </a>
+                        <a href="#" aria-label="Twitter">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M22.46 6c-.77.35-1.6.58-2.46.67.88-.53 1.56-1.37 1.88-2.38-.83.49-1.75.85-2.72 1.05C18.37 4.5 17.26 4 16 4c-2.35 0-4.27 1.92-4.27 4.27 0 .34.04.67.11.98C8.28 9.09 5.11 7.38 3 4.79c-.37.63-.58 1.37-.58 2.15 0 1.48.75 2.79 1.9 3.55-.7-.02-1.36-.21-1.94-.53v.05c0 2.07 1.47 3.8 3.42 4.19-.36.1-.74.15-1.12.15-.28 0-.54-.03-.8-.08.54 1.7 2.1 2.94 3.97 2.97-1.46 1.14-3.3 1.82-5.3 1.82-.34 0-.68-.02-1.02-.06C2.94 19.29 5.1 20 7.35 20c8.82 0 13.64-7.3 13.64-13.64 0-.21 0-.42-.01-.62.94-.68 1.75-1.54 2.48-2.54z"/></svg>
+                        </a>
+                        <a href="#" aria-label="Instagram">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4c0 3.2-2.6 5.8-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8C2 4.6 4.6 2 7.8 2m-.2 2C5.6 4 4 5.6 4 7.6v8.8C4 18.4 5.6 20 7.6 20h8.8c2 0 3.6-1.6 3.6-3.6V7.6C20 5.6 18.4 4 16.4 4H7.6m9.65 1.5c.83 0 1.5.67 1.5 1.5s-.67 1.5-1.5 1.5-1.5-.67-1.5-1.5.67-1.5 1.5-1.5M12 7c2.76 0 5 2.24 5 5s-2.24 5-5 5-5-2.24-5-5 2.24-5 5-5m0 2c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+                        </a>
                     </div>
                 </div>
                 
@@ -950,16 +1017,27 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
 
+            // --- Header Shadow on Scroll ---
+            const mainHeader = document.getElementById('mainHeader');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    mainHeader.classList.add('scrolled');
+                } else {
+                    mainHeader.classList.remove('scrolled');
+                }
+            });
+
             // --- Mobile Menu Toggle ---
             const menuToggle = document.getElementById('menuToggle');
             const mainNav = document.getElementById('mainNav');
+            const body = document.body;
             
             if (menuToggle && mainNav) {
                 menuToggle.addEventListener('click', () => {
-                    mainNav.classList.toggle('open');
+                    const isOpen = mainNav.classList.toggle('open');
                     menuToggle.classList.toggle('open');
-                    const isExpanded = mainNav.classList.contains('open');
-                    menuToggle.setAttribute('aria-expanded', isExpanded);
+                    menuToggle.setAttribute('aria-expanded', isOpen);
+                    body.style.overflow = isOpen ? 'hidden' : '';
                 });
             }
             
@@ -985,6 +1063,7 @@
                             mainNav.classList.remove('open');
                             menuToggle.classList.remove('open');
                             menuToggle.setAttribute('aria-expanded', 'false');
+                            body.style.overflow = '';
                         }
                     }
                 });
@@ -992,8 +1071,11 @@
 
             // --- Project Tabs Functionality ---
             const projectTabsContainer = document.getElementById('projectTabs');
-            if (projectTabsContainer) {
+            const projectsGrid = document.getElementById('projectsGrid');
+            
+            if (projectTabsContainer && projectsGrid) {
                 const projectTabs = projectTabsContainer.querySelectorAll('.project-tab');
+                const projectCards = projectsGrid.querySelectorAll('.project-card');
                 
                 projectTabs.forEach(tab => {
                     tab.addEventListener('click', () => {
@@ -1002,13 +1084,83 @@
                         // Add 'active' to clicked tab
                         tab.classList.add('active');
                         
-                        // Filtering logic (simple example)
                         const filter = tab.getAttribute('data-filter');
-                        console.log('Filtering by:', filter);
-                        // In a real app, you'd show/hide .project-card based on data-category
+                        
+                        projectCards.forEach(card => {
+                            const category = card.getAttribute('data-category');
+                            if (filter === 'all' || filter === category) {
+                                card.style.display = 'flex'; // Show card
+                            } else {
+                                card.style.display = 'none'; // Hide card
+                            }
+                        });
                     });
                 });
             }
+
+            // --- Animated Counter Function ---
+            function animateCounter(el) {
+                const target = parseFloat(el.getAttribute('data-target'));
+                const duration = 1500; // 1.5 seconds
+                let start = 0;
+                const startTime = performance.now();
+                
+                // Suffixes based on original text in HTML
+                let suffix = '';
+                if (el.dataset.target === "3.5") suffix = 'L+';
+                else if (el.dataset.target === "12") suffix = 'K+';
+                else if (el.dataset.target === "90") suffix = '+';
+                else if (el.dataset.target === "350") suffix = '+';
+                
+                function update(currentTime) {
+                    const elapsedTime = currentTime - startTime;
+                    const progress = Math.min(elapsedTime / duration, 1);
+                    
+                    let currentValue = progress * target;
+                    
+                    // Handle decimal for 3.5L+
+                    if (target === 3.5) {
+                        el.textContent = currentValue.toFixed(1);
+                    } else {
+                        el.textContent = Math.floor(currentValue);
+                    }
+                    
+                    if (progress < 1) {
+                        requestAnimationFrame(update);
+                    } else {
+                        // Ensure final value is exact and add suffix
+                        if (target === 3.5) {
+                            el.textContent = target.toFixed(1) + suffix;
+                        } else {
+                             el.textContent = Math.floor(target) + suffix;
+                        }
+                    }
+                }
+                requestAnimationFrame(update);
+            }
+
+            // --- Trigger Counters ---
+            const statsBar = document.getElementById('statsBar');
+            if (statsBar) {
+                // Use IntersectionObserver for the hidden stats section
+                const statsSection = document.getElementById('stats');
+                const statsObserver = new IntersectionObserver((entries, observer) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.querySelectorAll('h3[data-target]').forEach(animateCounter);
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.5 });
+                
+                if (statsSection) {
+                    statsObserver.observe(statsSection);
+                }
+
+                // Run hero stats bar counter immediately on load
+                statsBar.querySelectorAll('h3[data-target]').forEach(animateCounter);
+            }
+
 
             // --- Fade-in on Scroll ---
             const faders = document.querySelectorAll('.fade-in');
@@ -1051,4 +1203,3 @@
 
 </body>
 </html>
-

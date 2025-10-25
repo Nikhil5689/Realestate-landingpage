@@ -175,9 +175,14 @@
             padding: 1rem 0;
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
             border-bottom: 1px solid var(--color-border);
             z-index: 1000;
-            transition: padding 0.3s ease;
+            transition: padding 0.3s ease, box-shadow 0.3s ease;
+        }
+        .top-nav.scrolled {
+             padding: 0.75rem 0;
+             box-shadow: 0 4px 10px rgba(0,0,0,0.05);
         }
 
         .nav-container {
@@ -203,6 +208,7 @@
         .main-nav .nav-links {
             display: flex;
             gap: 1.5rem;
+            list-style: none;
         }
         
         .main-nav a {
@@ -213,6 +219,7 @@
             position: relative;
             padding-bottom: 0.25rem;
             text-transform: uppercase;
+            transition: color 0.3s ease;
         }
         
         .main-nav .nav-links a::after {
@@ -225,6 +232,10 @@
             background-color: var(--color-accent-green);
             transition: width 0.3s ease;
         }
+        
+         .main-nav .nav-links a:hover {
+             color: var(--color-accent-green);
+         }
         
         .main-nav .nav-links a:hover::after {
             width: 100%;
@@ -280,7 +291,8 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: url('https://source.unsplash.com/1800x1200/?farmhouse,countryside,landscape,sunset');
+            /* REPLACED IMAGE */
+            background-image: url('https://images.unsplash.com/photo-1483097365279-e8acd3bf9f18?ixlib=rb-4.1.0&fit=crop&w=1800&h=1200&q=80');
             background-size: cover;
             background-position: center;
             z-index: -2;
@@ -373,6 +385,7 @@
              margin-bottom: 0.5rem;
              font-family: var(--font-body);
              font-weight: 600;
+             color: var(--color-primary-dark);
         }
         .feature-item p {
             font-size: 0.95rem;
@@ -392,7 +405,11 @@
             overflow: hidden;
             background: var(--color-bg-cream);
             box-shadow: 0 8px 25px rgba(0,0,0,0.06);
+            transition: box-shadow 0.3s ease;
         }
+         .design-card:hover {
+             box-shadow: 0 12px 30px rgba(0,0,0,0.1);
+         }
         .design-card img {
             width: 100%;
             height: 350px;
@@ -451,6 +468,7 @@
             font-size: 1.3rem;
             font-weight: 600;
             font-family: var(--font-heading); /* Heading font */
+            margin: 0; /* Remove default margin */
         }
         
         /* --- Location Section --- */
@@ -501,6 +519,9 @@
             box-shadow: 0 10px 30px rgba(0,0,0,0.07);
         }
         .contact-container h2 { text-align: center; }
+         .contact-container .section-subtitle {
+             margin-bottom: 2.5rem; /* More space before form */
+         }
         .contact-form {
             display: flex;
             flex-direction: column;
@@ -521,6 +542,10 @@
             border-color: var(--color-primary-medium);
             box-shadow: 0 0 0 2px rgba(139, 69, 19, 0.2);
         }
+         .form-group textarea {
+             resize: vertical;
+             min-height: 120px;
+         }
         .contact-form .btn-primary { font-size: 1rem; padding: 1rem; }
 
         /* --- Footer --- */
@@ -543,6 +568,7 @@
             color: var(--color-text-light);
             margin-bottom: 1rem;
             display: inline-block;
+            text-decoration: none;
         }
         .footer-widget p {
             color: #E0E0E0; /* Lighter grey */
@@ -582,7 +608,9 @@
         @media (max-width: 1024px) {
             h1 { font-size: 2.75rem; }
             h2 { font-size: 2.25rem; }
-            section { padding: 4rem 0; }
+            section, #about, #features, #designs, #lifestyle, #location, #contact { 
+                 padding: 4rem 0; 
+            }
             .nav-container { padding: 0 1.5rem; }
             
             .hero-content h1 { font-size: 3rem; }
@@ -601,40 +629,57 @@
         }
         
         @media (max-width: 768px) {
-            body { padding-top: 65px; }
+            body { padding-top: 65px; } /* Adjust for header height */
             .top-nav { padding: 0.8rem 0; }
             .nav-container { padding: 0 1rem; }
             .logo { font-size: 1.4rem; }
             
+            /* Mobile Nav Styling */
             .main-nav {
                 position: fixed;
-                top: 65px;
+                top: 65px; /* Match body padding */
                 left: -100%;
                 width: 80%;
-                height: 100vh;
+                max-width: 300px;
+                height: calc(100vh - 65px);
                 background: var(--color-bg-white);
                 flex-direction: column;
                 align-items: flex-start;
+                justify-content: space-between;
                 gap: 0;
                 padding: 1.5rem 1rem;
                 box-shadow: 5px 0 15px rgba(0,0,0,0.1);
                 transition: left 0.4s ease-in-out;
             }
+            .main-nav .nav-links { display: none; }
             .main-nav.open { left: 0; }
-            .main-nav .nav-links {
+            .main-nav.open .nav-links {
                 display: flex;
                 flex-direction: column;
                 width: 100%;
                 gap: 0;
+                list-style: none;
             }
-            .main-nav a {
+             .main-nav.open .nav-links li { width: 100%; }
+            .main-nav.open a {
                 padding: 1rem 0;
                 width: 100%;
                 border-bottom: 1px solid var(--color-border);
+                color: var(--color-text-dark);
             }
-            .main-nav a:last-child { border-bottom: none; }
+             .main-nav.open .nav-links li:last-child a { border-bottom: none; } /* Remove last border */
+             .main-nav.open .nav-links a:hover {
+                 color: var(--color-accent-green);
+                 background-color: var(--color-accent-light);
+             }
             .main-nav .nav-links a::after { display: none; }
-            .main-nav .btn { display: block; margin-top: 1.5rem; width: 100%; }
+            .main-nav .btn { display: none; }
+             .main-nav.open .btn { 
+                 display: block;
+                 margin-top: auto;
+                 width: 100%; 
+                 margin-bottom: 1rem;
+            } 
             .menu-toggle { display: block; }
             
             .hero-section { min-height: 70vh; }
@@ -650,17 +695,17 @@
 <body>
 
     <!-- Top Navigation -->
-    <header class="top-nav">
+    <header class="top-nav" id="topNav">
         <div class="container nav-container">
             <a href="#home" class="logo">SERENE ACRES</a>
             
             <nav class="main-nav" id="mainNav">
-                <div class="nav-links">
-                    <a href="#about">About</a>
-                    <a href="#designs">Designs</a>
-                    <a href="#lifestyle">Lifestyle</a>
-                    <a href="#location">Location</a>
-                </div>
+                <ul class="nav-links">
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#designs">Designs</a></li>
+                    <li><a href="#lifestyle">Lifestyle</a></li>
+                    <li><a href="#location">Location</a></li>
+                </ul>
                 <a href="#contact" class="btn btn-primary">Enquire</a>
             </nav>
             
@@ -694,7 +739,8 @@
                     <a href="#designs" class="btn btn-outline">View Farmhouse Designs</a>
                 </div>
                 <div class="about-image">
-                    <img src="https://source.unsplash.com/600x450/?farmhouse,rustic,exterior,garden" alt="Charming farmhouse exterior with a blooming garden" loading="lazy">
+                     <!-- REPLACED IMAGE -->
+                    <img src="https://images.unsplash.com/photo-1585128792020-803d29415281?ixlib=rb-4.1.0&fit=crop&w=600&h=450&q=80" alt="Charming farmhouse exterior with a blooming garden" loading="lazy">
                 </div>
             </div>
         </section>
@@ -746,7 +792,8 @@
                 <p class="section-subtitle fade-in">Choose from architectural styles that blend seamlessly with the natural surroundings, or design your own unique retreat.</p>
                 <div class="designs-grid">
                     <div class="design-card fade-in">
-                        <img src="https://source.unsplash.com/600x400/?modern,farmhouse,architecture" alt="The Meadowview Farmhouse Design" loading="lazy">
+                        <!-- REPLACED IMAGE -->
+                        <img src="https://images.unsplash.com/photo-1595058651386-ac9b13dc8305?ixlib=rb-4.1.0&fit=crop&w=600&h=400&q=80" alt="The Meadowview Farmhouse Design - Modern" loading="lazy">
                         <div class="design-card-content">
                             <h3>The Meadowview</h3>
                             <span class="specs">3 Beds | 3 Baths | Approx. 2500 Sq.Ft.</span>
@@ -755,7 +802,8 @@
                         </div>
                     </div>
                     <div class="design-card fade-in">
-                        <img src="https://source.unsplash.com/600x400/?rustic,farmhouse,wood,beams" alt="The Oakridge Farmhouse Design" loading="lazy">
+                        <!-- REPLACED IMAGE -->
+                         <img src="https://images.unsplash.com/photo-1605266764154-0ff8f354088c?ixlib=rb-4.1.0&fit=crop&w=600&h=400&q=80" alt="The Oakridge Farmhouse Design - Rustic" loading="lazy">
                         <div class="design-card-content">
                             <h3>The Oakridge</h3>
                             <span class="specs">4 Beds | 4 Baths | Approx. 3200 Sq.Ft.</span>
@@ -774,27 +822,33 @@
                 <p class="section-subtitle fade-in">Rediscover the simple joys of life with amenities designed for connection, relaxation, and outdoor enjoyment.</p>
                 <div class="lifestyle-grid">
                     <div class="lifestyle-item fade-in">
-                        <img src="https://source.unsplash.com/400x350/?nature,trail,walking" alt="Nature walking trail">
+                        <!-- REPLACED IMAGE -->
+                        <img src="https://plus.unsplash.com/premium_photo-1687960116957-ab813e1e66e6?ixlib=rb-4.1.0&fit=crop&w=400&h=350&q=80" alt="Nature walking trail" loading="lazy">
                          <div class="lifestyle-caption"><h4>Nature Trails</h4></div>
                     </div>
                     <div class="lifestyle-item fade-in">
-                        <img src="https://source.unsplash.com/400x350/?organic,garden,vegetables" alt="Community organic garden">
+                        <!-- REPLACED IMAGE -->
+                        <img src="https://unsplash.com/photos/gray-steel-3-door-refrigerator-near-modular-kitchen-MP0bgaS_d1c?ixlib=rb-4.1.0&fit=crop&w=400&h=350&q=80" alt="Community organic garden" loading="lazy"> <!-- Using a placeholder as no direct garden image -->
                         <div class="lifestyle-caption"><h4>Organic Garden</h4></div>
                     </div>
                     <div class="lifestyle-item fade-in">
-                        <img src="https://source.unsplash.com/400x350/?community,bonfire,night" alt="Community bonfire area">
+                         <!-- REPLACED IMAGE -->
+                        <img src="https://images.unsplash.com/photo-1558981082-c7d43331cd8c?ixlib=rb-4.1.0&fit=crop&w=400&h=350&q=80" alt="Community bonfire area" loading="lazy">
                         <div class="lifestyle-caption"><h4>Bonfire Pit</h4></div>
                     </div>
                      <div class="lifestyle-item fade-in">
-                        <img src="https://source.unsplash.com/400x350/?swimming,pool,rustic,luxury" alt="Rustic luxury swimming pool">
+                         <!-- REPLACED IMAGE -->
+                        <img src="https://plus.unsplash.com/premium_photo-1680100256112-2e1231d9d0df?ixlib=rb-4.1.0&fit=crop&w=400&h=350&q=80" alt="Rustic luxury swimming pool" loading="lazy">
                          <div class="lifestyle-caption"><h4>Swimming Pool</h4></div>
                     </div>
                       <div class="lifestyle-item fade-in">
-                        <img src="https://source.unsplash.com/400x350/?clubhouse,interior,rustic" alt="Rustic clubhouse interior">
+                         <!-- REPLACED IMAGE -->
+                        <img src="https://images.unsplash.com/photo-1626374295803-a333cfeca51b?ixlib=rb-4.1.0&fit=crop&w=400&h=350&q=80" alt="Rustic clubhouse interior" loading="lazy">
                         <div class="lifestyle-caption"><h4>Clubhouse Lounge</h4></div>
                     </div>
                        <div class="lifestyle-item fade-in">
-                        <img src="https://source.unsplash.com/400x350/?children,playing,outdoors,nature" alt="Children playing outdoors">
+                         <!-- REPLACED IMAGE -->
+                        <img src="https://plus.unsplash.com/premium_photo-1687960117069-567a456fe5f3?ixlib=rb-4.1.0&fit=crop&w=400&h=350&q=80" alt="Children playing outdoors" loading="lazy">
                         <div class="lifestyle-caption"><h4>Kids' Play Zone</h4></div>
                     </div>
                 </div>
@@ -816,7 +870,8 @@
                     </ul>
                 </div>
                  <div class="map-placeholder fade-in">
-                    <img src="https://source.unsplash.com/600x500/?countryside,map,location" alt="Map showing project location in the countryside">
+                     <!-- REPLACED IMAGE -->
+                    <img src="https://images.unsplash.com/photo-1516156008625-3a9d6067fab5?ixlib=rb-4.1.0&fit=crop&w=600&h=500&q=80" alt="Map showing project location in the countryside" loading="lazy">
                 </div>
             </div>
         </section>
@@ -880,25 +935,58 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-
-            // --- Mobile Menu Toggle ---
+            const topNav = document.getElementById('topNav');
             const menuToggle = document.getElementById('menuToggle');
             const mainNav = document.getElementById('mainNav');
-            
+            const body = document.body;
+            let headerHeight = 75; // Initial default
+
+            // --- Adjust Header & Body Padding ---
+            function updateHeaderLayout() {
+                if (topNav) {
+                    headerHeight = topNav.offsetHeight;
+                    body.style.paddingTop = headerHeight + 'px';
+                }
+            }
+            updateHeaderLayout(); // Initial check
+            window.addEventListener('resize', updateHeaderLayout);
+
+            // Shrink header on scroll
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    topNav.classList.add('scrolled');
+                } else {
+                    topNav.classList.remove('scrolled');
+                }
+                updateHeaderLayout(); // Update height as padding changes
+            });
+
+            // --- Mobile Menu Toggle ---
             if (menuToggle && mainNav) {
+                 const navLinksContainer = mainNav.querySelector('.nav-links'); // Get ul
                 menuToggle.addEventListener('click', () => {
-                    mainNav.classList.toggle('open');
+                    const isOpen = mainNav.classList.toggle('open');
                     menuToggle.classList.toggle('open');
-                    menuToggle.setAttribute('aria-expanded', mainNav.classList.contains('open'));
+                    menuToggle.setAttribute('aria-expanded', isOpen);
+                    body.style.overflow = isOpen ? 'hidden' : ''; // Prevent body scroll
+                     if (navLinksContainer) { // Check if navLinksContainer exists
+                        navLinksContainer.style.display = isOpen ? 'flex' : 'none';
+                     }
                 });
-                // Close menu when clicking outside
-                 document.addEventListener('click', (event) => {
+
+                // Close menu when clicking outside on mobile
+                document.addEventListener('click', (event) => {
                     const isClickInsideNav = mainNav.contains(event.target);
                     const isClickOnToggle = menuToggle.contains(event.target);
+
                     if (!isClickInsideNav && !isClickOnToggle && mainNav.classList.contains('open')) {
                         mainNav.classList.remove('open');
                         menuToggle.classList.remove('open');
                         menuToggle.setAttribute('aria-expanded', 'false');
+                        body.style.overflow = ''; // Re-enable scroll
+                        if (navLinksContainer) { // Check if navLinksContainer exists
+                            navLinksContainer.style.display = 'none'; // Hide links immediately
+                        }
                     }
                 });
             }
@@ -911,16 +999,25 @@
                     const targetElement = document.querySelector(targetId);
                     
                     if (targetElement) {
-                        let headerOffset = 75; // Header height
-                        if (window.innerWidth <= 768) { headerOffset = 65; }
                         let elementPosition = targetElement.getBoundingClientRect().top;
-                        let offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                        // Use the dynamically updated headerHeight
+                        let offsetPosition = elementPosition + window.pageYOffset - headerHeight;
+
+                        // Special case for #home to scroll to top
                         if (targetId === '#home') { offsetPosition = 0; }
+
                         window.scrollTo({ top: offsetPosition, behavior: "smooth" });
+                        
+                        // Close mobile nav if open
                         if (mainNav.classList.contains('open')) {
                             mainNav.classList.remove('open');
                             menuToggle.classList.remove('open');
                             menuToggle.setAttribute('aria-expanded', 'false');
+                            body.style.overflow = ''; // Re-enable scroll
+                             const navLinksContainer = mainNav.querySelector('.nav-links');
+                             if (navLinksContainer) { // Check if navLinksContainer exists
+                                navLinksContainer.style.display = 'none'; // Hide links immediately
+                             }
                         }
                     }
                 });
@@ -929,12 +1026,11 @@
             // --- Fade-in on Scroll ---
             const faders = document.querySelectorAll('.fade-in');
             const appearOptions = { threshold: 0.1, rootMargin: "0px 0px -50px 0px" };
-            const appearOnScroll = new IntersectionObserver(function(entries, appearOnScroll) {
+            const appearOnScroll = new IntersectionObserver(function(entries, observer) {
                 entries.forEach(entry => {
-                    if (!entry.isIntersecting) { return; } 
-                    else {
+                    if (entry.isIntersecting) { 
                         entry.target.classList.add('visible');
-                        appearOnScroll.unobserve(entry.target);
+                        observer.unobserve(entry.target);
                     }
                 });
             }, appearOptions);
@@ -950,8 +1046,10 @@
             if (contactForm) {
                 contactForm.addEventListener('submit', function(e) {
                     e.preventDefault();
+                     const submitButton = this.querySelector('button[type="submit"]');
+                     if(submitButton.disabled) return; // Prevent multiple clicks
+
                     console.log('Form submitted (mock).');
-                    const submitButton = this.querySelector('button[type="submit"]');
                     submitButton.textContent = 'Registered!';
                     submitButton.disabled = true;
                     setTimeout(() => {

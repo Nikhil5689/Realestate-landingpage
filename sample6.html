@@ -149,9 +149,15 @@
             padding: 1.25rem 0;
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
             border-bottom: 1px solid var(--color-border);
             z-index: 1000;
-            transition: padding 0.3s ease;
+            transition: padding 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .top-nav.scrolled {
+            padding: 0.75rem 0;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
         }
 
         .nav-container {
@@ -189,6 +195,7 @@
             font-size: 0.95rem;
             position: relative;
             padding-bottom: 0.25rem;
+            transition: color 0.3s ease;
         }
         
         .main-nav .nav-links a::after {
@@ -200,6 +207,10 @@
             height: 2px;
             background-color: var(--color-accent);
             transition: width 0.3s ease;
+        }
+        
+        .main-nav .nav-links a:hover {
+            color: var(--color-accent-dark);
         }
         
         .main-nav .nav-links a:hover::after {
@@ -247,7 +258,8 @@
             display: flex;
             align-items: center;
             justify-content: flex-start;
-            background: url('https://source.unsplash.com/1800x1000/?luxury,apartment,river,view') no-repeat center center/cover;
+            /* REPLACED IMAGE */
+            background: url('https://images.unsplash.com/photo-1585128792020-803d29415281?ixlib=rb-4.1.0&fit=crop&w=1800&h=1000&q=80') no-repeat center center/cover;
             color: var(--color-text-light);
         }
         
@@ -477,6 +489,8 @@
             font-family: var(--font-body);
             transform: translateY(10px);
             transition: var(--transition-main);
+            margin: 0; /* Override default heading margin */
+            font-size: 1.1rem;
         }
         
         .gallery-item:hover .overlay h4 {
@@ -531,6 +545,10 @@
             color: var(--color-accent);
             margin-bottom: 1rem;
         }
+        .developer-item h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
 
         /* --- Testimonials Section --- */
         #testimonials {
@@ -559,6 +577,7 @@
         .testimonial-card cite {
             font-weight: 600;
             color: var(--color-primary-dark);
+            font-style: normal;
         }
 
 
@@ -751,6 +770,7 @@
             color: var(--color-text-light);
             margin-bottom: 1.5rem;
             display: inline-block;
+            text-decoration: none;
         }
         
         .footer-widget p {
@@ -904,7 +924,7 @@
 <body>
 
     <!-- Top Navigation -->
-    <header class="top-nav">
+    <header class="top-nav" id="topNav">
         <div class="nav-container">
             <a href="#home" class="logo">SERENE SANDS</a>
             
@@ -975,7 +995,8 @@
                         <p>Aesthetically designed spaces, a grand clubhouse, and thoughtful details come together to create a living experience that is both exclusive and extraordinary.</p>
                         <a href="#amenities" class="btn btn-outline">Explore Amenities</a>
                     </div>
-                    <img src="https://source.unsplash.com/600x450/?modern,apartment,building,exterior" alt="Modern apartment building exterior" loading="lazy">
+                    <!-- REPLACED IMAGE -->
+                    <img src="https://images.unsplash.com/photo-1605146769289-440113cc3d00?ixlib=rb-4.1.0&fit=crop&w=600&h=450&q=80" alt="Modern apartment building exterior with landscaping" loading="lazy">
                 </div>
             </div>
         </section>
@@ -987,42 +1008,48 @@
                 <p class="section-subtitle">Experience a life beyond the ordinary, where world-class amenities are an extension of your home.</p>
                 <div class="amenities-grid">
                     <div class="amenity-card">
-                        <img src="https://source.unsplash.com/500x350/?luxury,clubhouse" alt="Grand Clubhouse Interior" loading="lazy">
+                        <!-- REPLACED IMAGE -->
+                        <img src="https://images.unsplash.com/photo-1618220179428-22790b461013?ixlib=rb-4.1.0&fit=crop&w=500&h=350&q=80" alt="Grand Clubhouse Interior" loading="lazy">
                         <div class="amenity-card-content">
                             <h3>Grand Clubhouse</h3>
                             <p>An exclusive space for leisure, socializing, and recreation.</p>
                         </div>
                     </div>
                     <div class="amenity-card">
-                        <img src="https://source.unsplash.com/500x350/?swimming,pool,luxury" alt="Infinity Swimming Pool" loading="lazy">
+                        <!-- REPLACED IMAGE -->
+                        <img src="https://plus.unsplash.com/premium_photo-1680100256112-2e1231d9d0df?ixlib=rb-4.1.0&fit=crop&w=500&h=350&q=80" alt="Infinity Swimming Pool" loading="lazy">
                         <div class="amenity-card-content">
                             <h3>Lagoon-Style Pool</h3>
                             <p>Relax and unwind in the stunning beach-themed swimming pool.</p>
                         </div>
                     </div>
                     <div class="amenity-card">
-                        <img src="https://source.unsplash.com/500x350/?modern,gym,fitness" alt="State-of-the-art Gymnasium" loading="lazy">
+                        <!-- REPLACED IMAGE -->
+                        <img src="https://images.unsplash.com/photo-1596276020587-8044fe049813?ixlib=rb-4.1.0&fit=crop&w=500&h=350&q=80" alt="Modern fitness center" loading="lazy">
                         <div class="amenity-card-content">
                             <h3>State-of-the-Art Gym</h3>
                             <p>Equipped with the latest machines for your fitness journey.</p>
                         </div>
                     </div>
                     <div class="amenity-card">
-                        <img src="https://source.unsplash.com/500x350/?landscaped,garden,tropical" alt="Landscaped Gardens" loading="lazy">
+                        <!-- REPLACED IMAGE -->
+                        <img src="https://images.unsplash.com/photo-1483097365279-e8acd3bf9f18?ixlib=rb-4.1.0&fit=crop&w=500&h=350&q=80" alt="Landscaped Gardens" loading="lazy">
                         <div class="amenity-card-content">
                             <h3>Themed Gardens</h3>
                             <p>Stroll through acres of serene, tropical green spaces.</p>
                         </div>
                     </div>
                     <div class="amenity-card">
-                        <img src="https://source.unsplash.com/500x350/?kids,play,park" alt="Children's Play Area" loading="lazy">
+                        <!-- REPLACED IMAGE -->
+                        <img src="https://plus.unsplash.com/premium_photo-1687960117069-567a456fe5f3?ixlib=rb-4.1.0&fit=crop&w=500&h=350&q=80" alt="Children's Play Area" loading="lazy">
                         <div class="amenity-card-content">
                             <h3>Kids' Adventure Area</h3>
                             <p>A safe and imaginative space for your children to thrive.</p>
                         </div>
                     </div>
                     <div class="amenity-card">
-                        <img src="https://source.unsplash.com/500x350/?tennis,court" alt="Sports Courts" loading="lazy">
+                        <!-- REPLACED IMAGE -->
+                        <img src="https://plus.unsplash.com/premium_photo-1687960116957-ab813e1e66e6?ixlib=rb-4.1.0&fit=crop&w=500&h=350&q=80" alt="Sports Courts" loading="lazy">
                         <div class="amenity-card-content">
                             <h3>Multi-Sports Courts</h3>
                             <p>Including tennis, basketball, and futsal courts.</p>
@@ -1046,23 +1073,26 @@
                 
                 <div class="tab-content active" id="gallery-tab1">
                     <div class="gallery-grid">
-                        <div class="gallery-item"><img src="https://source.unsplash.com/400x300/?architecture,facade,apartment" alt="Building Facade"><div class="overlay"><h4>Modern Facade</h4></div></div>
-                        <div class="gallery-item"><img src="https://source.unsplash.com/400x300/?building,exterior,night,modern" alt="Building at Night"><div class="overlay"><h4>Evening View</h4></div></div>
-                        <div class="gallery-item"><img src="https://source.unsplash.com/400x300/?architecture,balcony,view" alt="Apartment Balconies"><div class="overlay"><h4>Spacious Balconies</h4></div></div>
+                        <!-- REPLACED IMAGES -->
+                        <div class="gallery-item"><img src="https://images.unsplash.com/photo-1595058651386-ac9b13dc8305?ixlib=rb-4.1.0&fit=crop&w=400&h=300&q=80" alt="Building Facade" loading="lazy"><div class="overlay"><h4>Modern Facade</h4></div></div>
+                        <div class="gallery-item"><img src="https://images.unsplash.com/photo-1605266764154-0ff8f354088c?ixlib=rb-4.1.0&fit=crop&w=400&h=300&q=80" alt="Building exterior night view" loading="lazy"><div class="overlay"><h4>Evening View</h4></div></div>
+                        <div class="gallery-item"><img src="https://images.unsplash.com/photo-1631679706909-1844bbd07221?ixlib=rb-4.1.0&fit=crop&w=400&h=300&q=80" alt="Apartment Balconies with view" loading="lazy"><div class="overlay"><h4>Spacious Balconies</h4></div></div>
                     </div>
                 </div>
                 <div class="tab-content" id="gallery-tab2">
                     <div class="gallery-grid">
-                        <div class="gallery-item"><img src="https://source.unsplash.com/400x300/?modern,living,room,luxury" alt="Modern Living Room"><div class="overlay"><h4>Elegant Living Room</h4></div></div>
-                        <div class="gallery-item"><img src="https://source.unsplash.com/400x300/?luxury,bedroom,view" alt="Luxury Bedroom"><div class="overlay"><h4>Master Bedroom</h4></div></div>
-                        <div class="gallery-item"><img src="https://source.unsplash.com/400x300/?modern,kitchen,interior" alt="Modern Kitchen"><div class="overlay"><h4>Modular Kitchen</h4></div></div>
+                         <!-- REPLACED IMAGES -->
+                        <div class="gallery-item"><img src="https://images.unsplash.com/photo-1618220179428-22790b461013?ixlib=rb-4.1.0&fit=crop&w=400&h=300&q=80" alt="Modern Living Room" loading="lazy"><div class="overlay"><h4>Elegant Living Room</h4></div></div>
+                        <div class="gallery-item"><img src="https://images.unsplash.com/photo-1606744837616-56c9a5c6a6eb?ixlib=rb-4.1.0&fit=crop&w=400&h=300&q=80" alt="Luxury Bedroom with river view" loading="lazy"><div class="overlay"><h4>Master Bedroom</h4></div></div>
+                        <div class="gallery-item"><img src="https://images.unsplash.com/photo-1502005229762-cf1b2da7c5d6?ixlib=rb-4.1.0&fit=crop&w=400&h=300&q=80" alt="Modern Kitchen interior design" loading="lazy"><div class="overlay"><h4>Modular Kitchen</h4></div></div>
                     </div>
                 </div>
                 <div class="tab-content" id="gallery-tab3">
                     <div class="gallery-grid">
-                        <div class="gallery-item"><img src="https://source.unsplash.com/400x300/?luxury,lobby,interior" alt="Grand Lobby"><div class="overlay"><h4>Double-Height Lobby</h4></div></div>
-                        <div class="gallery-item"><img src="https://source.unsplash.com/400x300/?rooftop,pool,city" alt="Rooftop Pool"><div class="overlay"><h4>Rooftop Pool</h4></div></div>
-                        <div class="gallery-item"><img src="https://source.unsplash.com/400x300/?yoga,studio,interior" alt="Yoga Studio"><div class="overlay"><h4>Yoga & Wellness Studio</h4></div></div>
+                         <!-- REPLACED IMAGES -->
+                        <div class="gallery-item"><img src="https://images.unsplash.com/photo-1626374295803-a333cfeca51b?ixlib=rb-4.1.0&fit=crop&w=400&h=300&q=80" alt="Grand Lobby entrance" loading="lazy"><div class="overlay"><h4>Double-Height Lobby</h4></div></div>
+                        <div class="gallery-item"><img src="https://plus.unsplash.com/premium_photo-1680100256112-2e1231d9d0df?ixlib=rb-4.1.0&fit=crop&w=400&h=300&q=80" alt="Rooftop Pool with city view" loading="lazy"><div class="overlay"><h4>Rooftop Pool</h4></div></div>
+                        <div class="gallery-item"><img src="https://plus.unsplash.com/premium_photo-1687960117069-567a456fe5f3?ixlib=rb-4.1.0&fit=crop&w=400&h=300&q=80" alt="Yoga Studio interior" loading="lazy"><div class="overlay"><h4>Yoga & Wellness Studio</h4></div></div>
                     </div>
                 </div>
             </div>
@@ -1083,12 +1113,14 @@
                         <div class="plan-item">
                             <h3>2 Bed - Type A</h3>
                             <p>Spacious layout with modern kitchen and two balconies.</p>
-                            <img src="https://source.unsplash.com/400x300/?floor,plan,sketch" alt="2 Bed Floor Plan Type A" loading="lazy">
+                            <!-- REPLACED IMAGE -->
+                            <img src="https://images.unsplash.com/photo-1556784344-ad913c73cfc4?ixlib=rb-4.1.0&fit=crop&w=400&h=300&q=80" alt="2 Bed Floor Plan Type A" loading="lazy">
                         </div>
                         <div class="plan-item">
                             <h3>2 Bed - Type B</h3>
                             <p>Smart design with a dedicated work-from-home niche.</p>
-                            <img src="https://source.unsplash.com/400x300/?blueprint,floorplan" alt="2 Bed Floor Plan Type B" loading="lazy">
+                            <!-- REPLACED IMAGE -->
+                            <img src="https://plus.unsplash.com/premium_photo-1686090449192-4ab1d00cb735?ixlib=rb-4.1.0&fit=crop&w=400&h=300&q=80" alt="2 Bed Floor Plan Type B" loading="lazy">
                         </div>
                     </div>
                 </div>
@@ -1097,12 +1129,14 @@
                         <div class="plan-item">
                             <h3>3 Bed - Type A</h3>
                             <p>Expansive living area, large master suite, and deck.</p>
-                            <img src="https://source.unsplash.com/400x300/?floorplan" alt="3 Bed Floor Plan Type A" loading="lazy">
+                            <!-- REPLACED IMAGE -->
+                             <img src="https://unsplash.com/photos/gray-steel-3-door-refrigerator-near-modular-kitchen-MP0bgaS_d1c?ixlib=rb-4.1.0&fit=crop&w=400&h=300&q=80" alt="3 Bed Floor Plan Type A" loading="lazy">
                         </div>
                         <div class="plan-item">
                             <h3>3 Bed - Type B</h3>
                             <p>Premium corner unit with cross-ventilation and city views.</p>
-                            <img src="https://source.unsplash.com/400x300/?architecture,plan" alt="3 Bed Floor Plan Type B" loading="lazy">
+                            <!-- REPLACED IMAGE -->
+                            <img src="https://images.unsplash.com/photo-1596276020587-8044fe049813?ixlib=rb-4.1.0&fit=crop&w=400&h=300&q=80" alt="3 Bed Floor Plan Type B" loading="lazy">
                         </div>
                     </div>
                 </div>
@@ -1169,7 +1203,8 @@
                         <a href="#contact" class="btn btn-primary" style="margin-top: 1.5rem;">Schedule a Site Visit</a>
                     </div>
                     <div class="map-placeholder fade-in">
-                        <img src="https://source.unsplash.com/600x500/?city,map,aerial,location" alt="Aerial map of a city district">
+                        <!-- REPLACED IMAGE -->
+                        <img src="https://images.unsplash.com/photo-1516156008625-3a9d6067fab5?ixlib=rb-4.1.0&fit=crop&w=600&h=500&q=80" alt="Aerial map of a city district showing roads and buildings" loading="lazy">
                     </div>
                 </div>
             </div>
@@ -1289,16 +1324,48 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-
-            // --- Mobile Menu Toggle ---
+            const topNav = document.getElementById('topNav');
             const menuToggle = document.getElementById('menuToggle');
             const mainNav = document.getElementById('mainNav');
-            
+            const body = document.body;
+            let headerHeight = 70; // Initial header height
+
+            // --- Adjust Header Height on Scroll ---
+            function updateHeaderHeight() {
+                if (topNav) {
+                    headerHeight = topNav.offsetHeight;
+                }
+            }
+            updateHeaderHeight(); // Initial check
+
+             window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    topNav.classList.add('scrolled');
+                } else {
+                    topNav.classList.remove('scrolled');
+                }
+                updateHeaderHeight(); // Update height on scroll if padding changes
+            });
+            window.addEventListener('resize', updateHeaderHeight); // Update height on resize
+
+            // --- Mobile Menu Toggle ---
             if (menuToggle && mainNav) {
+                const navLinksContainer = mainNav.querySelector('.nav-links');
                 menuToggle.addEventListener('click', () => {
-                    mainNav.classList.toggle('open');
+                    const isOpen = mainNav.classList.toggle('open');
                     menuToggle.classList.toggle('open');
-                    menuToggle.setAttribute('aria-expanded', mainNav.classList.contains('open'));
+                    menuToggle.setAttribute('aria-expanded', isOpen);
+                    body.style.overflow = isOpen ? 'hidden' : ''; // Prevent body scroll when menu open
+                    if (isOpen) {
+                        navLinksContainer.style.display = 'flex'; // Ensure links are visible when opening
+                    } else {
+                         // Delay hiding to allow transition/animation if needed
+                        setTimeout(() => {
+                           if (!mainNav.classList.contains('open')) { // Double check it's still closed
+                                navLinksContainer.style.display = 'none';
+                           }
+                        }, 300); // Match this delay to CSS transition if added
+                    }
                 });
             }
 
@@ -1311,13 +1378,8 @@
                     const targetElement = document.querySelector(targetId);
                     
                     if (targetElement) {
-                        let headerOffset = 70; // Height of the top-nav
-                        if (window.innerWidth <= 768) {
-                            headerOffset = 60;
-                        }
-                        
                         let elementPosition = targetElement.getBoundingClientRect().top;
-                        let offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                        let offsetPosition = elementPosition + window.pageYOffset - headerHeight;
 
                         // Special case for #home to scroll to top
                         if (targetId === '#home') {
@@ -1334,6 +1396,10 @@
                             mainNav.classList.remove('open');
                             menuToggle.classList.remove('open');
                             menuToggle.setAttribute('aria-expanded', 'false');
+                            body.style.overflow = ''; // Re-enable scroll
+                            const navLinksContainer = mainNav.querySelector('.nav-links');
+                            // Delay hiding to allow scroll to start
+                            setTimeout(() => { navLinksContainer.style.display = 'none'; }, 300);
                         }
                     }
                 });
@@ -1369,15 +1435,21 @@
             // --- Tab Functionality ---
             function setupTabs(tabContainerId) {
                 const tabContainer = document.getElementById(tabContainerId);
-                if (tabContainer) {
-                    const tabButtons = tabContainer.querySelectorAll('.tab-button');
-                    const tabContents = [];
-                    
-                    tabButtons.forEach(button => {
+                if (!tabContainer) return;
+
+                const tabButtons = tabContainer.querySelectorAll('.tab-button');
+                const contentContainer = tabContainer.nextElementSibling; // Assuming content follows nav
+                let tabContents = [];
+
+                if (contentContainer) {
+                     tabButtons.forEach(button => {
                         const contentId = button.getAttribute('data-tab');
                         const contentElement = document.getElementById(contentId);
                         if (contentElement) {
                             tabContents.push(contentElement);
+                        } else {
+                             console.warn(`Content element with ID ${contentId} not found.`);
+                             tabContents.push(null); // Keep array length consistent
                         }
                     });
 
@@ -1388,12 +1460,14 @@
                             button.classList.add('active');
                             
                             // Update content
-                            tabContents.forEach(content => content.classList.remove('active'));
+                            tabContents.forEach(content => { if(content) content.classList.remove('active');});
                             if (tabContents[index]) {
                                 tabContents[index].classList.add('active');
                             }
                         });
                     });
+                } else {
+                    console.warn(`Content container for tabs #${tabContainerId} not found immediately after the tab navigation.`);
                 }
             }
             
@@ -1401,30 +1475,40 @@
             setupTabs('plansTabs');
 
             // --- FAQ Accordion ---
-            const faqItems = document.querySelectorAll('.faq-item');
-            faqItems.forEach(item => {
-                const header = item.querySelector('.faq-header');
-                const content = item.querySelector('.faq-content');
-                const toggle = item.querySelector('.faq-toggle');
+            const faqContainer = document.querySelector('.faq-container');
+            if (faqContainer) {
+                 faqContainer.addEventListener('click', (e) => {
+                    const header = e.target.closest('.faq-header');
+                    if (!header) return;
 
-                if (header && content && toggle) {
-                    header.addEventListener('click', () => {
-                        const isActive = item.classList.contains('active');
-                        
-                        if (!isActive) {
-                            item.classList.add('active');
-                            content.style.maxHeight = content.scrollHeight + 'px';
-                            toggle.textContent = '−'; // Minus sign
-                            header.setAttribute('aria-expanded', 'true');
-                        } else {
-                            item.classList.remove('active');
-                            content.style.maxHeight = null;
-                            toggle.textContent = '+';
-                            header.setAttribute('aria-expanded', 'false');
-                        }
-                    });
-                }
-            });
+                    const item = header.closest('.faq-item');
+                    const content = item.querySelector('.faq-content');
+                    const toggle = item.querySelector('.faq-toggle');
+                    const isActive = item.classList.contains('active');
+
+                    // Optional: Close other items
+                    // faqContainer.querySelectorAll('.faq-item.active').forEach(openItem => {
+                    //     if (openItem !== item) {
+                    //         openItem.classList.remove('active');
+                    //         openItem.querySelector('.faq-content').style.maxHeight = null;
+                    //         openItem.querySelector('.faq-toggle').textContent = '+';
+                    //         openItem.querySelector('.faq-header').setAttribute('aria-expanded', 'false');
+                    //     }
+                    // });
+
+                    if (!isActive) {
+                        item.classList.add('active');
+                        content.style.maxHeight = content.scrollHeight + 'px';
+                        toggle.textContent = '−'; // Minus sign
+                        header.setAttribute('aria-expanded', 'true');
+                    } else {
+                        item.classList.remove('active');
+                        content.style.maxHeight = null;
+                        toggle.textContent = '+';
+                        header.setAttribute('aria-expanded', 'false');
+                    }
+                });
+            }
 
 
             // --- Set Current Year in Footer ---
@@ -1438,8 +1522,10 @@
             if (contactForm) {
                 contactForm.addEventListener('submit', function(e) {
                     e.preventDefault();
-                    console.log('Form submitted (mock).');
                     const submitButton = this.querySelector('button[type="submit"]');
+                     if (submitButton.disabled) return; // Prevent multiple submissions
+
+                    console.log('Form submitted (mock).');
                     submitButton.textContent = 'Submitted!';
                     submitButton.disabled = true;
                     

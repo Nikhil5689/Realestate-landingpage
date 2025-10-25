@@ -89,6 +89,7 @@
             background-color: transparent;
             color: var(--color-primary-dark);
             border: 2px solid var(--color-primary-dark);
+            font-weight: 600; /* Bolder outline */
         }
         
         .btn-outline:hover {
@@ -181,9 +182,14 @@
             padding: 1rem 0;
             background: rgba(255, 255, 255, 0.97);
             backdrop-filter: blur(8px);
+             -webkit-backdrop-filter: blur(8px);
             border-bottom: 1px solid var(--color-border);
             z-index: 1000;
-            transition: padding 0.3s ease;
+            transition: padding 0.3s ease, box-shadow 0.3s ease;
+        }
+         .top-nav.scrolled {
+             padding: 0.75rem 0;
+             box-shadow: 0 4px 10px rgba(0,0,0,0.05);
         }
 
         .nav-container {
@@ -209,6 +215,7 @@
         .main-nav .nav-links {
             display: flex;
             gap: 1.5rem;
+            list-style: none; /* Add list-style none */
         }
         
         .main-nav a {
@@ -219,6 +226,7 @@
             position: relative;
             padding-bottom: 0.25rem;
             text-transform: uppercase;
+            transition: color 0.3s ease;
         }
         
         .main-nav .nav-links a::after {
@@ -231,6 +239,10 @@
             background-color: var(--color-accent);
             transition: width 0.3s ease;
         }
+        
+         .main-nav .nav-links a:hover {
+             color: var(--color-accent); /* Hover effect */
+         }
         
         .main-nav .nav-links a:hover::after {
             width: 100%;
@@ -330,6 +342,7 @@
              margin-bottom: 0.5rem;
              font-family: var(--font-body);
              font-weight: 600;
+             color: var(--color-primary-dark);
         }
         .feature-item p {
             font-size: 0.9rem;
@@ -391,6 +404,7 @@
              margin-bottom: 0.25rem;
              font-family: var(--font-body);
              font-weight: 600;
+             color: var(--color-primary-dark);
         }
         .amenity-card p {
             font-size: 0.9rem;
@@ -429,7 +443,7 @@
             color: var(--color-text-light);
             border-color: var(--color-accent);
         }
-        .tab-content { display: none; }
+        .tab-content { display: none; animation: fadeInContent 0.5s ease; }
         .tab-content.active { display: block; }
         .tab-content img {
             max-width: 900px;
@@ -437,6 +451,11 @@
             border-radius: 8px;
             border: 1px solid var(--color-border);
             box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+        }
+
+        @keyframes fadeInContent {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         /* --- Gallery Section --- */
@@ -513,7 +532,12 @@
             border: 1px solid var(--color-border);
             box-shadow: 0 8px 20px rgba(0,0,0,0.05);
             position: relative;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
+         .testimonial-card:hover {
+             transform: translateY(-5px);
+             box-shadow: 0 12px 25px rgba(0,0,0,0.08);
+         }
         .testimonial-card::before { /* Quote icon */
             content: '“';
             position: absolute;
@@ -524,6 +548,7 @@
             font-family: var(--font-heading);
             line-height: 1;
             z-index: 1;
+            opacity: 0.6;
         }
         .testimonial-card p {
             font-size: 0.95rem;
@@ -550,6 +575,7 @@
             font-family: var(--font-body);
             font-weight: 600;
             margin: 0 0 0.25rem 0;
+            color: var(--color-primary-dark);
         }
         .author-info span {
             font-size: 0.85rem;
@@ -567,6 +593,9 @@
             box-shadow: 0 10px 30px rgba(0,0,0,0.07);
         }
         .contact-container h2 { text-align: center; }
+         .contact-container .section-subtitle {
+             margin-bottom: 2.5rem;
+         }
         .contact-form {
             display: flex;
             flex-direction: column;
@@ -587,6 +616,10 @@
             border-color: var(--color-accent);
             box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
         }
+         .form-group textarea {
+             resize: vertical;
+             min-height: 120px;
+         }
         .contact-form .btn-primary { font-size: 1rem; padding: 1rem; }
 
         /* --- Footer --- */
@@ -609,6 +642,7 @@
             color: var(--color-text-light);
             margin-bottom: 1rem;
             display: inline-block;
+            text-decoration: none;
         }
         .footer-widget p {
             color: #9CA3AF;
@@ -649,7 +683,9 @@
         @media (max-width: 1024px) {
             h1 { font-size: 2.75rem; }
             h2 { font-size: 2.25rem; }
-            section { padding: 4rem 0; }
+            section, #overview, #amenities, #floor-plans, #gallery, #location, #testimonials, #contact { 
+                 padding: 4rem 0; 
+            }
             .nav-container { padding: 0 1.5rem; }
             
             .hero-content h1 { font-size: 3rem; }
@@ -670,43 +706,60 @@
         }
         
         @media (max-width: 768px) {
-            body { padding-top: 60px; }
+            body { padding-top: 60px; } /* Adjust for header height */
             .top-nav { padding: 0.75rem 0; }
             .nav-container { padding: 0 1rem; }
             .logo { font-size: 1.4rem; }
             
+            /* Mobile Nav Styling */
             .main-nav {
                 position: fixed;
-                top: 60px; /* Adjust based on header height */
+                top: 60px; /* Match body padding */
                 left: -100%;
                 width: 80%;
-                height: 100vh;
+                max-width: 300px;
+                height: calc(100vh - 60px);
                 background: var(--color-bg-white);
                 flex-direction: column;
                 align-items: flex-start;
+                justify-content: space-between;
                 gap: 0;
                 padding: 1.5rem 1rem;
                 box-shadow: 5px 0 15px rgba(0,0,0,0.1);
                 transition: left 0.4s ease-in-out;
             }
+             .main-nav .nav-links { display: none; }
             .main-nav.open { left: 0; }
-            .main-nav .nav-links {
+            .main-nav.open .nav-links {
                 display: flex;
                 flex-direction: column;
                 width: 100%;
                 gap: 0;
+                list-style: none;
             }
-            .main-nav a {
+             .main-nav.open .nav-links li { width: 100%; }
+            .main-nav.open a {
                 padding: 1rem 0;
                 width: 100%;
                 border-bottom: 1px solid var(--color-border);
+                color: var(--color-text-dark);
             }
-            .main-nav a:last-child { border-bottom: none; }
+             .main-nav.open .nav-links li:last-child a { border-bottom: none; }
+             .main-nav.open .nav-links a:hover {
+                 color: var(--color-accent);
+                 background-color: var(--color-secondary);
+             }
             .main-nav .nav-links a::after { display: none; }
-            .main-nav .btn { display: block; margin-top: 1.5rem; width: 100%; }
+            .main-nav .btn { display: none; }
+             .main-nav.open .btn { 
+                 display: block;
+                 margin-top: auto;
+                 width: 100%; 
+                 margin-bottom: 1rem;
+            } 
             .menu-toggle { display: block; }
             
-            .hero-section { padding: 4rem 0; }
+            .hero-section { padding: 4rem 0; text-align: center; } /* Center hero on mobile */
             .hero-grid { grid-template-columns: 1fr; text-align: center; }
             .hero-image { display: none; } /* Hide image on mobile */
             .hero-content h1 { font-size: 2.5rem; }
@@ -725,17 +778,17 @@
 <body>
 
     <!-- Top Navigation -->
-    <header class="top-nav">
+    <header class="top-nav" id="topNav">
         <div class="container nav-container">
             <a href="#home" class="logo">APEX TOWER</a>
             
             <nav class="main-nav" id="mainNav">
-                <div class="nav-links">
-                    <a href="#overview">Overview</a>
-                    <a href="#amenities">Amenities</a>
-                    <a href="#floor-plans">Floor Plans</a>
-                    <a href="#location">Location</a>
-                </div>
+                <ul class="nav-links">
+                    <li><a href="#overview">Overview</a></li>
+                    <li><a href="#amenities">Amenities</a></li>
+                    <li><a href="#floor-plans">Floor Plans</a></li>
+                    <li><a href="#location">Location</a></li>
+                </ul>
                 <a href="#contact" class="btn btn-primary">Enquire</a>
             </nav>
             
@@ -760,8 +813,8 @@
                     <a href="#contact" class="btn btn-outline" style="margin-left: 1rem; border-color: var(--color-primary-dark); color: var(--color-primary-dark);">Schedule Tour</a>
                 </div>
                 <div class="hero-image fade-in">
-                    
-                    <img src="https://source.unsplash.com/600x480/?modern,office,building,architecture" alt="Modern office building exterior - Apex Tower">
+                    <!-- REPLACED IMAGE -->
+                    <img src="https://images.unsplash.com/photo-1605146769289-440113cc3d00?ixlib=rb-4.1.0&fit=crop&w=600&h=480&q=80" alt="Modern office building exterior - Apex Tower" loading="lazy">
                 </div>
             </div>
         </section>
@@ -803,8 +856,8 @@
                     <a href="#amenities" class="btn btn-outline">Explore Features</a>
                 </div>
                 <div class="overview-image">
-                    
-                    <img src="https://source.unsplash.com/600x450/?modern,office,lobby,interior" alt="Bright and modern office lobby interior" loading="lazy">
+                    <!-- REPLACED IMAGE -->
+                    <img src="https://images.unsplash.com/photo-1626374295803-a333cfeca51b?ixlib=rb-4.1.0&fit=crop&w=600&h=450&q=80" alt="Bright and modern office lobby interior" loading="lazy">
                 </div>
             </div>
         </section>
@@ -835,7 +888,7 @@
                         <h4>Cafeteria & Pantry</h4>
                         <p>Modern dining and refreshment areas.</p>
                     </div>
-                    <!-- Add 4 more amenities -->
+                    {/* <!-- Add 4 more amenities --> */}
                     <div class="amenity-card fade-in">
                         <svg class="icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h1.125c.621 0 1.125-.504 1.125-1.125V14.25m-17.25 4.5h10.5m-10.5-4.5V6.375c0-.621.504-1.125 1.125-1.125h14.25c.621 0 1.125.504 1.125 1.125v10.125m-17.25-4.5h17.25" /></svg>
                         <h4>Secure Parking</h4>
@@ -872,16 +925,16 @@
                 </div>
                 
                 <div class="tab-content active" id="plan1">
-                    
-                    <img src="https://source.unsplash.com/1200x800/?office,floorplan,blueprint" alt="Typical Office Floor Plan" loading="lazy">
+                    <!-- REPLACED IMAGE -->
+                    <img src="https://images.unsplash.com/photo-1556784344-ad913c73cfc4?ixlib=rb-4.1.0&fit=crop&w=1200&h=800&q=80" alt="Typical Office Floor Plan" loading="lazy">
                 </div>
                 <div class="tab-content" id="plan2">
-                     
-                    <img src="https://source.unsplash.com/1200x800/?small,office,layout,sketch" alt="Small Office Suite Plan" loading="lazy">
+                    <!-- REPLACED IMAGE --> 
+                    <img src="https://plus.unsplash.com/premium_photo-1686090449192-4ab1d00cb735?ixlib=rb-4.1.0&fit=crop&w=1200&h=800&q=80" alt="Small Office Suite Plan" loading="lazy">
                 </div>
                 <div class="tab-content" id="plan3">
-                     
-                    <img src="https://source.unsplash.com/1200x800/?large,office,suite,plan" alt="Large Office Suite Plan" loading="lazy">
+                    <!-- REPLACED IMAGE --> 
+                    <img src="https://images.unsplash.com/photo-1595058651386-ac9b13dc8305?ixlib=rb-4.1.0&fit=crop&w=1200&h=800&q=80" alt="Large Office Suite Plan" loading="lazy">
                 </div>
             </div>
         </section>
@@ -893,28 +946,28 @@
                 <p class="section-subtitle fade-in">Experience the premium ambiance and modern design of Apex Tower.</p>
                 <div class="gallery-grid">
                     <div class="gallery-item fade-in">
-                         
-                        <img src="https://source.unsplash.com/400x350/?office,common,area,stylish" alt="Stylish office common area">
+                        <!-- REPLACED IMAGE --> 
+                        <img src="https://images.unsplash.com/photo-1502005229762-cf1b2da7c5d6?ixlib=rb-4.1.0&fit=crop&w=400&h=350&q=80" alt="Stylish office common area" loading="lazy">
                     </div>
                     <div class="gallery-item fade-in">
-                         
-                        <img src="https://source.unsplash.com/400x350/?meeting,room,city,view" alt="Modern meeting room with city view">
+                        <!-- REPLACED IMAGE --> 
+                        <img src="https://images.unsplash.com/photo-1631679706909-1844bbd07221?ixlib=rb-4.1.0&fit=crop&w=400&h=350&q=80" alt="Modern meeting room with city view" loading="lazy">
                     </div>
                     <div class="gallery-item fade-in">
-                         
-                        <img src="https://source.unsplash.com/400x350/?office,building,entrance" alt="Building exterior entrance">
+                        <!-- REPLACED IMAGE --> 
+                        <img src="https://images.unsplash.com/photo-1585128792020-803d29415281?ixlib=rb-4.1.0&fit=crop&w=400&h=350&q=80" alt="Building exterior entrance" loading="lazy">
                     </div>
                     <div class="gallery-item fade-in">
-                         
-                        <img src="https://source.unsplash.com/400x350/?open,plan,office,workspace" alt="Open plan workspace">
+                        <!-- REPLACED IMAGE --> 
+                        <img src="https://images.unsplash.com/photo-1618220179428-22790b461013?ixlib=rb-4.1.0&fit=crop&w=400&h=350&q=80" alt="Open plan workspace" loading="lazy">
                     </div>
                     <div class="gallery-item fade-in">
-                         
-                        <img src="https://source.unsplash.com/400x350/?rooftop,terrace,office,break" alt="Rooftop terrace break area">
+                        <!-- REPLACED IMAGE --> 
+                        <img src="https://plus.unsplash.com/premium_photo-1680100256112-2e1231d9d0df?ixlib=rb-4.1.0&fit=crop&w=400&h=350&q=80" alt="Rooftop terrace break area" loading="lazy">
                     </div>
                     <div class="gallery-item fade-in">
-                         
-                        <img src="https://source.unsplash.com/400x350/?office,building,night,lights" alt="Office building illuminated at night">
+                        <!-- REPLACED IMAGE --> 
+                        <img src="https://images.unsplash.com/photo-1558981082-c7d43331cd8c?ixlib=rb-4.1.0&fit=crop&w=400&h=350&q=80" alt="Office building illuminated at night" loading="lazy">
                     </div>
                 </div>
             </div>
@@ -935,8 +988,8 @@
                     </ul>
                 </div>
                  <div class="map-placeholder fade-in">
-                     
-                    <img src="https://source.unsplash.com/600x500/?city,map,highlight,location" alt="Map showing Apex Tower location and connectivity">
+                    <!-- REPLACED IMAGE -->
+                    <img src="https://images.unsplash.com/photo-1516156008625-3a9d6067fab5?ixlib=rb-4.1.0&fit=crop&w=600&h=500&q=80" alt="Map showing Apex Tower location and connectivity" loading="lazy">
                 </div>
             </div>
         </section>
@@ -950,7 +1003,8 @@
                     <div class="testimonial-card fade-in">
                         <p>"The location is unbeatable, and the modern facilities have significantly boosted our team's productivity and morale. A truly premium workspace."</p>
                         <div class="testimonial-author">
-                            <img src="https://source.unsplash.com/100x100/?portrait,ceo,man" alt="CEO Portrait">
+                             <!-- REPLACED IMAGE -->
+                            <img src="https://images.unsplash.com/photo-1605266764154-0ff8f354088c?ixlib=rb-4.1.0&fit=crop&w=100&h=100&q=80" alt="CEO Portrait" loading="lazy">
                             <div class="author-info">
                                 <h5>John Doe</h5>
                                 <span>CEO, Tech Innovations Inc.</span>
@@ -960,7 +1014,8 @@
                     <div class="testimonial-card fade-in">
                         <p>"Apex Tower provides the professional image and amenities we need to impress clients and attract top talent. The management team is also excellent."</p>
                          <div class="testimonial-author">
-                            <img src="https://source.unsplash.com/100x100/?portrait,professional,woman" alt="Manager Portrait">
+                             <!-- REPLACED IMAGE -->
+                            <img src="https://images.unsplash.com/photo-1483097365279-e8acd3bf9f18?ixlib=rb-4.1.0&fit=crop&w=100&h=100&q=80" alt="Manager Portrait" loading="lazy">
                             <div class="author-info">
                                 <h5>Jane Smith</h5>
                                 <span>Marketing Director, Global Solutions</span>
@@ -970,7 +1025,8 @@
                      <div class="testimonial-card fade-in">
                         <p>"The flexibility in office spaces allowed us to scale easily as our startup grew. The collaborative environment is a huge plus."</p>
                          <div class="testimonial-author">
-                            <img src="https://source.unsplash.com/100x100/?portrait,startup,founder" alt="Founder Portrait">
+                             <!-- REPLACED IMAGE -->
+                            <img src="https://plus.unsplash.com/premium_photo-1687960117069-567a456fe5f3?ixlib=rb-4.1.0&fit=crop&w=100&h=100&q=80" alt="Founder Portrait" loading="lazy">
                             <div class="author-info">
                                 <h5>Alex Chen</h5>
                                 <span>Founder, Creative Hub</span>
@@ -1048,25 +1104,58 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-
-            // --- Mobile Menu Toggle ---
+            const topNav = document.getElementById('topNav');
             const menuToggle = document.getElementById('menuToggle');
             const mainNav = document.getElementById('mainNav');
-            
+            const body = document.body;
+            let headerHeight = 70; // Initial default
+
+             // --- Adjust Header & Body Padding ---
+            function updateHeaderLayout() {
+                if (topNav) {
+                    headerHeight = topNav.offsetHeight;
+                    body.style.paddingTop = headerHeight + 'px';
+                }
+            }
+            updateHeaderLayout(); // Initial check
+            window.addEventListener('resize', updateHeaderLayout);
+
+            // Shrink header on scroll
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    topNav.classList.add('scrolled');
+                } else {
+                    topNav.classList.remove('scrolled');
+                }
+                updateHeaderLayout(); // Update height as padding changes
+            });
+
+            // --- Mobile Menu Toggle ---
             if (menuToggle && mainNav) {
+                 const navLinksContainer = mainNav.querySelector('.nav-links'); // Get ul
                 menuToggle.addEventListener('click', () => {
-                    mainNav.classList.toggle('open');
+                    const isOpen = mainNav.classList.toggle('open');
                     menuToggle.classList.toggle('open');
-                    menuToggle.setAttribute('aria-expanded', mainNav.classList.contains('open'));
+                    menuToggle.setAttribute('aria-expanded', isOpen);
+                    body.style.overflow = isOpen ? 'hidden' : ''; // Prevent body scroll
+                    if (navLinksContainer) {
+                         navLinksContainer.style.display = isOpen ? 'flex' : 'none';
+                    }
                 });
-                // Close menu when clicking outside
-                 document.addEventListener('click', (event) => {
+
+                // Close menu when clicking outside on mobile
+                document.addEventListener('click', (event) => {
                     const isClickInsideNav = mainNav.contains(event.target);
                     const isClickOnToggle = menuToggle.contains(event.target);
+
                     if (!isClickInsideNav && !isClickOnToggle && mainNav.classList.contains('open')) {
                         mainNav.classList.remove('open');
                         menuToggle.classList.remove('open');
                         menuToggle.setAttribute('aria-expanded', 'false');
+                        body.style.overflow = ''; // Re-enable scroll
+                        if (navLinksContainer) {
+                             navLinksContainer.style.display = 'none';
+                        }
                     }
                 });
             }
@@ -1079,16 +1168,25 @@
                     const targetElement = document.querySelector(targetId);
                     
                     if (targetElement) {
-                        let headerOffset = 70; // Header height
-                        if (window.innerWidth <= 768) { headerOffset = 60; }
                         let elementPosition = targetElement.getBoundingClientRect().top;
-                        let offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                        // Use the dynamically updated headerHeight
+                        let offsetPosition = elementPosition + window.pageYOffset - headerHeight;
+
+                        // Special case for #home to scroll to top
                         if (targetId === '#home') { offsetPosition = 0; }
+
                         window.scrollTo({ top: offsetPosition, behavior: "smooth" });
+                        
+                        // Close mobile nav if open
                         if (mainNav.classList.contains('open')) {
                             mainNav.classList.remove('open');
                             menuToggle.classList.remove('open');
                             menuToggle.setAttribute('aria-expanded', 'false');
+                            body.style.overflow = ''; // Re-enable scroll
+                             const navLinksContainer = mainNav.querySelector('.nav-links');
+                             if (navLinksContainer) {
+                                 navLinksContainer.style.display = 'none';
+                             }
                         }
                     }
                 });
@@ -1097,12 +1195,11 @@
             // --- Fade-in on Scroll ---
             const faders = document.querySelectorAll('.fade-in');
             const appearOptions = { threshold: 0.1, rootMargin: "0px 0px -50px 0px" };
-            const appearOnScroll = new IntersectionObserver(function(entries, appearOnScroll) {
+            const appearOnScroll = new IntersectionObserver(function(entries, observer) {
                 entries.forEach(entry => {
-                    if (!entry.isIntersecting) { return; } 
-                    else {
+                    if (entry.isIntersecting) { 
                         entry.target.classList.add('visible');
-                        appearOnScroll.unobserve(entry.target);
+                        observer.unobserve(entry.target);
                     }
                 });
             }, appearOptions);
@@ -1112,7 +1209,9 @@
             const tabContainer = document.getElementById('floorPlanTabs');
             if (tabContainer) {
                 const tabButtons = tabContainer.querySelectorAll('.tab-button');
-                const tabContents = document.querySelectorAll('.tab-content');
+                // Target tab content relative to the section
+                const contentContainer = document.getElementById('floor-plans');
+                const tabContents = contentContainer.querySelectorAll('.tab-content');
                 
                 tabButtons.forEach(button => {
                     button.addEventListener('click', () => {
@@ -1143,8 +1242,10 @@
             if (contactForm) {
                 contactForm.addEventListener('submit', function(e) {
                     e.preventDefault();
-                    console.log('Form submitted (mock).');
                     const submitButton = this.querySelector('button[type="submit"]');
+                    if(submitButton.disabled) return; // Prevent multiple clicks
+                    
+                    console.log('Form submitted (mock).');
                     submitButton.textContent = 'Request Sent!';
                     submitButton.disabled = true;
                     setTimeout(() => {

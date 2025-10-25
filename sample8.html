@@ -150,9 +150,14 @@
             padding: 1rem 0;
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
             border-bottom: 1px solid var(--color-border);
             z-index: 1000;
-            transition: padding 0.3s ease;
+            transition: padding 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .top-nav.scrolled {
+             box-shadow: 0 4px 10px rgba(0,0,0,0.05);
         }
 
         .nav-container {
@@ -187,6 +192,7 @@
             font-size: 0.95rem;
             position: relative;
             padding-bottom: 0.25rem;
+            transition: color 0.3s ease;
         }
         
         .main-nav .nav-links a::after {
@@ -198,6 +204,10 @@
             height: 2px;
             background-color: var(--color-accent);
             transition: width 0.3s ease;
+        }
+        
+        .main-nav .nav-links a:hover {
+             color: var(--color-accent-dark);
         }
         
         .main-nav .nav-links a:hover::after {
@@ -239,8 +249,10 @@
 
         /* --- Hero Section --- */
         .hero-section {
-            padding: 4rem 0 0 0; /* Adjusted padding */
+            padding: 0; /* Remove top padding */
             background-color: var(--color-primary-light);
+            margin-top: -70px; /* Pull up to overlap header space */
+            padding-top: 70px; /* Add padding back to content */
         }
         
         .hero-slider-container {
@@ -339,7 +351,7 @@
         }
         
         .status-tag.oc-received {
-            background-color: #2ecc71; /* Green */
+            background-color: #27ae60; /* Slightly darker Green */
             color: white;
         }
         
@@ -443,6 +455,10 @@
             border-radius: 8px;
             overflow: hidden;
             background-color: var(--color-primary-light);
+            transition: box-shadow 0.3s ease;
+        }
+        .plan-item:hover {
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
         }
         .plan-item img {
             width: 100%;
@@ -565,7 +581,8 @@
         /* --- Contact CTA Section --- */
         #contact-cta {
             padding: 5rem 0;
-            background: linear-gradient(rgba(44, 62, 80, 0.85), rgba(44, 62, 80, 0.85)), url('https://source.unsplash.com/1600x400/?city,skyline,night') no-repeat center center/cover;
+             /* REPLACED IMAGE */
+            background: linear-gradient(rgba(44, 62, 80, 0.85), rgba(44, 62, 80, 0.85)), url('https://images.unsplash.com/photo-1558981082-c7d43331cd8c?ixlib=rb-4.1.0&fit=crop&w=1600&h=400&q=80') no-repeat center center/cover;
             text-align: center;
             color: var(--color-text-light);
         }
@@ -609,6 +626,7 @@
             color: var(--color-text-light);
             margin-bottom: 1rem;
             display: inline-block;
+            text-decoration: none;
         }
         
         .footer-widget p {
@@ -672,7 +690,7 @@
         @media (max-width: 1024px) {
             h1 { font-size: 2.5rem; }
             h2 { font-size: 2.25rem; }
-            section { padding: 4rem 0; }
+            section, #overview, #floor-plans, #gallery, #location, #developer, #contact-cta { padding: 4rem 0; }
 
             .nav-container { padding: 0 1.5rem; }
             .main-nav .nav-links { gap: 1rem; }
@@ -689,21 +707,23 @@
         }
         
         @media (max-width: 768px) {
-            body { padding-top: 60px; }
+            body { padding-top: 60px; } /* Adjust for potentially smaller header */
             .top-nav { padding: 0.75rem 0; }
             .nav-container { padding: 0 1rem; }
             .logo { font-size: 1.5rem; }
-            .main-nav .nav-links { display: none; } /* Hide links, keep button */
+            .main-nav .nav-links { display: none; } /* Hide links completely */
             
             .main-nav {
                 position: fixed; /* Change nav behavior */
-                top: 60px;
+                top: 60px; /* Match new body padding */
                 left: -100%; /* Start off-screen */
                 width: 80%;
-                height: 100vh;
+                max-width: 300px; /* Max width for mobile menu */
+                height: calc(100vh - 60px); /* Full height minus header */
                 background: var(--color-bg-white);
                 flex-direction: column;
                 align-items: flex-start;
+                justify-content: space-between; /* Space out links and button */
                 gap: 0;
                 padding: 2rem 1.5rem;
                 box-shadow: 5px 0 15px rgba(0,0,0,0.1);
@@ -752,7 +772,7 @@
 <body>
 
     <!-- Top Navigation -->
-    <header class="top-nav">
+    <header class="top-nav" id="topNav">
         <div class="container nav-container">
             <a href="#home" class="logo">URBAN HOMES</a>
             
@@ -780,9 +800,10 @@
         <section id="home" class="hero-section">
             <div class="hero-slider-container">
                 <div class="hero-slider" id="heroSlider">
-                    <div class="hero-slide" style="background-image: url('https://source.unsplash.com/1600x900/?luxury,lobby,interior');"></div>
-                    <div class="hero-slide" style="background-image: url('https://source.unsplash.com/1600x900/?apartment,living,room');"></div>
-                    <div class="hero-slide" style="background-image: url('https://source.unsplash.com/1600x900/?modern,building,exterior');"></div>
+                    <!-- REPLACED IMAGES -->
+                    <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1626374295803-a333cfeca51b?ixlib=rb-4.1.0&fit=crop&w=1600&h=900&q=80');" loading="lazy" alt="Luxury apartment lobby"></div>
+                    <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1618220179428-22790b461013?ixlib=rb-4.1.0&fit=crop&w=1600&h=900&q=80');" loading="lazy" alt="Modern apartment living room"></div>
+                    <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1605146769289-440113cc3d00?ixlib=rb-4.1.0&fit=crop&w=1600&h=900&q=80');" loading="lazy" alt="Modern building exterior"></div>
                 </div>
                 <div class="slider-controls">
                     <button id="prevSlide" aria-label="Previous Slide">
@@ -882,14 +903,16 @@
                 <p class="section-subtitle">Discover layouts designed for modern living, maximizing space and natural light.</p>
                 <div class="floor-plans-grid">
                     <div class="plan-item">
-                        <img src="https://source.unsplash.com/600x400/?floorplan,sketch" alt="3 BHK Floor Plan" loading="lazy">
+                         <!-- REPLACED IMAGE -->
+                        <img src="https://images.unsplash.com/photo-1556784344-ad913c73cfc4?ixlib=rb-4.1.0&fit=crop&w=600&h=400&q=80" alt="3 BHK Floor Plan" loading="lazy">
                         <div class="plan-item-content">
                             <h4>Typical 3 BHK Plan</h4>
                             <p>Spacious living, dining, and master suite.</p>
                         </div>
                     </div>
                     <div class="plan-item">
-                        <img src="https://source.unsplash.com/600x400/?blueprint,floorplan" alt="4 BHK Floor Plan" loading="lazy">
+                         <!-- REPLACED IMAGE -->
+                        <img src="https://plus.unsplash.com/premium_photo-1686090449192-4ab1d00cb735?ixlib=rb-4.1.0&fit=crop&w=600&h=400&q=80" alt="4 BHK Floor Plan" loading="lazy">
                         <div class="plan-item-content">
                             <h4>Typical 4 BHK Plan</h4>
                             <p>Expansive layout with additional family room.</p>
@@ -906,22 +929,28 @@
                 <p class="section-subtitle">A visual journey through the elegance and quality of Elysian Tower.</p>
                 <div class="gallery-grid">
                     <div class="gallery-item">
-                        <img src="https://source.unsplash.com/400x300/?luxury,apartment,interior" alt="Luxury apartment living room">
+                         <!-- REPLACED IMAGE -->
+                        <img src="https://images.unsplash.com/photo-1618220179428-22790b461013?ixlib=rb-4.1.0&fit=crop&w=400&h=300&q=80" alt="Luxury apartment living room" loading="lazy">
                     </div>
                     <div class="gallery-item">
-                        <img src="https://source.unsplash.com/400x300/?modern,kitchen,design" alt="Modern apartment kitchen">
+                         <!-- REPLACED IMAGE -->
+                        <img src="https://images.unsplash.com/photo-1502005229762-cf1b2da7c5d6?ixlib=rb-4.1.0&fit=crop&w=400&h=300&q=80" alt="Modern apartment kitchen" loading="lazy">
                     </div>
                     <div class="gallery-item">
-                        <img src="https://source.unsplash.com/400x300/?bedroom,design,luxury" alt="Elegant master bedroom">
+                         <!-- REPLACED IMAGE -->
+                        <img src="https://images.unsplash.com/photo-1606744837616-56c9a5c6a6eb?ixlib=rb-4.1.0&fit=crop&w=400&h=300&q=80" alt="Elegant master bedroom" loading="lazy">
                     </div>
                     <div class="gallery-item">
-                        <img src="https://source.unsplash.com/400x300/?building,exterior,modern" alt="Exterior view of the building">
+                         <!-- REPLACED IMAGE -->
+                        <img src="https://images.unsplash.com/photo-1605146769289-440113cc3d00?ixlib=rb-4.1.0&fit=crop&w=400&h=300&q=80" alt="Exterior view of the building" loading="lazy">
                     </div>
                     <div class="gallery-item">
-                        <img src="https://source.unsplash.com/400x300/?rooftop,pool,cityscape" alt="Rooftop swimming pool">
+                         <!-- REPLACED IMAGE -->
+                        <img src="https://plus.unsplash.com/premium_photo-1680100256112-2e1231d9d0df?ixlib=rb-4.1.0&fit=crop&w=400&h=300&q=80" alt="Rooftop swimming pool" loading="lazy">
                     </div>
                      <div class="gallery-item">
-                        <img src="https://source.unsplash.com/400x300/?fitness,center,gym" alt="Gymnasium facility">
+                         <!-- REPLACED IMAGE -->
+                        <img src="https://images.unsplash.com/photo-1596276020587-8044fe049813?ixlib=rb-4.1.0&fit=crop&w=400&h=300&q=80" alt="Gymnasium facility" loading="lazy">
                     </div>
                 </div>
             </div>
@@ -932,7 +961,8 @@
         <section id="location" class="fade-in">
             <div class="container location-grid">
                  <div class="map-placeholder fade-in">
-                    <img src="https://source.unsplash.com/600x500/?city,map,aerial,location" alt="Aerial map showing project location">
+                     <!-- REPLACED IMAGE -->
+                    <img src="https://images.unsplash.com/photo-1516156008625-3a9d6067fab5?ixlib=rb-4.1.0&fit=crop&w=600&h=500&q=80" alt="Aerial map showing project location" loading="lazy">
                 </div>
                 <div class="location-details fade-in">
                     <h2>Prime Location</h2>
@@ -952,7 +982,8 @@
         <!-- About Developer Section -->
         <section id="developer" class="fade-in">
             <div class="container developer-content">
-                 <img src="https://source.unsplash.com/200x200/?portrait,architect,professional" alt="Portrait of the Founder/Architect">
+                 <!-- REPLACED IMAGE -->
+                 <img src="https://images.unsplash.com/photo-1605266764154-0ff8f354088c?ixlib=rb-4.1.0&fit=crop&w=200&h=200&q=80" alt="Portrait of the Founder/Architect" loading="lazy">
                  <h3>Founder Name</h3>
                  <span class="role">Founder & CEO, Urban Homes Group</span>
                  <p>A visionary architect based in the city, dedicated to crafting homes that blend elegance, functionality, and modern living. With over a decade of expertise in delivering high-quality residential projects, known for a commitment to timely delivery, transparency, and client satisfaction.</p>
@@ -1013,20 +1044,46 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-
-            // --- Mobile Menu Toggle ---
+            const topNav = document.getElementById('topNav');
             const menuToggle = document.getElementById('menuToggle');
             const mainNav = document.getElementById('mainNav');
-            
+            const body = document.body;
+            let headerHeight = 70; // Initial header height based on padding-top
+
+             // --- Adjust Header & Body Padding ---
+            function updateHeaderLayout() {
+                if (topNav) {
+                    headerHeight = topNav.offsetHeight;
+                    body.style.paddingTop = headerHeight + 'px';
+                }
+            }
+            updateHeaderLayout(); // Initial check
+            window.addEventListener('resize', updateHeaderLayout); // Update on resize
+
+            // Shrink header on scroll
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    topNav.classList.add('scrolled');
+                } else {
+                    topNav.classList.remove('scrolled');
+                }
+                 // Update height potentially changes padding
+                updateHeaderLayout();
+            });
+
+
+            // --- Mobile Menu Toggle ---
             if (menuToggle && mainNav) {
+                const navLinksContainer = mainNav.querySelector('.nav-links');
                 menuToggle.addEventListener('click', () => {
-                    mainNav.classList.toggle('open');
+                    const isOpen = mainNav.classList.toggle('open');
                     menuToggle.classList.toggle('open');
-                    menuToggle.setAttribute('aria-expanded', mainNav.classList.contains('open'));
+                    menuToggle.setAttribute('aria-expanded', isOpen);
+                    body.style.overflow = isOpen ? 'hidden' : ''; // Prevent body scroll
                 });
-                
-                 // Close menu when clicking outside
-                 document.addEventListener('click', (event) => {
+
+                // Close menu when clicking outside on mobile
+                document.addEventListener('click', (event) => {
                     const isClickInsideNav = mainNav.contains(event.target);
                     const isClickOnToggle = menuToggle.contains(event.target);
 
@@ -1034,6 +1091,7 @@
                         mainNav.classList.remove('open');
                         menuToggle.classList.remove('open');
                         menuToggle.setAttribute('aria-expanded', 'false');
+                        body.style.overflow = ''; // Re-enable scroll
                     }
                 });
             }
@@ -1047,13 +1105,9 @@
                     const targetElement = document.querySelector(targetId);
                     
                     if (targetElement) {
-                        let headerOffset = 70; // Height of the top-nav
-                        if (window.innerWidth <= 768) {
-                            headerOffset = 60;
-                        }
-                        
                         let elementPosition = targetElement.getBoundingClientRect().top;
-                        let offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                        // Use the dynamically updated headerHeight
+                        let offsetPosition = elementPosition + window.pageYOffset - headerHeight;
 
                         // Special case for #home to scroll to top
                         if (targetId === '#home') {
@@ -1070,6 +1124,7 @@
                             mainNav.classList.remove('open');
                             menuToggle.classList.remove('open');
                             menuToggle.setAttribute('aria-expanded', 'false');
+                            body.style.overflow = ''; // Re-enable scroll
                         }
                     }
                 });
@@ -1113,6 +1168,8 @@
             function showSlide(index) {
                 if (!slider) return;
                 slides = slider.querySelectorAll('.hero-slide');
+                 if (slides.length === 0) return; // Exit if no slides found
+                
                 if (index >= slides.length) { slideIndex = 0; }
                 if (index < 0) { slideIndex = slides.length - 1; }
                 slider.style.transform = `translateX(-${slideIndex * 100}%)`;
@@ -1138,24 +1195,29 @@
             }
 
             if (slider && prevButton && nextButton) {
-                showSlide(slideIndex); // Initial display
-                startSlideShow(); // Start automatic sliding
+                slides = slider.querySelectorAll('.hero-slide'); // Get slides initially
+                if (slides.length > 0) {
+                     showSlide(slideIndex); // Initial display
+                     startSlideShow(); // Start automatic sliding
 
-                nextButton.addEventListener('click', () => {
-                    nextSlide();
-                    stopSlideShow(); // Stop auto-slide on manual control
-                    startSlideShow(); // Restart timer
-                });
-                
-                prevButton.addEventListener('click', () => {
-                    prevSlide();
-                     stopSlideShow(); // Stop auto-slide on manual control
-                    startSlideShow(); // Restart timer
-                });
+                     nextButton.addEventListener('click', () => {
+                         nextSlide();
+                         stopSlideShow(); // Stop auto-slide on manual control
+                         startSlideShow(); // Restart timer
+                     });
+                     
+                     prevButton.addEventListener('click', () => {
+                         prevSlide();
+                          stopSlideShow(); // Stop auto-slide on manual control
+                         startSlideShow(); // Restart timer
+                     });
 
-                 // Optional: Pause on hover
-                // slider.addEventListener('mouseenter', stopSlideShow);
-                // slider.addEventListener('mouseleave', startSlideShow);
+                      // Optional: Pause on hover
+                     // slider.addEventListener('mouseenter', stopSlideShow);
+                     // slider.addEventListener('mouseleave', startSlideShow);
+                } else {
+                     console.warn("Hero slider found, but no slides inside.");
+                }
             }
 
 

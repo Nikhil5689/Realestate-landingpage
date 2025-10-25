@@ -89,6 +89,7 @@
             background-color: transparent;
             color: var(--color-primary-dark);
             border: 2px solid var(--color-primary-dark);
+            font-weight: 600; /* Make outline button bolder */
         }
         
         .btn-outline:hover {
@@ -112,6 +113,9 @@
             margin-bottom: 1.5rem;
             font-size: 1rem;
             color: var(--color-text-medium);
+        }
+        p:last-child {
+            margin-bottom: 0; /* Remove margin from last paragraph in a container */
         }
 
         .section-subtitle {
@@ -150,9 +154,15 @@
             padding: 1rem 0;
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
             border-bottom: 1px solid var(--color-border);
             z-index: 1000;
-            transition: padding 0.3s ease;
+            transition: padding 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .top-nav.scrolled {
+             padding: 0.75rem 0;
+             box-shadow: 0 4px 10px rgba(0,0,0,0.05);
         }
 
         .nav-container {
@@ -178,6 +188,7 @@
         .main-nav .nav-links {
             display: flex;
             gap: 1.5rem;
+            list-style: none; /* Ensure no bullets */
         }
         
         .main-nav a {
@@ -187,6 +198,7 @@
             font-size: 0.95rem;
             position: relative;
             padding-bottom: 0.25rem;
+            transition: color 0.3s ease;
         }
         
         .main-nav .nav-links a::after {
@@ -199,6 +211,10 @@
             background-color: var(--color-accent);
             transition: width 0.3s ease;
         }
+        
+         .main-nav .nav-links a:hover {
+             color: var(--color-accent-dark);
+         }
         
         .main-nav .nav-links a:hover::after {
             width: 100%;
@@ -245,7 +261,8 @@
             display: flex;
             align-items: center;
             justify-content: flex-start; /* Align content to the left */
-            background: url('https://source.unsplash.com/1800x1000/?luxury,apartment,interior,bright') no-repeat center center/cover;
+            /* REPLACED IMAGE */
+            background: url('https://images.unsplash.com/photo-1618220179428-22790b461013?ixlib=rb-4.1.0&fit=crop&w=1800&h=1000&q=80') no-repeat center center/cover;
             color: var(--color-text-light);
             padding-top: 70px; /* Offset for header */
         }
@@ -383,6 +400,7 @@
             font-size: 1rem; /* Smaller heading */
             font-weight: 600;
             margin: 0;
+            color: var(--color-primary-dark); /* Ensure heading color */
         }
 
         /* --- Floor Plans Section (Tabs) --- */
@@ -525,6 +543,7 @@
         .developer-logo img {
             max-width: 200px;
             margin: 0 auto 1.5rem auto;
+            border-radius: 0; /* Remove radius if it's a logo */
         }
 
         /* --- Contact Form Section --- */
@@ -573,6 +592,10 @@
             border-color: var(--color-accent);
             box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.3);
         }
+         .form-group textarea {
+             resize: vertical;
+             min-height: 120px;
+         }
         .contact-form .btn-primary {
             font-size: 1rem;
             padding: 1rem;
@@ -596,6 +619,7 @@
             color: var(--color-text-light);
             margin-bottom: 1rem;
             display: inline-block;
+            text-decoration: none; /* Ensure logo is not underlined */
         }
         .footer-widget p {
             color: #95a5a6;
@@ -648,7 +672,9 @@
         @media (max-width: 1024px) {
             h1 { font-size: 2.5rem; }
             h2 { font-size: 2.25rem; }
-            section { padding: 4rem 0; }
+            section, #about, #amenities, #floor-plans, #connectivity, #gallery, #developer, #contact { 
+                padding: 4rem 0; 
+            }
 
             .nav-container { padding: 0 1.5rem; }
             
@@ -666,40 +692,69 @@
         }
         
         @media (max-width: 768px) {
-            body { padding-top: 60px; }
+            body { padding-top: 60px; } /* Adjust for potentially smaller header */
             .top-nav { padding: 0.75rem 0; }
             .nav-container { padding: 0 1rem; }
             .logo { font-size: 1.5rem; }
             
+             /* Mobile Nav Styling */
             .main-nav {
-                position: fixed;
-                top: 60px;
-                left: -100%;
+                position: fixed; /* Change nav behavior */
+                top: 60px; /* Match new body padding */
+                left: -100%; /* Start off-screen */
                 width: 80%;
-                height: 100vh;
+                max-width: 300px; /* Max width for mobile menu */
+                height: calc(100vh - 60px); /* Full height minus header */
                 background: var(--color-bg-white);
                 flex-direction: column;
                 align-items: flex-start;
+                justify-content: space-between; /* Space out links and button */
                 gap: 0;
                 padding: 2rem 1.5rem;
                 box-shadow: 5px 0 15px rgba(0,0,0,0.1);
                 transition: left 0.4s ease-in-out;
             }
-            .main-nav.open { left: 0; }
-            .main-nav .nav-links {
-                display: flex;
+            .main-nav .nav-links { display: none; } /* Hide links initially */
+            
+            .main-nav.open {
+                left: 0; /* Slide in */
+            }
+            
+             .main-nav.open .nav-links {
+                display: flex; /* Display links when nav is open */
                 flex-direction: column;
                 width: 100%;
                 gap: 0;
+                list-style: none; /* Ensure no bullets */
             }
-            .main-nav a {
+            
+             .main-nav.open .nav-links li {
+                width: 100%;
+             }
+
+            .main-nav.open a { /* Style links inside open nav */
                 padding: 1rem 0;
                 width: 100%;
                 border-bottom: 1px solid var(--color-border);
+                color: var(--color-text-dark); /* Ensure text color */
             }
-            .main-nav a:last-child { border-bottom: none; }
+             .main-nav.open a:last-child {
+                border-bottom: none;
+             }
+             .main-nav.open .nav-links a:hover {
+                 color: var(--color-accent-dark); /* Add hover for mobile links */
+                 background-color: var(--color-primary-light); /* Slight background */
+             }
             .main-nav .nav-links a::after { display: none; }
-            .main-nav .btn { display: block; margin-top: 2rem; width: 100%; }
+            
+            .main-nav .btn { display: none; } /* Hide button inside nav container */
+             .main-nav.open .btn { 
+                 display: block; /* Show button at bottom when open */
+                 margin-top: auto; /* Push to bottom */
+                 width: 100%; 
+                 margin-bottom: 1rem; /* Spacing from bottom */
+            } 
+            
             .menu-toggle { display: block; }
             
             .hero-section { height: 80vh; min-height: 500px; justify-content: center; }
@@ -726,18 +781,18 @@
 <body>
 
     <!-- Top Navigation -->
-    <header class="top-nav">
+    <header class="top-nav" id="topNav">
         <div class="container nav-container">
             <a href="#home" class="logo">ELYSIAN</a>
             
             <nav class="main-nav" id="mainNav">
-                <div class="nav-links">
-                    <a href="#about">About</a>
-                    <a href="#amenities">Amenities</a>
-                    <a href="#floor-plans">Floor Plans</a>
-                    <a href="#connectivity">Connectivity</a>
-                    <a href="#developer">Developer</a>
-                </div>
+                <ul class="nav-links">
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#amenities">Amenities</a></li>
+                    <li><a href="#floor-plans">Floor Plans</a></li>
+                    <li><a href="#connectivity">Connectivity</a></li>
+                    <li><a href="#developer">Developer</a></li>
+                </ul>
                 <a href="#contact" class="btn btn-primary">Enquire</a>
             </nav>
             
@@ -764,22 +819,22 @@
         </section>
 
         <!-- Highlights Bar -->
-        <div class="highlights-bar fade-in">
+        <div class="highlights-bar fade-in" id="highlightsBar">
             <div class="container highlights-grid">
                 <div class="highlight-item">
-                    <div class="value">35<sup>+</sup></div>
+                    <div class="value" data-target="35">0<sup>+</sup></div>
                     <div class="label">World-Class Amenities</div>
                 </div>
                 <div class="highlight-item">
-                    <div class="value">25<sup>+</sup></div>
+                    <div class="value" data-target="25">0<sup>+</sup></div>
                     <div class="label">Floors of Luxury</div>
                 </div>
                 <div class="highlight-item">
-                    <div class="value">1800<sup>+</sup></div>
+                    <div class="value" data-target="1800">0<sup>+</sup></div>
                     <div class="label">Sq. Ft. Options</div>
                 </div>
                  <div class="highlight-item">
-                    <div class="value">4</div>
+                    <div class="value" data-target="4">0</div>
                     <div class="label">Acres of Landscape</div>
                 </div>
             </div>
@@ -794,7 +849,8 @@
                     <p>Crafted with attention to detail and adherence to Vastu principles, each apartment is a sanctuary designed for harmony and well-being. Experience the best of urban living with easy access to everything you need.</p>
                     <a href="#floor-plans" class="btn btn-outline">View Floor Plans</a>
                 </div>
-                <img src="https://source.unsplash.com/600x450/?modern,apartment,lobby,luxury" alt="Elegant apartment lobby interior" loading="lazy">
+                 <!-- REPLACED IMAGE -->
+                <img src="https://images.unsplash.com/photo-1605146769289-440113cc3d00?ixlib=rb-4.1.0&fit=crop&w=600&h=450&q=80" alt="Elegant apartment lobby interior" loading="lazy">
             </div>
         </section>
 
@@ -851,10 +907,12 @@
                 </div>
                 
                 <div class="tab-content active fade-in" id="tab-2bhk">
-                    <img src="https://source.unsplash.com/1200x800/?floorplan,2bhk" alt="2 BHK Floor Plan" loading="lazy">
+                    <!-- REPLACED IMAGE -->
+                    <img src="https://images.unsplash.com/photo-1556784344-ad913c73cfc4?ixlib=rb-4.1.0&fit=crop&w=1200&h=800&q=80" alt="2 BHK Floor Plan" loading="lazy">
                 </div>
                 <div class="tab-content fade-in" id="tab-3bhk">
-                    <img src="https://source.unsplash.com/1200x800/?floorplan,3bhk" alt="3 BHK Floor Plan" loading="lazy">
+                    <!-- REPLACED IMAGE -->
+                     <img src="https://plus.unsplash.com/premium_photo-1686090449192-4ab1d00cb735?ixlib=rb-4.1.0&fit=crop&w=1200&h=800&q=80" alt="3 BHK Floor Plan" loading="lazy">
                 </div>
             </div>
         </section>
@@ -875,7 +933,8 @@
                     </ul>
                 </div>
                  <div class="map-placeholder fade-in">
-                    <img src="https://source.unsplash.com/600x500/?city,map,urban" alt="Map showing project connectivity">
+                     <!-- REPLACED IMAGE -->
+                    <img src="https://images.unsplash.com/photo-1516156008625-3a9d6067fab5?ixlib=rb-4.1.0&fit=crop&w=600&h=500&q=80" alt="Map showing project connectivity" loading="lazy">
                 </div>
             </div>
         </section>
@@ -887,13 +946,16 @@
                 <p class="section-subtitle">A glimpse into the luxurious lifestyle that awaits you.</p>
                 <div class="gallery-grid">
                     <div class="gallery-item">
-                        <img src="https://source.unsplash.com/400x350/?modern,livingroom,luxury" alt="Modern living room">
+                         <!-- REPLACED IMAGE -->
+                        <img src="https://images.unsplash.com/photo-1606744837616-56c9a5c6a6eb?ixlib=rb-4.1.0&fit=crop&w=400&h=350&q=80" alt="Modern living room" loading="lazy">
                     </div>
                     <div class="gallery-item">
-                        <img src="https://source.unsplash.com/400x350/?apartment,balcony,view" alt="Apartment balcony with city view">
+                         <!-- REPLACED IMAGE -->
+                        <img src="https://images.unsplash.com/photo-1631679706909-1844bbd07221?ixlib=rb-4.1.0&fit=crop&w=400&h=350&q=80" alt="Apartment balcony with city view" loading="lazy">
                     </div>
                     <div class="gallery-item">
-                        <img src="https://source.unsplash.com/400x350/?luxury,bathroom,interior" alt="Luxury bathroom interior">
+                         <!-- REPLACED IMAGE -->
+                        <img src="https://plus.unsplash.com/premium_photo-1687960117069-567a456fe5f3?ixlib=rb-4.1.0&fit=crop&w=400&h=350&q=80" alt="Luxury bathroom interior" loading="lazy">
                     </div>
                 </div>
             </div>
@@ -905,7 +967,8 @@
             <div class="container">
                 <h2>A Project By Your Developer Group</h2>
                 <div class="developer-logo">
-                    <img src="https://placehold.co/200x100/1F3A5A/FFFFFF?text=Developer+Logo" alt="Developer Group Logo">
+                    <!-- REPLACED IMAGE -->
+                    <img src="https://placehold.co/200x100/1F3A5A/FFFFFF?text=Logo" alt="Developer Group Logo" loading="lazy">
                 </div>
                 <p class="section-subtitle">With a legacy of trust and excellence, Your Developer Group is committed to creating homes that stand the test of time, offering quality construction, innovative design, and unparalleled customer satisfaction.</p>
                 <a href="#" class="btn btn-outline">Learn More About Us</a>
@@ -971,25 +1034,51 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-
-            // --- Mobile Menu Toggle ---
+            const topNav = document.getElementById('topNav');
             const menuToggle = document.getElementById('menuToggle');
             const mainNav = document.getElementById('mainNav');
-            
+            const body = document.body;
+            let headerHeight = 70; // Initial default
+
+             // --- Adjust Header & Body Padding ---
+            function updateHeaderLayout() {
+                if (topNav) {
+                    headerHeight = topNav.offsetHeight;
+                    body.style.paddingTop = headerHeight + 'px';
+                }
+            }
+            updateHeaderLayout(); // Initial check
+            window.addEventListener('resize', updateHeaderLayout);
+
+            // Shrink header on scroll
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    topNav.classList.add('scrolled');
+                } else {
+                    topNav.classList.remove('scrolled');
+                }
+                updateHeaderLayout(); // Update height as padding changes
+            });
+
+            // --- Mobile Menu Toggle ---
             if (menuToggle && mainNav) {
                 menuToggle.addEventListener('click', () => {
-                    mainNav.classList.toggle('open');
+                    const isOpen = mainNav.classList.toggle('open');
                     menuToggle.classList.toggle('open');
-                    menuToggle.setAttribute('aria-expanded', mainNav.classList.contains('open'));
+                    menuToggle.setAttribute('aria-expanded', isOpen);
+                    body.style.overflow = isOpen ? 'hidden' : ''; // Prevent body scroll
                 });
-                 // Close menu when clicking outside
-                 document.addEventListener('click', (event) => {
+
+                // Close menu when clicking outside on mobile
+                document.addEventListener('click', (event) => {
                     const isClickInsideNav = mainNav.contains(event.target);
                     const isClickOnToggle = menuToggle.contains(event.target);
+
                     if (!isClickInsideNav && !isClickOnToggle && mainNav.classList.contains('open')) {
                         mainNav.classList.remove('open');
                         menuToggle.classList.remove('open');
                         menuToggle.setAttribute('aria-expanded', 'false');
+                        body.style.overflow = ''; // Re-enable scroll
                     }
                 });
             }
@@ -998,25 +1087,25 @@
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 anchor.addEventListener('click', function (e) {
                     e.preventDefault();
-                    
                     const targetId = this.getAttribute('href');
                     const targetElement = document.querySelector(targetId);
                     
                     if (targetElement) {
-                        let headerOffset = 70; // Height of the top-nav
-                        if (window.innerWidth <= 768) { headerOffset = 60; }
-                        
                         let elementPosition = targetElement.getBoundingClientRect().top;
-                        let offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                        // Use the dynamically updated headerHeight
+                        let offsetPosition = elementPosition + window.pageYOffset - headerHeight;
 
+                        // Special case for #home to scroll to top
                         if (targetId === '#home') { offsetPosition = 0; }
 
                         window.scrollTo({ top: offsetPosition, behavior: "smooth" });
                         
+                        // Close mobile nav if open
                         if (mainNav.classList.contains('open')) {
                             mainNav.classList.remove('open');
                             menuToggle.classList.remove('open');
                             menuToggle.setAttribute('aria-expanded', 'false');
+                            body.style.overflow = ''; // Re-enable scroll
                         }
                     }
                 });
@@ -1025,22 +1114,66 @@
             // --- Fade-in on Scroll (IntersectionObserver) ---
             const faders = document.querySelectorAll('.fade-in');
             const appearOptions = { threshold: 0.1, rootMargin: "0px 0px -50px 0px" };
-            const appearOnScroll = new IntersectionObserver(function(entries, appearOnScroll) {
+            const appearOnScroll = new IntersectionObserver(function(entries, observer) {
                 entries.forEach(entry => {
-                    if (!entry.isIntersecting) { return; } 
-                    else {
+                    if (entry.isIntersecting) {
                         entry.target.classList.add('visible');
-                        appearOnScroll.unobserve(entry.target);
+                        observer.unobserve(entry.target);
                     }
                 });
             }, appearOptions);
             faders.forEach(fader => { appearOnScroll.observe(fader); });
             
+            // --- Animated Counter Function ---
+            function animateCounter(el) {
+                const target = parseFloat(el.getAttribute('data-target'));
+                const duration = 2000; // 2 seconds
+                let start = 0;
+                const startTime = performance.now();
+                
+                // Determine suffix based on target value
+                let suffix = '';
+                if (el.dataset.target === "35") suffix = '+';
+                else if (el.dataset.target === "25") suffix = '+';
+                else if (el.dataset.target === "1800") suffix = '+';
+
+                function update(currentTime) {
+                    const elapsedTime = currentTime - startTime;
+                    const progress = Math.min(elapsedTime / duration, 1);
+                    let currentValue = Math.floor(progress * target);
+                    
+                    el.textContent = currentValue; // Update number without suffix during animation
+                    
+                    if (progress < 1) {
+                        requestAnimationFrame(update);
+                    } else {
+                         el.textContent = Math.floor(target) + suffix; // Set final value with suffix
+                    }
+                }
+                requestAnimationFrame(update);
+            }
+
+            // --- Trigger Counter on Scroll ---
+            const highlightsBar = document.getElementById('highlightsBar');
+            if (highlightsBar) {
+                 const counterObserver = new IntersectionObserver((entries, observer) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            highlightsBar.querySelectorAll('.value[data-target]').forEach(animateCounter);
+                            observer.unobserve(highlightsBar); // Run only once
+                        }
+                    });
+                }, { threshold: 0.5 }); // Trigger when 50% visible
+                counterObserver.observe(highlightsBar);
+            }
+
             // --- Floor Plan Tabs ---
             const tabContainer = document.getElementById('floorPlanTabs');
             if (tabContainer) {
                 const tabButtons = tabContainer.querySelectorAll('.tab-button');
-                const tabContents = document.querySelectorAll('#floor-plans .tab-content'); // Scope to floor plans section
+                // Find content containers relative to the section, not just next sibling
+                const contentContainer = document.getElementById('floor-plans'); 
+                const tabContents = contentContainer.querySelectorAll('.tab-content'); 
                 
                 tabButtons.forEach(button => {
                     button.addEventListener('click', () => {
@@ -1066,8 +1199,10 @@
             if (contactForm) {
                 contactForm.addEventListener('submit', function(e) {
                     e.preventDefault();
-                    console.log('Form submitted (mock).');
                     const submitButton = this.querySelector('button[type="submit"]');
+                    if (submitButton.disabled) return; // Prevent multiple clicks
+
+                    console.log('Form submitted (mock).');
                     submitButton.textContent = 'Submitted!';
                     submitButton.disabled = true;
                     setTimeout(() => {

@@ -3,8 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FlexiSpace | Office Space & Coworking in Metro City</title>
+    <title>Astral Residences | Super Premium 2 & 3 Bed Homes</title>
     
+    <!-- Preconnect to image domains for faster loading -->
+    <link rel="preconnect" href="https://images.unsplash.com">
+    <link rel="preconnect" href="https://plus.unsplash.com">
+
     <!-- Google Fonts Import -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -15,18 +19,23 @@
         :root {
             --font-heading: 'Poppins', sans-serif;
             --font-body: 'DM Sans', sans-serif;
-            --color-primary-dark: #0d47a1; /* Deep Blue */
-            --color-primary-medium: #1976d2; /* Medium Blue */
-            --color-accent: #42a5f5;       /* Light Blue Accent */
-            --color-secondary: #f5f5f5;    /* Light Grey */
-            --color-text-dark: #212121;    /* Almost Black */
-            --color-text-medium: #757575;   /* Medium Grey */
-            --color-text-light: #ffffff;
-            --color-border: #e0e0e0;       /* Light Grey Border */
+            --color-primary-dark: #1a202c; /* Very Dark Blue/Charcoal */
+            --color-primary-medium: #2d3748; /* Dark Grey Blue */
+            --color-accent: #ECC94B;       /* Gold/Yellow */
+            --color-accent-dark: #D69E2E;   /* Darker Gold */
+            --color-text-dark: #1a202c;
+            --color-text-medium: #4a5568;   /* Medium Grey */
+            --color-text-light: #f7fafc;    /* Very Light Grey/Off White */
+            --color-border: #e2e8f0;       /* Light Grey Border */
             --color-bg-white: #ffffff;
-            --color-bg-light-blue: #e3f2fd; /* Very Light Blue BG */
+            --color-bg-light: #edf2f7;      /* Lighter Grey Background */
             --transition-main: all 0.3s ease-in-out;
             --container-width: 1140px;
+            --border-radius-main: 8px;
+            --border-radius-small: 6px; /* Consistent rounding */
+            --shadow-light: 0 5px 15px rgba(0,0,0,0.05);
+            --shadow-medium: 0 8px 25px rgba(26, 32, 44, 0.08); /* Darker shadow base */
+            --shadow-accent: 0 4px 15px rgba(236, 201, 75, 0.3); /* Gold shadow for buttons */
         }
 
         * {
@@ -46,7 +55,9 @@
             background-color: var(--color-bg-white);
             line-height: 1.6;
             overflow-x: hidden;
-            padding-top: 70px; /* Space for fixed header */
+            padding-top: 75px; /* Space for fixed header */
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
         /* Utility Classes */
@@ -58,80 +69,86 @@
 
         .btn {
             display: inline-block;
-            padding: 0.8rem 1.8rem;
+            padding: 0.8rem 2rem;
             font-family: var(--font-heading);
             font-weight: 600;
             text-decoration: none;
-            border-radius: 4px; /* Standard rounded */
+            border-radius: var(--border-radius-small);
             transition: var(--transition-main);
             cursor: pointer;
-            border: 1px solid transparent;
+            border: 2px solid transparent; /* Increased border thickness for outlines */
             text-align: center;
             text-transform: uppercase;
             font-size: 0.875rem;
-            letter-spacing: 0.5px;
+            letter-spacing: 0.75px;
         }
 
         .btn-primary {
-            background-color: var(--color-primary-medium);
-            color: var(--color-text-light);
-            border-color: var(--color-primary-medium);
+            background-color: var(--color-accent);
+            color: var(--color-primary-dark); /* Dark text on gold */
+            border-color: var(--color-accent);
+            font-weight: 700;
         }
 
         .btn-primary:hover {
-            background-color: var(--color-primary-dark);
-            border-color: var(--color-primary-dark);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            background-color: var(--color-accent-dark);
+            border-color: var(--color-accent-dark);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-accent);
         }
         
         .btn-outline {
             background-color: transparent;
-            color: var(--color-primary-medium);
-            border: 2px solid var(--color-primary-medium);
+            color: var(--color-primary-dark);
+            border-color: var(--color-primary-dark);
         }
         
         .btn-outline:hover {
-            background-color: var(--color-primary-medium);
+            background-color: var(--color-primary-dark);
             color: var(--color-text-light);
+            transform: translateY(-3px);
         }
         
-        .btn-light {
-            background-color: var(--color-bg-white);
-            color: var(--color-primary-dark);
-            border: 1px solid var(--color-border);
+        .btn-light-outline {
+             background-color: transparent;
+            color: var(--color-text-light);
+            border-color: var(--color-text-light);
         }
-        .btn-light:hover {
-            background-color: var(--color-secondary);
-            border-color: var(--color-secondary);
+        .btn-light-outline:hover {
+            background-color: var(--color-text-light);
+            color: var(--color-primary-dark);
+            transform: translateY(-3px);
         }
 
 
         h1, h2, h3, h4, h5, h6 {
             font-family: var(--font-heading);
             color: var(--color-primary-dark);
-            font-weight: 700;
+            font-weight: 700; /* Bolder headings */
             line-height: 1.3;
         }
 
-        h1 { font-size: 3rem; margin-bottom: 1rem; }
-        h2 { font-size: 2.5rem; text-align: center; margin-bottom: 1rem; }
-        h3 { font-size: 1.5rem; margin-bottom: 0.75rem; font-weight: 600; }
-        h4 { font-size: 1.1rem; font-weight: 600; margin-bottom: 0.5rem; }
+        h1 { font-size: 3.25rem; margin-bottom: 1rem; }
+        h2 { font-size: 2.75rem; text-align: center; margin-bottom: 1rem; }
+        h3 { font-size: 1.75rem; margin-bottom: 1rem; font-weight: 600; }
+        h4 { font-size: 1.25rem; font-weight: 600; }
         
         p {
             margin-bottom: 1.5rem;
             font-size: 1rem;
             color: var(--color-text-medium);
         }
-        p:last-child { margin-bottom: 0; }
+        
+        p:last-of-type {
+            margin-bottom: 0;
+        }
 
         .section-subtitle {
             text-align: center;
             font-size: 1.1rem;
             color: var(--color-text-medium);
             max-width: 700px;
-            margin: 0 auto 3.5rem auto;
+            margin: 0 auto 4rem auto;
             line-height: 1.7;
         }
         
@@ -139,30 +156,27 @@
             max-width: 100%;
             height: auto;
             display: block;
-            border-radius: 8px;
+            border-radius: var(--border-radius-main);
         }
         
         /* Section Styling */
         section {
-            padding: 5rem 0;
+            padding: 6rem 0;
             position: relative;
             overflow: hidden;
         }
-        .light-blue-bg {
-            background-color: var(--color-bg-light-blue);
-        }
-        .light-grey-bg {
-            background-color: var(--color-secondary);
+        .light-bg {
+            background-color: var(--color-bg-light);
         }
         .dark-bg {
-             background-color: var(--color-primary-dark);
-             color: var(--color-text-light);
+            background-color: var(--color-primary-dark);
+            color: var(--color-text-light);
         }
         .dark-bg h2, .dark-bg h3, .dark-bg h4 {
             color: var(--color-text-light);
         }
         .dark-bg p, .dark-bg .section-subtitle {
-            color: #eeeeee;
+             color: #a0aec0; /* Lighter grey text on dark */
         }
         
         /* Fade-in Animation */
@@ -183,11 +197,12 @@
             left: 0;
             width: 100%;
             padding: 1rem 0;
-            background: rgba(255, 255, 255, 0.97);
+            background: rgba(255, 255, 255, 0.97); /* Slightly less transparent */
             backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
             border-bottom: 1px solid var(--color-border);
             z-index: 1000;
-            transition: padding 0.3s ease;
+            transition: padding 0.3s ease, box-shadow 0.3s ease;
         }
 
         .nav-container {
@@ -201,7 +216,7 @@
             color: var(--color-primary-dark);
             font-family: var(--font-heading);
             font-weight: 700;
-            font-size: 1.75rem;
+            font-size: 1.6rem;
             letter-spacing: 0.5px;
         }
 
@@ -220,7 +235,7 @@
             text-decoration: none;
             color: var(--color-text-dark);
             font-weight: 500;
-            font-size: 0.9rem;
+            font-size: 0.85rem; /* Slightly smaller */
             position: relative;
             padding-bottom: 0.25rem;
             text-transform: uppercase;
@@ -229,7 +244,7 @@
         .main-nav .nav-links a::after {
             content: '';
             position: absolute;
-            bottom: 0;
+            bottom: -2px; /* Slightly lower */
             left: 0;
             width: 0;
             height: 2px;
@@ -271,267 +286,403 @@
 
         /* --- Hero Section --- */
         .hero-section {
-            padding: 6rem 0;
-            background-color: var(--color-bg-light-blue);
-            min-height: 60vh;
+            padding: 0;
+            min-height: 90vh;
             display: flex;
             align-items: center;
+            justify-content: center; /* Center content */
+            position: relative;
+            background-size: cover;
+            background-position: center center;
+            background-repeat: no-repeat;
+            color: var(--color-text-light);
         }
         
-        .hero-grid {
-            display: grid;
-            grid-template-columns: 1.2fr 1fr;
-            align-items: center;
-            gap: 4rem;
+        .hero-section::after { /* Overlay */
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(rgba(26, 32, 44, 0.7), rgba(26, 32, 44, 0.7));
         }
         
-        .hero-content { z-index: 2; }
+        .hero-content {
+            position: relative; /* Ensure content is above overlay */
+            z-index: 2;
+            text-align: center;
+            max-width: 800px;
+        }
+        
+        .hero-content .subtitle-small {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--color-accent);
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
         
         .hero-content h1 {
-            font-size: 3.25rem;
-            margin-bottom: 1.5rem;
+            font-size: 3.75rem;
+            margin-bottom: 1rem;
+            color: var(--color-text-light);
         }
         
-        .hero-content p {
-            font-size: 1.1rem;
+        .hero-content .tagline {
+            font-size: 1.25rem;
+            font-weight: 500;
+            color: #cbd5e0; /* Lighter grey */
             margin-bottom: 2rem;
-            color: var(--color-text-medium);
         }
         
-        .hero-image { position: relative; z-index: 1; }
-        .hero-image img {
-             border-radius: 12px;
-             box-shadow: 0 15px 35px rgba(13, 71, 161, 0.15); /* Blue shadow */
-             aspect-ratio: 5 / 4;
-             object-fit: cover;
+        .hero-content .price {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--color-text-light);
+            margin-bottom: 2.5rem;
+            display: block;
         }
-
-        /* --- Workspace Options Section --- */
-        #options { padding: 5rem 0; }
-        .options-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 1.5rem;
+        .hero-content .price small {
+             font-size: 1rem;
+             font-weight: 400;
+             color: #a0aec0;
         }
-        .option-card {
-            background: var(--color-bg-white);
-            padding: 2rem 1.5rem;
-            border-radius: 8px;
-            border: 1px solid var(--color-border);
-            transition: var(--transition-main);
-            text-align: left; /* Align text left */
-            box-shadow: 0 5px 15px rgba(0,0,0,0.03);
+        
+        /* --- Features Bar --- */
+        .features-bar {
+            padding: 3rem 0;
+            background-color: var(--color-bg-light);
+            border-bottom: 1px solid var(--color-border);
         }
-        .option-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.07);
-            border-color: var(--color-accent);
-        }
-        .option-card .icon {
-             width: 40px;
-             height: 40px;
-             margin-bottom: 1rem;
-             color: var(--color-accent);
-        }
-        .option-card h3 {
-             font-size: 1.25rem;
-             margin-bottom: 0.5rem;
-             font-family: var(--font-body);
-             font-weight: 700;
-        }
-        .option-card p {
-             font-size: 0.9rem;
-             margin-bottom: 1rem;
-        }
-        .option-card .price {
-             font-size: 0.85rem;
-             font-weight: 700;
-             color: var(--color-primary-medium);
-             margin-bottom: 0;
-             display: block;
-        }
-        .option-card .btn {
-             margin-top: 1.5rem;
-             padding: 0.6rem 1.2rem;
-             font-size: 0.8rem;
-        }
-
-        /* --- Features Section --- */
-        #features { padding: 5rem 0; background-color: var(--color-secondary); }
         .features-grid {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
+            grid-template-columns: repeat(3, 1fr);
             gap: 2rem;
             text-align: center;
         }
+        .feature-item {
+             transition: var(--transition-main);
+        }
+        .feature-item:hover {
+            transform: translateY(-5px);
+        }
         .feature-item .icon {
-             width: 50px;
-             height: 50px;
+             width: 45px;
+             height: 45px;
              margin: 0 auto 1rem auto;
-             color: var(--color-primary-medium);
+             color: var(--color-accent);
         }
         .feature-item h4 {
              font-size: 1.1rem;
              margin-bottom: 0.5rem;
              font-family: var(--font-body);
-             font-weight: 600;
+             font-weight: 700;
         }
         .feature-item p {
             font-size: 0.9rem;
             margin-bottom: 0;
+            color: var(--color-text-medium);
         }
+
+        /* --- About Developer Section --- */
+        #about-developer {
+            padding: 6rem 0;
+        }
+        .developer-grid {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 4rem;
+            align-items: center;
+        }
+        .developer-stats {
+            background: var(--color-bg-light);
+            padding: 2.5rem;
+            border-radius: var(--border-radius-main);
+            border: 1px solid var(--color-border);
+        }
+        .stat-item {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        .stat-item:last-child { margin-bottom: 0; }
         
-        /* --- Locations Section --- */
-        #locations { padding: 5rem 0; background-color: var(--color-bg-light-blue); }
-        .locations-grid {
+        .stat-item .value {
+            font-family: var(--font-heading);
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--color-accent);
+            line-height: 1.1;
+            margin-bottom: 0.25rem;
+            display: block; /* Ensure block display for counter */
+        }
+        .stat-item .value sup {
+             font-size: 1.5rem;
+             margin-left: 2px;
+             vertical-align: super;
+        }
+        .stat-item .label {
+            font-size: 1rem;
+            color: var(--color-text-medium);
+            font-weight: 500;
+        }
+        .developer-info h2 {
+             text-align: left;
+             margin-bottom: 1.5rem;
+        }
+        .developer-info p:last-of-type {
+            margin-bottom: 2rem;
+        }
+
+        /* --- Configurations Section --- */
+        #configurations {
+            padding: 6rem 0;
+        }
+        .config-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+        .config-card {
+            border: 1px solid var(--color-border);
+            border-radius: var(--border-radius-main);
+            overflow: hidden;
+            background: var(--color-bg-white);
+            box-shadow: var(--shadow-light);
+            transition: var(--transition-main);
+        }
+        .config-card:hover {
+             transform: translateY(-8px);
+             box-shadow: var(--shadow-medium);
+        }
+        .config-card img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: var(--border-radius-main) var(--border-radius-main) 0 0;
+            border-bottom: 1px solid var(--color-border);
+        }
+        .config-card-content {
+            padding: 2rem;
+        }
+        .config-card-content h3 {
+            margin-bottom: 0.75rem;
+        }
+        .config-card-content .features {
+             font-size: 0.95rem;
+             color: var(--color-primary-medium);
+             margin-bottom: 1.5rem;
+             display: block;
+             font-weight: 500;
+        }
+        .config-card-content p {
+            margin-bottom: 2rem;
+        }
+
+        /* --- Amenities Section --- */
+        #amenities {
+            padding: 6rem 0;
+        }
+        .amenities-layout {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 4rem;
+            align-items: center;
+        }
+        .amenities-image img {
+             box-shadow: var(--shadow-medium);
+             transition: var(--transition-main);
+        }
+         .amenities-image img:hover {
+            transform: scale(1.02);
+            box-shadow: 0 15px 35px rgba(42, 61, 69, 0.12);
+        }
+        .amenities-content h2 {
+            text-align: left;
+            margin-bottom: 1.5rem;
+        }
+        .amenities-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-top: 2rem; /* Added margin */
+        }
+        .amenity-list-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            background: var(--color-bg-light);
+            padding: 1rem;
+            border-radius: var(--border-radius-small);
+            border: 1px solid var(--color-border);
+            transition: var(--transition-main);
+        }
+        .amenity-list-item:hover {
+            transform: translateX(5px);
+            background-color: var(--color-bg-white);
+            border-color: var(--color-accent);
+        }
+        .amenity-list-item .icon {
+             width: 30px;
+             height: 30px;
+             color: var(--color-accent);
+             flex-shrink: 0;
+        }
+        .amenity-list-item span {
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+
+        /* --- Neighbourhood Section --- */
+        #neighbourhood {
+            padding: 6rem 0;
+        }
+        .neighbourhood-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 2rem;
         }
-        .location-card {
-            border-radius: 8px;
-            overflow: hidden;
+        .neighbourhood-card {
+            text-align: center;
             background: var(--color-bg-white);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+            padding: 2rem;
+            border-radius: var(--border-radius-main);
+            border: 1px solid var(--color-border);
             transition: var(--transition-main);
         }
-        .location-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 12px 25px rgba(0,0,0,0.1);
+        .neighbourhood-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-medium);
         }
-        .location-card img {
-            width: 100%;
-            height: 250px;
-            object-fit: cover;
-            border-radius: 8px 8px 0 0;
+        .neighbourhood-card .icon {
+             width: 60px;
+             height: 60px;
+             margin: 0 auto 1.5rem auto;
+             color: var(--color-accent-dark);
         }
-        .location-card-content {
-            padding: 1.5rem;
+        .neighbourhood-card h4 {
+             font-family: var(--font-body);
+             font-weight: 700;
+             margin-bottom: 0.5rem;
+             font-size: 1.15rem;
         }
-        .location-card-content h4 {
-             margin-bottom: 0.25rem;
-        }
-        .location-card-content .address {
+        .neighbourhood-card p {
             font-size: 0.9rem;
-            color: var(--color-text-medium);
-            margin-bottom: 1rem;
+            margin-bottom: 0;
         }
 
-        /* --- Trusted By Section --- */
-        #trusted-by { padding: 4rem 0; }
-        #trusted-by h2 { margin-bottom: 3rem; }
-        .logos-grid {
+        /* --- Gallery Section --- */
+        #gallery {
+            padding: 6rem 0;
+        }
+        .gallery-grid {
             display: grid;
-            grid-template-columns: repeat(6, 1fr);
-            gap: 2rem;
-            align-items: center;
-            justify-items: center;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
         }
-        .logo-item img {
-             max-width: 120px;
-             height: auto;
-             filter: grayscale(100%);
-             opacity: 0.6;
-             transition: var(--transition-main);
-        }
-        .logo-item img:hover {
-            filter: grayscale(0%);
-            opacity: 1;
-        }
-
-        /* --- FAQ Section --- */
-        #faq { padding: 5rem 0; background-color: var(--color-secondary); }
-        .faq-container { max-width: 800px; margin: 0 auto; }
-        .faq-item {
-            background: var(--color-bg-white);
-            margin-bottom: 1rem;
-            border-radius: 8px;
-            border: 1px solid var(--color-border);
+        .gallery-item {
+            position: relative;
+            height: 350px;
             overflow: hidden;
-        }
-        .faq-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1.25rem 1.5rem;
+            border-radius: var(--border-radius-main);
             cursor: pointer;
-            background: none;
-            border: none;
+            box-shadow: var(--shadow-medium);
+        }
+        .gallery-item img {
             width: 100%;
-            text-align: left;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease, filter 0.4s ease;
         }
-        .faq-header h4 {
-            font-family: var(--font-body);
-            font-size: 1.05rem;
-            font-weight: 600;
-            color: var(--color-text-dark);
-            margin: 0;
+        .gallery-item:hover img {
+            transform: scale(1.05);
+            filter: brightness(0.8);
         }
-        .faq-toggle {
-            font-size: 1.5rem;
-            color: var(--color-primary-medium);
-            transition: transform 0.3s ease;
-            font-weight: 300;
-        }
-        .faq-item.active .faq-toggle { transform: rotate(45deg); }
-        .faq-content {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.4s ease-out, padding 0.4s ease-out;
-            padding: 0 1.5rem;
-        }
-        .faq-content p {
-            padding-bottom: 1.5rem;
-            font-size: 0.95rem;
-        }
-        .faq-item.active .faq-content { padding-top: 0; } /* Only bottom padding when open */
 
         /* --- Contact Form Section --- */
-        #contact { padding: 5rem 0; }
+        #contact {
+            padding: 6rem 0;
+        }
         .contact-container {
             max-width: 700px;
             margin: 0 auto;
-            background: var(--color-bg-light-blue);
+            background: var(--color-bg-white);
             padding: 3rem;
-            border-radius: 8px;
+            border-radius: var(--border-radius-main);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.07);
+            border: 1px solid var(--color-border);
         }
-        .contact-container h2 { text-align: center; }
+        .contact-container h2 {
+            text-align: center;
+        }
+        .contact-container .section-subtitle {
+             margin-bottom: 2.5rem; /* Increased margin */
+        }
         .contact-form {
             display: flex;
             flex-direction: column;
             gap: 1.25rem;
         }
-        .form-group { display: flex; flex-direction: column; }
-        .form-group input, .form-group textarea {
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+        .form-group input,
+        .form-group textarea {
             width: 100%;
-            padding: 0.85rem 1rem;
+            padding: 0.95rem 1rem; /* Increased padding */
             border: 1px solid var(--color-border);
-            border-radius: 4px;
+            border-radius: var(--border-radius-small);
             font-family: var(--font-body);
             font-size: 1rem;
             background: var(--color-bg-white);
+            transition: var(--transition-main);
         }
-        .form-group input:focus, .form-group textarea:focus {
+        .form-group input:focus,
+        .form-group textarea:focus {
             outline: none;
             border-color: var(--color-accent);
-            box-shadow: 0 0 0 2px rgba(66, 165, 245, 0.3);
+            box-shadow: 0 0 0 3px rgba(236, 201, 75, 0.3);
         }
-        .contact-form .btn-primary { font-size: 1rem; padding: 1rem; }
+        .contact-form .btn-primary {
+            font-size: 1rem;
+            padding: 1rem;
+            margin-top: 0.5rem; /* Added margin */
+        }
+        
+        #form-success-message {
+            display: none;
+            text-align: center;
+            padding: 1rem;
+            margin-top: 1.5rem;
+            background-color: #e6f7ec;
+            color: #004d1a;
+            border: 1px solid #b3e6c7;
+            border-radius: var(--border-radius-small);
+        }
+        
+        #form-success-message.visible {
+            display: block;
+            animation: fadeInContent 0.5s ease;
+        }
+        
+        @keyframes fadeInContent {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
 
         /* --- Footer --- */
         .main-footer {
             background-color: var(--color-primary-dark);
-            color: #bdbdbd; /* Lighter grey for footer text */
-            padding: 4rem 0 2rem 0;
+            color: var(--color-text-light);
+            padding: 5rem 0 2rem 0;
         }
         .footer-grid {
             display: grid;
-            grid-template-columns: 2fr 1fr 1fr 1.5fr;
-            gap: 3rem;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 4rem;
             text-align: left;
             margin-bottom: 3rem;
             padding-bottom: 3rem;
-             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+             border-bottom: 1px solid var(--color-primary-medium);
         }
         .footer-widget .logo {
             font-size: 1.75rem;
@@ -540,7 +691,7 @@
             display: inline-block;
         }
         .footer-widget p {
-            color: #9e9e9e;
+            color: #a0aec0;
             font-size: 0.9rem;
             max-width: 350px;
         }
@@ -554,20 +705,25 @@
         .footer-widget li { margin-bottom: 0.75rem; }
         .footer-widget a {
             text-decoration: none;
-            color: #bdbdbd;
+            color: #a0aec0;
             transition: var(--transition-main);
-            font-size: 0.9rem;
         }
-        .footer-widget a:hover { color: var(--color-accent); }
+        .footer-widget a:hover { 
+            color: var(--color-accent); 
+            padding-left: 5px; /* Subtle hover effect */
+        }
         .footer-widget .contact-item {
             display: block;
-            color: #bdbdbd;
+            color: #a0aec0;
             margin-bottom: 0.75rem;
             font-size: 0.9rem;
         }
-        .footer-bottom { text-align: center; }
+        .footer-bottom { 
+            text-align: center; 
+            padding-top: 2rem; /* Added padding */
+        }
         .footer-bottom p {
-            color: #757575; /* Darker grey for copyright */
+            color: #718096; /* Darker grey for copyright */
             margin: 0;
             font-size: 0.85rem;
         }
@@ -576,32 +732,45 @@
         /* --- Responsive Design --- */
         
         @media (max-width: 1024px) {
-            h1 { font-size: 2.5rem; }
+            h1 { font-size: 2.75rem; }
             h2 { font-size: 2.25rem; }
             section { padding: 4rem 0; }
+
             .nav-container { padding: 0 1.5rem; }
             
-            .hero-grid { grid-template-columns: 1fr; text-align: center; }
-            .hero-image { display: none; }
-            .hero-content { max-width: 100%; }
-            .hero-content h1 { font-size: 2.75rem; }
+            .hero-content h1 { font-size: 3rem; }
+            .hero-content .tagline { font-size: 1.1rem; }
+            .hero-content .price { font-size: 1.5rem; }
             
-            .options-grid { grid-template-columns: 1fr 1fr; gap: 1.5rem; }
-            .features-grid { grid-template-columns: 1fr 1fr; gap: 2.5rem; }
-            .locations-grid { grid-template-columns: 1fr 1fr; }
-            .logos-grid { grid-template-columns: repeat(3, 1fr); gap: 3rem; }
-            .footer-grid { grid-template-columns: 1fr 1fr; gap: 2rem; }
+            .features-grid { grid-template-columns: 1fr; gap: 2rem; }
+            
+            .developer-grid { grid-template-columns: 1fr; gap: 3rem; }
+            .developer-stats { 
+                display: grid; 
+                grid-template-columns: repeat(3, 1fr); 
+                gap: 1rem; 
+            }
+            .stat-item { margin-bottom: 0; }
+            .stat-item .value { font-size: 2.5rem; }
+            .stat-item .value sup { font-size: 1.25rem; }
+
+            .config-grid { grid-template-columns: 1fr; }
+            .amenities-layout { grid-template-columns: 1fr; gap: 3rem; }
+            .amenities-image img { max-width: 500px; margin: 0 auto 2rem auto; }
+            .neighbourhood-grid { grid-template-columns: 1fr 1fr; }
+            .gallery-grid { grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
+            .footer-grid { grid-template-columns: 1fr; gap: 3rem; }
         }
         
         @media (max-width: 768px) {
-            body { padding-top: 60px; }
-            .top-nav { padding: 0.75rem 0; }
+            body { padding-top: 65px; }
+            .top-nav { padding: 0.8rem 0; }
             .nav-container { padding: 0 1rem; }
-            .logo { font-size: 1.5rem; }
+            .logo { font-size: 1.4rem; }
             
             .main-nav {
                 position: fixed;
-                top: 60px;
+                top: 65px;
                 left: -100%;
                 width: 80%;
                 height: 100vh;
@@ -621,25 +790,37 @@
                 gap: 0;
             }
             .main-nav a {
-                padding: 1rem 0;
+                padding: 1rem;
                 width: 100%;
                 border-bottom: 1px solid var(--color-border);
             }
             .main-nav a:last-child { border-bottom: none; }
             .main-nav .nav-links a::after { display: none; }
+             .main-nav .nav-links a:hover {
+                background: var(--color-bg-light);
+                color: var(--color-accent);
+            }
             .main-nav .btn { display: block; margin-top: 1.5rem; width: 100%; }
             .menu-toggle { display: block; }
             
-            .hero-section { padding: 4rem 0; min-height: auto; }
-            .hero-content h1 { font-size: 2.25rem; }
-            .hero-content p { font-size: 1rem; }
+            .hero-section { min-height: 70vh; }
+            .hero-content h1 { font-size: 2.5rem; }
+            .hero-content .tagline { font-size: 1rem; }
+            .hero-content .price { font-size: 1.25rem; }
             
-            .options-grid { grid-template-columns: 1fr; gap: 1rem; }
-            .features-grid { grid-template-columns: 1fr 1fr; gap: 2rem; }
-            .locations-grid { grid-template-columns: 1fr; }
-            .logos-grid { grid-template-columns: repeat(2, 1fr); gap: 2rem; }
+            .developer-stats { grid-template-columns: 1fr; gap: 1.5rem; }
+            .amenities-list { grid-template-columns: 1fr; }
+            .neighbourhood-grid { grid-template-columns: 1fr; }
             .contact-container { padding: 2rem 1.5rem; }
-            .footer-grid { grid-template-columns: 1fr; gap: 3rem; }
+        }
+        
+        @media (max-width: 480px) {
+            .developer-grid { gap: 2rem; }
+            .developer-info p:last-of-type { margin-bottom: 1.5rem; }
+            .config-grid { gap: 1.5rem; }
+            .config-card-content { padding: 1.5rem; }
+            .amenities-layout { gap: 2rem; }
+            .neighbourhood-grid { gap: 1.5rem; }
         }
 
     </style>
@@ -649,15 +830,14 @@
     <!-- Top Navigation -->
     <header class="top-nav">
         <div class="container nav-container">
-            <a href="#home" class="logo">FLEXISPACE</a>
+            <a href="#home" class="logo">ASTRAL RESIDENCES</a>
             
             <nav class="main-nav" id="mainNav">
                 <div class="nav-links">
-                    <a href="#options">Office Space</a>
-                    <a href="#">Coworking</a>
-                    <a href="#">Virtual Offices</a>
-                    <a href="#">Meeting Rooms</a>
-                    <a href="#locations">Locations</a>
+                    <a href="#configurations">Configuration</a>
+                    <a href="#amenities">Amenities</a>
+                    <a href="#neighbourhood">Neighbourhood</a>
+                    <a href="#gallery">Gallery</a>
                 </div>
                 <a href="#contact" class="btn btn-primary">Enquire Now</a>
             </nav>
@@ -674,189 +854,198 @@
 
         <!-- Hero Section -->
         <section id="home" class="hero-section">
-            <div class="container hero-grid">
-                <div class="hero-content fade-in">
-                    <h1>Office Space in Metro City</h1>
-                    <p>Make a home for your business with FlexiSpace private office space. Our serviced offices have everything taken care of – from the furniture to the high-speed WiFi – so you can focus on driving your business forward.</p>
-                    <a href="#options" class="btn btn-primary">Find Your Workspace</a>
-                    <a href="#contact" class="btn btn-light" style="margin-left: 1rem;">Talk to Sales</a>
-                </div>
-                <div class="hero-image fade-in">
-                    <img src="https://source.unsplash.com/600x480/?modern,office,coworking,interior" alt="Modern coworking office interior">
-                </div>
-            </div>
-        </section>
-
-
-        <!-- Workspace Options Section -->
-        <section id="options" class="fade-in">
-            <div class="container">
-                <h2 class="fade-in">Flexible workspace designed around your needs</h2>
-                <p class="section-subtitle fade-in">Our flexible, fully-customisable office rentals are available by the hour, day, or as long as you need.</p>
-                <div class="options-grid">
-                    <div class="option-card fade-in">
-                         <svg class="icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" /></svg>
-                        <h3>Private Offices</h3>
-                        <p>A range of ready-to-use, fully equipped offices with everything you need to get started.</p>
-                        <span class="price">From ₹7,550 /person/month</span>
-                        <a href="#contact" class="btn btn-outline">Learn More</a>
-                    </div>
-                    <div class="option-card fade-in">
-                         <svg class="icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9.594 3.94c.09-.542.56-.94 1.11-.94h2.593c.55 0 1.02.398 1.11.94l.213 1.281c.063.374.313.686.645.87.074.04.147.083.22.127.324.196.72.257 1.075.124l1.217-.456a1.125 1.125 0 011.37.49l1.296 2.247a1.125 1.125 0 01-.242 1.434l-1.005.827c-.293.24-.438.613-.438.995a6.758 6.758 0 11-13.516 0c0-.382-.145-.755-.438-.995l-1.005-.828a1.125 1.125 0 01-.242-1.434l1.296-2.247a1.125 1.125 0 011.37-.49l1.217.456c.355.133.75.072 1.075-.124.072-.044.146-.087.22-.128.332-.183.582-.495.644-.869l.213-1.28z" /><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
-                        <h3>Custom Offices</h3>
-                        <p>When off-the-shelf simply isn't enough. Customise all aspects of your space, including furniture and branding.</p>
-                        <span class="price">Bespoke Pricing</span>
-                        <a href="#contact" class="btn btn-outline">Learn More</a>
-                    </div>
-                     <div class="option-card fade-in">
-                         <svg class="icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                        <h3>Day Offices</h3>
-                        <p>A professional on-demand office space. Perfect when you need to get your head down and focus.</p>
-                        <span class="price">From ₹2,990 /day</span>
-                        <a href="#contact" class="btn btn-outline">Learn More</a>
-                    </div>
-                     <div class="option-card fade-in">
-                        <svg class="icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" /></svg>
-                        <h3>Office Membership</h3>
-                        <p>Flexible access to Day Offices when and where you choose, at thousands of locations worldwide.</p>
-                        <span class="price">From ₹7,190 /month</span>
-                        <a href="#contact" class="btn btn-outline">Learn More</a>
-                    </div>
-                </div>
+            <div class="container hero-content fade-in">
+                <span class="subtitle-small">Super Premium Living</span>
+                <h1>2 & 3 Bed Residences with Private Balconies</h1>
+                <p class="tagline">Prime City East Location</p>
+                <p class="price">Starting at ₹2.95 Cr* <small>(All Inclusive)</small></p>
+                <a href="#configurations" class="btn btn-light-outline">View Configurations</a>
+                <a href="#contact" class="btn btn-primary" style="margin-left: 1rem;">Register Interest</a>
             </div>
         </section>
         
-        <!-- Features Section -->
-        <section id="features" class="fade-in">
-             <div class="container">
-                <h2 class="fade-in">Everything You Need to Succeed</h2>
-                <p class="section-subtitle fade-in">Our workspaces are designed with your productivity and comfort in mind.</p>
-                <div class="features-grid">
-                    <div class="feature-item fade-in">
-                        <svg class="icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M8.288 15.038a5.25 5.25 0 017.424 0M5.106 11.856c3.807-3.808 9.98-3.808 13.788 0M1.924 8.674c5.565-5.565 14.587-5.565 20.152 0M12.53 18.22l-.53.53-.53-.53a.75.75 0 011.06 0z" /></svg>
-                        <h4>High-Speed WiFi</h4>
-                        <p>Business-grade internet connectivity.</p>
-                    </div>
-                    <div class="feature-item fade-in">
-                        <svg class="icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M5.25 14.25h13.5m-13.5 0a3 3 0 01-3-3V9.75a3 3 0 013-3h13.5a3 3 0 013 3v1.5a3 3 0 01-3 3m-13.5 0h13.5" /></svg>
-                        <h4>Ergonomic Furniture</h4>
-                        <p>Comfortable and supportive seating.</p>
-                    </div>
-                     <div class="feature-item fade-in">
-                        <svg class="icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A11.978 11.978 0 0112 13.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 003 12c0 .778.099 1.533.284 2.253m0 0c1.396 4.148 5.021 7.247 9.432 7.247s8.036-3.099 9.432-7.247M12 10.5a2.25 2.25 0 110 4.5 2.25 2.25 0 010-4.5z" /></svg>
-                        <h4>Global Network</h4>
-                        <p>Access workspaces worldwide.</p>
-                    </div>
-                     <div class="feature-item fade-in">
-                        <svg class="icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5m-9-6h.008v.008H12v-.008zM12 15h.008v.008H12V15zm0 2.25h.008v.008H12v-.008zM9.75 15h.008v.008H9.75V15zm0 2.25h.008v.008H9.75v-.008zM7.5 15h.008v.008H7.5V15zm0 2.25h.008v.008H7.5v-.008zm6.75-4.5h.008v.008h-.008v-.008zm0 2.25h.008v.008h-.008V15zm0 2.25h.008v.008h-.008v-.008zm2.25-4.5h.008v.008H16.5v-.008zm0 2.25h.008v.008H16.5V15z" /></svg>
-                        <h4>Flexible Terms</h4>
-                        <p>Rent by the hour, day, or year.</p>
-                    </div>
+        <!-- Features Bar -->
+        <section class="features-bar fade-in">
+            <div class="container features-grid">
+                <div class="feature-item">
+                    <svg class="icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.31h5.518a.562.562 0 01.32.99l-4.194 3.033a.563.563 0 00-.188.63l1.528 4.99a.562.562 0 01-.828.69l-4.194-3.033a.563.563 0 00-.656 0l-4.194 3.033a.563.563 0 01-.828-.69l1.527-4.99a.563.563 0 00-.188-.63l-4.194-3.033a.563.563 0 01.32-.99h5.518a.563.563 0 00.475-.31l2.125-5.11z" /></svg>
+                    <h4>World Class Features</h4>
+                    <p>Premium finishes and thoughtfully designed spaces.</p>
+                </div>
+                <div class="feature-item">
+                     <svg class="icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 6.75V15m6-6v8.25m.503-8.464l-8.564 8.564M15 6.75h4.5m-4.5 0l-8.564 8.564M6.75 15h4.5m-4.5 0l8.564-8.564" /></svg>
+                    <h4>Minutes Away</h4>
+                    <p>From Main Highway & Metro Station for easy commutes.</p>
+                </div>
+                <div class="feature-item">
+                    <svg class="icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.487 16.638 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" /><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
+                    <h4>Panoramic Views</h4>
+                    <p>Of the serene Green Park & vibrant Cityscape.</p>
                 </div>
             </div>
         </section>
 
-        <!-- Locations Section -->
-        <section id="locations" class="fade-in">
-             <div class="container">
-                <h2 class="fade-in">Prime Locations in Metro City</h2>
-                <p class="section-subtitle fade-in">Find the perfect base for your business in the city's key commercial hubs.</p>
-                <div class="locations-grid">
-                    <div class="location-card fade-in">
-                        <img src="https://source.unsplash.com/400x250/?mumbai,business,district" alt="Corporate Park Location" loading="lazy">
-                        <div class="location-card-content">
-                            <h4>Corporate Park Center</h4>
-                            <span class="address">123 Business Avenue, Corp Park</span>
-                            <p>State-of-the-art facilities in a major business hub.</p>
-                            <a href="#contact" class="btn btn-outline">View Details</a>
-                        </div>
+        <!-- About Developer Section -->
+        <section id="about-developer" class="fade-in">
+            <div class="container developer-grid">
+                <div class="developer-stats">
+                    <div class="stat-item">
+                        <div class="value counter" data-target="50" data-suffix="+">0<sup>+</sup></div>
+                        <div class="label">Years of Legacy</div>
                     </div>
-                     <div class="location-card fade-in">
-                        <img src="https://source.unsplash.com/400x250/?mumbai,bandra,kurla" alt="Downtown Location" loading="lazy">
-                        <div class="location-card-content">
-                            <h4>Downtown Business Hub</h4>
-                            <span class="address">456 Central Street, Downtown</span>
-                            <p>Prestigious address with excellent connectivity.</p>
-                             <a href="#contact" class="btn btn-outline">View Details</a>
-                        </div>
+                    <div class="stat-item">
+                         <div class="value counter" data-target="36" data-suffix="M+">0<sup>M+</sup></div>
+                        <div class="label">Sq. Ft. Delivered</div>
                     </div>
-                     <div class="location-card fade-in">
-                        <img src="https://source.unsplash.com/400x250/?mumbai,navi,mumbai,offices" alt="Tech City Location" loading="lazy">
-                        <div class="location-card-content">
-                            <h4>Tech City Tower</h4>
-                            <span class="address">789 Innovation Drive, Tech City</span>
-                            <p>Modern workspace surrounded by tech giants.</p>
-                             <a href="#contact" class="btn btn-outline">View Details</a>
-                        </div>
+                    <div class="stat-item">
+                         <div class="value counter" data-target="30" data-suffix="K+">0<sup>K+</sup></div>
+                        <div class="label">Happy Families</div>
                     </div>
+                </div>
+                <div class="developer-info">
+                    <h2>About The Developer Group</h2>
+                    <p>With over five decades of unwavering commitment, The Developer Group has established itself as a pioneer in shaping the urban landscape. Our journey is marked by the successful delivery of millions of square feet of prime real estate across residential, commercial, and hospitality sectors.</p>
+                    <p>We pride ourselves on creating spaces that are not just structures but vibrant communities built on trust, quality, and customer satisfaction. Our legacy is built on delivering excellence and creating lasting value for over 30,000 happy families.</p>
+                    <a href="#" class="btn btn-outline">Learn More</a>
                 </div>
             </div>
         </section>
 
-        <!-- Trusted By Section -->
-        <section id="trusted-by" class="fade-in">
+        <!-- Configurations Section -->
+        <section id="configurations" class="light-bg fade-in">
             <div class="container">
-                <h2 class="fade-in">Trusted by the world's largest companies</h2>
-                <div class="logos-grid">
-                    <!-- Placeholder logos -->
-                    <div class="logo-item"><img src="https://placehold.co/120x60/e0e0e0/757575?text=Brand+1" alt="Brand 1 Logo"></div>
-                    <div class="logo-item"><img src="https://placehold.co/120x60/e0e0e0/757575?text=Brand+2" alt="Brand 2 Logo"></div>
-                    <div class="logo-item"><img src="https://placehold.co/120x60/e0e0e0/757575?text=Brand+3" alt="Brand 3 Logo"></div>
-                    <div class="logo-item"><img src="https://placehold.co/120x60/e0e0e0/757575?text=Brand+4" alt="Brand 4 Logo"></div>
-                    <div class="logo-item"><img src="https://placehold.co/120x60/e0e0e0/757575?text=Brand+5" alt="Brand 5 Logo"></div>
-                    <div class="logo-item"><img src="https://placehold.co/120x60/e0e0e0/757575?text=Brand+6" alt="Brand 6 Logo"></div>
+                <h2 class="fade-in">Super Premium Residences</h2>
+                <p class="section-subtitle fade-in">Choose from meticulously designed 2 and 3 Bed homes, each featuring a private balcony offering stunning views.</p>
+                <div class="config-grid">
+                    <div class="config-card fade-in">
+                        <!-- Image replaced -->
+                        <img src="" alt="Interior of a 2 Bed Residence" loading="lazy">
+                        <div class="config-card-content">
+                            <h3>2 Bed Residences</h3>
+                            <span class="features">Spacious Layout | Private Balcony | Modern Kitchen</span>
+                            <p>Perfectly crafted for modern families, offering comfort, style, and functional living spaces with abundant natural light.</p>
+                            <a href="#contact" class="btn btn-primary">Enquire for 2 BHK</a>
+                        </div>
+                    </div>
+                    <div class="config-card fade-in">
+                        <!-- Image replaced -->
+                        <img src="" alt="Interior of a 3 Bed Residence" loading="lazy">
+                        <div class="config-card-content">
+                            <h3>3 Bed Residences</h3>
+                            <span class="features">Expansive Living | Private Balcony | Premium Finishes</span>
+                            <p>Experience elevated living in our larger residences, featuring generous layouts, luxurious finishes, and breathtaking panoramic views.</p>
+                            <a href="#contact" class="btn btn-primary">Enquire for 3 BHK</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <!-- FAQ Section -->
-        <section id="faq" class="fade-in">
-            <div class="container faq-container">
-                <h2 class="fade-in">Answers to your office space questions</h2>
-                 <div class="faq-item">
-                    <button class="faq-header" aria-expanded="false">
-                        <h4>How much does an office cost?</h4>
-                        <span class="faq-toggle">+</span>
-                    </button>
-                    <div class="faq-content">
-                        <p>Costs vary depending on location, size, and duration. Private offices typically start from ₹7,550 per person per month on flexible terms.</p>
-                    </div>
+        <!-- Amenities Section -->
+        <section id="amenities" class="fade-in">
+            <div class="container amenities-layout">
+                <div class="amenities-image fade-in">
+                     <!-- Image replaced -->
+                     <img src="" alt="Collage of amenities like pool and lounge" loading="lazy">
                 </div>
-                 <div class="faq-item">
-                    <button class="faq-header" aria-expanded="false">
-                        <h4>Can I hire an office for just one day?</h4>
-                        <span class="faq-toggle">+</span>
-                    </button>
-                    <div class="faq-content">
-                        <p>Yes, our Day Offices provide professional, on-demand space starting from ₹2,990 per day, bookable via our app.</p>
-                    </div>
-                </div>
-                 <div class="faq-item">
-                    <button class="faq-header" aria-expanded="false">
-                        <h4>What types of spaces are available?</h4>
-                        <span class="faq-toggle">+</span>
-                    </button>
-                    <div class="faq-content">
-                        <p>We offer Private Offices, Custom Offices, Day Offices, Coworking spaces, Virtual Offices, and Meeting Rooms.</p>
-                    </div>
-                </div>
-                 <div class="faq-item">
-                    <button class="faq-header" aria-expanded="false">
-                        <h4>What's included in a typical office?</h4>
-                        <span class="faq-toggle">+</span>
-                    </button>
-                    <div class="faq-content">
-                        <p>A typical serviced office includes furniture, high-speed WiFi, utilities, cleaning, reception services, and access to common areas like kitchens and lounges.</p>
+                <div class="amenities-content fade-in">
+                    <h2>World Class Amenities</h2>
+                    <p>Indulge in a lifestyle enriched with amenities designed for relaxation, recreation, and well-being, catering to all ages.</p>
+                    <div class="amenities-list">
+                        <div class="amenity-list-item">
+                             <svg class="icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 12h16.5m-16.5 3.75h16.5M3.75 19.5h16.5M5.625 4.5h12.75a1.125 1.125 0 010 2.25H5.625a1.125 1.125 0 010-2.25z" /></svg>
+                             <span>Swimming Pool</span>
+                        </div>
+                        <div class="amenity-list-item">
+                            <svg class="icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.59 14.37a6 6 0 01-5.84 7.38v-4.8m5.84-2.58a14.98 14.98 0 006.16-12.12A14.98 14.98 0 009.63 2.13v4.8m5.96 5.44a14.926 14.926 0 01-5.841 2.58m-.119-8.54a6 6 0 00-7.381 5.84h4.8m2.581-5.84a14.927 14.927 0 00-2.58 5.84m2.699 2.7c-.103.021-.207.041-.314.06a15.09 15.09 0 01-2.448-2.448 14.9 14.9 0 01.06-.314m-2.7 2.448a14.927 14.927 0 01-5.841 2.58m5.841-2.58h-4.8m2.581 5.841a14.919 14.919 0 01-2.58 5.84m2.699-5.841a6 6 0 01-.06.314M3.75 12a14.94 14.94 0 014.287-8.97M21 12a14.94 14.94 0 01-4.287 8.97M12 21a14.94 14.94 0 01-8.97-4.287M12 3a14.94 14.94 0 018.97 4.287" /></svg>
+                            <span>Fitness Center</span>
+                        </div>
+                        <div class="amenity-list-item">
+                             <svg class="icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" /></svg>
+                            <span>Clubhouse</span>
+                        </div>
+                        <div class="amenity-list-item">
+                            <svg class="icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 12c0-1.232-.046-2.453-.138-3.662a4.006 4.006 0 00-3.7-3.7 48.678 48.678 0 00-7.324 0 4.006 4.006 0 00-3.7 3.7c-.091 1.21-.138 2.43-.138 3.662v.513a5.374 5.374 0 01-.671 2.432l-.744 1.488c-.386.774-.02 1.76.774 2.146l4.148 1.66c.949.378 2.016.378 2.964 0l4.148-1.66c.794-.386 1.159-1.372.774-2.146l-.744-1.488a5.374 5.374 0 01-.67-2.432v-.513z" /></svg>
+                            <span>Kids' Play Area</span>
+                        </div>
+                         <div class="amenity-list-item">
+                             <svg class="icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" /></svg>
+                            <span>Landscaped Gardens</span>
+                        </div>
+                         <div class="amenity-list-item">
+                            <svg class="icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m.009-8.718c.005-.008.01-.016.015-.024a4.5 4.5 0 015.908 0c.3.3.582.633.803 1.002m-14.041 7.718c-.005.008-.01.016-.015.024a4.5 4.5 0 00-5.908 0c-.3-.3-.582-.633-.803-1.002m14.041 7.718c.857.94 2.007 1.5 3.25 1.5 2.21 0 4-1.79 4-4s-1.79-4-4-4c-1.243 0-2.393.56-3.25 1.5m-6.5 0C8.393 9.06 7.243 8.5 6 8.5 3.79 8.5 2 10.29 2 12.5s1.79 4 4 4c1.243 0 2.393-.56 3.25-1.5m-6.5-1.5c0 .195.004.39.012.583m10.476 0c.008-.193.012-.388.012-.583" /></svg>
+                            <span>Multipurpose Court</span>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
+
+        <!-- Neighbourhood Section -->
+        <section id="neighbourhood" class="light-bg fade-in">
+            <div class="container">
+                <h2 class="fade-in">Explore the Neighbourhood</h2>
+                <p class="section-subtitle fade-in">Everything you need is just moments away, from daily conveniences to lifestyle destinations.</p>
+                <div class="neighbourhood-grid">
+                    <div class="neighbourhood-card fade-in">
+                        <svg class="icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.25 10.5a.75.75 0 01.75-.75h6a.75.75 0 010 1.5h-6a.75.75 0 01-.75-.75z" /></svg>
+                        <h4>Entertainment & Shopping</h4>
+                        <p>Malls, multiplexes, and retail nearby.</p>
+                    </div>
+                    <div class="neighbourhood-card fade-in">
+                        <svg class="icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path d="M12 14l9-5-9-5-9 5 9 5z" /><path d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" /><path stroke-linecap="round" stroke-linejoin="round" d="M12 14l9-5-9-5-9 5 9 5zm0 0v5.598m0 0l-9-5V6.402l9-5v5.598zm0 0l9 5V6.402l-9-5v5.598z" /></svg>
+                        <h4>Schools & Institutions</h4>
+                        <p>Reputed educational facilities in close proximity.</p>
+                    </div>
+                    <div class="neighbourhood-card fade-in">
+                        <svg class="icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21M3 3h12M3 7.5h12M3 12h12" /></svg>
+                        <h4>Offices & Business Hubs</h4>
+                        <p>Major corporate parks just a short drive away.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Gallery Section -->
+        <section id="gallery" class="light-bg fade-in">
+             <div class="container">
+                <h2 class="fade-in">Visual Journey</h2>
+                <p class="section-subtitle fade-in">Experience the elegance and ambiance through our gallery.</p>
+                <div class="gallery-grid">
+                    <div class="gallery-item fade-in">
+                         <!-- Image replaced -->
+                        <img src="" alt="Grand entrance lobby" loading="lazy">
+                    </div>
+                    <div class="gallery-item fade-in">
+                         <!-- Image replaced -->
+                        <img src="" alt="Stylish living area" loading="lazy">
+                    </div>
+                    <div class="gallery-item fade-in">
+                         <!-- Image replaced -->
+                        <img src="" alt="Balcony with city view" loading="lazy">
+                    </div>
+                    <div class="gallery-item fade-in">
+                         <!-- Image replaced -->
+                        <img src="" alt="Rooftop amenities area" loading="lazy">
+                    </div>
+                    <div class="gallery-item fade-in">
+                         <!-- Image replaced -->
+                        <img src="" alt="Swimming pool area daytime" loading="lazy">
+                    </div>
+                    <div class="gallery-item fade-in">
+                         <!-- Image replaced -->
+                        <img src="" alt="Building facade detail" loading="lazy">
+                    </div>
+                </div>
+            </div>
+        </section>
+
 
         <!-- Contact Form Section -->
         <section id="contact" class="fade-in">
             <div class="container contact-container">
-                 <h2 class="fade-in">Get Started Today</h2>
-                 <p class="section-subtitle fade-in">Talk to an expert or get a personalised quote for your workspace needs.</p>
+                 <h2 class="fade-in">Enquire Now</h2>
+                 <p class="section-subtitle fade-in">Take the first step towards owning your super premium residence. Fill the form below.</p>
                  <form class="contact-form" id="contactForm">
                      <div class="form-group">
                         <input type="text" id="name" name="name" placeholder="Your Name *" required>
@@ -868,10 +1057,13 @@
                         <input type="tel" id="phone" name="phone" placeholder="Your Phone Number *" required>
                     </div>
                      <div class="form-group">
-                        <textarea id="message" name="message" rows="4" placeholder="How can we help?"></textarea>
+                        <textarea id="message" name="message" rows="4" placeholder="I'm interested in Astral Residences..."></textarea>
                     </div>
                     <button type="submit" class="btn btn-primary">Submit Enquiry</button>
                  </form>
+                 <div id="form-success-message">
+                    Thank you! Your enquiry has been received. We will contact you shortly.
+                 </div>
             </div>
         </section>
 
@@ -882,37 +1074,28 @@
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-widget">
-                    <a href="#home" class="logo">FLEXISPACE</a>
-                    <p>Providing flexible workspace solutions for businesses of all sizes, across the globe.</p>
+                    <a href="#home" class="logo">ASTRAL RESIDENCES</a>
+                    <p>Delivering exceptional living experiences through innovative design, quality construction, and a commitment to customer satisfaction for over 50 years.</p>
                 </div>
                 <div class="footer-widget">
-                    <h4>Ways to Work</h4>
+                    <h4>Quick Links</h4>
                     <ul>
-                        <li><a href="#options">Office Space</a></li>
-                        <li><a href="#">Coworking</a></li>
-                        <li><a href="#">Virtual Offices</a></li>
-                        <li><a href="#">Meeting Rooms</a></li>
-                        <li><a href="#options">Memberships</a></li>
-                    </ul>
-                </div>
-                <div class="footer-widget">
-                    <h4>About Us</h4>
-                    <ul>
-                        <li><a href="#">Company</a></li>
-                        <li><a href="#locations">Locations</a></li>
-                        <li><a href="#">Careers</a></li>
-                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#configurations">Configuration</a></li>
+                        <li><a href="#amenities">Amenities</a></li>
+                        <li><a href="#neighbourhood">Neighbourhood</a></li>
+                        <li><a href="#gallery">Gallery</a></li>
+                        <li><a href="#about-developer">About Us</a></li>
                     </ul>
                 </div>
                  <div class="footer-widget">
                     <h4>Contact Info</h4>
-                    <span class="contact-item">Metro City Headquarters,<br> 1 Business Plaza, 400001</span>
-                    <span class="contact-item">info@flexispace.mock</span>
-                    <span class="contact-item">+91 22 6789 0000</span>
+                    <span class="contact-item">Astral Residences Sales Gallery,<br> City East, Metro Area, 400051</span>
+                    <span class="contact-item">sales@yourbrand.com</span>
+                    <span class="contact-item">+91 1122 334455</span>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; <span id="currentYear"></span> FlexiSpace Global. All rights reserved. Fictional Mockup. Ts & Cs apply.</p>
+                <p>&copy; <span id="currentYear"></span> Your Brand Developers. MahaRERA Registration No: P5XXXXXXX. Fictional Mockup.</p>
             </div>
         </div>
     </footer>
@@ -928,9 +1111,12 @@
                 menuToggle.addEventListener('click', () => {
                     mainNav.classList.toggle('open');
                     menuToggle.classList.toggle('open');
-                    menuToggle.setAttribute('aria-expanded', mainNav.classList.contains('open'));
+                    const isOpened = mainNav.classList.contains('open');
+                    menuToggle.setAttribute('aria-expanded', isOpened);
+                    document.body.style.overflow = isOpened ? 'hidden' : ''; // Prevent scrolling when menu is open
                 });
-                // Close menu when clicking outside
+                
+                 // Close menu when clicking outside
                  document.addEventListener('click', (event) => {
                     const isClickInsideNav = mainNav.contains(event.target);
                     const isClickOnToggle = menuToggle.contains(event.target);
@@ -938,6 +1124,7 @@
                         mainNav.classList.remove('open');
                         menuToggle.classList.remove('open');
                         menuToggle.setAttribute('aria-expanded', 'false');
+                        document.body.style.overflow = ''; // Allow scrolling again
                     }
                 });
             }
@@ -950,16 +1137,18 @@
                     const targetElement = document.querySelector(targetId);
                     
                     if (targetElement) {
-                        let headerOffset = 70; // Header height
-                        if (window.innerWidth <= 768) { headerOffset = 60; }
+                        let headerOffset = 75; // Adjusted header height
+                        if (window.innerWidth <= 768) { headerOffset = 65; }
                         let elementPosition = targetElement.getBoundingClientRect().top;
                         let offsetPosition = elementPosition + window.pageYOffset - headerOffset;
                         if (targetId === '#home') { offsetPosition = 0; }
                         window.scrollTo({ top: offsetPosition, behavior: "smooth" });
+                        
                         if (mainNav.classList.contains('open')) {
                             mainNav.classList.remove('open');
                             menuToggle.classList.remove('open');
                             menuToggle.setAttribute('aria-expanded', 'false');
+                            document.body.style.overflow = ''; // Allow scrolling again
                         }
                     }
                 });
@@ -978,68 +1167,173 @@
                 });
             }, appearOptions);
             faders.forEach(fader => { appearOnScroll.observe(fader); });
-            
-             // --- FAQ Accordion ---
-            const faqItems = document.querySelectorAll('.faq-item');
-            faqItems.forEach(item => {
-                const header = item.querySelector('.faq-header');
-                const content = item.querySelector('.faq-content');
-                const toggle = item.querySelector('.faq-toggle');
-
-                if (header && content && toggle) {
-                    header.addEventListener('click', () => {
-                        const isActive = item.classList.contains('active');
-                        // Close all others first
-                        faqItems.forEach(i => {
-                            if (i !== item) {
-                                i.classList.remove('active');
-                                i.querySelector('.faq-content').style.maxHeight = null;
-                                i.querySelector('.faq-toggle').textContent = '+';
-                                i.querySelector('.faq-header').setAttribute('aria-expanded', 'false');
-                            }
-                        });
-                        // Toggle current item
-                        if (!isActive) {
-                            item.classList.add('active');
-                            content.style.maxHeight = content.scrollHeight + 'px';
-                            content.style.paddingTop = '0.5rem'; // Add padding when opening
-                            toggle.textContent = '–'; 
-                            header.setAttribute('aria-expanded', 'true');
-                        } else {
-                            item.classList.remove('active');
-                            content.style.maxHeight = null;
-                            content.style.paddingTop = '0'; // Remove padding when closing
-                            toggle.textContent = '+';
-                            header.setAttribute('aria-expanded', 'false');
-                        }
-                    });
-                }
-            });
 
 
             // --- Set Current Year in Footer ---
             const yearSpan = document.getElementById('currentYear');
             if (yearSpan) { yearSpan.textContent = new Date().getFullYear(); }
             
+            // --- Counter-up Animation for Developer Stats ---
+            const statCounters = document.querySelectorAll('#about-developer .counter');
+            let statCounterAnimated = false; 
+
+            const startStatCounter = (counter) => {
+                const targetRaw = counter.getAttribute('data-target');
+                const suffix = counter.getAttribute('data-suffix') || '';
+                const target = parseInt(targetRaw, 10);
+                
+                if (isNaN(target)) return; // Skip if target is not a number
+
+                const duration = 2000; // Total duration in ms
+                let start = null;
+
+                const step = (timestamp) => {
+                    if (!start) start = timestamp;
+                    const progress = Math.min((timestamp - start) / duration, 1);
+                    const currentVal = Math.floor(progress * target);
+                    
+                    // Format the suffix correctly within the <sup> tag if needed
+                    const supElement = counter.querySelector('sup');
+                    if(supElement) {
+                        counter.childNodes[0].nodeValue = currentVal; // Update the number part
+                        supElement.textContent = suffix; // Keep the suffix in sup
+                    } else {
+                         counter.textContent = currentVal + suffix; // Simple case without sup
+                    }
+
+                    if (progress < 1) {
+                        window.requestAnimationFrame(step);
+                    } else {
+                         // Ensure final value is displayed accurately with suffix
+                         if(supElement) {
+                            counter.childNodes[0].nodeValue = target;
+                         } else {
+                            counter.textContent = target + suffix;
+                         }
+                    }
+                };
+                window.requestAnimationFrame(step);
+            };
+
+            const statCounterObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting && !statCounterAnimated) {
+                        statCounters.forEach(counter => {
+                            startStatCounter(counter);
+                        });
+                        statCounterAnimated = true; // Set flag
+                        observer.unobserve(entry.target); // Stop observing once animated
+                    }
+                });
+            }, { threshold: 0.5 }); // Trigger when 50% visible
+
+            const developerSection = document.getElementById('about-developer');
+            if (developerSection) {
+                statCounterObserver.observe(developerSection);
+            }
+            
             // --- Contact Form Mock Submission ---
             const contactForm = document.getElementById('contactForm');
+            const successMessage = document.getElementById('form-success-message');
             if (contactForm) {
                 contactForm.addEventListener('submit', function(e) {
                     e.preventDefault();
-                    console.log('Form submitted (mock).');
                     const submitButton = this.querySelector('button[type="submit"]');
-                    submitButton.textContent = 'Enquiry Sent!';
+                    submitButton.textContent = 'Submitting...';
                     submitButton.disabled = true;
+                    
+                    // Simulate network request
                     setTimeout(() => {
                          submitButton.textContent = 'Submit Enquiry';
                          submitButton.disabled = false;
                          this.reset();
-                    }, 3000);
+                         // Show success message
+                         if(successMessage) successMessage.classList.add('visible');
+                         // Hide success message after 3 seconds
+                         setTimeout(() => {
+                            if(successMessage) successMessage.classList.remove('visible');
+                         }, 3000);
+                    }, 1500);
                 });
             }
+
+            // --- Dynamic Image Replacement ---
+            function replaceAllImages() {
+                 // Provided image bank (excluding the non-working URL)
+                const imageBank = [
+                    'https://plus.unsplash.com/premium_photo-1686090449192-4ab1d00cb735?ixlib=rb-4.1.0',
+                    'https://plus.unsplash.com/premium_photo-1687960117069-567a456fe5f3?ixlib=rb-4.1.0',
+                    'https://images.unsplash.com/photo-1502005229762-cf1b2da7c5d6?ixlib=rb-4.1.0',
+                    'https://images.unsplash.com/photo-1605146769289-440113cc3d00?ixlib=rb-4.1.0',
+                    'https://images.unsplash.com/photo-1556784344-ad913c73cfc4?ixlib=rb-4.1.0',
+                    'https://images.unsplash.com/photo-1558981082-c7d43331cd8c?ixlib=rb-4.1.0',
+                    'https://plus.unsplash.com/premium_photo-1680100256112-2e1231d9d0df?ixlib=rb-4.1.0',
+                    'https://images.unsplash.com/photo-1626374295803-a333cfeca51b?ixlib=rb-4.1.0',
+                    'https://plus.unsplash.com/premium_photo-1687960116957-ab813e1e66e6?ixlib=rb-4.1.0',
+                    'https://images.unsplash.com/photo-1618220179428-22790b461013?ixlib=rb-4.1.0',
+                    'https://images.unsplash.com/photo-1631679706909-1844bbd07221?ixlib=rb-4.1.0',
+                    'https://images.unsplash.com/photo-1606744837616-56c9a5c6a6eb?ixlib=rb-4.1.0',
+                    'https://images.unsplash.com/photo-1585128792020-803d29415281?ixlib=rb-4.1.0',
+                    'https://images.unsplash.com/photo-1596276020587-8044fe049813?ixlib=rb-4.1.0',
+                    'https://images.unsplash.com/photo-1516156008625-3a9d6067fab5?ixlib=rb-4.1.0',
+                    'https://images.unsplash.com/photo-1605266764154-0ff8f354088c?ixlib=rb-4.1.0',
+                    'https://images.unsplash.com/photo-1483097365279-e8acd3bf9f18?ixlib=rb-4.1.0',
+                    'https://images.unsplash.com/photo-1595058651386-ac9b13dc8305?ixlib=rb-4.1.0'
+                ];
+
+                // Function to shuffle the array
+                const shuffleArray = (array) => {
+                    let shuffled = [...array];
+                    for (let i = shuffled.length - 1; i > 0; i--) {
+                        const j = Math.floor(Math.random() * (i + 1));
+                        [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+                    }
+                    return shuffled;
+                };
+
+                const shuffledImages = shuffleArray(imageBank);
+                let imgIndex = 0;
+
+                const getNextImage = (width = 800, quality = 75) => {
+                    if (imgIndex >= shuffledImages.length) imgIndex = 0; // Loop back if we run out
+                    let url = new URL(shuffledImages[imgIndex++]);
+                    url.searchParams.set('auto', 'format');
+                    url.searchParams.set('fit', 'crop');
+                    url.searchParams.set('w', width);
+                    url.searchParams.set('q', quality);
+                    return url.toString();
+                };
+
+                // Set Hero Background dynamically
+                const heroSection = document.querySelector('.hero-section');
+                if (heroSection) {
+                    heroSection.style.backgroundImage = `linear-gradient(rgba(26, 32, 44, 0.7), rgba(26, 32, 44, 0.7)), url(${getNextImage(1800, 80)})`;
+                }
+                
+                // Set all other images targeted by empty src
+                const images = document.querySelectorAll('img[src=""]'); 
+                images.forEach(img => {
+                    // Estimate appropriate width based on context
+                    let width = 600; // Default width
+                    if (img.closest('.config-card')) width = 600;
+                    else if (img.closest('.amenities-image')) width = 600;
+                    else if (img.closest('.gallery-item')) width = 400;
+                    
+                    img.src = getNextImage(width, 75);
+                    img.onerror = function() { 
+                        // Set a fallback placeholder with appropriate colors
+                        this.src = `https://placehold.co/${width}x${Math.round(width * 0.75)}/edf2f7/1a202c?text=Image+Not+Found`; 
+                        this.alt = 'Image not found';
+                    };
+                });
+            }
+
+            // Run the image replacement function
+            replaceAllImages();
 
         });
     </script>
 
 </body>
 </html>
+
