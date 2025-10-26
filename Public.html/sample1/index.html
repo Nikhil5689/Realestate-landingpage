@@ -10,765 +10,95 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
 
-    <style>
-        /* CSS Reset and Global Styles */
-        :root {
-            --font-heading: 'Poppins', sans-serif;
-            --font-body: 'Inter', sans-serif;
-            --color-primary-dark: #002D62; /* Deep Navy Blue */
-            --color-accent-gold: #B8860B;   /* Dark Gold */
-            --color-accent-gold-light: #D4AF37; /* Lighter Gold */
-            --color-text-dark: #333333;
-            --color-text-light: #FFFFFF;
-            --color-bg-light: #F9F6F1; /* Light Ivory/Beige */
-            --color-bg-white: #FFFFFF;
-            --color-border: #E0E0E0;
-            --section-padding: 5rem 0; /* Adjusted padding */
-            --transition-main: all 0.3s ease-in-out;
-            --header-height: 80px;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-            font-size: 16px;
-        }
-
-        body {
-            font-family: var(--font-body);
-            color: var(--color-text-dark);
-            background-color: var(--color-bg-white);
-            line-height: 1.7; /* Increased line-height */
-            overflow-x: hidden;
-            padding-top: var(--header-height); /* Offset for fixed header */
-        }
-
-        /* Utility Classes */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 1.5rem;
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 0.8rem 1.75rem; /* Slightly adjusted padding */
-            font-family: var(--font-body);
-            font-weight: 600;
-            text-decoration: none;
-            border-radius: 6px; /* Slightly more rounded */
-            transition: var(--transition-main);
-            cursor: pointer;
-            border: 1px solid transparent; /* Ensure border is consistent */
-            text-transform: uppercase;
-            font-size: 0.875rem;
-            letter-spacing: 0.75px; /* Increased spacing */
-        }
-
-        .btn-primary {
-            background-color: var(--color-accent-gold);
-            color: var(--color-text-light);
-            border-color: var(--color-accent-gold);
-        }
-
-        .btn-primary:hover {
-            background-color: var(--color-accent-gold-light);
-            border-color: var(--color-accent-gold-light);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(184, 134, 11, 0.3); /* Softer shadow */
-        }
-        
-        .btn-secondary {
-            background-color: transparent;
-            color: var(--color-primary-dark);
-            border: 1px solid var(--color-primary-dark);
-        }
-        
-        .btn-secondary:hover {
-            background-color: var(--color-primary-dark);
-            color: var(--color-bg-white);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 10px rgba(0, 45, 98, 0.2);
-        }
-
-        h1, h2, h3, h4 {
-            font-family: var(--font-heading);
-            color: var(--color-primary-dark);
-            font-weight: 600;
-            line-height: 1.3;
-            margin-bottom: 1rem; /* Consistent bottom margin */
-        }
-        
-        h1 {
-            font-size: clamp(2.5rem, 6vw, 4rem); /* Responsive font size */
-        }
-
-        h2 {
-            font-size: clamp(2rem, 5vw, 2.75rem);
-            text-align: center;
-        }
-        
-        h3 {
-            font-size: clamp(1.5rem, 4vw, 1.75rem);
-        }
-        
-        p {
-            margin-bottom: 1.5rem;
-            font-size: 1rem;
-            color: #555;
-            max-width: 65ch; /* Improve readability */
-        }
-        
-        section {
-            padding: var(--section-padding);
-            overflow: hidden; /* Prevent horizontal scroll from animations */
-        }
-        
-        /* Fade-in Animation on Scroll */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-        }
-
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* --- Header --- */
-        .main-header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: var(--header-height);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 2.5rem;
-            background-color: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(10px);
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-            z-index: 1000;
-            transition: var(--transition-main);
-        }
-
-        .logo {
-            font-family: var(--font-heading);
-            font-size: 1.75rem;
-            font-weight: 700;
-            color: var(--color-primary-dark);
-            text-decoration: none;
-            letter-spacing: 1px;
-        }
-
-        .header-actions {
-            display: flex;
-            align-items: center;
-            gap: 1.5rem;
-        }
-
-        .menu-toggle {
-            display: none; /* Hidden on desktop */
-            cursor: pointer;
-            background: none;
-            border: none;
-            padding: 0.5rem; /* Easier touch target */
-            z-index: 1001;
-        }
-        
-        .menu-toggle .bar {
-            display: block;
-            width: 25px;
-            height: 3px;
-            margin: 5px 0;
-            background-color: var(--color-primary-dark);
-            border-radius: 1px; /* Slight rounding */
-            transition: var(--transition-main);
-        }
-        
-        /* Hamburger animation */
-        .menu-toggle.nav-open .bar:nth-child(1) {
-            transform: translateY(8px) rotate(45deg);
-        }
-        .menu-toggle.nav-open .bar:nth-child(2) {
-            opacity: 0;
-        }
-        .menu-toggle.nav-open .bar:nth-child(3) {
-            transform: translateY(-8px) rotate(-45deg);
-        }
-
-        .main-nav {
-            display: flex;
-            gap: 2rem;
-            list-style: none; /* Remove list style if using ul */
-            margin: 0;
-            padding: 0;
-        }
-        
-        .main-nav a {
-            text-decoration: none;
-            color: var(--color-text-dark);
-            font-weight: 500;
-            position: relative;
-            padding-bottom: 0.5rem; /* Increased padding */
-        }
-        
-        .main-nav a::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background-color: var(--color-accent-gold);
-            transition: width 0.3s ease;
-        }
-        
-        .main-nav a:hover::after,
-        .main-nav a:focus::after { /* Add focus state */
-            width: 100%;
-        }
-        
-        /* --- Hero Section --- */
-        .hero {
-            height: calc(100vh - var(--header-height));
-            min-height: 650px; /* Reduced min-height slightly */
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: var(--color-text-light);
-            position: relative;
-            overflow: hidden;
-            padding: 0 1.5rem;
-        }
-        
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            /* Using one of the provided images */
-            background-image: url('https://images.unsplash.com/photo-1596276020587-8044fe049813?ixlib=rb-4.1.0'); 
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed; /* Parallax effect */
-            z-index: -2;
-        }
-
-        .hero::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 45, 98, 0.65); /* Slightly darker overlay */
-            z-index: -1;
-        }
-
-        .hero-content {
-            max-width: 800px;
-            animation: fadeInHero 1.5s ease-out;
-        }
-        
-        @keyframes fadeInHero {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .hero-content h1 {
-            color: var(--color-text-light);
-            font-weight: 700;
-            letter-spacing: 1px;
-            margin-bottom: 1rem;
-        }
-        
-        .hero-content .subtitle {
-            font-size: clamp(1.1rem, 3vw, 1.5rem);
-            font-weight: 300;
-            margin: 1rem 0 1.5rem; /* Adjusted margin */
-            opacity: 0.9;
-            line-height: 1.6;
-        }
-
-        .hero-content .price {
-            font-size: 1.25rem;
-            font-weight: 500;
-            margin-bottom: 2.5rem; /* Increased spacing */
-            display: block;
-        }
-
-        /* --- Two Column Section (About, Design) --- */
-        .two-col-layout .grid-container { /* Added container for grid */
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            align-items: center;
-            gap: 4rem;
-        }
-        
-        .two-col-layout .col-text {
-             max-width: 500px; /* Limit text width */
-        }
-        
-        .two-col-layout .col-text p {
-             max-width: none; /* Reset max-width for paragraphs inside */
-        }
-        
-        .two-col-layout .col-image img {
-            width: 100%;
-            height: 500px;
-            border-radius: 8px;
-            object-fit: cover;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .two-col-layout .col-image img:hover {
-            transform: scale(1.02);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
-        }
-        
-        .bg-light {
-            background-color: var(--color-bg-light);
-        }
-        
-        .feature-list {
-            list-style: none;
-            margin-top: 2rem;
-            padding-left: 0; /* Remove default padding */
-        }
-        
-        .feature-list li {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin-bottom: 1.25rem;
-            font-size: 1.05rem; /* Slightly larger */
-            font-weight: 500;
-            color: var(--color-text-dark); /* Ensure text color */
-        }
-        
-        .feature-list-icon {
-            display: inline-flex; /* Use flex for centering */
-            align-items: center;
-            justify-content: center;
-            width: 30px;
-            height: 30px;
-            background-color: var(--color-accent-gold-light);
-            color: var(--color-primary-dark); /* Darker icon color */
-            border-radius: 50%;
-            font-weight: 700;
-            font-size: 0.9rem;
-            flex-shrink: 0;
-        }
-        
-        /* --- Amenities & Location --- */ 
-        .section-header {
-            text-align: center;
-            margin-bottom: 4rem;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        
-        .section-header .subtitle {
-            font-size: 1rem; /* Slightly smaller */
-            color: var(--color-accent-gold);
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px; /* Increased spacing */
-            margin-bottom: 0.5rem;
-            display: block; /* Ensure it behaves as a block */
-        }
-        
-        .section-header p {
-             max-width: none; /* Reset max width */
-             margin-left: auto;
-             margin-right: auto;
-        }
-        
-        .amenities-grid, .location-grid {
-            display: grid;
-            gap: 2rem;
-        }
-        
-        .amenities-grid {
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Responsive grid */
-        }
-        
-        .location-grid {
-             grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); /* Responsive grid */
-        }
-
-        .grid-item {
-            position: relative;
-            overflow: hidden;
-            border-radius: 8px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
-            transition: var(--transition-main);
-        }
-        
-        .grid-item:hover {
-            transform: translateY(-5px) scale(1.02); /* Add scale effect */
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12);
-        }
-        
-        .grid-item img {
-            width: 100%;
-            height: 280px;
-            object-fit: cover;
-            display: block;
-            transition: transform 0.4s ease;
-        }
-        
-        .grid-item:hover img {
-            transform: scale(1.05);
-        }
-        
-        .grid-item-caption {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            background: linear-gradient(to top, rgba(0, 0, 0, 0.75), transparent); /* Darker gradient */
-            color: var(--color-text-light);
-            padding: 2.5rem 1.5rem 1.5rem; /* Adjusted padding */
-            text-align: left;
-            transition: background 0.3s ease;
-        }
-
-        .grid-item:hover .grid-item-caption {
-            background: linear-gradient(to top, rgba(0, 0, 0, 0.85), transparent);
-        }
-        
-        .grid-item-caption h4 {
-            color: var(--color-text-light);
-            font-size: 1.2rem; /* Slightly smaller */
-            font-weight: 600;
-            font-family: var(--font-body);
-            margin-bottom: 0.25rem; /* Add spacing below */
-        }
-
-        /* --- Why Us --- */
-        .why-us-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Responsive grid */
-            gap: 3rem;
-            text-align: center;
-        }
-        
-        .why-us-item {
-            padding: 1rem; /* Add padding for spacing */
-        }
-        
-        .why-us-item .icon {
-            font-size: 3rem;
-            color: var(--color-accent-gold);
-            margin-bottom: 1.5rem; /* Increased spacing */
-            display: inline-block; /* Center properly */
-        }
-        
-        .why-us-item h3 {
-            font-size: 1.4rem; /* Slightly smaller */
-            margin-bottom: 0.75rem;
-        }
-        
-        .why-us-item p {
-            max-width: none; /* Allow paragraph to take full width */
-        }
-
-        /* --- FAQ --- */
-        .faq-container {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        
-        .faq-item {
-            border-bottom: 1px solid var(--color-border);
-            margin-bottom: 0.5rem; /* Add slight gap */
-        }
-        .faq-item:last-child {
-            border-bottom: none;
-        }
-        
-        .faq-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1.5rem 0.5rem; /* Added horizontal padding */
-            cursor: pointer;
-            background: none;
-            border: none;
-            width: 100%;
-            text-align: left;
-            transition: background-color 0.2s ease;
-        }
-
-        .faq-header:hover {
-            background-color: rgba(0, 45, 98, 0.03); /* Subtle hover */
-        }
-        
-        .faq-header h4 {
-            font-family: var(--font-body);
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: var(--color-text-dark);
-            margin: 0;
-            flex-grow: 1; /* Allow text to take space */
-            padding-right: 1rem;
-        }
-        
-        .faq-toggle {
-            font-size: 1.5rem;
-            color: var(--color-primary-dark);
-            transition: transform 0.3s ease;
-            font-weight: 300;
-            flex-shrink: 0;
-            width: 24px; /* Fixed width */
-            text-align: center;
-        }
-        
-        .faq-item.active .faq-toggle {
-            transform: rotate(45deg);
-            color: var(--color-accent-gold);
-        }
-        
-        .faq-content {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.4s ease-out, padding 0.4s ease-out; /* Add padding transition */
-            padding: 0 0.5rem; /* Match header padding */
-        }
-
-        .faq-item.active .faq-content {
-             padding-bottom: 1.5rem; /* Add padding when open */
-        }
-        
-        .faq-content p {
-            color: #555;
-            margin: 0;
-            padding-top: 0.5rem; /* Space between header and text */
-            max-width: none;
-        }
-
-        /* --- Footer --- */
-        .main-footer {
-            background-color: var(--color-primary-dark);
-            color: #ccc;
-            padding-top: 5rem; /* Increased padding */
-        }
-        
-        .footer-top {
-            padding-bottom: 4rem; /* Increased padding */
-            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-        }
-        
-        .footer-top h3 {
-            color: var(--color-text-light);
-            font-size: 1.5rem; /* Adjusted size */
-            margin-bottom: 1.5rem;
-        }
-        
-        .footer-top p {
-            color: #ccc;
-            max-width: 600px;
-            margin: 0;
-            font-size: 0.95rem; /* Slightly larger */
-            line-height: 1.8;
-        }
-        
-        .footer-bottom {
-            padding: 2.5rem 0; /* Adjusted padding */
-            text-align: center;
-        }
-        
-        .footer-logo {
-            font-family: var(--font-heading);
-            font-size: 2rem;
-            font-weight: 700;
-            color: var(--color-text-light);
-            text-decoration: none;
-            letter-spacing: 1px;
-            display: block;
-            margin-bottom: 2rem; /* Increased spacing */
-        }
-        
-        .footer-bottom p {
-            font-size: 0.8rem; /* Slightly larger */
-            color: #aaa;
-            max-width: 900px;
-            margin: 0.5rem auto;
-            line-height: 1.6; /* Adjusted line height */
-        }
-
-        /* --- Sticky Footer Bar --- */
-        .sticky-footer-bar {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            background-color: var(--color-primary-dark);
-            color: var(--color-text-light);
-            padding: 1rem 2.5rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 999;
-            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease; /* Add transition */
-        }
-        
-        .sticky-footer-bar p {
-            margin: 0;
-            font-weight: 500;
-            color: var(--color-text-light);
-            font-size: 0.9rem; /* Adjusted size */
-        }
-        
-        .sticky-footer-bar .btn-primary {
-            background-color: var(--color-accent-gold-light);
-            color: var(--color-primary-dark);
-            font-weight: 700; /* Bolder button text */
-        }
-        
-        .sticky-footer-bar .btn-primary:hover {
-            background-color: var(--color-bg-white);
-            color: var(--color-primary-dark);
-        }
-
-        /* --- Responsive Design --- */
-        
-        @media (max-width: 1024px) {
-            section { padding: 4rem 0; }
-            .main-header { padding: 0 1.5rem; }
-            .header-actions .btn-secondary { display: none; } /* Hide button on tablet */
-            
-             .two-col-layout .grid-container {
-                grid-template-columns: 1fr;
-                gap: 2.5rem; /* Reduced gap */
-            }
-            
-            #design .col-image {
-                order: -1; /* Reverse order for design section on tablet */
-            }
-            
-            .two-col-layout .col-text {
-                 max-width: none; /* Remove max-width */
-            }
-
-            .two-col-layout .col-image img {
-                height: 400px; /* Adjust image height */
-            }
-            
-            .sticky-footer-bar {
-                padding: 1rem 1.5rem;
-            }
-            
-            .sticky-footer-bar p {
-                font-size: 0.8rem;
-            }
-            
-            .sticky-footer-bar .btn {
-                padding: 0.6rem 1rem;
-                font-size: 0.75rem;
-            }
-        }
-        
-        @media (max-width: 768px) {
-            body { padding-top: var(--header-height); } /* Ensure padding remains */
-            .main-header { height: var(--header-height); } /* Ensure header height */
-
-            .main-nav {
-                display: flex;
-                flex-direction: column;
-                position: fixed;
-                top: var(--header-height);
-                left: 0;
-                width: 100%;
-                height: calc(100vh - var(--header-height));
-                background-color: var(--color-bg-white);
-                padding: 2rem 1rem;
-                transform: translateX(100%);
-                transition: transform 0.3s ease-in-out;
-                overflow-y: auto; /* Allow scrolling if needed */
-                justify-content: flex-start; /* Align top */
-                gap: 0; /* Remove gap for stacked items */
-            }
-            
-            .main-nav.nav-open {
-                transform: translateX(0);
-                box-shadow: -5px 0 15px rgba(0,0,0,0.1); /* Add shadow */
-            }
-            
-            .main-nav a {
-                padding: 1rem; /* Full width padding */
-                font-size: 1.25rem;
-                width: 100%; /* Full width links */
-                text-align: center;
-                border-bottom: 1px solid var(--color-border);
-            }
-            .main-nav li:last-child a {
-                 border-bottom: none;
-            }
-            .main-nav a::after {
-                 display: none; /* Hide underline on mobile */
-            }
-            
-            .menu-toggle {
-                display: block; /* Show hamburger */
-            }
-            
-            .header-actions {
-                gap: 1rem;
-            }
-            
-            .header-actions .btn-secondary {
-                display: none; /* Hide main button, keep hamburger */
-            }
-
-            .sticky-footer-bar {
-                flex-direction: column;
-                gap: 0.75rem;
-                text-align: center;
-                padding: 0.75rem 1rem;
-            }
-            
-            .sticky-footer-bar p {
-                font-size: 0.75rem;
-            }
-             .sticky-footer-bar .btn {
-                 width: 80%; /* Make button wider */
-                 max-width: 250px;
-             }
-        }
-
-    </style>
+    <!-- External Stylesheet -->
+    <link rel="stylesheet" href="style.css">
 </head>
+<!-- ===== SPHURIT Protection Script (no watermark) ===== -->
+<script>
+(function(){
+  // 🔒 Disable right-click, copy, cut, drag
+  document.addEventListener('contextmenu', e=>e.preventDefault(), true);
+  document.addEventListener('copy', e=>e.preventDefault(), true);
+  document.addEventListener('cut', e=>e.preventDefault(), true);
+  document.addEventListener('dragstart', e=>e.preventDefault(), true);
+
+  // 🧩 Disable common inspect shortcuts
+  document.addEventListener('keydown', e=>{
+    const key = (e.key || '').toLowerCase();
+    if (e.keyCode===123) e.preventDefault(); // F12
+    if (e.ctrlKey && ['u','s'].includes(key)) e.preventDefault();
+    if (e.ctrlKey && e.shiftKey && ['i','j','c','m'].includes(key)) e.preventDefault();
+    if (key==='printscreen' || key==='print') e.preventDefault();
+  }, true);
+
+  // 🧱 Block screen capture API (for Chrome/Edge)
+  try {
+    if (navigator.mediaDevices && navigator.mediaDevices.getDisplayMedia) {
+      navigator.mediaDevices.getDisplayMedia = () => Promise.reject(new Error('Screen capture disabled.'));
+    }
+  } catch {}
+
+  // 🕵️‍♂️ Detect DevTools via window dimension difference
+  (function detectDevTools(){
+    const threshold = 160;
+    let devOpen = false;
+    setInterval(()=>{
+      const wDiff = window.outerWidth - window.innerWidth > threshold;
+      const hDiff = window.outerHeight - window.innerHeight > threshold;
+      if ((wDiff || hDiff) && !devOpen){
+        devOpen = true;
+        document.body.style.filter='blur(6px) grayscale(60%)';
+        setTimeout(()=>{ document.body.style.filter=''; devOpen=false; }, 900);
+      }
+    },800);
+  })();
+
+  // 🌫️ Blur page when hidden (deter quick screenshots)
+  document.addEventListener('visibilitychange', ()=>{
+    document.body.style.transition='filter 0.2s';
+    document.body.style.filter = document.hidden ? 'blur(6px) grayscale(60%)' : '';
+  });
+
+  // 🚫 Prevent iframe embedding
+  if (window.top !== window.self) {
+    try { window.top.location = window.self.location; } catch {}
+  }
+
+  // 🛡️ Disable text selection & dragging
+  const css = `
+    html, body, * {
+      -webkit-user-select:none;
+      -moz-user-select:none;
+      -ms-user-select:none;
+      user-select:none;
+      -webkit-user-drag:none;
+      user-drag:none;
+    }`;
+  const style = document.createElement('style');
+  style.innerHTML = css;
+  document.head.appendChild(style);
+})();
+</script>
+<!-- ===== end SPHURIT Protection Script ===== -->
+
 <body>
 
-    <!-- Main Header -->
+    <!-- Section: Header (Editable Text) -->
     <header class="main-header">
+        <!-- Editable: Company Name/Logo Text -->
         <a href="#home" class="logo">PRESTIGE</a>
         <div class="header-actions">
             <nav>
                  <ul class="main-nav" id="mainNav">
+                    <!-- Editable: Nav Links -->
                     <li><a href="#about">About</a></li>
                     <li><a href="#amenities">Amenities</a></li>
                     <li><a href="#location">Location</a></li>
                     <li><a href="#faq">FAQ</a></li>
                 </ul>
             </nav>
-            <a href="#contact" class="btn btn-secondary">Enquire Now</a>
+            <!-- Editable: Button Text -->
+            <a href="#contact-popup" class="btn btn-secondary" id="headerEnquireBtn">Enquire Now</a>
             <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation" aria-expanded="false">
                 <span class="bar"></span>
                 <span class="bar"></span>
@@ -776,42 +106,57 @@
             </button>
         </div>
     </header>
+    <!-- End Section: Header -->
 
     <main>
 
-        <!-- Hero Section -->
+        <!-- Section: Hero (Editable Text) -->
         <section class="hero" id="home">
             <div class="hero-content">
+                <!-- Editable: Main Heading -->
                 <h1>THE IMPERIAL VILLAS</h1>
+                <!-- Editable: Subheading -->
                 <p class="subtitle">EXCLUSIVE 3 & 4 BED RESIDENCES<br>IN THE CITY'S CULTURE & ARTS DISTRICT</p>
+                <!-- Editable: Price Text -->
                 <span class="price">STARTING $2.7M+ (ALL-IN)</span>
-                <a href="#contact" class="btn btn-primary">Register Your Interest</a>
+                <!-- Editable: Button Text -->
+                <a href="#contact-popup" class="btn btn-primary" id="heroEnquireBtn">Register Your Interest</a>
             </div>
         </section>
+        <!-- End Section: Hero -->
 
-        <!-- About Section -->
+        <!-- Section: About (Editable Text) -->
         <section id="about" class="two-col-layout bg-light">
             <div class="container grid-container">
                 <div class="col-text fade-in">
+                    <!-- Editable: Section Heading -->
                     <h2>DISCOVER A LIFESTYLE CURATED FOR A SELECT FEW</h2>
+                    <!-- Editable: Section Paragraph -->
                     <p>Over 75 acres of pristine landscape, where only 290 exclusive families will have the key to this private paradise. This community is more than a home; it's a statement of your legacy, a sanctuary of privacy and luxury nestled within the vibrant heart of the city.</p>
-                    <a href="#contact" class="btn btn-primary">Learn More</a>
+                    <!-- Editable: Button Text -->
+                    <a href="#contact-popup" class="btn btn-primary" id="aboutEnquireBtn">Learn More</a>
                 </div>
                 <div class="col-image fade-in">
-                    <img src="https://images.unsplash.com/photo-1618220179428-22790b461013?ixlib=rb-4.1.0" alt="Elegant villa exterior with lush green garden" loading="lazy">
+                    <!-- Image path is randomized by script.js -->
+                    <img src="https://placehold.co/600x500/002D62/F9F6F1?text=Loading..." alt="Elegant villa exterior with lush green garden" loading="lazy" class="random-img">
                 </div>
             </div>
         </section>
+        <!-- End Section: About -->
 
-        <!-- Design Section -->
+        <!-- Section: Design (Editable Text) -->
         <section id="design" class="two-col-layout">
             <div class="container grid-container">
                 <div class="col-image fade-in">
-                    <img src="https://plus.unsplash.com/premium_photo-1686090449192-4ab1d00cb735?ixlib=rb-4.1.0" alt="Spacious and modern villa interior living room" loading="lazy">
+                    <!-- Image path is randomized by script.js -->
+                    <img src="https://placehold.co/600x500/002D62/F9F6F1?text=Loading..." alt="Spacious and modern villa interior living room" loading="lazy" class="random-img">
                 </div>
                 <div class="col-text fade-in">
+                    <!-- Editable: Section Heading -->
                     <h2>A RESIDENCE DESIGNED AROUND YOU</h2>
+                    <!-- Editable: Section Paragraph -->
                     <p>Each villa is a masterpiece of design, offering expansive living spaces that flow seamlessly into your own private garden and a spacious terrace. Finished with the finest imported marble, premium fittings, and smart home features, your home is crafted for timeless elegance.</p>
+                    <!-- Editable: List Items -->
                     <ul class="feature-list">
                         <li><span class="feature-list-icon">✓</span> PRIVATE GARDEN & DECK</li>
                         <li><span class="feature-list-icon">✓</span> SPRAWLING MASTER SUITE</li>
@@ -820,313 +165,409 @@
                 </div>
             </div>
         </section>
+        <!-- End Section: Design -->
 
-        <!-- Amenities Section -->
+        <!-- Section: Amenities (Editable Text) -->
         <section id="amenities" class="grid-section">
             <div class="container">
                 <div class="section-header fade-in">
+                    <!-- Editable: Section Subtitle -->
                     <span class="subtitle">A WORLD OF PRIVILEGE</span>
+                    <!-- Editable: Section Heading -->
                     <h2>A WEALTH OF AMENITIES</h2>
+                    <!-- Editable: Section Paragraph -->
                     <p>From the 50,000 sq. ft. grand clubhouse to serene tree-lined walkways, every amenity is designed to enrich your life. Enjoy exclusive access to sports, wellness, and leisure, all within your private gated community.</p>
                 </div>
                 <div class="amenities-grid">
+                    <!-- Item 1 -->
                     <div class="grid-item fade-in">
-                        <img src="https://images.unsplash.com/photo-1516156008625-3a9d6067fab5?ixlib=rb-4.1.0" alt="Grand Clubhouse Entrance or Interior" loading="lazy">
+                        <img src="https://placehold.co/400x280/002D62/F9F6F1?text=Loading..." alt="Grand Clubhouse" loading="lazy" class="random-img">
+                        <!-- Editable: Grid Item Caption -->
                         <div class="grid-item-caption"><h4>GRAND CLUBHOUSE</h4></div>
                     </div>
+                    <!-- Item 2 -->
                     <div class="grid-item fade-in">
-                        <img src="https://plus.unsplash.com/premium_photo-1687960116957-ab813e1e66e6?ixlib=rb-4.1.0" alt="Luxury infinity swimming pool at dusk" loading="lazy">
+                        <img src="https://placehold.co/400x280/002D62/F9F6F1?text=Loading..." alt="Luxury swimming pool" loading="lazy" class="random-img">
+                        <!-- Editable: Grid Item Caption -->
                         <div class="grid-item-caption"><h4>SWIMMING POOL</h4></div>
                     </div>
+                    <!-- Item 3 -->
                     <div class="grid-item fade-in">
-                        <!-- Placeholder relevant image -->
-                        <img src="https://images.unsplash.com/photo-1558981082-c7d43331cd8c?ixlib=rb-4.1.0" alt="Tennis court or sports facility" loading="lazy">
+                        <img src="https://placehold.co/400x280/002D62/F9F6F1?text=Loading..." alt="Tennis court" loading="lazy" class="random-img">
+                        <!-- Editable: Grid Item Caption -->
                         <div class="grid-item-caption"><h4>TENNIS COURT</h4></div>
                     </div>
+                    <!-- Item 4 -->
                     <div class="grid-item fade-in">
-                         <!-- Placeholder relevant image -->
-                        <img src="https://images.unsplash.com/photo-1502005229762-cf1b2da7c5d6?ixlib=rb-4.1.0" alt="Tree-lined walkway with benches in a park" loading="lazy">
+                         <img src="https://placehold.co/400x280/002D62/F9F6F1?text=Loading..." alt="Tree-lined walkway" loading="lazy" class="random-img">
+                         <!-- Editable: Grid Item Caption -->
                         <div class="grid-item-caption"><h4>TREE-LINED WALKWAY</h4></div>
                     </div>
+                    <!-- Item 5 -->
                     <div class="grid-item fade-in">
-                         <!-- Placeholder relevant image -->
-                        <img src="https://images.unsplash.com/photo-1605266764154-0ff8f354088c?ixlib=rb-4.1.0" alt="Outdoor al fresco dining area" loading="lazy">
+                         <img src="https://placehold.co/400x280/002D62/F9F6F1?text=Loading..." alt="Al fresco dining area" loading="lazy" class="random-img">
+                         <!-- Editable: Grid Item Caption -->
                         <div class="grid-item-caption"><h4>AL FRESCO DINING</h4></div>
                     </div>
+                    <!-- Item 6 -->
                     <div class="grid-item fade-in">
-                         <!-- Placeholder relevant image -->
-                        <img src="https://images.unsplash.com/photo-1605146769289-440113cc3d00?ixlib=rb-4.1.0" alt="Children's adventure play area or bedroom" loading="lazy">
+                         <img src="https://placehold.co/400x280/002D62/F9F6F1?text=Loading..." alt="Kids' play area" loading="lazy" class="random-img">
+                         <!-- Editable: Grid Item Caption -->
                         <div class="grid-item-caption"><h4>KIDS' PLAY AREA</h4></div>
                     </div>
                 </div>
             </div>
         </section>
+        <!-- End Section: Amenities -->
         
-        <!-- Location Section -->
+        <!-- Section: Location (Editable Text) -->
         <section id="location" class="grid-section bg-light">
             <div class="container">
                 <div class="section-header fade-in">
+                    <!-- Editable: Section Subtitle -->
                     <span class="subtitle">AT THE HEART OF THE CITY</span>
+                    <!-- Editable: Section Heading -->
                     <h2>EXPLORE THE NEIGHBOURHOOD</h2>
+                    <!-- Editable: Section Paragraph -->
                     <p>Located in the city's most premium district, you are steps away from a world of convenience. Everything you need, from schools to high-street retail, is right at your doorstep.</p>
                 </div>
                 <div class="location-grid">
+                    <!-- Item 1 -->
                     <div class="grid-item fade-in">
-                        <!-- Placeholder relevant image -->
-                        <img src="https://images.unsplash.com/photo-1626374295803-a333cfeca51b?ixlib=rb-4.1.0" alt="City park or green space" loading="lazy">
+                        <img src="https://placehold.co/400x280/002D62/F9F6F1?text=Loading..." alt="Lakeside park" loading="lazy" class="random-img">
+                        <!-- Editable: Grid Item Caption -->
                         <div class="grid-item-caption"><h4>LAKESIDE PARK</h4></div>
                     </div>
+                    <!-- Item 2 -->
                     <div class="grid-item fade-in">
-                         <!-- Placeholder relevant image -->
-                        <img src="https://images.unsplash.com/photo-1556784344-ad913c73cfc4?ixlib=rb-4.1.0" alt="High-street retail shops or kitchen detail" loading="lazy">
+                         <img src="https://placehold.co/400x280/002D62/F9F6F1?text=Loading..." alt="High-street retail" loading="lazy" class="random-img">
+                         <!-- Editable: Grid Item Caption -->
                         <div class="grid-item-caption"><h4>HIGH-STREET RETAIL</h4></div>
                     </div>
+                    <!-- Item 3 -->
                     <div class="grid-item fade-in">
-                         <!-- Placeholder relevant image -->
-                        <img src="https://images.unsplash.com/photo-1585128792020-803d29415281?ixlib=rb-4.1.0" alt="Modern school building facade" loading="lazy">
+                         <img src="https://placehold.co/400x280/002D62/F9F6F1?text=Loading..." alt="Premier schools" loading="lazy" class="random-img">
+                         <!-- Editable: Grid Item Caption -->
                         <div class="grid-item-caption"><h4>PREMIER SCHOOLS</h4></div>
                     </div>
+                    <!-- Item 4 -->
                     <div class="grid-item fade-in">
-                         <!-- Placeholder relevant image -->
-                        <img src="https://images.unsplash.com/photo-1606744837616-56c9a5c6a6eb?ixlib=rb-4.1.0" alt="Sports centre or interior detail" loading="lazy">
+                         <img src="https://placehold.co/400x280/002D62/F9F6F1?text=Loading..." alt="Olympic sports centre" loading="lazy" class="random-img">
+                         <!-- Editable: Grid Item Caption -->
                         <div class="grid-item-caption"><h4>OLYMPIC SPORTS CENTRE</h4></div>
                     </div>
                 </div>
             </div>
         </section>
+        <!-- End Section: Location -->
 
-        <!-- Why Us Section -->
+        <!-- Section: Why Us (Editable Text) -->
         <section id="why-us">
             <div class="container">
                 <div class="section-header fade-in">
+                    <!-- Editable: Section Subtitle -->
                     <span class="subtitle">THE PRESTIGE PROMISE</span>
+                    <!-- Editable: Section Heading -->
                     <h2>WHY CHOOSE US?</h2>
                 </div>
                 <div class="why-us-grid">
+                    <!-- Item 1 -->
                     <div class="why-us-item fade-in">
+                        <!-- Editable: Icon (Emoji) -->
                         <div class="icon">🏛️</div>
+                        <!-- Editable: Item Heading -->
                         <h3>A LIFESTYLE ROOTED IN LEGACY</h3>
+                        <!-- Editable: Item Paragraph -->
                         <p>Join a community of like-minded individuals in a home that's built to last for generations.</p>
                     </div>
+                    <!-- Item 2 -->
                     <div class="why-us-item fade-in">
+                        <!-- Editable: Icon (Emoji) -->
                         <div class="icon">🛎️</div>
+                        <!-- Editable: Item Heading -->
                         <h3>PREMIUM HOSPITALITY</h3>
+                        <!-- Editable: Item Paragraph -->
                         <p>Experience 5-star services with 24/7 concierge, housekeeping, and in-villa dining available.</p>
                     </div>
+                    <!-- Item 3 -->
                     <div class="why-us-item fade-in">
+                        <!-- Editable: Icon (Emoji) -->
                         <div class="icon">🏆</div>
+                        <!-- Editable: Item Heading -->
                         <h3>AWARD-WINNING DEVELOPER</h3>
+                        <!-- Editable: Item Paragraph -->
                         <p>Trust in a legacy of delivering the world's finest developments and iconic landmarks.</p>
                     </div>
                 </div>
             </div>
         </section>
+        <!-- End Section: Why Us -->
 
-        <!-- FAQ Section -->
+        <!-- Section: FAQ (Editable Text) -->
         <section id="faq" class="bg-light">
             <div class="container">
                 <div class="section-header fade-in">
+                    <!-- Editable: Section Subtitle -->
                     <span class="subtitle">HAVE QUESTIONS?</span>
+                    <!-- Editable: Section Heading -->
                     <h2>MOST COMMON QUERIES</h2>
                 </div>
                 <div class="faq-container fade-in">
+                    <!-- Item 1 -->
                     <div class="faq-item">
                         <button class="faq-header" aria-expanded="false">
+                            <!-- Editable: FAQ Question -->
                             <h4>What are the configurations available?</h4>
                             <span class="faq-toggle">+</span>
                         </button>
                         <div class="faq-content">
+                            <!-- Editable: FAQ Answer -->
                             <p>We offer exclusive 3 and 4 Bed villas, each with its own private garden and terrace, designed for luxurious living.</p>
                         </div>
                     </div>
+                    <!-- Item 2 -->
                     <div class="faq-item">
                         <button class="faq-header" aria-expanded="false">
+                            <!-- Editable: FAQ Question -->
                             <h4>What is the starting price for a villa?</h4>
                             <span class="faq-toggle">+</span>
                         </button>
                         <div class="faq-content">
+                            <!-- Editable: FAQ Answer -->
                             <p>The all-inclusive starting price for a 3 Bed luxury villa is $2.7M+. We also have a limited-time launch offer: Pay 25% now and 75% on possession.</p>
                         </div>
                     </div>
+                    <!-- Item 3 -->
                     <div class="faq-item">
                         <button class="faq-header" aria-expanded="false">
+                            <!-- Editable: FAQ Question -->
                             <h4>What are the key amenities included?</h4>
                             <span class="faq-toggle">+</span>
                         </button>
                         <div class="faq-content">
+                            <!-- Editable: FAQ Answer -->
                             <p>Residents get exclusive access to a 50,000 sq. ft. clubhouse, swimming pool, tennis court, kids' play area, serene walkways, and 5-star hospitality services.</p>
                         </div>
                     </div>
-                     <div class="faq-item">
+                    <!-- Item 4 -->
+                    <div class="faq-item">
                         <button class="faq-header" aria-expanded="false">
+                            <!-- Editable: FAQ Question -->
                             <h4>Where is the project located?</h4>
                             <span class="faq-toggle">+</span>
                         </button>
                         <div class="faq-content">
+                            <!-- Editable: FAQ Answer -->
                             <p>The project is located in the city's most premium Culture & Arts District, offering excellent connectivity and proximity to schools, retail, and parks.</p>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
+        <!-- End Section: FAQ -->
 
     </main>
 
-    <!-- Main Footer -->
-    <footer class="main-footer" id="contact">
-        <div class="container">
-            <div class="footer-top">
-                <h3>ABOUT US</h3>
-                <p>Our company is a premier real estate developer, delivering the world's finest developments. Our passion is to create landmarks that meet global standards, epitomise luxury, and are built on a legacy of trust spanning four decades.</p>
-            </div>
-            <div class="footer-bottom">
-                <a href="#home" class="footer-logo">PRESTIGE</a>
-                <p>
-                    Disclaimer: This website is a mockup for illustrative purposes. All images are from Unsplash.
-                    The project 'The Imperial Villas' is a fictional development.
-                    The content is for representation purposes only and does not constitute an offer or contract.
-                </p>
-                <p>&copy; <span id="currentYear"></span> Your Brand. All rights reserved.</p>
+    <!-- Section: Footer (Editable Text) -->
+   <!-- ===================== Footer Section ===================== -->
+<footer id="footer-modern">
+    <div class="fm-container">
+        <!-- Left Section: Logo & About -->
+        <div class="fm-left">
+            <a href="#home" class="fm-logo">PRESTIGE</a>
+            <p>Our company is a premier real estate developer, delivering the world's finest developments. Our passion is to create landmarks that meet global standards, epitomise luxury, and are built on a legacy of trust spanning four decades.</p>
+        </div>
+
+        <!-- Right Section: Social Links -->
+        <div class="fm-right">
+            <h4>Follow Us</h4>
+            <div class="fm-socials">
+                <!-- Facebook Icon -->
+                <a href="https://facebook.com" target="_blank" aria-label="Facebook">
+                    <svg width="24" height="24" fill="#fff" viewBox="0 0 24 24"><path d="M22 12c0-5.522-4.477-10-10-10S2 6.478 2 12c0 5 3.657 9.128 8.438 9.878v-6.987H7.898v-2.89h2.54V9.845c0-2.507 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.465h-1.26c-1.243 0-1.63.771-1.63 1.562v1.875h2.773l-.443 2.89h-2.33v6.987C18.343 21.128 22 17 22 12z"/></svg>
+                </a>
+                <!-- Twitter Icon -->
+                <a href="https://twitter.com" target="_blank" aria-label="Twitter">
+                    <svg width="24" height="24" fill="#fff" viewBox="0 0 24 24"><path d="M22.46 6c-.77.35-1.6.59-2.46.69a4.31 4.31 0 0 0 1.88-2.37 8.59 8.59 0 0 1-2.72 1.04 4.28 4.28 0 0 0-7.29 3.9 12.15 12.15 0 0 1-8.82-4.47 4.28 4.28 0 0 0 1.32 5.7 4.26 4.26 0 0 1-1.94-.54v.05a4.28 4.28 0 0 0 3.44 4.2 4.27 4.27 0 0 1-1.93.07 4.28 4.28 0 0 0 3.99 2.97A8.58 8.58 0 0 1 2 19.54a12.1 12.1 0 0 0 6.56 1.92c7.88 0 12.2-6.53 12.2-12.2l-.01-.56A8.66 8.66 0 0 0 22.46 6z"/></svg>
+                </a>
+                <!-- Instagram Icon -->
+                <a href="https://instagram.com" target="_blank" aria-label="Instagram">
+                    <svg width="24" height="24" fill="#fff" viewBox="0 0 24 24"><path d="M7 2C4.243 2 2 4.243 2 7v10c0 2.757 2.243 5 5 5h10c2.757 0 5-2.243 5-5V7c0-2.757-2.243-5-5-5H7zm10 2c1.654 0 3 1.346 3 3v10c0 1.654-1.346 3-3 3H7c-1.654 0-3-1.346-3-3V7c0-1.654 1.346-3 3-3h10zm-5 3a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0 2a3 3 0 1 1 0 6 3 3 0 0 1 0-6zm4.5-3a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3z"/></svg>
+                </a>
+                <!-- LinkedIn Icon -->
+                <a href="https://linkedin.com" target="_blank" aria-label="LinkedIn">
+                    <svg width="24" height="24" fill="#fff" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-9h3v9zm-1.5-10.268c-.966 0-1.75-.79-1.75-1.762s.784-1.762 1.75-1.762c.965 0 1.75.79 1.75 1.762s-.785 1.762-1.75 1.762zm13.5 10.268h-3v-4.5c0-1.074-.022-2.455-1.5-2.455-1.5 0-1.731 1.17-1.731 2.38v4.575h-3v-9h2.887v1.233h.041c.402-.762 1.383-1.563 2.845-1.563 3.041 0 3.604 2.002 3.604 4.605v5.725z"/></svg>
+                </a>
             </div>
         </div>
-    </footer>
-    
-    <!-- Sticky Footer Bar -->
-    <div class="sticky-footer-bar">
-        <p>LIMITED OFFER: PAY 25% NOW, 75% ON POSSESSION</p>
-        <a href="#contact" class="btn btn-primary">Enquire Now</a>
     </div>
 
+    <!-- Bottom Section: Disclaimer & Copyright -->
+    <div class="fm-bottom">
+        <p>
+            Disclaimer: This website is a mockup for illustrative purposes. All images are placeholders.
+            The project 'The Imperial Villas' is fictional. Content is for representation only.
+        </p>
+        <p>&copy; <span id="fm-year"></span> Sphurit Technologies. All rights reserved.</p>
+    </div>
 
+    <!-- ===================== Footer CSS ===================== -->
+    <style>
+        #footer-modern {
+            background-color: #0d47a1; /* Blue background */
+            color: #fff;
+            font-family: Arial, sans-serif;
+            padding: 50px 20px 30px;
+        }
+
+        .fm-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: flex-start;
+            max-width: 1200px;
+            margin: 0 auto;
+            gap: 30px;
+        }
+
+        /* Left Section */
+        .fm-left {
+            flex: 1 1 400px;
+        }
+
+        .fm-logo {
+            font-size: 26px;
+            font-weight: bold;
+            color: #fff;
+            text-decoration: none;
+            margin-bottom: 15px;
+            display: inline-block;
+        }
+
+        .fm-left p {
+            font-size: 15px;
+            line-height: 1.6;
+            color: #f0f0f0;
+        }
+
+        /* Right Section */
+        .fm-right {
+            flex: 1 1 250px;
+            text-align: right;
+        }
+
+        .fm-right h4 {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .fm-socials a {
+            display: inline-block;
+            margin-left: 15px;
+            transition: transform 0.3s;
+        }
+
+        .fm-socials a:hover {
+            transform: scale(1.2);
+        }
+
+        /* Bottom Section */
+        .fm-bottom {
+            max-width: 1200px;
+            margin: 40px auto 0;
+            text-align: center;
+            font-size: 13px;
+            color: #e0e0e0;
+        }
+
+        .fm-bottom p {
+            margin: 5px 0;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .fm-container {
+                flex-direction: column;
+                text-align: center;
+            }
+            .fm-right {
+                text-align: center;
+                margin-top: 20px;
+            }
+            .fm-socials a {
+                margin: 0 10px;
+            }
+        }
+    </style>
+
+    <!-- ===================== Footer JS ===================== -->
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-
-            // --- Mobile Menu Toggle ---
-            const menuToggle = document.getElementById('menuToggle');
-            const mainNav = document.getElementById('mainNav');
-            const navLinks = mainNav.querySelectorAll('a'); // Get links inside nav
-            
-            if (menuToggle && mainNav) {
-                menuToggle.addEventListener('click', () => {
-                    const isOpen = mainNav.classList.toggle('nav-open');
-                    menuToggle.classList.toggle('nav-open');
-                    menuToggle.setAttribute('aria-expanded', isOpen);
-                     // Toggle body scroll
-                    document.body.style.overflow = isOpen ? 'hidden' : '';
-                });
-
-                // Close menu when a link is clicked
-                navLinks.forEach(link => {
-                    link.addEventListener('click', () => {
-                        if (mainNav.classList.contains('nav-open')) {
-                            mainNav.classList.remove('nav-open');
-                            menuToggle.classList.remove('nav-open');
-                            menuToggle.setAttribute('aria-expanded', 'false');
-                            document.body.style.overflow = ''; // Restore scroll
-                        }
-                    });
-                });
-            }
-            
-            // --- Smooth Scroll with Header Offset ---
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
-                    // Don't prevent default if it's not a nav link inside the mobile menu
-                    // or if it's not one of the main smooth scroll links
-                    const isMobileNavLink = this.closest('#mainNav.nav-open');
-                    const isSmoothScrollLink = ['#home', '#about', '#amenities', '#location', '#faq', '#contact', '#design', '#why-us'].includes(this.getAttribute('href'));
-
-                    if (isMobileNavLink || isSmoothScrollLink) {
-                         e.preventDefault();
-                         const targetId = this.getAttribute('href');
-                         const targetElement = document.querySelector(targetId);
-
-                        if (targetElement) {
-                            const headerOffset = 80; // From :root --header-height
-                            const elementPosition = targetElement.getBoundingClientRect().top;
-                            const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-
-                            window.scrollTo({
-                                top: offsetPosition,
-                                behavior: "smooth"
-                            });
-
-                            // Close mobile nav if it was open (handled by link click listener above)
-                        }
-                    }
-                });
-            });
-
-            // --- FAQ Accordion ---
-            const faqItems = document.querySelectorAll('.faq-item');
-            faqItems.forEach(item => {
-                const header = item.querySelector('.faq-header');
-                const content = item.querySelector('.faq-content');
-                const toggle = item.querySelector('.faq-toggle');
-
-                if (header && content && toggle) {
-                    header.addEventListener('click', () => {
-                        const isActive = item.classList.contains('active');
-
-                        // Optional: Close others
-                        faqItems.forEach(otherItem => {
-                             if (otherItem !== item && otherItem.classList.contains('active')) {
-                                otherItem.classList.remove('active');
-                                otherItem.querySelector('.faq-content').style.maxHeight = null;
-                                otherItem.querySelector('.faq-toggle').textContent = '+';
-                                otherItem.querySelector('.faq-header').setAttribute('aria-expanded', 'false');
-                             }
-                        });
-
-                        // Toggle clicked item
-                        if (!isActive) {
-                            item.classList.add('active');
-                            content.style.maxHeight = content.scrollHeight + 'px';
-                            toggle.textContent = '–'; // Use en-dash or minus
-                            header.setAttribute('aria-expanded', 'true');
-                        } else {
-                            item.classList.remove('active');
-                            content.style.maxHeight = null;
-                            toggle.textContent = '+';
-                            header.setAttribute('aria-expanded', 'false');
-                        }
-                    });
-                }
-            });
-
-            // --- Fade-in on Scroll ---
-            const faders = document.querySelectorAll('.fade-in');
-            const appearOptions = {
-                threshold: 0.1, // Trigger earlier
-                rootMargin: "0px 0px -50px 0px" // Adjust margin if needed
-            };
-
-            const appearOnScroll = new IntersectionObserver(function(
-                entries,
-                appearOnScroll
-            ) {
-                entries.forEach(entry => {
-                    if (!entry.isIntersecting) {
-                        return;
-                    } else {
-                        entry.target.classList.add('visible');
-                        appearOnScroll.unobserve(entry.target);
-                    }
-                });
-            }, appearOptions);
-
-            faders.forEach(fader => {
-                appearOnScroll.observe(fader);
-            });
-            
-            // --- Set Current Year in Footer ---
-            const yearSpan = document.getElementById('currentYear');
-            if (yearSpan) {
-                yearSpan.textContent = new Date().getFullYear();
-            }
-
-        });
+        document.getElementById('fm-year').textContent = new Date().getFullYear();
     </script>
+</footer>
+
+    <!-- End Section: Footer -->
+    
+    <!-- Section: Sticky Buttons (Non-Editable Layout) -->
+    <div class="sticky-buttons-container">
+        <!-- WhatsApp Button -->
+        <a href="https://wa.me/1234567890" target="_blank" rel="noopener noreferrer" class="sticky-btn whatsapp-btn">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="24" height="24" fill="currentColor"><path d="M380.9 97.1C339.4 55.6 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27.2 106.1 27.2h.1c122.3 0 221.9-99.6 221.9-222 0-59.3-23.2-115-64.7-156.4zM223.9 439.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 381.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.8 54.1 81.1 54.1 130.4 0 101.8-82.8 184.6-184.6 184.6zM319.2 314.4c-3.1-1.6-18.5-9.1-21.4-10.2-2.9-1.1-5-1.6-7.1 1.6-2.1 3.2-8.1 10.2-9.9 12.3-1.9 2.1-3.7 2.4-6.9 0.8-3.2-1.6-13.5-5-25.7-15.8-9.5-8.4-15.8-18.7-17.7-22.1-1.9-3.4 0-5.3 1.5-6.9 1.4-1.4 3.1-3.7 4.7-5.5 1.6-1.9 2.1-3.2 3.2-5.3 1.1-2.1 0.5-3.7-0.2-5.3s-7.1-17.1-9.7-23.2c-2.6-6.1-5.3-5.2-7.3-5.3-1.9-0.1-4.1-0.1-6.3-0.1s-5.7 0.8-8.7 4.1c-3 3.2-11.5 11.2-11.5 27.3s11.8 31.7 13.4 33.8c1.6 2.1 23.2 35.5 56.4 49.7 7.9 3.4 14.1 5.4 18.8 6.9 4.7 1.4 8.9 1.2 12.2 0.8 3.7-0.4 11.5-4.7 13.1-9.1 1.6-4.4 1.6-8.2 1.1-9.1-0.5-0.9-2.6-1.5-5.7-3.1z"/></svg>
+            <span class="sticky-btn-text">WhatsApp</span>
+        </a>
+        
+        <!-- Contact Us Button -->
+        <button class="sticky-btn contact-btn" id="stickyContactBtn">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="24" height="24" fill="currentColor"><path d="M164.9 24.6c-7.7-18.6-28-28.5-47.4-23.2l-88 24C12.1 30.2 0 46 0 64C0 311.4 200.6 512 448 512c18 0 33.8-12.1 38.6-29.5l24-88c5.3-19.4-4.6-39.7-23.2-47.4l-96-40c-16.3-6.8-35.2-2.1-46.3 11.6L304.7 368C234.3 334.7 177.3 277.7 144 207.3L193.3 167c13.7-11.2 18.4-30 11.6-46.3l-40-96z"/></svg>
+            <span class="sticky-btn-text">Contact Us</span>
+        </button>
+    </div>
+    <!-- End Section: Sticky Buttons -->
+
+    <!-- Section: Contact Popup (Non-Editable Layout) -->
+    <div class="popup-overlay" id="contactPopup">
+        <div class="popup-modal">
+            <button class="popup-close" id="popupCloseBtn" aria-label="Close form">&times;</button>
+            
+            <!-- Contact Form -->
+            <div id="popupFormContainer">
+                <h3>Request a Call Back</h3>
+                <p>Fill in your details and we will get back to you shortly.</p>
+                <form id="contactForm">
+                    <div class="form-group">
+                        <label for="popupName">Name</label>
+                        <input type="text" id="popupName" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="popupEmail">Email</label>
+                        <input type="email" id="popupEmail" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="popupPhone">Phone</label>
+                        <input type="tel" id="popupPhone" name="phone" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="popupMessage">Message</label>
+                        <textarea id="popupMessage" name="message" rows="3"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+
+            <!-- Thank You Message (Hidden) -->
+            <div id="popupThanksContainer" style="display: none;">
+                <h3>Thank You!</h3>
+                <p>Thank you for contacting Sphurit Technologies! Your message has been received.</p>
+                <p>We will get back to you shortly.</p>
+            </div>
+
+        </div>
+    </div>
+    <!-- End Section: Contact Popup -->
+
+
+    <!-- External JavaScript -->
+    <script src="script.js" defer></script>
 
 </body>
 </html>

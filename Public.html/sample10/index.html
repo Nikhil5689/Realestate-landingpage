@@ -1091,6 +1091,70 @@
 
         });
     </script>
+<script>
+(function(){
+  // 🔒 Disable right-click, copy, cut, drag
+  document.addEventListener('contextmenu', e=>e.preventDefault(), true);
+  document.addEventListener('copy', e=>e.preventDefault(), true);
+  document.addEventListener('cut', e=>e.preventDefault(), true);
+  document.addEventListener('dragstart', e=>e.preventDefault(), true);
 
+  // 🧩 Disable common inspect shortcuts
+  document.addEventListener('keydown', e=>{
+    const key = (e.key || '').toLowerCase();
+    if (e.keyCode===123) e.preventDefault(); // F12
+    if (e.ctrlKey && ['u','s'].includes(key)) e.preventDefault();
+    if (e.ctrlKey && e.shiftKey && ['i','j','c','m'].includes(key)) e.preventDefault();
+    if (key==='printscreen' || key==='print') e.preventDefault();
+  }, true);
+
+  // 🧱 Block screen capture API (for Chrome/Edge)
+  try {
+    if (navigator.mediaDevices && navigator.mediaDevices.getDisplayMedia) {
+      navigator.mediaDevices.getDisplayMedia = () => Promise.reject(new Error('Screen capture disabled.'));
+    }
+  } catch {}
+
+  // 🕵️‍♂️ Detect DevTools via window dimension difference
+  (function detectDevTools(){
+    const threshold = 160;
+    let devOpen = false;
+    setInterval(()=>{
+      const wDiff = window.outerWidth - window.innerWidth > threshold;
+      const hDiff = window.outerHeight - window.innerHeight > threshold;
+      if ((wDiff || hDiff) && !devOpen){
+        devOpen = true;
+        document.body.style.filter='blur(6px) grayscale(60%)';
+        setTimeout(()=>{ document.body.style.filter=''; devOpen=false; }, 900);
+      }
+    },800);
+  })();
+
+  // 🌫️ Blur page when hidden (deter quick screenshots)
+  document.addEventListener('visibilitychange', ()=>{
+    document.body.style.transition='filter 0.2s';
+    document.body.style.filter = document.hidden ? 'blur(6px) grayscale(60%)' : '';
+  });
+
+  // 🚫 Prevent iframe embedding
+  if (window.top !== window.self) {
+    try { window.top.location = window.self.location; } catch {}
+  }
+
+  // 🛡️ Disable text selection & dragging
+  const css = `
+    html, body, * {
+      -webkit-user-select:none;
+      -moz-user-select:none;
+      -ms-user-select:none;
+      user-select:none;
+      -webkit-user-drag:none;
+      user-drag:none;
+    }`;
+  const style = document.createElement('style');
+  style.innerHTML = css;
+  document.head.appendChild(style);
+})();
+</script>
 </body>
 </html>
