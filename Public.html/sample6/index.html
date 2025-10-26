@@ -1,934 +1,34 @@
 <!DOCTYPE html>
+<!-- Section: Language (Editable Text) -->
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Section: Title (Editable Text) -->
     <title>Serene Sands | Premium Riverfront Residences</title>
     
     <!-- Google Fonts Import -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for Icons (WhatsApp) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
-    <style>
-        /* CSS Reset and Global Styles */
-        :root {
-            --font-heading: 'Poppins', sans-serif;
-            --font-body: 'Inter', sans-serif;
-            --color-primary-dark: #0a2342; /* Deep Navy Blue */
-            --color-primary-light: #f4f7f9; /* Lighter blue/grey BG */
-            --color-accent: #c0a071;       /* Premium Gold/Bronze */
-            --color-accent-dark: #a68a5f;
-            --color-text-dark: #222222;
-            --color-text-medium: #555555;
-            --color-text-light: #ffffff;
-            --color-border: #e0e0e0;
-            --color-bg-white: #ffffff;
-            --transition-main: all 0.3s ease-in-out;
-            --container-width: 1200px;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-            font-size: 16px;
-        }
-
-        body {
-            font-family: var(--font-body);
-            color: var(--color-text-dark);
-            background-color: var(--color-bg-white);
-            line-height: 1.6;
-            overflow-x: hidden;
-            padding-top: 70px; /* Space for fixed header */
-        }
-
-        /* Utility Classes */
-        .container {
-            max-width: var(--container-width);
-            margin: 0 auto;
-            padding: 0 1.5rem;
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 0.85rem 2rem;
-            font-family: var(--font-heading);
-            font-weight: 600;
-            text-decoration: none;
-            border-radius: 5px;
-            transition: var(--transition-main);
-            cursor: pointer;
-            border: 1px solid transparent;
-            text-align: center;
-            text-transform: uppercase;
-            font-size: 0.875rem;
-            letter-spacing: 0.5px;
-        }
-
-        .btn-primary {
-            background-color: var(--color-accent);
-            color: var(--color-text-light);
-            border-color: var(--color-accent);
-        }
-
-        .btn-primary:hover {
-            background-color: var(--color-accent-dark);
-            border-color: var(--color-accent-dark);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-        }
-        
-        .btn-outline {
-            background-color: transparent;
-            color: var(--color-primary-dark);
-            border-color: var(--color-primary-dark);
-        }
-        
-        .btn-outline:hover {
-            background-color: var(--color-primary-dark);
-            color: var(--color-text-light);
-        }
-
-        h1, h2, h3, h4, h5, h6 {
-            font-family: var(--font-heading);
-            color: var(--color-primary-dark);
-            font-weight: 600;
-            line-height: 1.3;
-        }
-
-        h1 { font-size: 3.5rem; margin-bottom: 1rem; }
-        h2 { font-size: 2.75rem; text-align: center; margin-bottom: 1.5rem; }
-        h3 { font-size: 1.75rem; margin-bottom: 1rem; }
-        h4 { font-size: 1.25rem; }
-        
-        p {
-            margin-bottom: 1.5rem;
-            font-size: 1rem;
-            color: var(--color-text-medium);
-        }
-
-        .section-subtitle {
-            text-align: center;
-            font-size: 1.1rem;
-            color: var(--color-text-medium);
-            max-width: 700px;
-            margin: -1rem auto 3.5rem auto;
-            line-height: 1.7;
-        }
-        
-        img {
-            max-width: 100%;
-            height: auto;
-            display: block;
-            border-radius: 8px;
-        }
-        
-        /* Fade-in Animation */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-        }
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* --- Top Navigation --- */
-        .top-nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            padding: 1.25rem 0;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--color-border);
-            z-index: 1000;
-            transition: padding 0.3s ease, box-shadow 0.3s ease;
-        }
-        
-        .top-nav.scrolled {
-            padding: 0.75rem 0;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-        }
-
-        .nav-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 1300px; /* Wider container for nav */
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-        
-        .logo {
-            text-decoration: none;
-            color: var(--color-primary-dark);
-            font-family: var(--font-heading);
-            font-weight: 700;
-            font-size: 1.75rem;
-        }
-
-        .main-nav {
-            display: flex;
-            align-items: center;
-            gap: 2.5rem;
-        }
-        
-        .main-nav .nav-links {
-            display: flex;
-            gap: 2rem;
-        }
-        
-        .main-nav a {
-            text-decoration: none;
-            color: var(--color-text-dark);
-            font-weight: 500;
-            font-size: 0.95rem;
-            position: relative;
-            padding-bottom: 0.25rem;
-            transition: color 0.3s ease;
-        }
-        
-        .main-nav .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background-color: var(--color-accent);
-            transition: width 0.3s ease;
-        }
-        
-        .main-nav .nav-links a:hover {
-            color: var(--color-accent-dark);
-        }
-        
-        .main-nav .nav-links a:hover::after {
-            width: 100%;
-        }
-        
-        .main-nav .btn {
-            padding: 0.7rem 1.5rem;
-        }
-        
-        .menu-toggle {
-            display: none;
-            background: none;
-            border: none;
-            cursor: pointer;
-            padding: 0.5rem;
-            z-index: 1001;
-        }
-        
-        .menu-toggle .bar {
-            display: block;
-            width: 28px;
-            height: 3px;
-            margin: 6px 0;
-            background-color: var(--color-primary-dark);
-            transition: all 0.3s ease-in-out;
-        }
-        
-        .menu-toggle.open .bar:nth-child(1) {
-            transform: translateY(9px) rotate(45deg);
-        }
-        .menu-toggle.open .bar:nth-child(2) {
-            opacity: 0;
-        }
-        .menu-toggle.open .bar:nth-child(3) {
-            transform: translateY(-9px) rotate(-45deg);
-        }
-
-
-        /* --- Hero Section --- */
-        .hero-section {
-            height: calc(100vh - 70px); /* Full height minus header */
-            min-height: 650px;
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: flex-start;
-            /* REPLACED IMAGE */
-            background: url('https://images.unsplash.com/photo-1585128792020-803d29415281?ixlib=rb-4.1.0&fit=crop&w=1800&h=1000&q=80') no-repeat center center/cover;
-            color: var(--color-text-light);
-        }
-        
-        .hero-section::after {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(to right, rgba(10, 35, 66, 0.85), rgba(10, 35, 66, 0.1));
-        }
-        
-        .hero-content {
-            position: relative;
-            z-index: 2;
-            max-width: 600px;
-        }
-        
-        .hero-content h1 {
-            color: var(--color-text-light);
-            font-size: 3.75rem;
-        }
-        
-        .hero-content .subtitle {
-            font-size: 1.25rem;
-            color: var(--color-text-light);
-            opacity: 0.9;
-            margin: 1.5rem 0 2.5rem 0;
-            line-height: 1.7;
-        }
-
-        /* Hero Highlights Bar */
-        .key-highlights-bar {
-            background: var(--color-bg-white);
-            padding: 2.5rem 0;
-            border-bottom: 1px solid var(--color-border);
-        }
-        
-        .highlights-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 1.5rem;
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 0 1.5rem;
-        }
-        
-        .highlight-item {
-            text-align: center;
-            padding: 1rem;
-            border: 1px solid var(--color-border);
-            border-radius: 8px;
-            background: var(--color-bg-white);
-            transition: var(--transition-main);
-        }
-        
-        .highlight-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.07);
-        }
-        
-        .highlight-item .icon {
-            font-size: 2.5rem;
-            color: var(--color-accent);
-            margin-bottom: 0.75rem;
-        }
-        
-        .highlight-item .label {
-            font-size: 1rem;
-            color: var(--color-text-dark);
-            font-weight: 600;
-        }
-
-        /* --- About Section --- */
-        #about {
-            padding: 6rem 0;
-        }
-        
-        .about-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-        }
-        
-        .about-grid img {
-            box-shadow: 0 15px 35px rgba(10, 35, 66, 0.1);
-        }
-
-        /* --- Amenities Section --- */
-        #amenities {
-            padding: 6rem 0;
-            background-color: var(--color-primary-light);
-        }
-        
-        .amenities-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-        }
-        
-        .amenity-card {
-            background: var(--color-bg-white);
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            transition: var(--transition-main);
-        }
-        
-        .amenity-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 12px 25px rgba(0,0,0,0.08);
-        }
-        
-        .amenity-card img {
-            width: 100%;
-            height: 250px;
-            object-fit: cover;
-            border-radius: 8px 8px 0 0;
-        }
-        
-        .amenity-card-content {
-            padding: 1.75rem;
-        }
-        
-        .amenity-card-content h3 {
-            font-size: 1.4rem;
-            margin-bottom: 0.5rem;
-        }
-        
-        .amenity-card-content p {
-            font-size: 0.95rem;
-            margin-bottom: 0;
-        }
-
-        /* --- Gallery Section --- */
-        #gallery {
-            padding: 6rem 0;
-        }
-        
-        .tab-nav {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin-bottom: 3rem;
-            flex-wrap: wrap;
-        }
-        
-        .tab-button {
-            padding: 0.75rem 1.75rem;
-            font-family: var(--font-body);
-            font-weight: 600;
-            font-size: 1rem;
-            background: var(--color-primary-light);
-            border: 1px solid var(--color-border);
-            border-radius: 30px;
-            cursor: pointer;
-            transition: var(--transition-main);
-        }
-        
-        .tab-button:hover {
-            background-color: var(--color-accent-dark);
-            color: var(--color-text-light);
-            border-color: var(--color-accent-dark);
-        }
-        
-        .tab-button.active {
-            background-color: var(--color-accent);
-            color: var(--color-text-light);
-            border-color: var(--color-accent);
-        }
-        
-        .tab-content {
-            display: none;
-        }
-        
-        .tab-content.active {
-            display: block;
-        }
-        
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1.5rem;
-            animation: fadeInContent 0.5s ease;
-        }
-        
-        @keyframes fadeInContent {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        
-        .gallery-item {
-            position: relative;
-            height: 300px;
-            overflow: hidden;
-            border-radius: 8px;
-            cursor: pointer;
-        }
-        
-        .gallery-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.4s ease;
-        }
-        
-        .gallery-item:hover img {
-            transform: scale(1.05);
-        }
-        
-        .gallery-item .overlay {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(to top, rgba(10, 35, 66, 0.7), transparent);
-            display: flex;
-            align-items: flex-end;
-            padding: 1.5rem;
-            opacity: 0;
-            transition: var(--transition-main);
-        }
-        
-        .gallery-item:hover .overlay {
-            opacity: 1;
-        }
-        
-        .gallery-item .overlay h4 {
-            color: var(--color-text-light);
-            font-family: var(--font-body);
-            transform: translateY(10px);
-            transition: var(--transition-main);
-            margin: 0; /* Override default heading margin */
-            font-size: 1.1rem;
-        }
-        
-        .gallery-item:hover .overlay h4 {
-            transform: translateY(0);
-        }
-
-        /* --- Floor Plans Section --- */
-        #plans {
-            padding: 6rem 0;
-            background-color: var(--color-primary-light);
-        }
-        
-        .plans-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1.5rem;
-        }
-        
-        .plan-item {
-            background: var(--color-bg-white);
-            border: 1px solid var(--color-border);
-            padding: 2rem;
-            border-radius: 8px;
-            text-align: center;
-        }
-        
-        .plan-item img {
-            width: 100%;
-            max-width: 400px;
-            margin: 1rem auto;
-            border: 1px solid var(--color-border);
-        }
-        
-        .plan-item h3 {
-            font-size: 1.5rem;
-        }
-
-        /* --- Developer Section --- */
-        #developer {
-            padding: 6rem 0;
-        }
-        .developer-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 3rem;
-        }
-        .developer-item {
-            text-align: center;
-        }
-        .developer-item .icon {
-            font-size: 3rem;
-            color: var(--color-accent);
-            margin-bottom: 1rem;
-        }
-        .developer-item h3 {
-            font-size: 1.3rem;
-            margin-bottom: 0.5rem;
-        }
-
-        /* --- Testimonials Section --- */
-        #testimonials {
-            padding: 6rem 0;
-            background-color: var(--color-primary-light);
-        }
-        .testimonials-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-        }
-        .testimonial-card {
-            background: var(--color-bg-white);
-            padding: 2.5rem;
-            border-radius: 8px;
-            border-left: 5px solid var(--color-accent);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-        }
-        .testimonial-card q {
-            font-size: 1.1rem;
-            font-style: italic;
-            color: var(--color-text-medium);
-            display: block;
-            margin-bottom: 1.5rem;
-        }
-        .testimonial-card cite {
-            font-weight: 600;
-            color: var(--color-primary-dark);
-            font-style: normal;
-        }
-
-
-        /* --- Location Section --- */
-        #location {
-            padding: 6rem 0;
-        }
-        
-        .location-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-        }
-        
-        .location-content ul {
-            list-style: none;
-            margin-top: 1.5rem;
-        }
-        
-        .location-content li {
-            position: relative;
-            padding-left: 35px;
-            margin-bottom: 1.25rem;
-            font-size: 1.1rem;
-            font-weight: 500;
-        }
-        
-        .location-content li::before {
-            /* Checkmark icon */
-            content: '✓';
-            position: absolute;
-            left: 0;
-            top: 0;
-            color: var(--color-accent);
-            font-weight: 700;
-            font-size: 1.2rem;
-        }
-        
-        .map-placeholder {
-            width: 100%;
-            height: 450px;
-            border-radius: 8px;
-            overflow: hidden;
-            border: 1px solid var(--color-border);
-            box-shadow: 0 15px 35px rgba(10, 35, 66, 0.1);
-        }
-        
-        .map-placeholder img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        /* --- FAQ Section --- */
-        #faq {
-            padding: 6rem 0;
-            background-color: var(--color-primary-light);
-        }
-        .faq-container {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        .faq-item {
-            border-bottom: 1px solid var(--color-border);
-        }
-        .faq-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1.5rem 0;
-            cursor: pointer;
-            background: none;
-            border: none;
-            width: 100%;
-            text-align: left;
-        }
-        .faq-header h4 {
-            font-family: var(--font-body);
-            font-size: 1.1rem;
-            font-weight: 600;
-            margin: 0;
-        }
-        .faq-toggle {
-            font-size: 1.5rem;
-            color: var(--color-primary-dark);
-            transition: transform 0.3s ease;
-        }
-        .faq-item.active .faq-toggle {
-            transform: rotate(45deg);
-        }
-        .faq-content {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.4s ease-out;
-        }
-        .faq-content p {
-            padding: 0 0 1.5rem;
-            margin: 0;
-        }
-
-        /* --- Enquire Section --- */
-        #contact {
-            padding: 6rem 0;
-            background-color: var(--color-bg-white);
-        }
-        
-        .enquiry-form-container {
-            max-width: 700px;
-            margin: 0 auto;
-            background: var(--color-primary-light);
-            padding: 3rem;
-            border-radius: 8px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.07);
-        }
-        
-        .enquiry-form-container h2 {
-            text-align: center;
-        }
-        
-        .enquiry-form-container .section-subtitle {
-             text-align: center;
-             max-width: 500px;
-             margin: 1rem auto 2rem auto;
-        }
-        
-        .enquiry-form {
-            display: flex;
-            flex-direction: column;
-            gap: 1.25rem;
-        }
-        
-        .form-group {
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 0.85rem 1rem;
-            border: 1px solid var(--color-border);
-            border-radius: 4px;
-            font-family: var(--font-body);
-            font-size: 1rem;
-            background: var(--color-bg-white);
-        }
-        
-        .form-group input:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: var(--color-accent);
-            box-shadow: 0 0 0 2px rgba(192, 160, 113, 0.3);
-        }
-        
-        .checkbox-group {
-            font-size: 0.8rem;
-            color: var(--color-text-medium);
-            display: flex;
-            align-items: flex-start;
-            gap: 0.5rem;
-        }
-        
-        .checkbox-group input[type="checkbox"] {
-            margin-top: 3px;
-        }
-        
-        .enquiry-form .btn-primary {
-            font-size: 1rem;
-            padding: 1rem;
-        }
-
-        /* --- Footer --- */
-        .main-footer {
-            background-color: var(--color-primary-dark);
-            color: #ccc;
-            padding: 5rem 0 3rem 0;
-        }
-        
-        .footer-grid {
-            display: grid;
-            grid-template-columns: 2fr 1fr 1.5fr;
-            gap: 4rem;
-            text-align: left;
-            margin-bottom: 4rem;
-        }
-        
-        .footer-widget .logo {
-            font-size: 2rem;
-            color: var(--color-text-light);
-            margin-bottom: 1.5rem;
-            display: inline-block;
-            text-decoration: none;
-        }
-        
-        .footer-widget p {
-            color: #aaa;
-            font-size: 0.9rem;
-            line-height: 1.7;
-            max-width: 350px;
-        }
-        
-        .footer-widget h4 {
-            color: var(--color-text-light);
-            font-family: var(--font-heading);
-            font-size: 1.25rem;
-            margin-bottom: 1.5rem;
-        }
-        
-        .footer-widget ul {
-            list-style: none;
-        }
-        
-        .footer-widget li {
-            margin-bottom: 0.75rem;
-        }
-        
-        .footer-widget a {
-            text-decoration: none;
-            color: #aaa;
-            transition: var(--transition-main);
-        }
-        
-        .footer-widget a:hover {
-            color: var(--color-accent);
-        }
-        
-        .footer-widget .contact-item {
-            display: block;
-            color: #aaa;
-            margin-bottom: 0.75rem;
-        }
-        
-        .footer-bottom {
-            text-align: center;
-            border-top: 1px solid #3a445a;
-            padding-top: 2rem;
-        }
-        
-        .footer-bottom p {
-            color: #888;
-            margin: 0;
-            font-size: 0.9rem;
-        }
-
-
-        /* --- Responsive Design --- */
-        
-        @media (max-width: 1024px) {
-            h1 { font-size: 2.75rem; }
-            h2 { font-size: 2.25rem; }
-            
-            .nav-container { padding: 0 1.5rem; }
-            
-            .main-nav .nav-links {
-                display: none;
-                position: absolute;
-                top: 70px; /* Header height */
-                left: 0;
-                width: 100%;
-                background: var(--color-bg-white);
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 0;
-                padding: 1rem 0;
-                box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-            }
-            
-            .main-nav.open .nav-links {
-                display: flex;
-            }
-            
-            .main-nav .nav-links a {
-                padding: 1rem 1.5rem;
-                width: 100%;
-            }
-            .main-nav .nav-links a:hover {
-                background: var(--color-primary-light);
-            }
-            .main-nav .nav-links a::after {
-                display: none;
-            }
-            
-            .main-nav .btn {
-                display: none; /* Hide button in mobile nav, keep on header */
-            }
-            
-            .menu-toggle {
-                display: block;
-            }
-            
-            .hero-content {
-                max-width: 500px;
-                padding: 0 1.5rem;
-            }
-            .hero-content h1 { font-size: 3rem; }
-            
-            .highlights-grid { grid-template-columns: 1fr 1fr; }
-            
-            .about-grid { grid-template-columns: 1fr; }
-            .about-grid img { margin-top: 2rem; }
-            
-            .amenities-grid { grid-template-columns: 1fr 1fr; }
-            .gallery-grid { grid-template-columns: 1fr 1fr; }
-            .plans-grid { grid-template-columns: 1fr; }
-            .developer-grid { grid-template-columns: 1fr; }
-            .testimonials-grid { grid-template-columns: 1fr; }
-            .location-grid { grid-template-columns: 1fr; }
-            .map-placeholder { height: 350px; margin-top: 2rem; }
-            .footer-grid { grid-template-columns: 1fr; gap: 3rem; }
-        }
-        
-        @media (max-width: 768px) {
-            body { padding-top: 60px; }
-            .top-nav { padding: 0.75rem 0; }
-            .nav-container { padding: 0 1rem; }
-            .logo { font-size: 1.5rem; }
-            .main-nav .btn { display: none; } /* Hide enquire button on mobile header */
-            .main-nav .nav-links { top: 60px; }
-            
-            .hero-section { height: 90vh; min-height: 550px; }
-            .hero-content { padding: 0 1rem; }
-            .hero-content h1 { font-size: 2.5rem; }
-            .hero-content .subtitle { font-size: 1.1rem; }
-            
-            .highlights-grid { grid-template-columns: 1fr; }
-            
-            .amenities-grid { grid-template-columns: 1fr; }
-            .gallery-grid { grid-template-columns: 1fr; }
-            
-            .tab-nav {
-                gap: 0.5rem;
-            }
-            .tab-button {
-                font-size: 0.9rem;
-                padding: 0.6rem 1.25rem;
-            }
-            
-            .enquiry-form-container { padding: 2rem 1.5rem; }
-        }
-
-    </style>
+    <!-- External Stylesheet -->
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <!-- Top Navigation -->
     <header class="top-nav" id="topNav">
         <div class="nav-container">
+            <!-- Section: Header Logo (Editable Text) -->
             <a href="#home" class="logo">SERENE SANDS</a>
             
             <nav class="main-nav" id="mainNav">
+                <!-- Section: Header Nav Links (Editable Text) -->
                 <div class="nav-links">
                     <a href="#about">About</a>
                     <a href="#amenities">Amenities</a>
@@ -937,6 +37,7 @@
                     <a href="#location">Location</a>
                     <a href="#faq">FAQ</a>
                 </div>
+                <!-- Section: Header Button (Editable Text) -->
                 <a href="#contact" class="btn btn-primary">Enquire Now</a>
             </nav>
             
@@ -950,7 +51,7 @@
 
     <main>
 
-        <!-- Hero Section -->
+        <!-- Section: Hero (Editable Text) -->
         <section id="home" class="hero-section">
             <div class="container">
                 <div class="hero-content fade-in">
@@ -961,7 +62,7 @@
             </div>
         </section>
 
-        <!-- Key Highlights Bar -->
+        <!-- Section: Key Highlights (Editable Text) -->
         <section class="key-highlights-bar fade-in">
             <div class="container">
                 <div class="highlights-grid">
@@ -985,7 +86,7 @@
             </div>
         </section>
 
-        <!-- About Section -->
+        <!-- Section: About (Editable Text) -->
         <section id="about" class="fade-in">
             <div class="container">
                 <div class="about-grid">
@@ -995,20 +96,19 @@
                         <p>Aesthetically designed spaces, a grand clubhouse, and thoughtful details come together to create a living experience that is both exclusive and extraordinary.</p>
                         <a href="#amenities" class="btn btn-outline">Explore Amenities</a>
                     </div>
-                    <!-- REPLACED IMAGE -->
+                    <!-- Image path from original file -->
                     <img src="https://images.unsplash.com/photo-1605146769289-440113cc3d00?ixlib=rb-4.1.0&fit=crop&w=600&h=450&q=80" alt="Modern apartment building exterior with landscaping" loading="lazy">
                 </div>
             </div>
         </section>
 
-        <!-- Amenities Section -->
+        <!-- Section: Amenities (Editable Text) -->
         <section id="amenities" class="fade-in">
             <div class="container">
                 <h2>Premium Resort-Style Amenities</h2>
                 <p class="section-subtitle">Experience a life beyond the ordinary, where world-class amenities are an extension of your home.</p>
                 <div class="amenities-grid">
                     <div class="amenity-card">
-                        <!-- REPLACED IMAGE -->
                         <img src="https://images.unsplash.com/photo-1618220179428-22790b461013?ixlib=rb-4.1.0&fit=crop&w=500&h=350&q=80" alt="Grand Clubhouse Interior" loading="lazy">
                         <div class="amenity-card-content">
                             <h3>Grand Clubhouse</h3>
@@ -1016,7 +116,6 @@
                         </div>
                     </div>
                     <div class="amenity-card">
-                        <!-- REPLACED IMAGE -->
                         <img src="https://plus.unsplash.com/premium_photo-1680100256112-2e1231d9d0df?ixlib=rb-4.1.0&fit=crop&w=500&h=350&q=80" alt="Infinity Swimming Pool" loading="lazy">
                         <div class="amenity-card-content">
                             <h3>Lagoon-Style Pool</h3>
@@ -1024,7 +123,6 @@
                         </div>
                     </div>
                     <div class="amenity-card">
-                        <!-- REPLACED IMAGE -->
                         <img src="https://images.unsplash.com/photo-1596276020587-8044fe049813?ixlib=rb-4.1.0&fit=crop&w=500&h=350&q=80" alt="Modern fitness center" loading="lazy">
                         <div class="amenity-card-content">
                             <h3>State-of-the-Art Gym</h3>
@@ -1032,7 +130,6 @@
                         </div>
                     </div>
                     <div class="amenity-card">
-                        <!-- REPLACED IMAGE -->
                         <img src="https://images.unsplash.com/photo-1483097365279-e8acd3bf9f18?ixlib=rb-4.1.0&fit=crop&w=500&h=350&q=80" alt="Landscaped Gardens" loading="lazy">
                         <div class="amenity-card-content">
                             <h3>Themed Gardens</h3>
@@ -1040,7 +137,6 @@
                         </div>
                     </div>
                     <div class="amenity-card">
-                        <!-- REPLACED IMAGE -->
                         <img src="https://plus.unsplash.com/premium_photo-1687960117069-567a456fe5f3?ixlib=rb-4.1.0&fit=crop&w=500&h=350&q=80" alt="Children's Play Area" loading="lazy">
                         <div class="amenity-card-content">
                             <h3>Kids' Adventure Area</h3>
@@ -1048,7 +144,6 @@
                         </div>
                     </div>
                     <div class="amenity-card">
-                        <!-- REPLACED IMAGE -->
                         <img src="https://plus.unsplash.com/premium_photo-1687960116957-ab813e1e66e6?ixlib=rb-4.1.0&fit=crop&w=500&h=350&q=80" alt="Sports Courts" loading="lazy">
                         <div class="amenity-card-content">
                             <h3>Multi-Sports Courts</h3>
@@ -1059,7 +154,7 @@
             </div>
         </section>
 
-        <!-- Gallery Section -->
+        <!-- Section: Gallery (Editable Text) -->
         <section id="gallery" class="fade-in">
             <div class="container">
                 <h2>Project Gallery</h2>
@@ -1073,7 +168,6 @@
                 
                 <div class="tab-content active" id="gallery-tab1">
                     <div class="gallery-grid">
-                        <!-- REPLACED IMAGES -->
                         <div class="gallery-item"><img src="https://images.unsplash.com/photo-1595058651386-ac9b13dc8305?ixlib=rb-4.1.0&fit=crop&w=400&h=300&q=80" alt="Building Facade" loading="lazy"><div class="overlay"><h4>Modern Facade</h4></div></div>
                         <div class="gallery-item"><img src="https://images.unsplash.com/photo-1605266764154-0ff8f354088c?ixlib=rb-4.1.0&fit=crop&w=400&h=300&q=80" alt="Building exterior night view" loading="lazy"><div class="overlay"><h4>Evening View</h4></div></div>
                         <div class="gallery-item"><img src="https://images.unsplash.com/photo-1631679706909-1844bbd07221?ixlib=rb-4.1.0&fit=crop&w=400&h=300&q=80" alt="Apartment Balconies with view" loading="lazy"><div class="overlay"><h4>Spacious Balconies</h4></div></div>
@@ -1081,7 +175,6 @@
                 </div>
                 <div class="tab-content" id="gallery-tab2">
                     <div class="gallery-grid">
-                         <!-- REPLACED IMAGES -->
                         <div class="gallery-item"><img src="https://images.unsplash.com/photo-1618220179428-22790b461013?ixlib=rb-4.1.0&fit=crop&w=400&h=300&q=80" alt="Modern Living Room" loading="lazy"><div class="overlay"><h4>Elegant Living Room</h4></div></div>
                         <div class="gallery-item"><img src="https://images.unsplash.com/photo-1606744837616-56c9a5c6a6eb?ixlib=rb-4.1.0&fit=crop&w=400&h=300&q=80" alt="Luxury Bedroom with river view" loading="lazy"><div class="overlay"><h4>Master Bedroom</h4></div></div>
                         <div class="gallery-item"><img src="https://images.unsplash.com/photo-1502005229762-cf1b2da7c5d6?ixlib=rb-4.1.0&fit=crop&w=400&h=300&q=80" alt="Modern Kitchen interior design" loading="lazy"><div class="overlay"><h4>Modular Kitchen</h4></div></div>
@@ -1089,7 +182,6 @@
                 </div>
                 <div class="tab-content" id="gallery-tab3">
                     <div class="gallery-grid">
-                         <!-- REPLACED IMAGES -->
                         <div class="gallery-item"><img src="https://images.unsplash.com/photo-1626374295803-a333cfeca51b?ixlib=rb-4.1.0&fit=crop&w=400&h=300&q=80" alt="Grand Lobby entrance" loading="lazy"><div class="overlay"><h4>Double-Height Lobby</h4></div></div>
                         <div class="gallery-item"><img src="https://plus.unsplash.com/premium_photo-1680100256112-2e1231d9d0df?ixlib=rb-4.1.0&fit=crop&w=400&h=300&q=80" alt="Rooftop Pool with city view" loading="lazy"><div class="overlay"><h4>Rooftop Pool</h4></div></div>
                         <div class="gallery-item"><img src="https://plus.unsplash.com/premium_photo-1687960117069-567a456fe5f3?ixlib=rb-4.1.0&fit=crop&w=400&h=300&q=80" alt="Yoga Studio interior" loading="lazy"><div class="overlay"><h4>Yoga & Wellness Studio</h4></div></div>
@@ -1098,7 +190,7 @@
             </div>
         </section>
         
-        <!-- Floor Plans Section -->
+        <!-- Section: Floor Plans (Editable Text) -->
         <section id="plans" class="fade-in">
             <div class="container">
                 <h2>Well-Planned Apartment Layouts</h2>
@@ -1113,13 +205,11 @@
                         <div class="plan-item">
                             <h3>2 Bed - Type A</h3>
                             <p>Spacious layout with modern kitchen and two balconies.</p>
-                            <!-- REPLACED IMAGE -->
                             <img src="https://images.unsplash.com/photo-1556784344-ad913c73cfc4?ixlib=rb-4.1.0&fit=crop&w=400&h=300&q=80" alt="2 Bed Floor Plan Type A" loading="lazy">
                         </div>
                         <div class="plan-item">
                             <h3>2 Bed - Type B</h3>
                             <p>Smart design with a dedicated work-from-home niche.</p>
-                            <!-- REPLACED IMAGE -->
                             <img src="https://plus.unsplash.com/premium_photo-1686090449192-4ab1d00cb735?ixlib=rb-4.1.0&fit=crop&w=400&h=300&q=80" alt="2 Bed Floor Plan Type B" loading="lazy">
                         </div>
                     </div>
@@ -1129,13 +219,11 @@
                         <div class="plan-item">
                             <h3>3 Bed - Type A</h3>
                             <p>Expansive living area, large master suite, and deck.</p>
-                            <!-- REPLACED IMAGE -->
                              <img src="https://unsplash.com/photos/gray-steel-3-door-refrigerator-near-modular-kitchen-MP0bgaS_d1c?ixlib=rb-4.1.0&fit=crop&w=400&h=300&q=80" alt="3 Bed Floor Plan Type A" loading="lazy">
                         </div>
                         <div class="plan-item">
                             <h3>3 Bed - Type B</h3>
                             <p>Premium corner unit with cross-ventilation and city views.</p>
-                            <!-- REPLACED IMAGE -->
                             <img src="https://images.unsplash.com/photo-1596276020587-8044fe049813?ixlib=rb-4.1.0&fit=crop&w=400&h=300&q=80" alt="3 Bed Floor Plan Type B" loading="lazy">
                         </div>
                     </div>
@@ -1143,7 +231,7 @@
             </div>
         </section>
 
-        <!-- Developer Section -->
+        <!-- Section: Developer (Editable Text) -->
         <section id="developer" class="fade-in">
             <div class="container">
                 <h2>Why Choose 'Your Brand'</h2>
@@ -1168,7 +256,7 @@
             </div>
         </section>
 
-        <!-- Testimonials Section -->
+        <!-- Section: Testimonials (Editable Text) -->
         <section id="testimonials" class="fade-in">
             <div class="container">
                 <h2>What Our Residents Say</h2>
@@ -1186,7 +274,7 @@
             </div>
         </section>
 
-        <!-- Location Section -->
+        <!-- Section: Location (Editable Text) -->
         <section id="location" class="fade-in">
             <div class="container">
                 <div class="location-grid">
@@ -1203,14 +291,13 @@
                         <a href="#contact" class="btn btn-primary" style="margin-top: 1.5rem;">Schedule a Site Visit</a>
                     </div>
                     <div class="map-placeholder fade-in">
-                        <!-- REPLACED IMAGE -->
                         <img src="https://images.unsplash.com/photo-1516156008625-3a9d6067fab5?ixlib=rb-4.1.0&fit=crop&w=600&h=500&q=80" alt="Aerial map of a city district showing roads and buildings" loading="lazy">
                     </div>
                 </div>
             </div>
         </section>
         
-        <!-- FAQ Section -->
+        <!-- Section: FAQ (Editable Text) -->
         <section id="faq" class="fade-in">
             <div class="container">
                 <h2>Frequently Asked Questions</h2>
@@ -1256,7 +343,7 @@
             </div>
         </section>
 
-        <!-- Enquire Section -->
+        <!-- Section: Enquire Form (Editable Text) -->
         <section id="contact" class="enquire-section fade-in">
             <div class="container">
                 <div class="enquiry-form-container">
@@ -1289,7 +376,7 @@
 
     </main>
 
-    <!-- Footer -->
+    <!-- Section: Footer (Editable Text) -->
     <footer class="main-footer">
         <div class="container">
             <div class="footer-grid">
@@ -1322,224 +409,57 @@
         </div>
     </footer>
 
+    <!-- Sticky Buttons (NEW) -->
+    <a href="https://wa.me/910000000000" target="_blank" class="sticky-btn whatsapp-btn" aria-label="Chat on WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+    <!-- Section: Sticky Button (Editable Text) -->
+    <button class="sticky-btn contact-btn" id="openContactPopup" aria-label="Open contact form">
+        Contact Us
+    </button>
+
+    <!-- Contact Popup Modal (NEW) -->
+    <div class="popup-overlay" id="contactPopupOverlay">
+        <div class="popup-container" id="contactPopup">
+            <button class="popup-close" id="closeContactPopup" aria-label="Close form">&times;</button>
+            
+            <!-- Form View -->
+            <div id="popupFormContent">
+                <!-- Section: Popup Form (Editable Text) -->
+                <h3>Contact Us</h3>
+                <p>Fill out the form below and we'll get back to you.</p>
+                <form class="popup-form" id="popupContactForm">
+                    <div class="form-group">
+                        <input type="text" id="popupName" name="popupName" placeholder="Your Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" id="popupEmail" name="popupEmail" placeholder="Your Email" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="tel" id="popupPhone" name="popupPhone" placeholder="Phone Number" required>
+                    </div>
+                    <div class="form-group full-width">
+                        <textarea id="popupMessage" name="popupMessage" placeholder="Your Message" rows="4"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+            
+            <!-- Thank You View -->
+            <div class="popup-thank-you" id="popupThankYouMessage">
+                <!-- Section: Popup Thank You (Editable Text) -->
+                <h3>Thank You!</h3>
+                <p>Thank you for contacting Sphurit Technologies!</p>
+            </div>
+        </div>
+    </div>
+    <!-- End of New Popup -->
+
+    <!-- External JavaScript -->
+    <script src="script.js" defer></script>
+
+    <!-- User's Security Script (Do Not Modify or Move) -->
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const topNav = document.getElementById('topNav');
-            const menuToggle = document.getElementById('menuToggle');
-            const mainNav = document.getElementById('mainNav');
-            const body = document.body;
-            let headerHeight = 70; // Initial header height
-
-            // --- Adjust Header Height on Scroll ---
-            function updateHeaderHeight() {
-                if (topNav) {
-                    headerHeight = topNav.offsetHeight;
-                }
-            }
-            updateHeaderHeight(); // Initial check
-
-             window.addEventListener('scroll', () => {
-                if (window.scrollY > 50) {
-                    topNav.classList.add('scrolled');
-                } else {
-                    topNav.classList.remove('scrolled');
-                }
-                updateHeaderHeight(); // Update height on scroll if padding changes
-            });
-            window.addEventListener('resize', updateHeaderHeight); // Update height on resize
-
-            // --- Mobile Menu Toggle ---
-            if (menuToggle && mainNav) {
-                const navLinksContainer = mainNav.querySelector('.nav-links');
-                menuToggle.addEventListener('click', () => {
-                    const isOpen = mainNav.classList.toggle('open');
-                    menuToggle.classList.toggle('open');
-                    menuToggle.setAttribute('aria-expanded', isOpen);
-                    body.style.overflow = isOpen ? 'hidden' : ''; // Prevent body scroll when menu open
-                    if (isOpen) {
-                        navLinksContainer.style.display = 'flex'; // Ensure links are visible when opening
-                    } else {
-                         // Delay hiding to allow transition/animation if needed
-                        setTimeout(() => {
-                           if (!mainNav.classList.contains('open')) { // Double check it's still closed
-                                navLinksContainer.style.display = 'none';
-                           }
-                        }, 300); // Match this delay to CSS transition if added
-                    }
-                });
-            }
-
-            // --- Smooth Scroll & Close Mobile Menu ---
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    
-                    const targetId = this.getAttribute('href');
-                    const targetElement = document.querySelector(targetId);
-                    
-                    if (targetElement) {
-                        let elementPosition = targetElement.getBoundingClientRect().top;
-                        let offsetPosition = elementPosition + window.pageYOffset - headerHeight;
-
-                        // Special case for #home to scroll to top
-                        if (targetId === '#home') {
-                            offsetPosition = 0;
-                        }
-
-                        window.scrollTo({
-                            top: offsetPosition,
-                            behavior: "smooth"
-                        });
-                        
-                        // Close mobile nav if open and click was on a nav link
-                        if (mainNav.classList.contains('open') && this.closest('.nav-links')) {
-                            mainNav.classList.remove('open');
-                            menuToggle.classList.remove('open');
-                            menuToggle.setAttribute('aria-expanded', 'false');
-                            body.style.overflow = ''; // Re-enable scroll
-                            const navLinksContainer = mainNav.querySelector('.nav-links');
-                            // Delay hiding to allow scroll to start
-                            setTimeout(() => { navLinksContainer.style.display = 'none'; }, 300);
-                        }
-                    }
-                });
-            });
-
-            // --- Fade-in on Scroll (IntersectionObserver) ---
-            const faders = document.querySelectorAll('.fade-in');
-            
-            const appearOptions = {
-                threshold: 0.1,
-                rootMargin: "0px 0px -50px 0px"
-            };
-
-            const appearOnScroll = new IntersectionObserver(function(
-                entries,
-                appearOnScroll
-            ) {
-                entries.forEach(entry => {
-                    if (!entry.isIntersecting) {
-                        return;
-                    } else {
-                        entry.target.classList.add('visible');
-                        appearOnScroll.unobserve(entry.target);
-                    }
-                });
-            },
-            appearOptions);
-
-            faders.forEach(fader => {
-                appearOnScroll.observe(fader);
-            });
-            
-            // --- Tab Functionality ---
-            function setupTabs(tabContainerId) {
-                const tabContainer = document.getElementById(tabContainerId);
-                if (!tabContainer) return;
-
-                const tabButtons = tabContainer.querySelectorAll('.tab-button');
-                const contentContainer = tabContainer.nextElementSibling; // Assuming content follows nav
-                let tabContents = [];
-
-                if (contentContainer) {
-                     tabButtons.forEach(button => {
-                        const contentId = button.getAttribute('data-tab');
-                        const contentElement = document.getElementById(contentId);
-                        if (contentElement) {
-                            tabContents.push(contentElement);
-                        } else {
-                             console.warn(`Content element with ID ${contentId} not found.`);
-                             tabContents.push(null); // Keep array length consistent
-                        }
-                    });
-
-                    tabButtons.forEach((button, index) => {
-                        button.addEventListener('click', () => {
-                            // Update buttons
-                            tabButtons.forEach(btn => btn.classList.remove('active'));
-                            button.classList.add('active');
-                            
-                            // Update content
-                            tabContents.forEach(content => { if(content) content.classList.remove('active');});
-                            if (tabContents[index]) {
-                                tabContents[index].classList.add('active');
-                            }
-                        });
-                    });
-                } else {
-                    console.warn(`Content container for tabs #${tabContainerId} not found immediately after the tab navigation.`);
-                }
-            }
-            
-            setupTabs('galleryTabs');
-            setupTabs('plansTabs');
-
-            // --- FAQ Accordion ---
-            const faqContainer = document.querySelector('.faq-container');
-            if (faqContainer) {
-                 faqContainer.addEventListener('click', (e) => {
-                    const header = e.target.closest('.faq-header');
-                    if (!header) return;
-
-                    const item = header.closest('.faq-item');
-                    const content = item.querySelector('.faq-content');
-                    const toggle = item.querySelector('.faq-toggle');
-                    const isActive = item.classList.contains('active');
-
-                    // Optional: Close other items
-                    // faqContainer.querySelectorAll('.faq-item.active').forEach(openItem => {
-                    //     if (openItem !== item) {
-                    //         openItem.classList.remove('active');
-                    //         openItem.querySelector('.faq-content').style.maxHeight = null;
-                    //         openItem.querySelector('.faq-toggle').textContent = '+';
-                    //         openItem.querySelector('.faq-header').setAttribute('aria-expanded', 'false');
-                    //     }
-                    // });
-
-                    if (!isActive) {
-                        item.classList.add('active');
-                        content.style.maxHeight = content.scrollHeight + 'px';
-                        toggle.textContent = '−'; // Minus sign
-                        header.setAttribute('aria-expanded', 'true');
-                    } else {
-                        item.classList.remove('active');
-                        content.style.maxHeight = null;
-                        toggle.textContent = '+';
-                        header.setAttribute('aria-expanded', 'false');
-                    }
-                });
-            }
-
-
-            // --- Set Current Year in Footer ---
-            const yearSpan = document.getElementById('currentYear');
-            if (yearSpan) {
-                yearSpan.textContent = new Date().getFullYear();
-            }
-            
-            // --- Form Submission Mock ---
-            const contactForm = document.getElementById('contactForm');
-            if (contactForm) {
-                contactForm.addEventListener('submit', function(e) {
-                    e.preventDefault();
-                    const submitButton = this.querySelector('button[type="submit"]');
-                     if (submitButton.disabled) return; // Prevent multiple submissions
-
-                    console.log('Form submitted (mock).');
-                    submitButton.textContent = 'Submitted!';
-                    submitButton.disabled = true;
-                    
-                    setTimeout(() => {
-                         submitButton.textContent = 'Submit Enquiry';
-                         submitButton.disabled = false;
-                         this.reset();
-                    }, 3000);
-                });
-            }
-
-        });
-    </script>
-<script>
 (function(){
   // 🔒 Disable right-click, copy, cut, drag
   document.addEventListener('contextmenu', e=>e.preventDefault(), true);
@@ -1606,3 +526,4 @@
 </script>
 </body>
 </html>
+

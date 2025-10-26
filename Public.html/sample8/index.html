@@ -1,788 +1,41 @@
 <!DOCTYPE html>
+<!-- Section: Language (Editable Text) -->
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Section: Title (Editable Text) -->
     <title>Elysian Tower | Luxury Apartments in Prime Location</title>
     
     <!-- Google Fonts Import -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for Icons (WhatsApp) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
-    <style>
-        /* CSS Reset and Global Styles */
-        :root {
-            --font-heading: 'Poppins', sans-serif;
-            --font-body: 'Inter', sans-serif;
-            --color-primary-dark: #2c3e50; /* Dark Slate Blue */
-            --color-primary-light: #ecf0f1; /* Light Grey */
-            --color-accent: #c0392b;       /* Muted Red */
-            --color-accent-dark: #a93226;
-            --color-secondary: #bdc3c7;    /* Silver */
-            --color-text-dark: #34495e;    /* Darker Grey Blue */
-            --color-text-medium: #7f8c8d;   /* Medium Grey */
-            --color-text-light: #ffffff;
-            --color-border: #dfe6e9;
-            --color-bg-white: #ffffff;
-            --transition-main: all 0.3s ease-in-out;
-            --container-width: 1140px;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-            font-size: 16px;
-        }
-
-        body {
-            font-family: var(--font-body);
-            color: var(--color-text-dark);
-            background-color: var(--color-bg-white);
-            line-height: 1.6;
-            overflow-x: hidden;
-            padding-top: 70px; /* Space for fixed header */
-        }
-
-        /* Utility Classes */
-        .container {
-            max-width: var(--container-width);
-            margin: 0 auto;
-            padding: 0 1.5rem;
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 0.85rem 2rem;
-            font-family: var(--font-heading);
-            font-weight: 600;
-            text-decoration: none;
-            border-radius: 5px;
-            transition: var(--transition-main);
-            cursor: pointer;
-            border: 1px solid transparent;
-            text-align: center;
-            text-transform: uppercase;
-            font-size: 0.875rem;
-            letter-spacing: 0.5px;
-        }
-
-        .btn-primary {
-            background-color: var(--color-accent);
-            color: var(--color-text-light);
-            border-color: var(--color-accent);
-        }
-
-        .btn-primary:hover {
-            background-color: var(--color-accent-dark);
-            border-color: var(--color-accent-dark);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-        }
-        
-        .btn-outline {
-            background-color: transparent;
-            color: var(--color-primary-dark);
-            border-color: var(--color-primary-dark);
-        }
-        
-        .btn-outline:hover {
-            background-color: var(--color-primary-dark);
-            color: var(--color-text-light);
-        }
-
-        h1, h2, h3, h4, h5, h6 {
-            font-family: var(--font-heading);
-            color: var(--color-primary-dark);
-            font-weight: 600;
-            line-height: 1.3;
-        }
-
-        h1 { font-size: 3rem; margin-bottom: 1rem; }
-        h2 { font-size: 2.5rem; text-align: center; margin-bottom: 1.5rem; }
-        h3 { font-size: 1.75rem; margin-bottom: 1rem; }
-        h4 { font-size: 1.25rem; }
-        
-        p {
-            margin-bottom: 1.5rem;
-            font-size: 1rem;
-            color: var(--color-text-medium);
-        }
-
-        .section-subtitle {
-            text-align: center;
-            font-size: 1.1rem;
-            color: var(--color-text-medium);
-            max-width: 700px;
-            margin: -1rem auto 3.5rem auto;
-            line-height: 1.7;
-        }
-        
-        img {
-            max-width: 100%;
-            height: auto;
-            display: block;
-            border-radius: 8px;
-        }
-        
-        /* Fade-in Animation */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-        }
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* --- Top Navigation --- */
-        .top-nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            padding: 1rem 0;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--color-border);
-            z-index: 1000;
-            transition: padding 0.3s ease, box-shadow 0.3s ease;
-        }
-        
-        .top-nav.scrolled {
-             box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-        }
-
-        .nav-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .logo {
-            text-decoration: none;
-            color: var(--color-primary-dark);
-            font-family: var(--font-heading);
-            font-weight: 700;
-            font-size: 1.75rem;
-        }
-
-        .main-nav {
-            display: flex;
-            align-items: center;
-            gap: 2rem;
-        }
-        
-        .main-nav .nav-links {
-            display: flex;
-            gap: 1.5rem;
-        }
-        
-        .main-nav a {
-            text-decoration: none;
-            color: var(--color-text-dark);
-            font-weight: 500;
-            font-size: 0.95rem;
-            position: relative;
-            padding-bottom: 0.25rem;
-            transition: color 0.3s ease;
-        }
-        
-        .main-nav .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background-color: var(--color-accent);
-            transition: width 0.3s ease;
-        }
-        
-        .main-nav .nav-links a:hover {
-             color: var(--color-accent-dark);
-        }
-        
-        .main-nav .nav-links a:hover::after {
-            width: 100%;
-        }
-        
-        .main-nav .btn {
-            padding: 0.6rem 1.25rem;
-        }
-        
-        .menu-toggle {
-            display: none;
-            background: none;
-            border: none;
-            cursor: pointer;
-            padding: 0.5rem;
-            z-index: 1001;
-        }
-        
-        .menu-toggle .bar {
-            display: block;
-            width: 28px;
-            height: 3px;
-            margin: 6px 0;
-            background-color: var(--color-primary-dark);
-            transition: all 0.3s ease-in-out;
-        }
-        
-        .menu-toggle.open .bar:nth-child(1) {
-            transform: translateY(9px) rotate(45deg);
-        }
-        .menu-toggle.open .bar:nth-child(2) {
-            opacity: 0;
-        }
-        .menu-toggle.open .bar:nth-child(3) {
-            transform: translateY(-9px) rotate(-45deg);
-        }
-
-
-        /* --- Hero Section --- */
-        .hero-section {
-            padding: 0; /* Remove top padding */
-            background-color: var(--color-primary-light);
-            margin-top: -70px; /* Pull up to overlap header space */
-            padding-top: 70px; /* Add padding back to content */
-        }
-        
-        .hero-slider-container {
-            position: relative;
-            width: 100%;
-            max-width: 100%; /* Full width */
-            margin: 0 auto;
-            overflow: hidden;
-            border-radius: 0; /* No radius for full width */
-            height: 70vh; /* Adjust height as needed */
-            min-height: 500px;
-        }
-        
-        .hero-slider {
-            display: flex;
-            height: 100%;
-            transition: transform 0.5s ease-in-out;
-        }
-        
-        .hero-slide {
-            min-width: 100%;
-            height: 100%;
-            background-size: cover;
-            background-position: center;
-        }
-        
-        .slider-controls {
-            position: absolute;
-            top: 50%;
-            left: 1.5rem;
-            right: 1.5rem;
-            transform: translateY(-50%);
-            display: flex;
-            justify-content: space-between;
-            z-index: 10;
-        }
-        
-        .slider-controls button {
-            background: rgba(44, 62, 80, 0.6);
-            border: none;
-            color: var(--color-text-light);
-            padding: 0.75rem;
-            border-radius: 50%;
-            cursor: pointer;
-            transition: var(--transition-main);
-            width: 45px;
-            height: 45px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .slider-controls button:hover {
-            background: var(--color-primary-dark);
-        }
-        
-        .slider-controls svg {
-             width: 20px;
-             height: 20px;
-        }
-
-        /* --- Project Overview --- */
-        #overview {
-            padding: 5rem 0;
-            background-color: var(--color-bg-white);
-        }
-        
-        .overview-grid {
-            display: grid;
-            grid-template-columns: 2fr 1fr;
-            gap: 4rem;
-            align-items: flex-start;
-        }
-        
-        .project-details h1 {
-            font-size: 2.75rem;
-        }
-        
-        .project-details .location-tag {
-            font-size: 1.1rem;
-            color: var(--color-text-medium);
-            margin-bottom: 1.5rem;
-            display: block;
-        }
-        
-        .status-tag {
-            display: inline-block;
-            background-color: var(--color-secondary);
-            color: var(--color-primary-dark);
-            padding: 0.4rem 1rem;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            margin: 0.5rem 0.5rem 1.5rem 0;
-            text-transform: uppercase;
-        }
-        
-        .status-tag.oc-received {
-            background-color: #27ae60; /* Slightly darker Green */
-            color: white;
-        }
-        
-        .project-highlights {
-             background-color: var(--color-primary-light);
-             padding: 2rem;
-             border-radius: 8px;
-             border: 1px solid var(--color-border);
-        }
-        
-        .project-highlights h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1.5rem;
-            border-bottom: 2px solid var(--color-accent);
-            padding-bottom: 0.5rem;
-            display: inline-block;
-        }
-        
-        .project-highlights ul {
-            list-style: none;
-        }
-        
-        .project-highlights li {
-            margin-bottom: 1rem;
-            font-size: 1rem;
-            color: var(--color-text-dark);
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-        }
-        
-        .project-highlights li svg {
-            width: 20px;
-            height: 20px;
-            color: var(--color-accent);
-            flex-shrink: 0;
-        }
-
-        /* --- Amenities Section --- */
-        #amenities {
-            padding: 5rem 0;
-            background-color: var(--color-primary-light);
-        }
-        
-        .amenities-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-        }
-        
-        .amenity-item {
-            text-align: center;
-            background: var(--color-bg-white);
-            padding: 2.5rem 1.5rem;
-            border-radius: 8px;
-            border: 1px solid var(--color-border);
-            transition: var(--transition-main);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-        }
-        
-        .amenity-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.08);
-            border-color: var(--color-accent);
-        }
-        
-        .amenity-item svg {
-            width: 50px;
-            height: 50px;
-            margin: 0 auto 1.5rem auto;
-            color: var(--color-accent);
-        }
-        
-        .amenity-item h4 {
-            font-family: var(--font-body);
-            font-size: 1.15rem;
-            font-weight: 600;
-            margin: 0;
-        }
-        
-        .amenity-item p {
-            font-size: 0.9rem;
-            margin-top: 0.5rem;
-            margin-bottom: 0;
-            color: var(--color-text-medium);
-        }
-
-
-        /* --- Floor Plans Section --- */
-        #floor-plans {
-            padding: 5rem 0;
-        }
-        .floor-plans-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-        .plan-item {
-            border: 1px solid var(--color-border);
-            border-radius: 8px;
-            overflow: hidden;
-            background-color: var(--color-primary-light);
-            transition: box-shadow 0.3s ease;
-        }
-        .plan-item:hover {
-            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
-        }
-        .plan-item img {
-            width: 100%;
-            height: 350px; /* Adjust height */
-            object-fit: cover;
-            border-radius: 8px 8px 0 0;
-        }
-        .plan-item-content {
-            padding: 1.5rem;
-            text-align: center;
-        }
-        .plan-item-content h4 {
-             margin-bottom: 0.5rem;
-        }
-
-        /* --- Gallery Section --- */
-        #gallery {
-            padding: 5rem 0;
-            background-color: var(--color-primary-light);
-        }
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1.5rem;
-        }
-        .gallery-item {
-            position: relative;
-            height: 300px;
-            overflow: hidden;
-            border-radius: 8px;
-            cursor: pointer;
-        }
-        .gallery-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.4s ease;
-        }
-        .gallery-item:hover img {
-            transform: scale(1.05);
-        }
-        
-        /* --- Location Section --- */
-        #location {
-            padding: 5rem 0;
-        }
-        
-        .location-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-        }
-        
-        .location-details {
-            background-color: var(--color-primary-light);
-            padding: 2.5rem;
-            border-radius: 8px;
-            border: 1px solid var(--color-border);
-        }
-        
-        .location-details h4 {
-            margin-bottom: 1rem;
-        }
-        
-        .location-details p {
-            margin-bottom: 1rem;
-            font-size: 0.95rem;
-            color: var(--color-text-dark);
-        }
-        
-        .location-details address {
-            font-style: normal;
-            margin-bottom: 2rem;
-        }
-        
-        .map-placeholder {
-            width: 100%;
-            height: 450px;
-            border-radius: 8px;
-            overflow: hidden;
-            border: 1px solid var(--color-border);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-        }
-        
-        .map-placeholder img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        /* --- About Developer Section --- */
-        #developer {
-            padding: 5rem 0;
-            background-color: var(--color-primary-light);
-        }
-        .developer-content {
-            max-width: 800px;
-            margin: 0 auto;
-            text-align: center;
-        }
-        .developer-content img {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            margin: 0 auto 1.5rem auto;
-            border: 5px solid var(--color-bg-white);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-        .developer-content h3 {
-             margin-bottom: 0.5rem;
-        }
-        .developer-content .role {
-             font-weight: 600;
-             color: var(--color-accent);
-             margin-bottom: 1.5rem;
-             display: block;
-        }
-
-        /* --- Contact CTA Section --- */
-        #contact-cta {
-            padding: 5rem 0;
-             /* REPLACED IMAGE */
-            background: linear-gradient(rgba(44, 62, 80, 0.85), rgba(44, 62, 80, 0.85)), url('https://images.unsplash.com/photo-1558981082-c7d43331cd8c?ixlib=rb-4.1.0&fit=crop&w=1600&h=400&q=80') no-repeat center center/cover;
-            text-align: center;
-            color: var(--color-text-light);
-        }
-        #contact-cta h2 {
-            color: var(--color-text-light);
-            margin-bottom: 1rem;
-        }
-        #contact-cta p {
-            color: rgba(255, 255, 255, 0.8);
-            max-width: 600px;
-            margin: 0 auto 2rem auto;
-        }
-        #contact-cta .btn-primary {
-             background-color: var(--color-text-light);
-             color: var(--color-primary-dark);
-             border-color: var(--color-text-light);
-        }
-        #contact-cta .btn-primary:hover {
-            background-color: var(--color-accent);
-            color: var(--color-text-light);
-            border-color: var(--color-accent);
-        }
-
-        /* --- Footer --- */
-        .main-footer {
-            background-color: var(--color-primary-dark);
-            color: #bdc3c7; /* Lighter grey for footer text */
-            padding: 5rem 0 3rem 0;
-        }
-        
-        .footer-grid {
-            display: grid;
-            grid-template-columns: 1.5fr 1fr 1fr 1fr;
-            gap: 3rem;
-            text-align: left;
-            margin-bottom: 4rem;
-        }
-        
-        .footer-widget .logo {
-            font-size: 1.75rem;
-            color: var(--color-text-light);
-            margin-bottom: 1rem;
-            display: inline-block;
-            text-decoration: none;
-        }
-        
-        .footer-widget p {
-            color: #95a5a6; /* Slightly darker grey */
-            font-size: 0.9rem;
-            line-height: 1.7;
-        }
-        
-        .footer-widget h4 {
-            color: var(--color-text-light);
-            font-family: var(--font-heading);
-            font-size: 1.1rem;
-            margin-bottom: 1.5rem;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-        
-        .footer-widget ul {
-            list-style: none;
-        }
-        
-        .footer-widget li {
-            margin-bottom: 0.75rem;
-        }
-        
-        .footer-widget a {
-            text-decoration: none;
-            color: #bdc3c7;
-            transition: var(--transition-main);
-        }
-        
-        .footer-widget a:hover {
-            color: var(--color-accent);
-        }
-        
-        .footer-widget .contact-item {
-            display: block;
-            color: #bdc3c7;
-            margin-bottom: 0.75rem;
-            font-size: 0.9rem;
-        }
-        .footer-widget .contact-item strong {
-            color: #ecf0f1; /* White for labels */
-        }
-        
-        .footer-bottom {
-            text-align: center;
-            border-top: 1px solid #34495e; /* Darker border */
-            padding-top: 2rem;
-        }
-        
-        .footer-bottom p {
-            color: #95a5a6;
-            margin: 0;
-            font-size: 0.85rem;
-        }
-
-
-        /* --- Responsive Design --- */
-        
-        @media (max-width: 1024px) {
-            h1 { font-size: 2.5rem; }
-            h2 { font-size: 2.25rem; }
-            section, #overview, #floor-plans, #gallery, #location, #developer, #contact-cta { padding: 4rem 0; }
-
-            .nav-container { padding: 0 1.5rem; }
-            .main-nav .nav-links { gap: 1rem; }
-            .main-nav a { font-size: 0.9rem; }
-            
-            .overview-grid { grid-template-columns: 1fr; }
-            .project-highlights { margin-top: 2rem; }
-            
-            .amenities-grid { grid-template-columns: 1fr 1fr; }
-            .gallery-grid { grid-template-columns: 1fr 1fr; }
-            .location-grid { grid-template-columns: 1fr; }
-            .map-placeholder { height: 350px; margin-top: 2rem; }
-            .footer-grid { grid-template-columns: 1fr 1fr; gap: 2rem; }
-        }
-        
-        @media (max-width: 768px) {
-            body { padding-top: 60px; } /* Adjust for potentially smaller header */
-            .top-nav { padding: 0.75rem 0; }
-            .nav-container { padding: 0 1rem; }
-            .logo { font-size: 1.5rem; }
-            .main-nav .nav-links { display: none; } /* Hide links completely */
-            
-            .main-nav {
-                position: fixed; /* Change nav behavior */
-                top: 60px; /* Match new body padding */
-                left: -100%; /* Start off-screen */
-                width: 80%;
-                max-width: 300px; /* Max width for mobile menu */
-                height: calc(100vh - 60px); /* Full height minus header */
-                background: var(--color-bg-white);
-                flex-direction: column;
-                align-items: flex-start;
-                justify-content: space-between; /* Space out links and button */
-                gap: 0;
-                padding: 2rem 1.5rem;
-                box-shadow: 5px 0 15px rgba(0,0,0,0.1);
-                transition: left 0.4s ease-in-out;
-            }
-            
-            .main-nav.open {
-                left: 0; /* Slide in */
-            }
-            
-             .main-nav .nav-links {
-                display: flex; /* Display links when nav is open */
-                flex-direction: column;
-                width: 100%;
-                gap: 0;
-            }
-
-            .main-nav a {
-                padding: 1rem 0;
-                width: 100%;
-                border-bottom: 1px solid var(--color-border);
-            }
-             .main-nav a:last-child {
-                border-bottom: none;
-             }
-            .main-nav .nav-links a::after { display: none; }
-            
-            .main-nav .btn { display: block; margin-top: 2rem; width: 100%; }
-            
-            .menu-toggle { display: block; }
-            
-            .hero-slider-container { height: 60vh; min-height: 400px;}
-            .slider-controls { left: 1rem; right: 1rem; }
-            .slider-controls button { width: 40px; height: 40px; }
-            
-            .project-details h1 { font-size: 2rem; }
-            
-            .amenities-grid { grid-template-columns: 1fr; }
-            .floor-plans-grid { grid-template-columns: 1fr; }
-            .gallery-grid { grid-template-columns: 1fr; }
-            .footer-grid { grid-template-columns: 1fr; gap: 3rem; }
-        }
-
-    </style>
+    <!-- External Stylesheet -->
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <!-- Top Navigation -->
     <header class="top-nav" id="topNav">
         <div class="container nav-container">
+            <!-- Section: Header Logo (Editable Text) -->
             <a href="#home" class="logo">URBAN HOMES</a>
             
             <nav class="main-nav" id="mainNav">
+                <!-- Section: Header Nav Links (Editable Text) -->
                 <div class="nav-links">
                     <a href="#overview">Overview</a>
                     <a href="#amenities">Amenities</a>
                     <a href="#location">Location</a>
                     <a href="#developer">About</a>
                 </div>
+                <!-- Section: Header Button (Editable Text) -->
                 <a href="#contact-cta" class="btn btn-primary">Contact Us</a>
             </nav>
             
@@ -800,10 +53,10 @@
         <section id="home" class="hero-section">
             <div class="hero-slider-container">
                 <div class="hero-slider" id="heroSlider">
-                    <!-- REPLACED IMAGES -->
-                    <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1626374295803-a333cfeca51b?ixlib=rb-4.1.0&fit=crop&w=1600&h=900&q=80');" loading="lazy" alt="Luxury apartment lobby"></div>
-                    <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1618220179428-22790b461013?ixlib=rb-4.1.0&fit=crop&w=1600&h=900&q=80');" loading="lazy" alt="Modern apartment living room"></div>
-                    <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1605146769289-440113cc3d00?ixlib=rb-4.1.0&fit=crop&w=1600&h=900&q=80');" loading="lazy" alt="Modern building exterior"></div>
+                    <!-- Section: Hero Images (Editable Text) -->
+                    <div class="hero-slide" style="background-image: url('/Public.html/sample8/assets/photo1.avif');" alt="Luxury apartment lobby"></div>
+                    <div class="hero-slide" style="background-image: url('/Public.html/sample8/assets/photo2.avif');" alt="Modern apartment living room"></div>
+                    <div class="hero-slide" style="background-image: url('/Public.html/sample8/assets/photo3.avif');" alt="Modern building exterior"></div>
                 </div>
                 <div class="slider-controls">
                     <button id="prevSlide" aria-label="Previous Slide">
@@ -820,6 +73,7 @@
         <section id="overview" class="fade-in">
             <div class="container overview-grid">
                 <div class="project-details">
+                    <!-- Section: Overview (Editable Text) -->
                     <h1>Elysian Tower</h1>
                     <span class="location-tag">Prime City Location - OC Received</span>
                     
@@ -833,6 +87,7 @@
                     <a href="#amenities" class="btn btn-outline">Explore Amenities</a>
                 </div>
                 <div class="project-highlights">
+                    <!-- Section: Highlights (Editable Text) -->
                     <h3>Key Highlights</h3>
                     <ul>
                         <li>
@@ -859,6 +114,7 @@
         <!-- Amenities Section -->
         <section id="amenities" class="fade-in">
             <div class="container">
+                <!-- Section: Amenities (Editable Text) -->
                 <h2>Indulge in Premium Amenities</h2>
                 <p class="section-subtitle">Experience comfort, convenience, and luxury with thoughtfully curated facilities.</p>
                 <div class="amenities-grid">
@@ -899,20 +155,19 @@
         <!-- Floor Plans Section -->
         <section id="floor-plans" class="fade-in">
             <div class="container">
+                <!-- Section: Floor Plans (Editable Text) -->
                 <h2>Explore Floor Plans</h2>
                 <p class="section-subtitle">Discover layouts designed for modern living, maximizing space and natural light.</p>
                 <div class="floor-plans-grid">
                     <div class="plan-item">
-                         <!-- REPLACED IMAGE -->
-                        <img src="https://images.unsplash.com/photo-1556784344-ad913c73cfc4?ixlib=rb-4.1.0&fit=crop&w=600&h=400&q=80" alt="3 BHK Floor Plan" loading="lazy">
+                        <img src="/Public.html/sample8/assets/photo4.avif" alt="3 BHK Floor Plan" loading="lazy">
                         <div class="plan-item-content">
                             <h4>Typical 3 BHK Plan</h4>
                             <p>Spacious living, dining, and master suite.</p>
                         </div>
                     </div>
                     <div class="plan-item">
-                         <!-- REPLACED IMAGE -->
-                        <img src="https://plus.unsplash.com/premium_photo-1686090449192-4ab1d00cb735?ixlib=rb-4.1.0&fit=crop&w=600&h=400&q=80" alt="4 BHK Floor Plan" loading="lazy">
+                        <img src="/Public.html/sample8/assets/photo5.avif" alt="4 BHK Floor Plan" loading="lazy">
                         <div class="plan-item-content">
                             <h4>Typical 4 BHK Plan</h4>
                             <p>Expansive layout with additional family room.</p>
@@ -925,32 +180,27 @@
         <!-- Gallery Section -->
         <section id="gallery" class="fade-in">
              <div class="container">
+                <!-- Section: Gallery (Editable Text) -->
                 <h2>Project Gallery</h2>
                 <p class="section-subtitle">A visual journey through the elegance and quality of Elysian Tower.</p>
                 <div class="gallery-grid">
                     <div class="gallery-item">
-                         <!-- REPLACED IMAGE -->
-                        <img src="https://images.unsplash.com/photo-1618220179428-22790b461013?ixlib=rb-4.1.0&fit=crop&w=400&h=300&q=80" alt="Luxury apartment living room" loading="lazy">
+                        <img src="/Public.html/sample8/assets/photo6.avif" alt="Luxury apartment living room" loading="lazy">
                     </div>
                     <div class="gallery-item">
-                         <!-- REPLACED IMAGE -->
-                        <img src="https://images.unsplash.com/photo-1502005229762-cf1b2da7c5d6?ixlib=rb-4.1.0&fit=crop&w=400&h=300&q=80" alt="Modern apartment kitchen" loading="lazy">
+                        <img src="/Public.html/sample8/assets/photo7.avif" alt="Modern apartment kitchen" loading="lazy">
                     </div>
                     <div class="gallery-item">
-                         <!-- REPLACED IMAGE -->
-                        <img src="https://images.unsplash.com/photo-1606744837616-56c9a5c6a6eb?ixlib=rb-4.1.0&fit=crop&w=400&h=300&q=80" alt="Elegant master bedroom" loading="lazy">
+                        <img src="/Public.html/sample8/assets/photo8.avif" alt="Elegant master bedroom" loading="lazy">
                     </div>
                     <div class="gallery-item">
-                         <!-- REPLACED IMAGE -->
-                        <img src="https://images.unsplash.com/photo-1605146769289-440113cc3d00?ixlib=rb-4.1.0&fit=crop&w=400&h=300&q=80" alt="Exterior view of the building" loading="lazy">
+                        <img src="/Public.html/sample8/assets/photo9.avif" alt="Exterior view of the building" loading="lazy">
                     </div>
                     <div class="gallery-item">
-                         <!-- REPLACED IMAGE -->
-                        <img src="https://plus.unsplash.com/premium_photo-1680100256112-2e1231d9d0df?ixlib=rb-4.1.0&fit=crop&w=400&h=300&q=80" alt="Rooftop swimming pool" loading="lazy">
+                        <img src="/Public.html/sample8/assets/photo10.avif" alt="Rooftop swimming pool" loading="lazy">
                     </div>
                      <div class="gallery-item">
-                         <!-- REPLACED IMAGE -->
-                        <img src="https://images.unsplash.com/photo-1596276020587-8044fe049813?ixlib=rb-4.1.0&fit=crop&w=400&h=300&q=80" alt="Gymnasium facility" loading="lazy">
+                        <img src="/Public.html/sample8/assets/photo11.avif" alt="Gymnasium facility" loading="lazy">
                     </div>
                 </div>
             </div>
@@ -961,10 +211,10 @@
         <section id="location" class="fade-in">
             <div class="container location-grid">
                  <div class="map-placeholder fade-in">
-                     <!-- REPLACED IMAGE -->
-                    <img src="https://images.unsplash.com/photo-1516156008625-3a9d6067fab5?ixlib=rb-4.1.0&fit=crop&w=600&h=500&q=80" alt="Aerial map showing project location" loading="lazy">
+                    <img src="/Public.html/sample8/assets/photo12.avif" alt="Aerial map showing project location" loading="lazy">
                 </div>
                 <div class="location-details fade-in">
+                    <!-- Section: Location (Editable Text) -->
                     <h2>Prime Location</h2>
                     <h4>Postal Address</h4>
                     <address>
@@ -982,8 +232,8 @@
         <!-- About Developer Section -->
         <section id="developer" class="fade-in">
             <div class="container developer-content">
-                 <!-- REPLACED IMAGE -->
-                 <img src="https://images.unsplash.com/photo-1605266764154-0ff8f354088c?ixlib=rb-4.1.0&fit=crop&w=200&h=200&q=80" alt="Portrait of the Founder/Architect" loading="lazy">
+                 <img src="/Public.html/sample8/assets/photo13.avif" alt="Portrait of the Founder/Architect" loading="lazy">
+                 <!-- Section: Developer (Editable Text) -->
                  <h3>Founder Name</h3>
                  <span class="role">Founder & CEO, Urban Homes Group</span>
                  <p>A visionary architect based in the city, dedicated to crafting homes that blend elegance, functionality, and modern living. With over a decade of expertise in delivering high-quality residential projects, known for a commitment to timely delivery, transparency, and client satisfaction.</p>
@@ -994,6 +244,7 @@
         <!-- Contact CTA Section -->
         <section id="contact-cta" class="fade-in">
             <div class="container">
+                <!-- Section: Contact CTA (Editable Text) -->
                 <h2>Reach Out To Us</h2>
                 <p>If you have any inquiries or concerns about our projects or services, please don't hesitate to reach out to our dedicated team.</p>
                 <a href="mailto:info@yourbrand.com" class="btn btn-primary">Contact Us</a>
@@ -1007,6 +258,7 @@
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-widget">
+                    <!-- Section: Footer (Editable Text) -->
                     <a href="#home" class="logo">URBAN HOMES</a>
                     <p>We are one of the leading real estate developers in the city, providing high-quality, thoughtfully designed homes. Contact us to find your dream home.</p>
                 </div>
@@ -1041,195 +293,59 @@
             </div>
         </div>
     </footer>
+    
+    <!-- Sticky Buttons (NEW) -->
+    <a href="https://wa.me/910000000000" target="_blank" class="sticky-btn whatsapp-btn" aria-label="Chat on WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+    <!-- Section: Sticky Button (Editable Text) -->
+    <button class="sticky-btn contact-btn" id="openContactPopup" aria-label="Open contact form">
+        Contact Us
+    </button>
 
+    <!-- Contact Popup Modal (NEW) -->
+    <div class="popup-overlay" id="contactPopupOverlay">
+        <div class="popup-container" id="contactPopup">
+            <button class="popup-close" id="closeContactPopup" aria-label="Close form">&times;</button>
+            
+            <!-- Form View -->
+            <div id="popupFormContent">
+                <!-- Section: Popup Form (Editable Text) -->
+                <h3>Contact Us</h3>
+                <p>Fill out the form below and we'll get back to you.</p>
+                <form class="popup-form" id="popupContactForm">
+                    <div class="form-group">
+                        <input type="text" id="popupName" name="popupName" placeholder="Your Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" id="popupEmail" name="popupEmail" placeholder="Your Email" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="tel" id="popupPhone" name="popupPhone" placeholder="Phone Number" required>
+                    </div>
+                    <div class="form-group full-width">
+                        <textarea id="popupMessage" name="popupMessage" placeholder="Your Message" rows="4"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+            
+            <!-- Thank You View -->
+            <div class="popup-thank-you" id="popupThankYouMessage">
+                <!-- Section: Popup Thank You (Editable Text) -->
+                <h3>Thank You!</h3>
+                <p>Thank you for contacting Sphurit Technologies!</p>
+            </div>
+        </div>
+    </div>
+    <!-- End of New Popup -->
+
+
+    <!-- External JavaScript -->
+    <script src="script.js" defer></script>
+
+    <!-- User's Security Script (Do Not Modify or Move) -->
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const topNav = document.getElementById('topNav');
-            const menuToggle = document.getElementById('menuToggle');
-            const mainNav = document.getElementById('mainNav');
-            const body = document.body;
-            let headerHeight = 70; // Initial header height based on padding-top
-
-             // --- Adjust Header & Body Padding ---
-            function updateHeaderLayout() {
-                if (topNav) {
-                    headerHeight = topNav.offsetHeight;
-                    body.style.paddingTop = headerHeight + 'px';
-                }
-            }
-            updateHeaderLayout(); // Initial check
-            window.addEventListener('resize', updateHeaderLayout); // Update on resize
-
-            // Shrink header on scroll
-            window.addEventListener('scroll', () => {
-                if (window.scrollY > 50) {
-                    topNav.classList.add('scrolled');
-                } else {
-                    topNav.classList.remove('scrolled');
-                }
-                 // Update height potentially changes padding
-                updateHeaderLayout();
-            });
-
-
-            // --- Mobile Menu Toggle ---
-            if (menuToggle && mainNav) {
-                const navLinksContainer = mainNav.querySelector('.nav-links');
-                menuToggle.addEventListener('click', () => {
-                    const isOpen = mainNav.classList.toggle('open');
-                    menuToggle.classList.toggle('open');
-                    menuToggle.setAttribute('aria-expanded', isOpen);
-                    body.style.overflow = isOpen ? 'hidden' : ''; // Prevent body scroll
-                });
-
-                // Close menu when clicking outside on mobile
-                document.addEventListener('click', (event) => {
-                    const isClickInsideNav = mainNav.contains(event.target);
-                    const isClickOnToggle = menuToggle.contains(event.target);
-
-                    if (!isClickInsideNav && !isClickOnToggle && mainNav.classList.contains('open')) {
-                        mainNav.classList.remove('open');
-                        menuToggle.classList.remove('open');
-                        menuToggle.setAttribute('aria-expanded', 'false');
-                        body.style.overflow = ''; // Re-enable scroll
-                    }
-                });
-            }
-
-            // --- Smooth Scroll & Close Mobile Menu ---
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    
-                    const targetId = this.getAttribute('href');
-                    const targetElement = document.querySelector(targetId);
-                    
-                    if (targetElement) {
-                        let elementPosition = targetElement.getBoundingClientRect().top;
-                        // Use the dynamically updated headerHeight
-                        let offsetPosition = elementPosition + window.pageYOffset - headerHeight;
-
-                        // Special case for #home to scroll to top
-                        if (targetId === '#home') {
-                            offsetPosition = 0;
-                        }
-
-                        window.scrollTo({
-                            top: offsetPosition,
-                            behavior: "smooth"
-                        });
-                        
-                        // Close mobile nav if open
-                        if (mainNav.classList.contains('open')) {
-                            mainNav.classList.remove('open');
-                            menuToggle.classList.remove('open');
-                            menuToggle.setAttribute('aria-expanded', 'false');
-                            body.style.overflow = ''; // Re-enable scroll
-                        }
-                    }
-                });
-            });
-
-            // --- Fade-in on Scroll (IntersectionObserver) ---
-            const faders = document.querySelectorAll('.fade-in');
-            
-            const appearOptions = {
-                threshold: 0.1,
-                rootMargin: "0px 0px -50px 0px"
-            };
-
-            const appearOnScroll = new IntersectionObserver(function(
-                entries,
-                appearOnScroll
-            ) {
-                entries.forEach(entry => {
-                    if (!entry.isIntersecting) {
-                        return;
-                    } else {
-                        entry.target.classList.add('visible');
-                        appearOnScroll.unobserve(entry.target);
-                    }
-                });
-            },
-            appearOptions);
-
-            faders.forEach(fader => {
-                appearOnScroll.observe(fader);
-            });
-            
-             // --- Hero Slider ---
-            const slider = document.getElementById('heroSlider');
-            const prevButton = document.getElementById('prevSlide');
-            const nextButton = document.getElementById('nextSlide');
-            let slideIndex = 0;
-            let slides;
-            let slideInterval;
-
-            function showSlide(index) {
-                if (!slider) return;
-                slides = slider.querySelectorAll('.hero-slide');
-                 if (slides.length === 0) return; // Exit if no slides found
-                
-                if (index >= slides.length) { slideIndex = 0; }
-                if (index < 0) { slideIndex = slides.length - 1; }
-                slider.style.transform = `translateX(-${slideIndex * 100}%)`;
-            }
-
-            function nextSlide() {
-                slideIndex++;
-                showSlide(slideIndex);
-            }
-            
-            function prevSlide() {
-                slideIndex--;
-                showSlide(slideIndex);
-            }
-
-            function startSlideShow() {
-                stopSlideShow(); // Clear existing interval first
-                slideInterval = setInterval(nextSlide, 5000); // Change slide every 5 seconds
-            }
-
-            function stopSlideShow() {
-                 clearInterval(slideInterval);
-            }
-
-            if (slider && prevButton && nextButton) {
-                slides = slider.querySelectorAll('.hero-slide'); // Get slides initially
-                if (slides.length > 0) {
-                     showSlide(slideIndex); // Initial display
-                     startSlideShow(); // Start automatic sliding
-
-                     nextButton.addEventListener('click', () => {
-                         nextSlide();
-                         stopSlideShow(); // Stop auto-slide on manual control
-                         startSlideShow(); // Restart timer
-                     });
-                     
-                     prevButton.addEventListener('click', () => {
-                         prevSlide();
-                          stopSlideShow(); // Stop auto-slide on manual control
-                         startSlideShow(); // Restart timer
-                     });
-
-                      // Optional: Pause on hover
-                     // slider.addEventListener('mouseenter', stopSlideShow);
-                     // slider.addEventListener('mouseleave', startSlideShow);
-                } else {
-                     console.warn("Hero slider found, but no slides inside.");
-                }
-            }
-
-
-            // --- Set Current Year in Footer ---
-            const yearSpan = document.getElementById('currentYear');
-            if (yearSpan) {
-                yearSpan.textContent = new Date().getFullYear();
-            }
-
-        });
-    </script>
-<script>
 (function(){
   // 🔒 Disable right-click, copy, cut, drag
   document.addEventListener('contextmenu', e=>e.preventDefault(), true);
@@ -1296,3 +412,4 @@
 </script>
 </body>
 </html>
+

@@ -3,633 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Belle Vue | Premium Villa Plots</title>
+    
+    <!-- Section: Page Title (Editable Text) -->
+    <title>Central Tower | Premium Office Spaces</title>
     
     <!-- Google Fonts Import -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
-    <style>
-        /* CSS Reset and Global Styles */
-        :root {
-            --font-heading: 'Poppins', sans-serif;
-            --font-body: 'Inter', sans-serif;
-            --color-primary: #004d40; /* Deep Forest Green */
-            --color-secondary: #00251a; /* Darker Green/Near Black */
-            --color-accent: #c0a080; /* Premium Beige/Light Gold */
-            --color-text: #333333;
-            --color-text-light: #f8f8f8;
-            --color-bg-light: #F9F7F5; /* Very Light Beige */
-            --color-bg-white: #ffffff;
-            --color-border: #e0e0e0;
-            --sidebar-width: 280px;
-            --top-header-height: 70px;
-            --transition-main: all 0.3s ease-in-out;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-            font-size: 16px;
-        }
-
-        body {
-            font-family: var(--font-body);
-            color: var(--color-text);
-            background-color: var(--color-bg-white);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-
-        /* --- Main Layout --- */
-        .main-content {
-            /* Margin for the fixed desktop sidebar */
-            margin-right: var(--sidebar-width);
-        }
-
-        .sidebar-nav {
-            position: fixed;
-            top: 0;
-            right: 0;
-            width: var(--sidebar-width);
-            height: 100vh;
-            background: var(--color-bg-white);
-            border-left: 1px solid var(--color-border);
-            z-index: 998;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            padding: 3rem 2rem;
-            transition: transform 0.3s ease;
-        }
-
-        .sidebar-logo {
-            font-family: var(--font-heading);
-            font-size: 1.75rem;
-            font-weight: 700;
-            color: var(--color-primary);
-            text-decoration: none;
-            letter-spacing: 1px;
-            text-align: center;
-        }
-
-        .sidebar-nav-links ul {
-            list-style: none;
-            padding-left: 1rem;
-        }
-
-        .sidebar-nav-links li {
-            margin: 2rem 0;
-        }
-
-        .sidebar-nav-links a {
-            text-decoration: none;
-            color: #555;
-            font-weight: 600;
-            font-family: var(--font-body);
-            font-size: 1rem;
-            position: relative;
-            padding: 0.25rem 0.5rem;
-            transition: var(--transition-main);
-        }
-
-        .sidebar-nav-links a:hover {
-            color: var(--color-primary);
-        }
-
-        .sidebar-nav-links a.active {
-            color: var(--color-accent);
-            font-weight: 700;
-        }
-
-        .sidebar-nav-links a.active::before {
-            content: '';
-            position: absolute;
-            left: -1.5rem;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 4px;
-            height: 24px;
-            background-color: var(--color-accent);
-            border-radius: 4px;
-        }
-
-        .sidebar-enquire .btn {
-            width: 100%;
-            text-align: center;
-        }
-
-        /* --- Top Header (Mobile) --- */
-        .top-header {
-            display: none; /* Hidden on desktop */
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: var(--top-header-height);
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            padding: 0 1.5rem;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-        }
-
-        .top-header .logo {
-            font-family: var(--font-heading);
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--color-primary);
-            text-decoration: none;
-        }
-
-        .menu-toggle {
-            background: none;
-            border: none;
-            cursor: pointer;
-            z-index: 1001;
-            padding: 10px; /* Larger tap area */
-        }
-
-        .menu-toggle .bar {
-            display: block;
-            width: 25px;
-            height: 3px;
-            margin: 5px 0;
-            background-color: var(--color-primary);
-            transition: var(--transition-main);
-        }
-        
-        /* Hamburger Animation */
-        .menu-toggle.open .bar:nth-child(1) {
-            transform: translateY(8px) rotate(45deg);
-        }
-        .menu-toggle.open .bar:nth-child(2) {
-            opacity: 0;
-        }
-        .menu-toggle.open .bar:nth-child(3) {
-            transform: translateY(-8px) rotate(-45deg);
-        }
-
-        /* --- Mobile Nav Menu --- */
-        .mobile-nav {
-            display: none; /* Hidden by default */
-            position: fixed;
-            top: var(--top-header-height);
-            left: 0;
-            width: 100%;
-            height: calc(100vh - var(--top-header-height));
-            background: var(--color-bg-white);
-            z-index: 999;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 2rem;
-            transform: translateX(100%);
-            transition: transform 0.3s ease-in-out;
-        }
-
-        .mobile-nav.open {
-            display: flex;
-            transform: translateX(0);
-        }
-        
-        .mobile-nav ul {
-            list-style: none;
-            text-align: center;
-        }
-        
-        .mobile-nav li {
-            margin: 2rem 0;
-        }
-        
-        .mobile-nav a {
-            text-decoration: none;
-            color: var(--color-primary);
-            font-size: 1.75rem;
-            font-weight: 600;
-            font-family: var(--font-heading);
-            transition: color 0.3s ease;
-        }
-        
-        .mobile-nav a:hover {
-            color: var(--color-accent);
-        }
-        
-        .mobile-nav .btn {
-            margin-top: 2rem;
-        }
-
-        /* --- Utility Classes --- */
-        .container {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 0.8rem 1.75rem;
-            font-family: var(--font-heading);
-            font-weight: 500;
-            text-decoration: none;
-            border-radius: 4px;
-            transition: var(--transition-main);
-            cursor: pointer;
-            border: none;
-            text-transform: uppercase;
-            font-size: 0.875rem;
-            letter-spacing: 0.5px;
-        }
-
-        .btn-primary {
-            background-color: var(--color-accent);
-            color: var(--color-primary);
-            font-weight: 600;
-        }
-
-        .btn-primary:hover {
-            background-color: #d1b89c; /* Lighter beige */
-            transform: translateY(-2px);
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        h1, h2, h3, h4 {
-            font-family: var(--font-heading);
-            color: var(--color-primary);
-            font-weight: 600;
-            line-height: 1.3;
-        }
-
-        h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-        }
-
-        h2 {
-            font-size: 2.75rem;
-            margin-bottom: 3rem;
-            text-align: center;
-        }
-
-        h3 {
-            font-size: 1.75rem;
-            margin-bottom: 1rem;
-        }
-        
-        p {
-            margin-bottom: 1.5rem;
-            font-size: 1rem;
-            color: #555;
-        }
-
-        /* Fade-in Animation */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-        }
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* --- Section Styling --- */
-        .content-section {
-            padding: 6rem 0;
-            overflow: hidden; /* Prevent horizontal scroll from animations */
-        }
-
-        /* Hero Section */
-        #home {
-            height: 100vh;
-            min-height: 700px;
-            position: relative;
-            display: flex;
-            align-items: flex-end;
-            padding: 4rem;
-        }
-
-        #home::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            /* REPLACED IMAGE */
-            background-image: url('https://plus.unsplash.com/premium_photo-1687960117069-567a456fe5f3?ixlib=rb-4.1.0&fit=crop&w=1920&h=1080&q=80');
-            background-size: cover;
-            background-position: center;
-            z-index: -2;
-        }
-
-        #home::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(to top, rgba(0, 0, 0, 0.6), transparent 60%);
-            z-index: -1;
-        }
-
-        .hero-content {
-            color: var(--color-text-light);
-            max-width: 700px;
-            animation: fadeInHero 1.5s ease-out;
-        }
-        
-        @keyframes fadeInHero {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .hero-content .tag {
-            display: inline-block;
-            background-color: var(--color-accent);
-            color: var(--color-primary);
-            padding: 0.4rem 1rem;
-            font-size: 0.8rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            border-radius: 4px;
-            margin-bottom: 1rem;
-        }
-
-        .hero-content h1 {
-            color: var(--color-text-light);
-            font-size: 4rem;
-        }
-        
-        .hero-content p {
-            color: var(--color-text-light);
-            font-size: 1.25rem;
-            opacity: 0.9;
-            margin-bottom: 0;
-        }
-
-        /* Gallery Section */
-        #gallery {
-            background-color: var(--color-bg-light);
-        }
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1.5rem;
-        }
-        .gallery-item {
-            overflow: hidden;
-            border-radius: 8px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            transition: box-shadow 0.3s ease;
-        }
-        .gallery-item:hover {
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-        }
-        .gallery-item img {
-            width: 100%;
-            height: 300px;
-            object-fit: cover;
-            display: block;
-            transition: transform 0.4s ease;
-        }
-        .gallery-item:hover img {
-            transform: scale(1.05);
-        }
-
-        /* Details Section */
-        .two-col-layout {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-        }
-        .two-col-layout img {
-            width: 100%;
-            height: auto;
-            max-height: 500px;
-            object-fit: cover;
-            border-radius: 8px;
-        }
-
-        /* Features Section */
-        #features {
-            background-color: var(--color-bg-light);
-        }
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-        }
-        .feature-item {
-            background: var(--color-bg-white);
-            padding: 2.5rem 2rem;
-            border-radius: 8px;
-            text-align: center;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.03);
-            transition: var(--transition-main);
-        }
-        .feature-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.07);
-        }
-        .feature-item .icon {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            color: var(--color-primary);
-        }
-        .feature-item h3 {
-            font-size: 1.4rem;
-        }
-
-        /* Location Section */
-        .location-map {
-            width: 100%;
-            height: 450px;
-            border-radius: 8px;
-            overflow: hidden; /* To contain the image's border radius */
-            background-color: var(--color-border);
-        }
-        .location-map img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        .location-list li {
-            margin-bottom: 0.75rem;
-            font-weight: 500;
-            list-style-position: inside;
-            color: #444;
-        }
-
-        /* Contact Section (Footer) */
-        #contact {
-            background-color: var(--color-secondary);
-            color: var(--color-text-light);
-            padding-bottom: 4rem;
-        }
-        #contact h2 {
-            color: var(--color-text-light);
-        }
-        .contact-form {
-            max-width: 600px;
-            margin: 0 auto 3rem;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1.5rem;
-        }
-        .form-group {
-            position: relative;
-        }
-        .form-group.full-width {
-            grid-column: 1 / -1;
-        }
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 1rem;
-            background: var(--color-primary);
-            border: 1px solid #00695c; /* Lighter green border */
-            border-radius: 4px;
-            color: var(--color-text-light);
-            font-family: var(--font-body);
-            font-size: 1rem;
-            transition: border-color 0.3s ease, box-shadow 0.3s ease;
-        }
-        .form-group input:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: var(--color-accent);
-            box-shadow: 0 0 0 2px rgba(192, 160, 128, 0.3);
-        }
-        .form-group textarea {
-            resize: vertical;
-            min-height: 120px;
-        }
-        .form-group input::placeholder,
-        .form-group textarea::placeholder {
-            color: #aaa;
-        }
-        .contact-form .btn {
-            grid-column: 1 / -1;
-            width: 100%;
-            font-size: 1rem;
-        }
-        .footer-bottom {
-            text-align: center;
-            padding-top: 3rem;
-            border-top: 1px solid #00695c;
-        }
-        .footer-bottom p {
-            color: #aaa;
-            font-size: 0.8rem;
-            margin: 0.25rem 0;
-            line-height: 1.5;
-        }
-
-        /* --- Responsive Design --- */
-        
-        /* Tablet */
-        @media (max-width: 1200px) {
-            .main-content {
-                margin-right: 0;
-            }
-            .sidebar-nav {
-                transform: translateX(100%); /* Hide desktop sidebar */
-            }
-            .top-header {
-                display: flex; /* Show mobile header */
-            }
-            body {
-                padding-top: var(--top-header-height); /* Offset for fixed mobile header */
-            }
-            #home {
-                height: 70vh;
-                min-height: 500px;
-                padding: 2rem;
-                padding-top: 0; /* Body padding handles offset */
-                align-items: center; /* Center content more on mobile */
-                text-align: center;
-            }
-            .hero-content {
-                max-width: 600px;
-            }
-            .hero-content h1 {
-                font-size: 3rem;
-            }
-            .content-section {
-                padding: 4rem 0;
-            }
-        }
-
-        /* Tablet (Medium) */
-        @media (max-width: 992px) {
-            .container {
-                padding: 0 1.5rem;
-            }
-            h1 { font-size: 2.5rem; }
-            h2 { font-size: 2.25rem; }
-            
-            .two-col-layout {
-                grid-template-columns: 1fr;
-            }
-            /* Reverse order for visual flow */
-            #details .two-col-layout img {
-                order: -1; /* Image comes first */
-                margin-bottom: 2rem;
-            }
-            
-            .gallery-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-            .features-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-            .contact-form {
-                gap: 1rem;
-            }
-        }
-        
-        /* Mobile */
-        @media (max-width: 768px) {
-            #home {
-                height: 60vh;
-                min-height: 450px;
-            }
-            .hero-content h1 {
-                font-size: 2.25rem;
-            }
-            .hero-content p {
-                font-size: 1rem;
-            }
-            
-            .gallery-grid {
-                grid-template-columns: 1fr;
-            }
-            .features-grid {
-                grid-template-columns: 1fr;
-            }
-            .contact-form {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+    <!-- External CSS -->
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <!-- Top Header (Mobile) -->
     <header class="top-header">
-        <a href="#home" class="logo">BELLE VUE</a>
+        <!-- Section: Mobile Header (Editable Text) -->
+        <a href="#home" class="logo">CENTRAL</a>
+        <!-- End Section: Mobile Header -->
         <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation" aria-expanded="false">
             <span class="bar"></span>
             <span class="bar"></span>
@@ -639,6 +31,7 @@
 
     <!-- Mobile Navigation -->
     <nav class="mobile-nav" id="mobileNav">
+        <!-- Section: Mobile Nav Links (Editable Text) -->
         <ul>
             <li><a href="#home">Home</a></li>
             <li><a href="#gallery">Gallery</a></li>
@@ -647,17 +40,19 @@
             <li><a href="#location">Location</a></li>
         </ul>
         <a href="#contact" class="btn btn-primary">Enquire Now</a>
+        <!-- End Section: Mobile Nav Links -->
     </nav>
 
     <!-- Sidebar Navigation (Desktop) -->
     <aside class="sidebar-nav" id="sidebarNav">
-        <a href="#home" class="sidebar-logo">BELLE VUE</a>
+        <!-- Section: Desktop Nav (Editable Text) -->
+        <a href="#home" class="sidebar-logo">CENTRAL</a>
         
         <nav class="sidebar-nav-links">
             <ul id="navLinks">
                 <li><a href="#home" class="active">Home</a></li>
                 <li><a href="#gallery">Gallery</a></li>
-                <li><a href="#details">Plot Details</a></li>
+                <li><a href="#details">Property Details</a></li>
                 <li><a href="#features">Features</a></li>
                 <li><a href="#location">Location</a></li>
             </ul>
@@ -666,6 +61,7 @@
         <div class="sidebar-enquire">
             <a href="#contact" class="btn btn-primary">Enquire Now</a>
         </div>
+        <!-- End Section: Desktop Nav -->
     </aside>
 
     <!-- Main Page Content -->
@@ -674,28 +70,29 @@
         <!-- Hero Section -->
         <section id="home" class="hero-section">
             <div class="hero-content">
-                <span class="tag">Now Available</span>
-                <h1>Belle Vue Estates</h1>
-                <p>Exclusive residential villa plots nestled in nature's embrace.</p>
+                <!-- Section: Hero (Editable Text) -->
+                <span class="tag">Ready for Business</span>
+                <h1>Central Park Tower</h1>
+                <p>Premium office spaces in the heart of the business district.</p>
+                <!-- End Section: Hero -->
             </div>
         </section>
 
         <!-- Gallery Section -->
         <section id="gallery" class="content-section">
             <div class="container fade-in">
-                <h2>Project Gallery</h2>
+                <!-- Section: Gallery (Editable Text) -->
+                <h2>Our Portfolio</h2>
+                <!-- End Section: Gallery -->
                 <div class="gallery-grid">
                     <div class="gallery-item">
-                        <!-- REPLACED IMAGE -->
-                        <img src="https://images.unsplash.com/photo-1618220179428-22790b461013?ixlib=rb-4.1.0&fit=crop&w=400&h=300&q=80" alt="Modern villa interior" loading="lazy">
+                        <img src="/Public.html/sample3/assets/photo13.avif" alt="Modern office building exterior" loading="lazy">
                     </div>
                     <div class="gallery-item">
-                        <!-- REPLACED IMAGE -->
-                        <img src="https://images.unsplash.com/photo-1585128792020-803d29415281?ixlib=rb-4.1.0&fit=crop&w=400&h=300&q=80" alt="Serene lake view from the property" loading="lazy">
+                        <img src="/Public.html/sample3/assets/photo11.avif" alt="Spacious office lobby with reception" loading="lazy">
                     </div>
                     <div class="gallery-item">
-                        <!-- REPLACED IMAGE -->
-                        <img src="https://images.unsplash.com/photo-1605146769289-440113cc3d00?ixlib=rb-4.1.0&fit=crop&w=400&h=300&q=80" alt="Exterior of a modern luxury villa" loading="lazy">
+                        <img src="/Public.html/sample3/assets/photo14.avif" alt="Open-plan modern workspace" loading="lazy">
                     </div>
                 </div>
             </div>
@@ -706,14 +103,15 @@
             <div class="container fade-in">
                 <div class="two-col-layout">
                     <div>
+                        <!-- Section: Details (Editable Text) -->
                         <h2>Property Details</h2>
-                        <h3>Craft Your Dream Home</h3>
-                        <p>Discover a unique opportunity to build your bespoke villa on spacious, strategically-located plots. Belle Vue offers a sanctuary of peace and privacy, without compromising on modern conveniences and connectivity.</p>
-                        <p>Each plot is thoughtfully planned to offer stunning views and ample green space, providing the perfect canvas for your architectural masterpiece.</p>
+                        <h3>A New Icon for Your Business</h3>
+                        <p>Central Park Tower is designed to be more than just an office. It's a statement. With state-of-the-art infrastructure and flexible floor plans, it provides the perfect canvas for businesses of all sizes to thrive.</p>
+                        <p>Benefit from a prime location, world-class amenities, and a community of forward-thinking enterprises. This is where your business belongs.</p>
+                        <!-- End Section: Details -->
                     </div>
                     <div>
-                        <!-- REPLACED IMAGE -->
-                        <img src="https://images.unsplash.com/photo-1631679706909-1844bbd07221?ixlib=rb-4.1.0&fit=crop&w=500&h=500&q=80" alt="Luxury architectural design of a villa interior" loading="lazy">
+                        <img src="/Public.html/sample3/assets/photo12.avif" alt="Architectural detail of the building facade" loading="lazy">
                     </div>
                 </div>
             </div>
@@ -722,37 +120,45 @@
         <!-- Features Section -->
         <section id="features" class="content-section">
             <div class="container fade-in">
-                <h2>A Curated Living Experience</h2>
+                <!-- Section: Features Title (Editable Text) -->
+                <h2>Unique Features</h2>
+                <!-- End Section: Features Title -->
                 <div class="features-grid">
+                    <!-- Section: Feature 1 (Editable Text) -->
                     <div class="feature-item">
                         <div class="icon">🌟</div>
                         <h3>Luxury Features</h3>
-                        <p>Gated community, landscaped gardens, and plots with premium utility hookups.</p>
+                        <p>Grand entrance lobby, high-speed elevators, and premium finishes in all common areas.</p>
                     </div>
-                    <div class="feature-item">
-                        <div class="icon">🏞️</div>
-                        <h3>Natural Living</h3>
-                        <p>Access to private parks, jogging tracks, and serene natural water bodies.</p>
-                    </div>
+                    <!-- Section: Feature 2 (Editable Text) -->
                     <div class="feature-item">
                         <div class="icon">🛡️</div>
-                        <h3>Complete Services</h3>
-                        <p>24/7 multi-tier security, professional maintenance, and concierge services.</p>
+                        <h3>Community & Exclusivity</h3>
+                        <p>Access to exclusive business lounges, rooftop terraces, and networking event spaces.</p>
                     </div>
+                    <!-- Section: Feature 3 (Editable Text) -->
                     <div class="feature-item">
-                        <div class="icon">🧘</div>
-                        <h3>Wellness & Rec</h3>
-                        <p>Private clubhouse with pool, modern gym, and dedicated yoga & meditation zones.</p>
+                        <div class="icon">🌿</div>
+                        <h3>Work Environment</h3>
+                        <p>LEED-certified sustainable design, ample natural light, and advanced air filtration systems.</p>
                     </div>
+                    <!-- Section: Feature 4 (Editable Text) -->
+                    <div class="feature-item">
+                        <div class="icon">🛎️</div>
+                        <h3>Comprehensive Services</h3>
+                        <p>24/7 professional security, dedicated facility management, and ample visitor parking.</p>
+                    </div>
+                    <!-- Section: Feature 5 (Editable Text) -->
                     <div class="feature-item">
                         <div class="icon">💡</div>
-                        <h3>Smart & Sustainable</h3>
-                        <p>Eco-friendly infrastructure, solar street lighting, and rainwater harvesting systems.</p>
+                        <h3>Smart Building</h3>
+                        <p>Integrated building management system, fiber-optic connectivity, and 100% power backup.</p>
                     </div>
+                    <!-- Section: Feature 6 (Editable Text) -->
                     <div class="feature-item">
                         <div class="icon">📍</div>
                         <h3>Prime Location</h3>
-                        <p>Excellent connectivity to the city, while being peacefully tucked away from the hustle.</p>
+                        <p>Excellent connectivity to major transport hubs, hotels, and F&B establishments.</p>
                     </div>
                 </div>
             </div>
@@ -761,22 +167,25 @@
         <!-- Location Section -->
         <section id="location" class="content-section">
             <div class="container fade-in">
+                <!-- Section: Location Title (Editable Text) -->
                 <h2>Unbeatable Location</h2>
+                <!-- End Section: Location Title -->
                 <div class="two-col-layout">
                     <div>
-                        <h3>At the Center of Serenity</h3>
-                        <p>Perfectly positioned to offer both tranquility and convenience, Belle Vue is the ideal escape.</p>
+                        <!-- Section: Location Details (Editable Text) -->
+                        <h3>At the Center of It All</h3>
+                        <p>Perfectly positioned in the city's new commercial hub, Central Park Tower offers unparalleled connectivity.</p>
                         <ul class="location-list">
-                            <li>5 Mins to Scenic Highway</li>
-                            <li>15 Mins to City Center</li>
-                            <li>20 Mins to International Airport</li>
-                            <li>Surrounded by Nature Trails & Reserves</li>
+                            <li>5 Mins to Metro Station</li>
+                            <li>10 Mins to National Highway</li>
+                            <li>15 Mins to International Airport</li>
+                            <li>Surrounded by 5-Star Hotels & Malls</li>
                         </ul>
                         <a href="#contact" class="btn btn-primary" style="margin-top: 1rem;">Schedule a Visit</a>
+                        <!-- End Section: Location Details -->
                     </div>
-                    <!-- REPLACED PLACEHOLDER -->
                     <div class="location-map">
-                        <img src="https://images.unsplash.com/photo-1483097365279-e8acd3bf9f18?ixlib=rb-4.1.0&fit=crop&w=600&h=450&q=80" alt="Nature trail map placeholder" loading="lazy">
+                        <img src="/Public.html/sample3/assets/photo16.avif" alt="Cityscape map" loading="lazy">
                     </div>
                 </div>
             </div>
@@ -785,221 +194,168 @@
         <!-- Contact Section (Footer) -->
         <section id="contact" class="content-section">
             <div class="container fade-in">
+                <!-- Section: Contact Title (Editable Text) -->
                 <h2>Enquire Now</h2>
-                <form class="contact-form" onsubmit="event.preventDefault(); alert('Form submitted (mockup)!');">
-                    <div class="form-group">
-                        <input type="text" id="name" name="name" placeholder="Your Name" required>
+                <!-- End Section: Contact Title -->
+                
+                <!-- This div wraps the form and the success message -->
+                <div id="main-contact-wrapper">
+                    <form class="contact-form" id="mainContactForm">
+                        <!-- Section: Contact Form Placeholders (Editable Text) -->
+                        <div class="form-group">
+                            <input type="text" id="name" name="name" placeholder="Your Name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" id="email" name="email" placeholder="Your Email" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="tel" id="phone" name="phone" placeholder="Phone Number" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" id="company" name="company" placeholder="Company (Optional)">
+                        </div>
+                        <div class="form-group full-width">
+                            <textarea id="message" name="message" placeholder="Your Message" rows="4"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit Enquiry</button>
+                        <!-- End Section: Contact Form Placeholders -->
+                    </form>
+                    <!-- Section: Contact Form Success (Editable Text) -->
+                    <div id="main-contact-success" class="form-success-message">
+                        <p>Thank you for your enquiry! We will get back to you shortly.</p>
                     </div>
-                    <div class="form-group">
-                        <input type="email" id="email" name="email" placeholder="Your Email" required>
-                    </div>
-                    <div class="form-group">
-                        <input type="tel" id="phone" name="phone" placeholder="Phone Number" required>
-                    </div>
-                    <div class="form-group">
-                        <input type="text" id="interest" name="interest" placeholder="Plot Size Interest (Optional)">
-                    </div>
-                    <div class="form-group full-width">
-                        <textarea id="message" name="message" placeholder="Your Message" rows="4"></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Submit Enquiry</button>
-                </form>
+                    <!-- End Section: Contact Form Success -->
+                </div>
                 
                 <div class="footer-bottom">
-                    <p>Disclaimer: This website is a mockup for illustrative purposes. All images are from Unsplash. The project 'Belle Vue Estates' is a fictional development. The content is for representation purposes only and does not constitute an offer or contract.</p>
+                    <!-- Section: Footer (Editable Text) -->
+                    <p>Disclaimer: This website is for illustrative purposes. All images are representative. The project 'Central Park Tower' is a fictional development. The content is for representation purposes only and does not constitute an offer or contract.</p>
                     <p>&copy; <span id="currentYear"></span> Your Brand. All rights reserved.</p>
+                    <!-- End Section: Footer -->
                 </div>
             </div>
         </section>
 
     </main>
 
+    <!-- Sticky Buttons -->
+    <a href="https://wa.me/91XXXXXXXXXX" target="_blank" class="sticky-btn whatsapp" aria-label="Chat on WhatsApp">
+        <svg class="whatsapp-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 .9c98.1 0 179.1 81 179.1 181 0 52.4-22.8 100.9-63.5 133.7-3.6 2.9-7.6 5.3-11.9 7.2l-1.9 1-82.6-21.6-8.9-2.3-14.7 9.1c-30.6 19-65.7 29.5-101.5 29.5-98.1 0-179.1-81-179.1-181 0-99.9 81-181 179.1-181zm133.6 240.6c-1.2-1.8-4.4-2.8-6.1-3.2-1.7-.5-10.4-5.1-12-6-1.6-1-2.8-1.5-3.9 1.5-1.1 3-4.5 5.6-5.6 6.8-1.1 1.2-2.2 1.3-4.2.4-2-.9-8.4-3.1-16-9.9-5.9-5.4-9.8-12-11-14.1-1.2-2.1-.1-3.2.9-4.3 1-1.1 2.2-2.8 3.3-4.3 1.1-1.5 1.4-2.5 2.1-4.1.7-1.6.4-3 .1-4.1-.3-1.1-4-9.6-5.5-13.2-1.5-3.6-3.1-3.1-4.2-3.1h-3.8c-1.1 0-2.9.4-4.5 2.1-1.6 1.7-6.1 6-6.1 14.5 0 8.5 6.3 16.8 7.2 18.1 1 1.3 12.1 18.6 29.6 26.2 17.5 7.6 17.5 5.1 20.6 4.8 3.1-.3 10.4-4.2 11.9-8.3 1.5-4.1 1.5-7.6 1-8.3z"/></svg>
+    </a>
+    
+    <!-- Section: Sticky Contact Button (Editable Text) -->
+    <button class="sticky-btn contact-us" id="openPopupBtn" aria-label="Open contact form">
+        Contact Us
+    </button>
+    <!-- End Section: Sticky Contact Button -->
+
+
+    <!-- Popup Contact Form -->
+    <div class="popup-overlay" id="popupOverlay">
+        <div class="popup-form" id="popupFormContainer">
+            <button class="close-btn" id="closePopupBtn" aria-label="Close form">&times;</button>
+            
+            <!-- Form Content -->
+            <div class="form-content">
+                <!-- Section: Popup Form (Editable Text) -->
+                <h3>Get in Touch</h3>
+                <form id="popupContactForm">
+                    <div class="form-group">
+                        <input type="text" name="name" placeholder="Your Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" name="email" placeholder="Your Email" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="tel" name="phone" placeholder="Phone Number" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea name="message" placeholder="Your Message" rows="3"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+                <!-- End Section: Popup Form -->
+            </div>
+
+            <!-- Thank You Message -->
+            <div class="popup-thank-you">
+                <!-- Section: Popup Success (Editable Text) -->
+                <h3>Thank you for contacting Sphurit Technologies!</h3>
+                <p>We will get back to you shortly.</p>
+                <!-- End Section: Popup Success -->
+            </div>
+        </div>
+    </div>
+
+
+    <!-- External JS -->
+    <script src="script.js" defer></script>
+
+    <!-- Security Script (Do not modify) -->
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+    (function(){
+      // 🔒 Disable right-click, copy, cut, drag
+      document.addEventListener('contextmenu', e=>e.preventDefault(), true);
+      document.addEventListener('copy', e=>e.preventDefault(), true);
+      document.addEventListener('cut', e=>e.preventDefault(), true);
+      document.addEventListener('dragstart', e=>e.preventDefault(), true);
 
-            // --- Mobile Menu Toggle ---
-            const menuToggle = document.getElementById('menuToggle');
-            const mobileNav = document.getElementById('mobileNav');
-            const mobileNavLinks = mobileNav.querySelectorAll('a');
-            const body = document.body;
+      // 🧩 Disable common inspect shortcuts
+      document.addEventListener('keydown', e=>{
+        const key = (e.key || '').toLowerCase();
+        if (e.keyCode===123) e.preventDefault(); // F12
+        if (e.ctrlKey && ['u','s'].includes(key)) e.preventDefault();
+        if (e.ctrlKey && e.shiftKey && ['i','j','c','m'].includes(key)) e.preventDefault();
+        if (key==='printscreen' || key==='print') e.preventDefault();
+      }, true);
 
-            if (menuToggle && mobileNav) {
-                menuToggle.addEventListener('click', () => {
-                    const isOpen = mobileNav.classList.toggle('open');
-                    menuToggle.classList.toggle('open');
-                    menuToggle.setAttribute('aria-expanded', isOpen);
-                    // Prevent body scrolling when mobile nav is open
-                    body.style.overflow = isOpen ? 'hidden' : '';
-                });
-            }
-            
-            // Close mobile nav when a link is clicked
-            mobileNavLinks.forEach(link => {
-                link.addEventListener('click', () => {
-                    mobileNav.classList.remove('open');
-                    menuToggle.classList.remove('open');
-                    menuToggle.setAttribute('aria-expanded', 'false');
-                    body.style.overflow = ''; // Re-enable scrolling
-                });
-            });
+      // 🧱 Block screen capture API (for Chrome/Edge)
+      try {
+        if (navigator.mediaDevices && navigator.mediaDevices.getDisplayMedia) {
+          navigator.mediaDevices.getDisplayMedia = () => Promise.reject(new Error('Screen capture disabled.'));
+        }
+      } catch {}
 
+      // 🕵️‍♂️ Detect DevTools via window dimension difference
+      (function detectDevTools(){
+        const threshold = 160;
+        let devOpen = false;
+        setInterval(()=>{
+          const wDiff = window.outerWidth - window.innerWidth > threshold;
+          const hDiff = window.outerHeight - window.innerHeight > threshold;
+          if ((wDiff || hDiff) && !devOpen){
+            devOpen = true;
+            document.body.style.filter='blur(6px) grayscale(60%)';
+            setTimeout(()=>{ document.body.style.filter=''; devOpen=false; }, 900);
+          }
+        },800);
+      })();
 
-            // --- Smooth Scroll for All Anchor Links ---
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    const targetId = this.getAttribute('href');
-                    const targetElement = document.querySelector(targetId);
+      // 🌫️ Blur page when hidden (deter quick screenshots)
+      document.addEventListener('visibilitychange', ()=>{
+        document.body.style.transition='filter 0.2s';
+        document.body.style.filter = document.hidden ? 'blur(6px) grayscale(60%)' : '';
+      });
 
-                    if (targetElement) {
-                        let headerOffset = 0;
-                        // Check if mobile header is active (matches @media max-width: 1200px)
-                        if (window.innerWidth <= 1200) {
-                            headerOffset = 70; // From :root --top-header-height
-                        }
-                        
-                        const elementPosition = targetElement.getBoundingClientRect().top;
-                        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-
-                        window.scrollTo({
-                            top: offsetPosition,
-                            behavior: "smooth"
-                        });
-                    }
-                });
-            });
-
-
-            // --- Active Nav Link on Scroll (Scroll-Spy) ---
-            const sections = document.querySelectorAll('section[id]');
-            const navLinks = document.querySelectorAll('.sidebar-nav-links a');
-
-            // Only run observer if desktop nav exists and is visible
-            if (navLinks.length > 0 && window.innerWidth > 1200) {
-                const observerOptions = {
-                    root: null,
-                    rootMargin: "-30% 0px -60% 0px", // Triggers when section is in the middle 40% of viewport
-                    threshold: 0
-                };
-
-                const sectionObserver = new IntersectionObserver((entries, observer) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            const id = entry.target.getAttribute('id');
-                            const activeLink = document.querySelector(`.sidebar-nav-links a[href="#${id}"]`);
-                            
-                            navLinks.forEach(link => link.classList.remove('active'));
-                            if (activeLink) {
-                                activeLink.classList.add('active');
-                            }
-                        }
-                    });
-                }, observerOptions);
-
-                sections.forEach(section => {
-                    sectionObserver.observe(section);
-                });
-            }
-
-
-            // --- Fade-in on Scroll ---
-            const faders = document.querySelectorAll('.fade-in');
-            const faderOptions = {
-                threshold: 0.1,
-                rootMargin: "0px 0px -50px 0px"
-            };
-
-            const faderObserver = new IntersectionObserver(function(
-                entries,
-                faderObserver
-            ) {
-                entries.forEach(entry => {
-                    if (!entry.isIntersecting) {
-                        return;
-                    } else {
-                        entry.target.classList.add('visible');
-                        faderObserver.unobserve(entry.target);
-                    }
-                });
-            }, faderOptions);
-
-            faders.forEach(fader => {
-                faderObserver.observe(fader);
-            });
-            
-            
-            // --- Set Current Year in Footer ---
-            const yearSpan = document.getElementById('currentYear');
-            if (yearSpan) {
-                yearSpan.textContent = new Date().getFullYear();
-            }
-
-        });
-    </script>
-<script>
-(function(){
-  // 🔒 Disable right-click, copy, cut, drag
-  document.addEventListener('contextmenu', e=>e.preventDefault(), true);
-  document.addEventListener('copy', e=>e.preventDefault(), true);
-  document.addEventListener('cut', e=>e.preventDefault(), true);
-  document.addEventListener('dragstart', e=>e.preventDefault(), true);
-
-  // 🧩 Disable common inspect shortcuts
-  document.addEventListener('keydown', e=>{
-    const key = (e.key || '').toLowerCase();
-    if (e.keyCode===123) e.preventDefault(); // F12
-    if (e.ctrlKey && ['u','s'].includes(key)) e.preventDefault();
-    if (e.ctrlKey && e.shiftKey && ['i','j','c','m'].includes(key)) e.preventDefault();
-    if (key==='printscreen' || key==='print') e.preventDefault();
-  }, true);
-
-  // 🧱 Block screen capture API (for Chrome/Edge)
-  try {
-    if (navigator.mediaDevices && navigator.mediaDevices.getDisplayMedia) {
-      navigator.mediaDevices.getDisplayMedia = () => Promise.reject(new Error('Screen capture disabled.'));
-    }
-  } catch {}
-
-  // 🕵️‍♂️ Detect DevTools via window dimension difference
-  (function detectDevTools(){
-    const threshold = 160;
-    let devOpen = false;
-    setInterval(()=>{
-      const wDiff = window.outerWidth - window.innerWidth > threshold;
-      const hDiff = window.outerHeight - window.innerHeight > threshold;
-      if ((wDiff || hDiff) && !devOpen){
-        devOpen = true;
-        document.body.style.filter='blur(6px) grayscale(60%)';
-        setTimeout(()=>{ document.body.style.filter=''; devOpen=false; }, 900);
+      // 🚫 Prevent iframe embedding
+      if (window.top !== window.self) {
+        try { window.top.location = window.self.location; } catch {}
       }
-    },800);
-  })();
 
-  // 🌫️ Blur page when hidden (deter quick screenshots)
-  document.addEventListener('visibilitychange', ()=>{
-    document.body.style.transition='filter 0.2s';
-    document.body.style.filter = document.hidden ? 'blur(6px) grayscale(60%)' : '';
-  });
-
-  // 🚫 Prevent iframe embedding
-  if (window.top !== window.self) {
-    try { window.top.location = window.self.location; } catch {}
-  }
-
-  // 🛡️ Disable text selection & dragging
-  const css = `
-    html, body, * {
-      -webkit-user-select:none;
-      -moz-user-select:none;
-      -ms-user-select:none;
-      user-select:none;
-      -webkit-user-drag:none;
-      user-drag:none;
-    }`;
-  const style = document.createElement('style');
-  style.innerHTML = css;
-  document.head.appendChild(style);
-})();
-</script>
+      // 🛡️ Disable text selection & dragging
+      const css = `
+        html, body, * {
+          -webkit-user-select:none;
+          -moz-user-select:none;
+          -ms-user-select:none;
+          user-select:none;
+          -webkit-user-drag:none;
+          user-drag:none;
+        }`;
+      const style = document.createElement('style');
+      style.innerHTML = css;
+      document.head.appendChild(style);
+    })();
+    </script>
 </body>
 </html>
