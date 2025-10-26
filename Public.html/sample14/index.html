@@ -1,711 +1,41 @@
 <!DOCTYPE html>
+<!-- Section: Language (Editable Text) -->
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Section: Title (Editable Text) -->
     <title>Serene Acres | Luxury Farmhouse Living</title>
     
     <!-- Google Fonts Import -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lora:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for Icons (WhatsApp) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
-    <style>
-        /* CSS Reset and Global Styles */
-        :root {
-            --font-heading: 'Lora', serif;
-            --font-body: 'Inter', sans-serif;
-            --color-primary-dark: #5C4033; /* Dark Brown */
-            --color-primary-medium: #8B4513; /* Saddle Brown */
-            --color-accent-green: #556B2F; /* Dark Olive Green */
-            --color-accent-light: #F5F5DC; /* Beige */
-            --color-text-dark: #333333;
-            --color-text-medium: #666666;
-            --color-text-light: #FFFFFF;
-            --color-border: #D2B48C;       /* Tan Border */
-            --color-bg-white: #FFFFFF;
-            --color-bg-cream: #FFF8DC;     /* Cornsilk/Cream */
-            --transition-main: all 0.3s ease-in-out;
-            --container-width: 1140px;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-            font-size: 16px;
-        }
-
-        body {
-            font-family: var(--font-body);
-            color: var(--color-text-dark);
-            background-color: var(--color-bg-white);
-            line-height: 1.7; /* More spacious for rustic feel */
-            overflow-x: hidden;
-            padding-top: 75px; /* Space for fixed header */
-        }
-
-        /* Utility Classes */
-        .container {
-            max-width: var(--container-width);
-            margin: 0 auto;
-            padding: 0 1.5rem;
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 0.9rem 2.1rem;
-            font-family: var(--font-heading);
-            font-weight: 600;
-            text-decoration: none;
-            border-radius: 4px;
-            transition: var(--transition-main);
-            cursor: pointer;
-            border: 1px solid transparent;
-            text-align: center;
-            text-transform: uppercase;
-            font-size: 0.9rem;
-            letter-spacing: 0.75px;
-        }
-
-        .btn-primary {
-            background-color: var(--color-accent-green);
-            color: var(--color-text-light);
-            border-color: var(--color-accent-green);
-        }
-
-        .btn-primary:hover {
-            background-color: #405024; /* Darker Olive */
-            border-color: #405024;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-        }
-        
-        .btn-outline {
-            background-color: transparent;
-            color: var(--color-primary-dark);
-            border: 2px solid var(--color-primary-dark);
-        }
-        
-        .btn-outline:hover {
-            background-color: var(--color-primary-dark);
-            color: var(--color-text-light);
-        }
-        
-        .btn-light-outline {
-             background-color: transparent;
-            color: var(--color-text-light);
-            border: 2px solid var(--color-text-light);
-        }
-        .btn-light-outline:hover {
-            background-color: var(--color-text-light);
-            color: var(--color-primary-dark);
-        }
-
-
-        h1, h2, h3, h4, h5, h6 {
-            font-family: var(--font-heading);
-            color: var(--color-primary-dark);
-            font-weight: 600;
-            line-height: 1.3;
-        }
-
-        h1 { font-size: 3.25rem; margin-bottom: 1rem; }
-        h2 { font-size: 2.75rem; text-align: center; margin-bottom: 1rem; }
-        h3 { font-size: 1.75rem; margin-bottom: 1rem; }
-        h4 { font-size: 1.25rem; font-weight: 600; }
-        
-        p {
-            margin-bottom: 1.5rem;
-            font-size: 1rem;
-            color: var(--color-text-medium);
-        }
-        p:last-child { margin-bottom: 0; }
-
-        .section-subtitle {
-            text-align: center;
-            font-size: 1.15rem; /* Slightly larger subtitle */
-            color: var(--color-text-medium);
-            max-width: 750px;
-            margin: 0 auto 4rem auto;
-            line-height: 1.8;
-        }
-        
-        img {
-            max-width: 100%;
-            height: auto;
-            display: block;
-            border-radius: 8px;
-        }
-        
-        /* Section Styling */
-        section {
-            padding: 6rem 0;
-            position: relative;
-            overflow: hidden;
-        }
-        .cream-bg {
-            background-color: var(--color-bg-cream);
-        }
-        .beige-bg {
-             background-color: var(--color-accent-light);
-        }
-        
-        /* Fade-in Animation */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.7s ease-out, transform 0.7s ease-out;
-        }
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* --- Top Navigation --- */
-        .top-nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            padding: 1rem 0;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            border-bottom: 1px solid var(--color-border);
-            z-index: 1000;
-            transition: padding 0.3s ease, box-shadow 0.3s ease;
-        }
-        .top-nav.scrolled {
-             padding: 0.75rem 0;
-             box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-        }
-
-        .nav-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .logo {
-            text-decoration: none;
-            color: var(--color-primary-dark);
-            font-family: var(--font-heading);
-            font-weight: 700;
-            font-size: 1.6rem;
-        }
-
-        .main-nav {
-            display: flex;
-            align-items: center;
-            gap: 2rem;
-        }
-        
-        .main-nav .nav-links {
-            display: flex;
-            gap: 1.5rem;
-            list-style: none;
-        }
-        
-        .main-nav a {
-            text-decoration: none;
-            color: var(--color-text-dark);
-            font-weight: 500;
-            font-size: 0.9rem;
-            position: relative;
-            padding-bottom: 0.25rem;
-            text-transform: uppercase;
-            transition: color 0.3s ease;
-        }
-        
-        .main-nav .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -2px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background-color: var(--color-accent-green);
-            transition: width 0.3s ease;
-        }
-        
-         .main-nav .nav-links a:hover {
-             color: var(--color-accent-green);
-         }
-        
-        .main-nav .nav-links a:hover::after {
-            width: 100%;
-        }
-        
-        .main-nav .btn {
-            padding: 0.6rem 1.4rem;
-        }
-        
-        .menu-toggle {
-            display: none;
-            background: none;
-            border: none;
-            cursor: pointer;
-            padding: 0.5rem;
-            z-index: 1001;
-        }
-        
-        .menu-toggle .bar {
-            display: block;
-            width: 28px;
-            height: 3px;
-            margin: 6px 0;
-            background-color: var(--color-primary-dark);
-            transition: all 0.3s ease-in-out;
-            border-radius: 2px;
-        }
-        
-        .menu-toggle.open .bar:nth-child(1) { transform: translateY(9px) rotate(45deg); }
-        .menu-toggle.open .bar:nth-child(2) { opacity: 0; }
-        .menu-toggle.open .bar:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
-
-
-        /* --- Hero Section --- */
-        .hero-section {
-            height: 95vh;
-            min-height: 650px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: var(--color-text-light);
-            position: relative;
-            overflow: hidden;
-            padding: 0 1.5rem;
-            padding-top: 75px; /* Adjust for header */
-        }
-        
-        .hero-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            /* REPLACED IMAGE */
-            background-image: url('https://images.unsplash.com/photo-1483097365279-e8acd3bf9f18?ixlib=rb-4.1.0&fit=crop&w=1800&h=1200&q=80');
-            background-size: cover;
-            background-position: center;
-            z-index: -2;
-        }
-
-        .hero-section::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(rgba(92, 64, 51, 0.6), rgba(92, 64, 51, 0.4)); /* Brown overlay */
-            z-index: -1;
-        }
-        
-        .hero-content {
-            z-index: 2;
-            max-width: 850px;
-        }
-        
-        .hero-content .subtitle-small {
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: var(--color-accent-light);
-            margin-bottom: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-        
-        .hero-content h1 {
-            font-size: 3.75rem;
-            margin-bottom: 1.5rem;
-            color: var(--color-text-light);
-            text-shadow: 0 2px 5px rgba(0,0,0,0.3);
-        }
-        
-        .hero-content p {
-            font-size: 1.2rem;
-            font-weight: 400;
-            color: var(--color-bg-cream);
-            margin-bottom: 2.5rem;
-        }
-        
-        /* --- About Section --- */
-        #about { padding: 6rem 0; background-color: var(--color-bg-cream); }
-        .about-grid {
-            display: grid;
-            grid-template-columns: 1fr 1.2fr;
-            gap: 4rem;
-            align-items: center;
-        }
-        .about-image img {
-             box-shadow: 0 15px 35px rgba(92, 64, 51, 0.15); /* Brown shadow */
-        }
-        .about-content h2 {
-             text-align: left;
-             margin-bottom: 1.5rem;
-        }
-
-        /* --- Key Features Section --- */
-        #features { padding: 6rem 0; background-color: var(--color-accent-light); }
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr); /* 3 columns */
-            gap: 2.5rem;
-            text-align: center;
-        }
-        .feature-item {
-            background: var(--color-bg-white);
-            padding: 2.5rem 1.5rem;
-            border-radius: 8px;
-            border: 1px solid var(--color-border);
-            transition: var(--transition-main);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.04);
-        }
-        .feature-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.08);
-            border-color: var(--color-primary-medium);
-        }
-        .feature-item .icon {
-             width: 55px;
-             height: 55px;
-             margin: 0 auto 1.5rem auto;
-             color: var(--color-accent-green);
-        }
-        .feature-item h4 {
-             font-size: 1.2rem;
-             margin-bottom: 0.5rem;
-             font-family: var(--font-body);
-             font-weight: 600;
-             color: var(--color-primary-dark);
-        }
-        .feature-item p {
-            font-size: 0.95rem;
-            margin-bottom: 0;
-        }
-
-        /* --- Farmhouse Designs Section --- */
-        #designs { padding: 6rem 0; }
-        .designs-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-        }
-        .design-card {
-            border: 1px solid var(--color-border);
-            border-radius: 8px;
-            overflow: hidden;
-            background: var(--color-bg-cream);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.06);
-            transition: box-shadow 0.3s ease;
-        }
-         .design-card:hover {
-             box-shadow: 0 12px 30px rgba(0,0,0,0.1);
-         }
-        .design-card img {
-            width: 100%;
-            height: 350px;
-            object-fit: cover;
-            border-radius: 8px 8px 0 0;
-        }
-        .design-card-content {
-            padding: 2rem;
-        }
-        .design-card-content h3 {
-            margin-bottom: 0.75rem;
-        }
-        .design-card-content .specs {
-             font-size: 0.95rem;
-             color: var(--color-primary-medium);
-             font-weight: 500;
-             margin-bottom: 1.5rem;
-             display: block;
-        }
-
-        /* --- Lifestyle Section --- */
-        #lifestyle { padding: 6rem 0; background-color: var(--color-accent-light); }
-        .lifestyle-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
-        }
-        .lifestyle-item {
-            position: relative;
-            height: 350px;
-            overflow: hidden;
-            border-radius: 8px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
-        }
-        .lifestyle-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.4s ease;
-        }
-        .lifestyle-item:hover img {
-            transform: scale(1.05);
-        }
-        .lifestyle-caption {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            background: linear-gradient(to top, rgba(92, 64, 51, 0.8), transparent); /* Brown gradient */
-            color: var(--color-text-light);
-            padding: 2rem 1.5rem 1rem;
-            text-align: left;
-        }
-        .lifestyle-caption h4 {
-            color: var(--color-text-light);
-            font-size: 1.3rem;
-            font-weight: 600;
-            font-family: var(--font-heading); /* Heading font */
-            margin: 0; /* Remove default margin */
-        }
-        
-        /* --- Location Section --- */
-        #location { padding: 6rem 0; background-color: var(--color-bg-cream); }
-        .location-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-        }
-        .location-content h2 { text-align: left; }
-        .location-list {
-            list-style: none;
-            margin-top: 2rem;
-        }
-        .location-list li {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin-bottom: 1.25rem;
-            font-size: 1rem;
-            font-weight: 500;
-        }
-        .location-list li .icon {
-             width: 24px;
-             height: 24px;
-             color: var(--color-accent-green);
-             flex-shrink: 0;
-        }
-        .map-placeholder {
-            width: 100%;
-            height: 450px;
-            border-radius: 8px;
-            overflow: hidden;
-            border: 1px solid var(--color-border);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-        }
-        .map-placeholder img { width: 100%; height: 100%; object-fit: cover; }
-
-        /* --- Contact Form Section --- */
-        #contact { padding: 6rem 0; }
-        .contact-container {
-            max-width: 700px;
-            margin: 0 auto;
-            background: var(--color-accent-light);
-            padding: 3rem;
-            border-radius: 8px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.07);
-        }
-        .contact-container h2 { text-align: center; }
-         .contact-container .section-subtitle {
-             margin-bottom: 2.5rem; /* More space before form */
-         }
-        .contact-form {
-            display: flex;
-            flex-direction: column;
-            gap: 1.25rem;
-        }
-        .form-group { display: flex; flex-direction: column; }
-        .form-group input, .form-group textarea {
-            width: 100%;
-            padding: 0.9rem 1rem;
-            border: 1px solid var(--color-border);
-            border-radius: 4px;
-            font-family: var(--font-body);
-            font-size: 1rem;
-            background: var(--color-bg-white);
-        }
-        .form-group input:focus, .form-group textarea:focus {
-            outline: none;
-            border-color: var(--color-primary-medium);
-            box-shadow: 0 0 0 2px rgba(139, 69, 19, 0.2);
-        }
-         .form-group textarea {
-             resize: vertical;
-             min-height: 120px;
-         }
-        .contact-form .btn-primary { font-size: 1rem; padding: 1rem; }
-
-        /* --- Footer --- */
-        .main-footer {
-            background-color: var(--color-primary-dark);
-            color: var(--color-accent-light); /* Light text on dark */
-            padding: 5rem 0 2rem 0;
-        }
-        .footer-grid {
-            display: grid;
-            grid-template-columns: 2fr 1fr 1.5fr;
-            gap: 4rem;
-            text-align: left;
-            margin-bottom: 3rem;
-            padding-bottom: 3rem;
-             border-bottom: 1px solid var(--color-primary-medium);
-        }
-        .footer-widget .logo {
-            font-size: 1.75rem;
-            color: var(--color-text-light);
-            margin-bottom: 1rem;
-            display: inline-block;
-            text-decoration: none;
-        }
-        .footer-widget p {
-            color: #E0E0E0; /* Lighter grey */
-            font-size: 0.9rem;
-            max-width: 350px;
-        }
-        .footer-widget h4 {
-            color: var(--color-text-light);
-            font-size: 1.15rem;
-            margin-bottom: 1.5rem;
-            text-transform: uppercase;
-        }
-        .footer-widget ul { list-style: none; }
-        .footer-widget li { margin-bottom: 0.75rem; }
-        .footer-widget a {
-            text-decoration: none;
-            color: #E0E0E0;
-            transition: var(--transition-main);
-        }
-        .footer-widget a:hover { color: var(--color-accent-light); }
-        .footer-widget .contact-item {
-            display: block;
-            color: #E0E0E0;
-            margin-bottom: 0.75rem;
-            font-size: 0.9rem;
-        }
-        .footer-bottom { text-align: center; }
-        .footer-bottom p {
-            color: #BDBDBD; /* Medium grey */
-            margin: 0;
-            font-size: 0.85rem;
-        }
-
-
-        /* --- Responsive Design --- */
-        
-        @media (max-width: 1024px) {
-            h1 { font-size: 2.75rem; }
-            h2 { font-size: 2.25rem; }
-            section, #about, #features, #designs, #lifestyle, #location, #contact { 
-                 padding: 4rem 0; 
-            }
-            .nav-container { padding: 0 1.5rem; }
-            
-            .hero-content h1 { font-size: 3rem; }
-            .hero-content p { font-size: 1.1rem; }
-            
-            .about-grid { grid-template-columns: 1fr; }
-            .about-image img { margin-top: 2rem; }
-            .about-content h2 { text-align: center; }
-
-            .features-grid { grid-template-columns: 1fr; gap: 1.5rem; }
-            .designs-grid { grid-template-columns: 1fr; gap: 2rem; }
-            .location-grid { grid-template-columns: 1fr; }
-            .map-placeholder { height: 350px; margin-top: 2rem; order: 1; }
-             .location-content { order: 0;}
-            .footer-grid { grid-template-columns: 1fr; gap: 3rem; }
-        }
-        
-        @media (max-width: 768px) {
-            body { padding-top: 65px; } /* Adjust for header height */
-            .top-nav { padding: 0.8rem 0; }
-            .nav-container { padding: 0 1rem; }
-            .logo { font-size: 1.4rem; }
-            
-            /* Mobile Nav Styling */
-            .main-nav {
-                position: fixed;
-                top: 65px; /* Match body padding */
-                left: -100%;
-                width: 80%;
-                max-width: 300px;
-                height: calc(100vh - 65px);
-                background: var(--color-bg-white);
-                flex-direction: column;
-                align-items: flex-start;
-                justify-content: space-between;
-                gap: 0;
-                padding: 1.5rem 1rem;
-                box-shadow: 5px 0 15px rgba(0,0,0,0.1);
-                transition: left 0.4s ease-in-out;
-            }
-            .main-nav .nav-links { display: none; }
-            .main-nav.open { left: 0; }
-            .main-nav.open .nav-links {
-                display: flex;
-                flex-direction: column;
-                width: 100%;
-                gap: 0;
-                list-style: none;
-            }
-             .main-nav.open .nav-links li { width: 100%; }
-            .main-nav.open a {
-                padding: 1rem 0;
-                width: 100%;
-                border-bottom: 1px solid var(--color-border);
-                color: var(--color-text-dark);
-            }
-             .main-nav.open .nav-links li:last-child a { border-bottom: none; } /* Remove last border */
-             .main-nav.open .nav-links a:hover {
-                 color: var(--color-accent-green);
-                 background-color: var(--color-accent-light);
-             }
-            .main-nav .nav-links a::after { display: none; }
-            .main-nav .btn { display: none; }
-             .main-nav.open .btn { 
-                 display: block;
-                 margin-top: auto;
-                 width: 100%; 
-                 margin-bottom: 1rem;
-            } 
-            .menu-toggle { display: block; }
-            
-            .hero-section { min-height: 70vh; }
-            .hero-content h1 { font-size: 2.5rem; }
-            .hero-content p { font-size: 1rem; }
-            
-            .lifestyle-grid { grid-template-columns: 1fr; }
-            .contact-container { padding: 2rem 1.5rem; }
-        }
-
-    </style>
+    <!-- External Stylesheet -->
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <!-- Top Navigation -->
     <header class="top-nav" id="topNav">
         <div class="container nav-container">
+            <!-- Section: Header Logo (Editable Text) -->
             <a href="#home" class="logo">SERENE ACRES</a>
             
             <nav class="main-nav" id="mainNav">
+                <!-- Section: Header Nav Links (Editable Text) -->
                 <ul class="nav-links">
                     <li><a href="#about">About</a></li>
                     <li><a href="#designs">Designs</a></li>
                     <li><a href="#lifestyle">Lifestyle</a></li>
                     <li><a href="#location">Location</a></li>
                 </ul>
+                <!-- Section: Header Button (Editable Text) -->
                 <a href="#contact" class="btn btn-primary">Enquire</a>
             </nav>
             
@@ -722,9 +52,11 @@
         <!-- Hero Section -->
         <section id="home" class="hero-section">
             <div class="container hero-content fade-in">
+                <!-- Section: Hero (Editable Text) -->
                 <span class="subtitle-small">Escape to Tranquility</span>
                 <h1>Luxury Farmhouse Living, Reimagined</h1>
                 <p>Discover Serene Acres, an exclusive enclave of bespoke farmhouses nestled amidst rolling hills and lush greenery. Your private sanctuary awaits.</p>
+                <!-- Section: Hero Button (Editable Text) -->
                 <a href="#about" class="btn btn-light-outline">Discover More</a>
             </div>
         </section>
@@ -733,14 +65,16 @@
         <section id="about" class="cream-bg fade-in">
             <div class="container about-grid">
                  <div class="about-content">
+                    <!-- Section: About (Editable Text) -->
                     <h2>Welcome to Your Countryside Escape</h2>
                     <p>Serene Acres offers a unique opportunity to own a piece of paradise, away from the hustle and bustle of city life. Spread across vast, verdant landscapes, this curated community combines the charm of rustic living with modern comforts and luxurious amenities.</p>
                     <p>Designed for those who seek peace, privacy, and a connection with nature, each farmhouse plot provides ample space to build your dream retreat, cultivate organic gardens, and enjoy life at a slower pace.</p>
+                    <!-- Section: About Button (Editable Text) -->
                     <a href="#designs" class="btn btn-outline">View Farmhouse Designs</a>
                 </div>
                 <div class="about-image">
-                     <!-- REPLACED IMAGE -->
-                    <img src="https://images.unsplash.com/photo-1585128792020-803d29415281?ixlib=rb-4.1.0&fit=crop&w=600&h=450&q=80" alt="Charming farmhouse exterior with a blooming garden" loading="lazy">
+                    <!-- Image replaced -->
+                    <img src="/Public.html/sample14/assets/photo9.avif" alt="Charming farmhouse exterior with a blooming garden" loading="lazy">
                 </div>
             </div>
         </section>
@@ -748,36 +82,43 @@
         <!-- Key Features Section -->
         <section id="features" class="beige-bg fade-in">
              <div class="container">
+                <!-- Section: Features (Editable Text) -->
                 <h2 class="fade-in">Embrace the Serene Lifestyle</h2>
                 <p class="section-subtitle fade-in">Experience the unique blend of rustic charm and modern luxury that defines life at Serene Acres.</p>
                 <div class="features-grid">
                     <div class="feature-item fade-in">
                         <svg class="icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 21v-4.5m0 0a2.25 2.25 0 012.25-2.25h12A2.25 2.25 0 0119.5 16.5m-15.75 0v-4.5A2.25 2.25 0 015.25 9.75h13.5A2.25 2.25 0 0121 12m-18 4.5v-4.5m15.75 4.5v-4.5m0 4.5h-12" /></svg>
+                        <!-- Section: Feature 1 (Editable Text) -->
                         <h4>Expansive Plots</h4>
                         <p>Generously sized plots offering privacy and space.</p>
                     </div>
                     <div class="feature-item fade-in">
                         <svg class="icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 21l5.25-11.25L21 21m-9-3h7.5M3 5.621a48.474 48.474 0 016-.371m0 0c1.12 0 2.233.038 3.334.114M9 5.25V3m3.334 2.364C13.18 6.062 14.12 7.018 15 7.973m0 0c.88.954 1.82 1.91 3.334 2.115M15 7.973V3.75m0 4.223c1.514 0 2.918.067 4.286.195m-4.286-.195c-.88.954-1.82 1.91-3.334 2.115" /></svg>
+                        <!-- Section: Feature 2 (Editable Text) -->
                         <h4>Organic Farming</h4>
                         <p>Dedicated spaces for cultivating your own produce.</p>
                     </div>
                      <div class="feature-item fade-in">
                         <svg class="icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" /></svg>
+                        <!-- Section: Feature 3 (Editable Text) -->
                         <h4>Community Clubhouse</h4>
                         <p>Rustic yet elegant space for gatherings and events.</p>
                     </div>
                     <div class="feature-item fade-in">
                         <svg class="icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z" /></svg>
+                        <!-- Section: Feature 4 (Editable Text) -->
                         <h4>Gated Security</h4>
                         <p>24/7 security for complete peace of mind.</p>
                     </div>
                     <div class="feature-item fade-in">
-                        <svg class="icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M6.75 7.5l3 2.25-3 2.25m4.5 0h3m-9 8.25h13.5A2.25 2.25 0 0021 18V6a2.25 2.25 0 00-2.25-2.25H5.25A2.25 2.25 0 003 6v12a2.25 2.25 0 002.25 2.25z" /></svg> <!-- Placeholder for nature trails -->
+                        <svg class="icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M6.75 7.5l3 2.25-3 2.25m4.5 0h3m-9 8.25h13.5A2.25 2.25 0 0021 18V6a2.25 2.25 0 00-2.25-2.25H5.25A2.25 2.25 0 003 6v12a2.25 2.25 0 002.25 2.25z" /></svg>
+                        <!-- Section: Feature 5 (Editable Text) -->
                         <h4>Nature Trails</h4>
                         <p>Explore scenic walking and cycling paths.</p>
                     </div>
                     <div class="feature-item fade-in">
-                         <svg class="icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 21v-7.5a.75.75 0 01.75-.75h3a.75.75 0 01.75.75V21m-4.5 0H2.36m11.14 0H18m0 0h2.14m-2.14 0H12m5.36 0H9.7" /></svg> <!-- Placeholder for modern infra -->
+                         <svg class="icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 21v-7.5a.75.75 0 01.75-.75h3a.75.75 0 01.75.75V21m-4.5 0H2.36m11.14 0H18m0 0h2.14m-2.14 0H12m5.36 0H9.7" /></svg>
+                        <!-- Section: Feature 6 (Editable Text) -->
                         <h4>Modern Infrastructure</h4>
                         <p>Reliable utilities and well-maintained roads.</p>
                     </div>
@@ -788,26 +129,31 @@
         <!-- Farmhouse Designs Section -->
         <section id="designs" class="fade-in">
             <div class="container">
+                <!-- Section: Designs (Editable Text) -->
                 <h2 class="fade-in">Bespoke Farmhouse Designs</h2>
                 <p class="section-subtitle fade-in">Choose from architectural styles that blend seamlessly with the natural surroundings, or design your own unique retreat.</p>
                 <div class="designs-grid">
                     <div class="design-card fade-in">
-                        <!-- REPLACED IMAGE -->
-                        <img src="https://images.unsplash.com/photo-1595058651386-ac9b13dc8305?ixlib=rb-4.1.0&fit=crop&w=600&h=400&q=80" alt="The Meadowview Farmhouse Design - Modern" loading="lazy">
+                        <!-- Image replaced -->
+                        <img src="/Public.html/sample14/assets/photo3.avif" alt="The Meadowview Farmhouse Design - Modern" loading="lazy">
                         <div class="design-card-content">
+                            <!-- Section: Design 1 (Editable Text) -->
                             <h3>The Meadowview</h3>
                             <span class="specs">3 Beds | 3 Baths | Approx. 2500 Sq.Ft.</span>
                             <p>A contemporary take on classic farmhouse style, featuring open-plan living, large windows, and natural materials.</p>
+                            <!-- Section: Design 1 Button (Editable Text) -->
                             <a href="#contact" class="btn btn-outline">View Details</a>
                         </div>
                     </div>
                     <div class="design-card fade-in">
-                        <!-- REPLACED IMAGE -->
-                         <img src="https://images.unsplash.com/photo-1605266764154-0ff8f354088c?ixlib=rb-4.1.0&fit=crop&w=600&h=400&q=80" alt="The Oakridge Farmhouse Design - Rustic" loading="lazy">
+                        <!-- Image replaced -->
+                         <img src="/Public.html/sample14/assets/photo4.avif" alt="The Oakridge Farmhouse Design - Rustic" loading="lazy">
                         <div class="design-card-content">
+                            <!-- Section: Design 2 (Editable Text) -->
                             <h3>The Oakridge</h3>
                             <span class="specs">4 Beds | 4 Baths | Approx. 3200 Sq.Ft.</span>
                             <p>Embracing traditional charm with exposed beams, stone accents, and a sprawling porch overlooking the landscape.</p>
+                            <!-- Section: Design 2 Button (Editable Text) -->
                             <a href="#contact" class="btn btn-outline">View Details</a>
                         </div>
                     </div>
@@ -818,38 +164,57 @@
         <!-- Lifestyle Section -->
         <section id="lifestyle" class="fade-in">
              <div class="container">
+                <!-- Section: Lifestyle (Editable Text) -->
                 <h2 class="fade-in">A Lifestyle Rooted in Nature</h2>
                 <p class="section-subtitle fade-in">Rediscover the simple joys of life with amenities designed for connection, relaxation, and outdoor enjoyment.</p>
                 <div class="lifestyle-grid">
                     <div class="lifestyle-item fade-in">
-                        <!-- REPLACED IMAGE -->
-                        <img src="https://plus.unsplash.com/premium_photo-1687960116957-ab813e1e66e6?ixlib=rb-4.1.0&fit=crop&w=400&h=350&q=80" alt="Nature walking trail" loading="lazy">
-                         <div class="lifestyle-caption"><h4>Nature Trails</h4></div>
+                        <!-- Image replaced -->
+                        <img src="/Public.html/sample14/assets/photo5.avif" alt="Nature walking trail" loading="lazy">
+                         <div class="lifestyle-caption">
+                            <!-- Section: Lifestyle 1 (Editable Text) -->
+                            <h4>Nature Trails</h4>
+                         </div>
                     </div>
                     <div class="lifestyle-item fade-in">
-                        <!-- REPLACED IMAGE -->
-                        <img src="https://unsplash.com/photos/gray-steel-3-door-refrigerator-near-modular-kitchen-MP0bgaS_d1c?ixlib=rb-4.1.0&fit=crop&w=400&h=350&q=80" alt="Community organic garden" loading="lazy"> <!-- Using a placeholder as no direct garden image -->
-                        <div class="lifestyle-caption"><h4>Organic Garden</h4></div>
+                        <!-- Image replaced -->
+                        <img src="/Public.html/sample14/assets/photo6.avif" alt="Community organic garden" loading="lazy">
+                        <div class="lifestyle-caption">
+                            <!-- Section: Lifestyle 2 (Editable Text) -->
+                            <h4>Organic Garden</h4>
+                        </div>
                     </div>
                     <div class="lifestyle-item fade-in">
-                         <!-- REPLACED IMAGE -->
-                        <img src="https://images.unsplash.com/photo-1558981082-c7d43331cd8c?ixlib=rb-4.1.0&fit=crop&w=400&h=350&q=80" alt="Community bonfire area" loading="lazy">
-                        <div class="lifestyle-caption"><h4>Bonfire Pit</h4></div>
+                         <!-- Image replaced -->
+                        <img src="/Public.html/sample14/assets/photo7.avif" alt="Community bonfire area" loading="lazy">
+                        <div class="lifestyle-caption">
+                            <!-- Section: Lifestyle 3 (Editable Text) -->
+                            <h4>Bonfire Pit</h4>
+                        </div>
                     </div>
                      <div class="lifestyle-item fade-in">
-                         <!-- REPLACED IMAGE -->
-                        <img src="https://plus.unsplash.com/premium_photo-1680100256112-2e1231d9d0df?ixlib=rb-4.1.0&fit=crop&w=400&h=350&q=80" alt="Rustic luxury swimming pool" loading="lazy">
-                         <div class="lifestyle-caption"><h4>Swimming Pool</h4></div>
+                         <!-- Image replaced -->
+                        <img src="/Public.html/sample14/assets/photo8.avif" alt="Rustic luxury swimming pool" loading="lazy">
+                         <div class="lifestyle-caption">
+                            <!-- Section: Lifestyle 4 (Editable Text) -->
+                            <h4>Swimming Pool</h4>
+                         </div>
                     </div>
                       <div class="lifestyle-item fade-in">
-                         <!-- REPLACED IMAGE -->
-                        <img src="https://images.unsplash.com/photo-1626374295803-a333cfeca51b?ixlib=rb-4.1.0&fit=crop&w=400&h=350&q=80" alt="Rustic clubhouse interior" loading="lazy">
-                        <div class="lifestyle-caption"><h4>Clubhouse Lounge</h4></div>
+                         <!-- Image replaced -->
+                        <img src="/Public.html/sample14/assets/photo9.avif" alt="Rustic clubhouse interior" loading="lazy">
+                        <div class="lifestyle-caption">
+                            <!-- Section: Lifestyle 5 (Editable Text) -->
+                            <h4>Clubhouse Lounge</h4>
+                        </div>
                     </div>
                        <div class="lifestyle-item fade-in">
-                         <!-- REPLACED IMAGE -->
-                        <img src="https://plus.unsplash.com/premium_photo-1687960117069-567a456fe5f3?ixlib=rb-4.1.0&fit=crop&w=400&h=350&q=80" alt="Children playing outdoors" loading="lazy">
-                        <div class="lifestyle-caption"><h4>Kids' Play Zone</h4></div>
+                         <!-- Image replaced -->
+                        <img src="/Public.html/sample14/assets/photo10.avif" alt="Children playing outdoors" loading="lazy">
+                        <div class="lifestyle-caption">
+                            <!-- Section: Lifestyle 6 (Editable Text) -->
+                            <h4>Kids' Play Zone</h4>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -860,9 +225,11 @@
         <section id="location" class="cream-bg fade-in">
              <div class="container location-grid">
                 <div class="location-content fade-in">
+                    <!-- Section: Location (Editable Text) -->
                     <h2>Serene Yet Connected</h2>
                     <p>Nestled in pristine countryside, Serene Acres offers the perfect balance of seclusion and accessibility. Enjoy peace and quiet while remaining conveniently connected to city essentials.</p>
                     <ul class="location-list">
+                        <!-- Section: Location Items (Editable Text) -->
                         <li><svg class="icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5" /></svg>Main Highway - 15 mins drive</li>
                         <li><svg class="icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 21v-7.5a.75.75 0 01.75-.75h3a.75.75 0 01.75.75V21m-4.5 0H2.36m11.14 0H18m0 0h2.14m-2.14 0H12m5.36 0H9.7" /></svg>Nearest Town/Market - 10 mins drive</li>
                         <li><svg class="icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.25 10.5a.75.75 0 01.75-.75h6a.75.75 0 010 1.5h-6a.75.75 0 01-.75-.75z" /></svg>Hospital & School - 20 mins drive</li>
@@ -870,8 +237,8 @@
                     </ul>
                 </div>
                  <div class="map-placeholder fade-in">
-                     <!-- REPLACED IMAGE -->
-                    <img src="https://images.unsplash.com/photo-1516156008625-3a9d6067fab5?ixlib=rb-4.1.0&fit=crop&w=600&h=500&q=80" alt="Map showing project location in the countryside" loading="lazy">
+                     <!-- Image replaced -->
+                    <img src="/Public.html/sample14/assets/photo11.avif" alt="Map showing project location in the countryside" loading="lazy">
                 </div>
             </div>
         </section>
@@ -880,6 +247,7 @@
         <!-- Contact Form Section -->
         <section id="contact" class="fade-in">
             <div class="container contact-container">
+                 <!-- Section: Contact (Editable Text) -->
                  <h2 class="fade-in">Discover Your Sanctuary</h2>
                  <p class="section-subtitle fade-in">Register your interest to receive exclusive details about Serene Acres, including site visits and launch offers.</p>
                  <form class="contact-form" id="contactForm">
@@ -895,6 +263,7 @@
                      <div class="form-group">
                         <textarea id="message" name="message" rows="4" placeholder="I'm interested in learning more about Serene Acres..."></textarea>
                     </div>
+                    <!-- Section: Contact Button (Editable Text) -->
                     <button type="submit" class="btn btn-primary">Register Interest</button>
                  </form>
             </div>
@@ -907,10 +276,13 @@
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-widget">
+                    <!-- Section: Footer Logo (Editable Text) -->
                     <a href="#home" class="logo">SERENE ACRES</a>
+                    <!-- Section: Footer Desc (Editable Text) -->
                     <p>Crafting exclusive farmhouse communities where luxury meets nature, offering a tranquil escape for discerning individuals.</p>
                 </div>
                 <div class="footer-widget">
+                    <!-- Section: Footer Links 1 (Editable Text) -->
                     <h4>Quick Links</h4>
                     <ul>
                         <li><a href="#about">About Us</a></li>
@@ -921,6 +293,7 @@
                     </ul>
                 </div>
                  <div class="footer-widget">
+                    <!-- Section: Footer Contact (Editable Text) -->
                     <h4>Contact Info</h4>
                     <span class="contact-item">Site Office,<br> Countryside Road, Near Townville</span>
                     <span class="contact-item">sales@sereneacres.mock</span>
@@ -928,141 +301,64 @@
                 </div>
             </div>
             <div class="footer-bottom">
+                <!-- Section: Footer Copyright (Editable Text) -->
                 <p>&copy; <span id="currentYear"></span> Your Brand Developers. All rights reserved. RERA No: P5XXXXXXX. Fictional Mockup for Farmhouse Project.</p>
             </div>
         </div>
     </footer>
+    
+    <!-- Sticky Buttons (NEW) -->
+    
+    <a href="https://wa.me/910000000000" target="_blank" class="sticky-btn whatsapp-btn" aria-label="Chat on WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+    <!-- Section: Sticky Button (Editable Text) -->
+    <button class="sticky-btn contact-btn" id="openContactPopup" aria-label="Open contact form">
+        Contact Us
+    </button>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const topNav = document.getElementById('topNav');
-            const menuToggle = document.getElementById('menuToggle');
-            const mainNav = document.getElementById('mainNav');
-            const body = document.body;
-            let headerHeight = 75; // Initial default
-
-            // --- Adjust Header & Body Padding ---
-            function updateHeaderLayout() {
-                if (topNav) {
-                    headerHeight = topNav.offsetHeight;
-                    body.style.paddingTop = headerHeight + 'px';
-                }
-            }
-            updateHeaderLayout(); // Initial check
-            window.addEventListener('resize', updateHeaderLayout);
-
-            // Shrink header on scroll
-            window.addEventListener('scroll', () => {
-                if (window.scrollY > 50) {
-                    topNav.classList.add('scrolled');
-                } else {
-                    topNav.classList.remove('scrolled');
-                }
-                updateHeaderLayout(); // Update height as padding changes
-            });
-
-            // --- Mobile Menu Toggle ---
-            if (menuToggle && mainNav) {
-                 const navLinksContainer = mainNav.querySelector('.nav-links'); // Get ul
-                menuToggle.addEventListener('click', () => {
-                    const isOpen = mainNav.classList.toggle('open');
-                    menuToggle.classList.toggle('open');
-                    menuToggle.setAttribute('aria-expanded', isOpen);
-                    body.style.overflow = isOpen ? 'hidden' : ''; // Prevent body scroll
-                     if (navLinksContainer) { // Check if navLinksContainer exists
-                        navLinksContainer.style.display = isOpen ? 'flex' : 'none';
-                     }
-                });
-
-                // Close menu when clicking outside on mobile
-                document.addEventListener('click', (event) => {
-                    const isClickInsideNav = mainNav.contains(event.target);
-                    const isClickOnToggle = menuToggle.contains(event.target);
-
-                    if (!isClickInsideNav && !isClickOnToggle && mainNav.classList.contains('open')) {
-                        mainNav.classList.remove('open');
-                        menuToggle.classList.remove('open');
-                        menuToggle.setAttribute('aria-expanded', 'false');
-                        body.style.overflow = ''; // Re-enable scroll
-                        if (navLinksContainer) { // Check if navLinksContainer exists
-                            navLinksContainer.style.display = 'none'; // Hide links immediately
-                        }
-                    }
-                });
-            }
-
-            // --- Smooth Scroll & Close Mobile Menu ---
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    const targetId = this.getAttribute('href');
-                    const targetElement = document.querySelector(targetId);
-                    
-                    if (targetElement) {
-                        let elementPosition = targetElement.getBoundingClientRect().top;
-                        // Use the dynamically updated headerHeight
-                        let offsetPosition = elementPosition + window.pageYOffset - headerHeight;
-
-                        // Special case for #home to scroll to top
-                        if (targetId === '#home') { offsetPosition = 0; }
-
-                        window.scrollTo({ top: offsetPosition, behavior: "smooth" });
-                        
-                        // Close mobile nav if open
-                        if (mainNav.classList.contains('open')) {
-                            mainNav.classList.remove('open');
-                            menuToggle.classList.remove('open');
-                            menuToggle.setAttribute('aria-expanded', 'false');
-                            body.style.overflow = ''; // Re-enable scroll
-                             const navLinksContainer = mainNav.querySelector('.nav-links');
-                             if (navLinksContainer) { // Check if navLinksContainer exists
-                                navLinksContainer.style.display = 'none'; // Hide links immediately
-                             }
-                        }
-                    }
-                });
-            });
-
-            // --- Fade-in on Scroll ---
-            const faders = document.querySelectorAll('.fade-in');
-            const appearOptions = { threshold: 0.1, rootMargin: "0px 0px -50px 0px" };
-            const appearOnScroll = new IntersectionObserver(function(entries, observer) {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) { 
-                        entry.target.classList.add('visible');
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, appearOptions);
-            faders.forEach(fader => { appearOnScroll.observe(fader); });
-
-
-            // --- Set Current Year in Footer ---
-            const yearSpan = document.getElementById('currentYear');
-            if (yearSpan) { yearSpan.textContent = new Date().getFullYear(); }
+    <!-- Contact Popup Modal (NEW) -->
+    <div class="popup-overlay" id="contactPopupOverlay">
+        <div class="popup-container" id="contactPopup">
+            <button class="popup-close" id="closeContactPopup" aria-label="Close form">&times;</button>
             
-            // --- Contact Form Mock Submission ---
-            const contactForm = document.getElementById('contactForm');
-            if (contactForm) {
-                contactForm.addEventListener('submit', function(e) {
-                    e.preventDefault();
-                     const submitButton = this.querySelector('button[type="submit"]');
-                     if(submitButton.disabled) return; // Prevent multiple clicks
+            <!-- Form View -->
+            <div id="popupFormContent">
+                <!-- Section: Popup Form (Editable Text) -->
+                <h3>Contact Us</h3>
+                <p>Fill out the form below and we'll get back to you.</p>
+                <form class="popup-form" id="popupContactForm">
+                    <div class="form-group">
+                        <input type="text" id="popupName" name="popupName" placeholder="Your Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" id="popupEmail" name="popupEmail" placeholder="Your Email" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="tel" id="popupPhone" name="popupPhone" placeholder="Phone Number" required>
+                    </div>
+                    <div class="form-group full-width">
+                        <textarea id="popupMessage" name="popupMessage" placeholder="Your Message" rows="4"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+            
+            <!-- Thank You View -->
+            <div class="popup-thank-you" id="popupThankYouMessage">
+                <!-- Section: Popup Thank You (Editable Text) -->
+                <h3>Thank You!</h3>
+                <p>Thank you for contacting Sphurit Technologies!</p>
+            </div>
+        </div>
+    </div>
+    <!-- End of New Popup -->
 
-                    console.log('Form submitted (mock).');
-                    submitButton.textContent = 'Registered!';
-                    submitButton.disabled = true;
-                    setTimeout(() => {
-                         submitButton.textContent = 'Register Interest';
-                         submitButton.disabled = false;
-                         this.reset();
-                    }, 3000);
-                });
-            }
+    <!-- External JavaScript -->
+    <script src="script.js" defer></script>
 
-        });
-    </script>
-<script>
+    <!-- User's Security Script (Do Not Modify or Move) -->
+    <script>
 (function(){
   // 🔒 Disable right-click, copy, cut, drag
   document.addEventListener('contextmenu', e=>e.preventDefault(), true);
@@ -1129,3 +425,4 @@
 </script>
 </body>
 </html>
+

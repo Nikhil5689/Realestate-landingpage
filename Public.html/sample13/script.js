@@ -1,56 +1,28 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const topNav = document.getElementById('topNav');
-    const menuToggle = document.getElementById('menuToggle');
-    const mainNav = document.getElementById('mainNav');
-    const body = document.body;
-    let headerHeight = 70; // Initial default
-
-     // --- Adjust Header & Body Padding ---
-    function updateHeaderLayout() {
-        if (topNav) {
-            headerHeight = topNav.offsetHeight;
-            body.style.paddingTop = headerHeight + 'px';
-        }
-    }
-    updateHeaderLayout(); // Initial check
-    window.addEventListener('resize', updateHeaderLayout);
-
-    // Shrink header on scroll
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
-            topNav.classList.add('scrolled');
-        } else {
-            topNav.classList.remove('scrolled');
-        }
-        updateHeaderLayout(); // Update height as padding changes
-    });
 
     // --- Mobile Menu Toggle ---
+    const menuToggle = document.getElementById('menuToggle');
+    const mainNav = document.getElementById('mainNav');
+    
     if (menuToggle && mainNav) {
-         const navLinksContainer = mainNav.querySelector('.nav-links'); // Get ul
         menuToggle.addEventListener('click', () => {
-            const isOpen = mainNav.classList.toggle('open');
+            mainNav.classList.toggle('open');
             menuToggle.classList.toggle('open');
-            menuToggle.setAttribute('aria-expanded', isOpen);
-            body.style.overflow = isOpen ? 'hidden' : ''; // Prevent body scroll
-            if (navLinksContainer) {
-                 navLinksContainer.style.display = isOpen ? 'flex' : 'none';
-            }
+            const isOpened = mainNav.classList.contains('open');
+            menuToggle.setAttribute('aria-expanded', isOpened);
+            // Prevent background scrolling when menu is open
+            document.body.style.overflow = isOpened ? 'hidden' : ''; 
         });
-
-        // Close menu when clicking outside on mobile
+        
+        // Close menu when clicking outside
         document.addEventListener('click', (event) => {
             const isClickInsideNav = mainNav.contains(event.target);
             const isClickOnToggle = menuToggle.contains(event.target);
-
             if (!isClickInsideNav && !isClickOnToggle && mainNav.classList.contains('open')) {
                 mainNav.classList.remove('open');
                 menuToggle.classList.remove('open');
                 menuToggle.setAttribute('aria-expanded', 'false');
-                body.style.overflow = ''; // Re-enable scroll
-                if (navLinksContainer) {
-                     navLinksContainer.style.display = 'none';
-                }
+                document.body.style.overflow = ''; // Allow scrolling again
             }
         });
     }
@@ -63,25 +35,19 @@ document.addEventListener('DOMContentLoaded', function() {
             const targetElement = document.querySelector(targetId);
             
             if (targetElement) {
+                let headerOffset = 75; // Adjusted header height
+                if (window.innerWidth <= 768) { headerOffset = 65; }
                 let elementPosition = targetElement.getBoundingClientRect().top;
-                // Use the dynamically updated headerHeight
-                let offsetPosition = elementPosition + window.pageYOffset - headerHeight;
-
-                // Special case for #home to scroll to top
+                let offsetPosition = elementPosition + window.pageYOffset - headerOffset;
                 if (targetId === '#home') { offsetPosition = 0; }
-
                 window.scrollTo({ top: offsetPosition, behavior: "smooth" });
                 
-                // Close mobile nav if open
-                if (mainNav.classList.contains('open')) {
+                // Close mobile menu if open
+                if (mainNav && mainNav.classList.contains('open')) {
                     mainNav.classList.remove('open');
                     menuToggle.classList.remove('open');
                     menuToggle.setAttribute('aria-expanded', 'false');
-                    body.style.overflow = ''; // Re-enable scroll
-                     const navLinksContainer = mainNav.querySelector('.nav-links');
-                     if (navLinksContainer) {
-                         navLinksContainer.style.display = 'none';
-                     }
+                    document.body.style.overflow = ''; // Allow scrolling again
                 }
             }
         });
@@ -90,90 +56,113 @@ document.addEventListener('DOMContentLoaded', function() {
     // --- Fade-in on Scroll ---
     const faders = document.querySelectorAll('.fade-in');
     const appearOptions = { threshold: 0.1, rootMargin: "0px 0px -50px 0px" };
-    const appearOnScroll = new IntersectionObserver(function(entries, observer) {
+    const appearOnScroll = new IntersectionObserver(function(entries, appearOnScroll) {
         entries.forEach(entry => {
-            if (entry.isIntersecting) { 
+            if (!entry.isIntersecting) { return; } 
+            else {
                 entry.target.classList.add('visible');
-                observer.unobserve(entry.target);
+                appearOnScroll.unobserve(entry.target);
             }
         });
     }, appearOptions);
     faders.forEach(fader => { appearOnScroll.observe(fader); });
 
-    // --- Floor Plan Tabs ---
-    const tabContainer = document.getElementById('floorPlanTabs');
-    if (tabContainer) {
-        const tabButtons = tabContainer.querySelectorAll('.tab-button');
-        // Target tab content relative to the section
-        const contentContainer = document.getElementById('floor-plans');
-        const tabContents = contentContainer.querySelectorAll('.tab-content');
-        
-        tabButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                const tabId = button.getAttribute('data-tab');
-                
-                // Update buttons
-                tabButtons.forEach(btn => btn.classList.remove('active'));
-                button.classList.add('active');
-                
-                // Update content
-                tabContents.forEach(content => {
-                    if (content.id === tabId) {
-                        content.classList.add('active');
-                    } else {
-                        content.classList.remove('active');
-                    }
-                });
-            });
-        });
-    }
 
     // --- Set Current Year in Footer ---
     const yearSpan = document.getElementById('currentYear');
     if (yearSpan) { yearSpan.textContent = new Date().getFullYear(); }
     
-    // --- Contact Form Mock Submission (Main Form) ---
+    // --- Counter-up Animation for Developer Stats ---
+    const statCounters = document.querySelectorAll('#about-developer .counter');
+    let statCounterAnimated = false; 
+
+    const startStatCounter = (counter) => {
+        const targetRaw = counter.getAttribute('data-target');
+        const suffix = counter.getAttribute('data-suffix') || '';
+        const target = parseInt(targetRaw, 10);
+        
+        if (isNaN(target)) return; // Skip if target is not a number
+
+        const duration = 2000; // Total duration in ms
+        let start = null;
+
+        const step = (timestamp) => {
+            if (!start) start = timestamp;
+            const progress = Math.min((timestamp - start) / duration, 1);
+            const currentVal = Math.floor(progress * target);
+            
+            // Format the suffix correctly within the <sup> tag if needed
+            const supElement = counter.querySelector('sup');
+            if(supElement) {
+                counter.childNodes[0].nodeValue = currentVal; // Update the number part
+                supElement.textContent = suffix; // Keep the suffix in sup
+            } else {
+                counter.textContent = currentVal + suffix; // Simple case without sup
+            }
+
+            if (progress < 1) {
+                window.requestAnimationFrame(step);
+            } else {
+                // Ensure final value is displayed accurately with suffix
+                if(supElement) {
+                    counter.childNodes[0].nodeValue = target;
+                } else {
+                    counter.textContent = target + suffix;
+                }
+            }
+        };
+        window.requestAnimationFrame(step);
+    };
+
+    const statCounterObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting && !statCounterAnimated) {
+                statCounters.forEach(counter => {
+                    startStatCounter(counter);
+                });
+                statCounterAnimated = true; // Set flag
+                observer.unobserve(entry.target); // Stop observing once animated
+            }
+        });
+    }, { threshold: 0.5 }); // Trigger when 50% visible
+
+    const developerSection = document.getElementById('about-developer');
+    if (developerSection) {
+        statCounterObserver.observe(developerSection);
+    }
+    
+    // --- Contact Form Mock Submission ---
     const contactForm = document.getElementById('contactForm');
     const successMessage = document.getElementById('form-success-message');
-
-    if (contactForm && successMessage) {
+    if (contactForm) {
         contactForm.addEventListener('submit', function(e) {
             e.preventDefault();
             const submitButton = this.querySelector('button[type="submit"]');
-            if(submitButton.disabled) return; // Prevent multiple clicks
-            
             submitButton.textContent = 'Submitting...';
             submitButton.disabled = true;
-
-            // Simulate submission
+            
+            // Simulate network request
             setTimeout(() => {
-                 submitButton.textContent = 'Submit Request';
-                 submitButton.disabled = false;
-                 
-                 // Hide form, show success
-                 contactForm.style.display = 'none';
-                 successMessage.classList.add('visible');
-                 
-                 // Reset after 3 seconds
-                 setTimeout(() => {
-                    contactForm.style.display = 'flex'; // or 'block' if it wasn't flex
-                    successMessage.classList.remove('visible');
-                    this.reset(); // Reset form fields
-                 }, 3000);
-
-                 console.log('Main form submitted (mock).');
-
+                submitButton.textContent = 'Submit Enquiry';
+                submitButton.disabled = false;
+                this.reset();
+                // Show success message
+                if(successMessage) successMessage.classList.add('visible');
+                // Hide success message after 3 seconds
+                setTimeout(() => {
+                    if(successMessage) successMessage.classList.remove('visible');
+                }, 3000);
             }, 1500);
         });
     }
 
-    // --- NEW: Sticky Popup Form Logic ---
+    // --- Sticky Popup Form Logic ---
     const openPopupBtn = document.getElementById('openPopupBtn');
     const closePopupBtn = document.getElementById('closePopupBtn');
     const popupOverlay = document.getElementById('popupOverlay');
     const popupFormContainer = document.getElementById('popupFormContainer');
     const popupContactForm = document.getElementById('popupContactForm');
-    // const body = document.body; // Already defined above
+    const body = document.body; 
 
     if (openPopupBtn && closePopupBtn && popupOverlay && popupContactForm) {
         
@@ -213,7 +202,6 @@ document.addEventListener('DOMContentLoaded', function() {
             
             // Show thank you message
             popupFormContainer.classList.add('submitted');
-            console.log('Popup form submitted (mock).');
 
             // Automatically close popup after 3 seconds
             setTimeout(() => {
@@ -221,6 +209,4 @@ document.addEventListener('DOMContentLoaded', function() {
             }, 3000);
         });
     }
-
 });
-
